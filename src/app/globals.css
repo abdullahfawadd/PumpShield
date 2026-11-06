@@ -3771,3 +3771,10 @@ code {
 .driver-card .muted {
   font-size: 13px;
 }
+
+/* Glisse controls retain the station palette and opaque reading surfaces. */
+.app-shell{--lg-fill:#4e653a;--lg-on:#4e653a;--lg-foreground:#293824;--lg-muted:#607157;--lg-glass:rgba(255,255,255,.78);--lg-segment-label:#34482a;--lg-segment-thumb:#fff;--lg-ring:#718c51;--lg-glass-bend:.3;--lg-glass-dispersion:.12}
+.privacy-control{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:#64765a;padding:0 5px}.topbar-actions>.lg-button{width:40px;padding:0}.reporting-range{--lg-tab-width:76px;--lg-tab-height:38px}.glass-mobile-dock{display:none}
+@media(max-width:800px){.glass-mobile-dock{display:flex;position:fixed;bottom:max(14px,env(safe-area-inset-bottom));left:0;right:0;justify-content:center;z-index:24;pointer-events:none}.glass-mobile-dock>.lg-tab-bar{pointer-events:auto;--lg-tab-width:clamp(57px,17.2vw,72px);--lg-tab-height:56px;filter:drop-shadow(0 8px 18px #27321b20)}.workspace-footer{padding-bottom:95px}.privacy-control{gap:5px}.privacy-control>svg{display:none}}
+@media(prefers-reduced-transparency:reduce){.app-shell .lg-glass{background:#fff!important;backdrop-filter:none!important}}
+@supports not (backdrop-filter:blur(2px)){.app-shell .lg-glass{background:#fff!important}}

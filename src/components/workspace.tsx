@@ -41,6 +41,12 @@ import { Button } from "./ui/button";
 import { Dialog } from "./ui/dialog";
 import { ActionForm, Field } from "./forms";
 import { WorkflowDialog, type Modal } from "./workflows";
+import {
+  Button as GlassButton,
+  SegmentedControl,
+  Switch,
+  TabBar,
+} from "glisse";
 
 type Tab =
   | "overview"
@@ -337,7 +343,10 @@ export function Workspace({
       </main>
     );
   return (
-    <div className={`app-shell ${privateMode ? "privacy-on" : ""}`}>
+    <div
+      data-theme="light"
+      className={`app-shell ${privateMode ? "privacy-on" : ""}`}
+    >
       <aside className={`sidebar ${mobile ? "sidebar-open" : ""}`}>
         <div className="sidebar-brand">
           <Brand />
@@ -458,23 +467,24 @@ export function Workspace({
               <RefreshCw size={12} className={syncing ? "spin" : ""} />
             </button>
             {owner && (
-              <button
-                className="icon-button"
-                aria-label={privateMode ? "Show amounts" : "Hide amounts"}
-                onClick={() => setPrivateMode(!privateMode)}
-              >
-                {privateMode ? <EyeOff size={19} /> : <Eye size={19} />}
-              </button>
+              <span className="privacy-control" title="Hide financial amounts">
+                {privateMode ? <EyeOff size={17} /> : <Eye size={17} />}
+                <Switch
+                  aria-label="Hide financial amounts"
+                  checked={privateMode}
+                  onCheckedChange={setPrivateMode}
+                />
+              </span>
             )}
             {owner && (
-              <button
-                className="icon-button notification-button"
+              <GlassButton
+                className="notification-button"
+                icon={<Bell size={19} />}
                 onClick={() => setAlerts(true)}
                 aria-label={`${pending} pending reviews`}
               >
-                <Bell size={19} />
                 {pending > 0 && <i />}
-              </button>
+              </GlassButton>
             )}
             <span className="topbar-avatar">
               {data.member.name.slice(0, 1)}
@@ -662,14 +672,16 @@ export function Workspace({
                 <h2>
                   Station snapshot <span>Last {days} days</span>
                 </h2>
-                <select
+                <SegmentedControl
                   aria-label="Reporting period"
-                  value={days}
-                  onChange={(e) => setDays(Number(e.target.value))}
-                >
-                  <option value={7}>Last 7 days</option>
-                  <option value={30}>Last 30 days</option>
-                </select>
+                  className="reporting-range"
+                  value={String(days)}
+                  onValueChange={(value) => setDays(Number(value))}
+                  items={[
+                    { value: "7", label: "7 days" },
+                    { value: "30", label: "30 days" },
+                  ]}
+                />
               </div>
               <div className="stats-grid">
                 <Stat
@@ -1552,6 +1564,39 @@ export function Workspace({
             <span>Times shown in Pakistan Standard Time</span>
           </footer>
         </main>
+        <nav className="glass-mobile-dock" aria-label="Station navigation">
+          <TabBar
+            aria-label="Station sections"
+            value={tab}
+            items={navigation
+              .filter(
+                (n) =>
+                  owner || ["deliveries", "shifts", "credit"].includes(n.id),
+              )
+              .map((n) => ({
+                value: n.id,
+                label:
+                  n.id === "shifts"
+                    ? "Shifts"
+                    : n.id === "credit"
+                      ? "Parchi"
+                      : n.id === "overview"
+                        ? "Home"
+                        : n.id === "stock"
+                          ? "Stock"
+                          : n.label,
+                icon: <n.icon size={22} />,
+              }))}
+            onValueChange={(value) => {
+              if (navigation.some((n) => n.id === value)) {
+                setTab(value as Tab);
+                setSearch("");
+                setMobile(false);
+                window.scrollTo({ top: 0, behavior: "instant" });
+              }
+            }}
+          />
+        </nav>
       </div>
       {modal && (
         <WorkflowDialog
