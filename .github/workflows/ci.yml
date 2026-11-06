@@ -1,0 +1,41 @@
+name: Quality
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    name: Lint, types, tests & build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: https://yfeqjemxzfhzqbpgblfm.supabase.co
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_LzMH0obv8wvlR8QhClslXg_GAKZHKKu
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm run build
+      - name: Check protected routes
+        run: |
+          npm start > /tmp/pumpshield.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://localhost:3000/login >/dev/null && break || sleep 2; done
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/api/dashboard)" = "401"
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/app)" = "307"
+          test "$(curl -s -o /dev/null -w '%{http_code}' -X POST -H 'Origin: https://untrusted.example' http://localhost:3000/api/command)" = "403"

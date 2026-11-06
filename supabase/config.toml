@@ -1,0 +1,10 @@
+project_id = "pumpshield"
+[auth]
+site_url = "https://pumpshield.vercel.app"
+additional_redirect_urls = ["https://pumpshield.vercel.app/auth/callback", "https://pumpshield.vercel.app/auth/callback?next=/auth/password", "http://localhost:3000/auth/callback", "http://localhost:3000/auth/callback?next=/auth/password"]
+minimum_password_length = 12
+enable_refresh_token_rotation = true
+refresh_token_reuse_interval = 10
+[auth.email]
+enable_signup = true
+enable_confirmations = true
