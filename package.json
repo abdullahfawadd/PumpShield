@@ -34,7 +34,7 @@
     "@types/qrcode": "^1.5.5",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "eslint": "^9.0.0",
+    "eslint": "^10.14.0",
     "eslint-config-next": "16.4.5",
     "prettier": "3.6.2",
     "supabase": "2.122.1",
