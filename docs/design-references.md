@@ -23,3 +23,7 @@ Warm paper `#F6F7F4`, ink `#222720`, soft lime `#D6EF84`, evergreen `#345E31`, m
 ## Original asset
 
 `public/liquid-metal.png` was created with the built-in image generation tool, then copied into the repository. Prompt: “Premium fuel station operations web app sign-in artwork. A sophisticated abstract sculptural ribbon of liquid graphite and brushed silver, subtle pale chartreuse reflection, flowing in a precise loop on deep warm black. Macro product photography, physically realistic polished liquid metal, dramatic softbox light, refined industrial design, generous negative space, no words, logos, UI or text. Portrait composition. Understated, not neon.”
+
+## Liquid Glass refinement
+
+[Glisse 0.5.0](https://github.com/0kzh/glisse) supplies the actual mobile navigation TabBar, reporting-period SegmentedControl, amount-privacy Switch, and notification Button. Its controls retain PumpShield's olive palette; transaction forms, evidence and financial tables remain opaque. Backdrop-filter and reduced-transparency fallbacks keep controls readable. The existing desktop sidebar remains available, and mobile Settings remains accessible from the navigation menu.
