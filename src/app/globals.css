@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@media(max-width:800px){.sidebar:not(.sidebar-open){visibility:hidden}}
 @theme inline {
   --font-sans: var(--font-geist);
   --font-mono: var(--font-geist-mono);
