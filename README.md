@@ -31,7 +31,7 @@ npm run typecheck
 npm test
 npm run build
 npm audit
-npx supabase db query --project-ref yfeqjemxzfhzqbpgblfm --file tests/database.sql
+npx supabase db query --linked --project-ref yfeqjemxzfhzqbpgblfm --file tests/database.sql
 ```
 
 The SQL suite creates temporary users and business records inside a transaction and rolls them all back. It checks tenant isolation, kiosk projections, role escalation, locked submissions, approval gates, double-decant prevention, credit limits, stock/cash reconciliation and revocation. Run with a migration-admin connection, never a browser key.
