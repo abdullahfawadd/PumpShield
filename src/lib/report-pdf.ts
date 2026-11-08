@@ -20,10 +20,10 @@ export async function createReport(data: ReportData) {
   doc.setSubject("Saved station operations record");
   const regular = await doc.embedFont(StandardFonts.Helvetica),
     bold = await doc.embedFont(StandardFonts.HelveticaBold);
-  const ink = rgb(0.16, 0.13, 0.2),
-    muted = rgb(0.47, 0.43, 0.52),
-    accent = rgb(0.43, 0.31, 0.58),
-    line = rgb(0.89, 0.86, 0.92);
+  const ink = rgb(0.16, 0.2, 0.14),
+    muted = rgb(0.36, 0.42, 0.31),
+    accent = rgb(0.31, 0.41, 0.23),
+    line = rgb(0.86, 0.89, 0.82);
   let page!: PDFPage;
   let y = 0;
   const safe = (s: string) => s.normalize("NFKD").replace(/[^\x20-\x7e]/g, "-");
@@ -86,7 +86,7 @@ export async function createReport(data: ReportData) {
       775,
       7,
       false,
-      rgb(0.74, 0.69, 0.8),
+      rgb(0.79, 0.84, 0.72),
     );
     text(data.title, 42, 698, 24, true);
     text(data.subtitle, 42, 675, 9, false, muted);
@@ -97,7 +97,7 @@ export async function createReport(data: ReportData) {
         y: y - 6,
         width: 511,
         height: 24,
-        color: rgb(0.95, 0.9, 0.96),
+        color: rgb(0.92, 0.95, 0.86),
       });
       text(
         "DESIGN LAB / SYNTHETIC DATA - NOT FOR SETTLEMENT",
@@ -142,7 +142,7 @@ export async function createReport(data: ReportData) {
     y: y - 54,
     width: 511,
     height: 74,
-    color: rgb(0.94, 0.91, 0.97),
+    color: rgb(0.92, 0.95, 0.87),
   });
   text(data.total.label.toUpperCase(), 58, y - 3, 8, true, accent);
   text(data.total.value, 58, y - 39, 25, true, ink);

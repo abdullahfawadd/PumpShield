@@ -60,6 +60,6 @@ export default function RouteMap({
     };
   }, [points]);
   return (
-    <div className="route-map" ref={element} role="img" aria-label={label} />
+    <div className="route-map" ref={element} role="region" aria-label={label} />
   );
 }
