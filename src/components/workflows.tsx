@@ -439,6 +439,15 @@ export function WorkflowDialog({
               Add vehicle
             </Button>
           </div>
+          <a
+            className="button button-secondary full-width"
+            href={`/api/documents/statement/${account.id}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Download size={16} />
+            Download account statement PDF
+          </a>
           <div className="vehicle-list">
             {data.vehicles
               .filter((v) => v.account_id === account.id)

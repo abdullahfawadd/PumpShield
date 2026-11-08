@@ -35,3 +35,10 @@ The Flowing launch and coming-soon pages and the supplied recording informed the
 An original transparent studio tanker asset was generated with built-in ImageGen and saved at `public/tanker-studio.png`. Prompt: photorealistic unbranded ivory petroleum tanker, brushed stainless steel cylinder, front-left three-quarter view, transparent background, complete vehicle in frame, soft studio light, no text or logo. The real maps use Leaflet with attributed OpenStreetMap tiles. Synthetic Design Lab locations are explicitly marked.
 
 Owner and Munshi design-review accounts live in an isolated Design Lab workspace. Their synthetic shifts, deliveries, rates, stock, credit and route never enter another workspace. Generated credentials are stored only in ignored `output/design-lab-credentials.json`, never committed. The source fixture generator refuses to overwrite that credential file.
+
+
+## Workflow and document refinement
+
+The sign-in now uses the publicly served Flowing tile images and motion clips requested by the user, saved under public/flowing/ with source attribution. The renderer is a local responsive perspective wall, rather than Flowing's complete GPU renderer. Viewport checks at 390x844 and 1366x768 report document height equal to viewport height.
+
+Delivery movement now uses a Trello-style board with business-gated transitions. New PDF templates use compact ruled tables, a strong total block, wrapped text, pagination and QR record references. Corporate accounts have statement downloads. See docs/product-roadmap.md for proposed next modules and remaining production-rollout dependencies.

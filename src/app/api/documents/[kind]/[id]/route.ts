@@ -1,4 +1,4 @@
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import { createReport, type ReportData } from "@/lib/report-pdf";
 import { serverDb } from "@/lib/supabase/server";
 import { z } from "zod";
 import { date, number } from "@/lib/utils";
@@ -7,11 +7,20 @@ export async function GET(
   { params }: { params: Promise<{ kind: string; id: string }> },
 ) {
   const { kind, id } = await params;
-  if (!["claim", "parchi"].includes(kind) || !z.uuid().safeParse(id).success)
+  if (
+    !["claim", "parchi", "statement"].includes(kind) ||
+    !z.uuid().safeParse(id).success
+  )
     return new Response("Not found", { status: 404 });
   const db = await serverDb();
   const { data: record, error } = await db
-    .from(kind === "claim" ? "deliveries" : "parchis")
+    .from(
+      kind === "claim"
+        ? "deliveries"
+        : kind === "statement"
+          ? "accounts"
+          : "parchis",
+    )
     .select("*")
     .eq("id", id)
     .single();
@@ -23,81 +32,163 @@ export async function GET(
     .select("name,omc,city")
     .eq("id", record.station_id)
     .single();
-  const doc = await PDFDocument.create();
-  const page = doc.addPage([595.28, 841.89]);
-  const font = await doc.embedFont(StandardFonts.Helvetica);
-  const bold = await doc.embedFont(StandardFonts.HelveticaBold);
-  let y = 780;
-  const clean = (s: string) => s.replace(/[^\x20-\x7E]/g, "-");
-  function line(label: string, value = "", size = 11) {
-    page.drawText(clean(label).slice(0, 85), {
-      x: 48,
-      y,
-      size,
-      font: label === "PUMPSHIELD PK" ? bold : font,
-      color: rgb(0.12, 0.14, 0.12),
-    });
-    if (value)
-      page.drawText(clean(value).slice(0, 65), { x: 310, y, size, font });
-    y -= 28;
-  }
-  line("PUMPSHIELD PK", "", 21);
-  line(
-    kind === "claim" ? "DELIVERY SHORTAGE CLAIM" : "DIGITAL PARCHI RECEIPT",
-    "",
-    15,
-  );
-  y -= 12;
-  line(station?.name || "Station", station?.omc || "");
-  line("Reference", record.reference || id.slice(0, 8));
-  line("Record ID", id);
-  line("Recorded (PKT)", date(record.created_at));
-  y -= 15;
+  const report: ReportData = {
+    title:
+      kind === "claim"
+        ? "Delivery shortage claim"
+        : kind === "statement"
+          ? "Account statement"
+          : "Digital parchi receipt",
+    subtitle: "Independent station records. Clear commercial documentation.",
+    reference: record.reference || id.slice(0, 8).toUpperCase(),
+    recordId: id,
+    station: station?.name || "Station",
+    location: `${station?.city || ""} / ${station?.omc || ""}`,
+    issued: record.created_at
+      ? date(record.created_at)
+      : date(new Date().toISOString()),
+    sample: (station?.name || "").includes("Sample"),
+    rows: [],
+    total: { label: "Amount", value: "" },
+    notes: [
+      "This document records saved station measurements and transactions. It is not a tax invoice.",
+    ],
+  };
   if (kind === "claim") {
-    line("Vehicle", record.vehicle);
-    line("Depot", record.depot);
-    line("Invoice volume", `${number(record.invoice, 3)} L`);
-    line("Measured volume", `${number(record.measured, 3)} L`);
-    line(
-      "Gantry / arrival temperature",
-      `${record.loading_temp} / ${record.measurement?.arrival_temp} C`,
+    report.rows = [
+      {
+        label: "Vehicle / loading depot",
+        value: `${record.vehicle} / ${record.depot}`,
+      },
+      { label: "Invoice volume", value: `${number(record.invoice, 3)} L` },
+      {
+        label: "Measured arrival volume",
+        value: `${number(record.measured, 3)} L`,
+      },
+      {
+        label: "Gantry / arrival temperature",
+        value: `${record.loading_temp} C / ${record.measurement?.arrival_temp} C`,
+      },
+      { label: "Thermal coefficient", value: `${record.beta} per C` },
+      {
+        label: "Calculated thermal allowance",
+        value: `${number(record.allowance, 3)} L`,
+      },
+      {
+        label: "Unexplained shortage",
+        value: `${number(record.shortage, 3)} L`,
+      },
+      {
+        label: "Locked retail rate",
+        value: `PKR ${number(record.price, 2)} / L`,
+      },
+      {
+        label: "Owner approval (PKT)",
+        value: record.approved_at
+          ? date(record.approved_at)
+          : "Approval timestamp unavailable",
+      },
+      {
+        label: "Evidence record",
+        value:
+          record.measurement?.evidence_id ||
+          "No evidence attached to this sample record",
+      },
+    ];
+    report.total = {
+      label: "Calculated claim for settlement review",
+      value: `PKR ${number(record.claim, 2)}`,
+    };
+    report.notes.push(
+      "Subject to measurement review and agreed commercial terms. A discrepancy does not establish theft or legal liability.",
     );
-    line("Thermal coefficient", String(record.beta));
-    line("Calculated thermal allowance", `${number(record.allowance, 3)} L`);
-    line("Unexplained shortage", `${number(record.shortage, 3)} L`);
-    line("Locked retail rate", `PKR ${number(record.price, 2)} / L`);
-    y -= 10;
-    line("Claim amount for settlement", `PKR ${number(record.claim, 2)}`, 14);
-    y -= 20;
-    line("Approved by owner (PKT)", date(record.approved_at));
-    line("Evidence reference", record.measurement?.evidence_id || "");
-    y -= 20;
-    line("Subject to measurement review and agreed commercial terms.", "", 10);
-    line("A discrepancy does not establish theft or legal liability.", "", 10);
+  } else if (kind === "parchi") {
+    const [{ data: vehicle }, { data: account }] = await Promise.all([
+      db
+        .from("vehicles")
+        .select("registration")
+        .eq("id", record.vehicle_id)
+        .single(),
+      db.from("accounts").select("name").eq("id", record.account_id).single(),
+    ]);
+    report.rows = [
+      { label: "Corporate account", value: account?.name || "-" },
+      { label: "Vehicle", value: vehicle?.registration || "-" },
+      { label: "Litres dispensed", value: `${number(record.liters, 2)} L` },
+      {
+        label: "Locked fuel price",
+        value: `PKR ${number(record.price, 2)} / L`,
+      },
+      { label: "Shift record", value: record.shift_id },
+      { label: "Evidence record", value: record.evidence_id },
+    ];
+    report.total = {
+      label: "Credit amount recorded",
+      value: `PKR ${number(record.amount, 2)}`,
+    };
   } else {
-    const { data: vehicle } = await db
-      .from("vehicles")
-      .select("registration")
-      .eq("id", record.vehicle_id)
-      .single();
-    const { data: account } = await db
-      .from("accounts")
-      .select("name")
-      .eq("id", record.account_id)
-      .single();
-    line("Corporate account", account?.name || "");
-    line("Vehicle", vehicle?.registration || "");
-    line("Litres dispensed", `${number(record.liters, 2)} L`);
-    line("Locked fuel rate", `PKR ${number(record.price, 2)} / L`);
-    line("Credit amount", `PKR ${number(record.amount, 2)}`, 14);
-    line("Shift reference", record.shift_id);
-    line("Evidence reference", record.evidence_id);
+    report.rows = [
+      { label: "Corporate account", value: record.name },
+      {
+        label: "Approved credit limit",
+        value: `PKR ${number(record.credit_limit, 2)}`,
+      },
+      {
+        label: "Statement generated (PKT)",
+        value: date(new Date().toISOString()),
+      },
+    ];
+    // Paginate the ledger instead of silently truncating at the Data API row limit.
+    const entries: { at: string; label: string; value: string }[] = [];
+    for (const table of ["parchis", "payments"]) {
+      for (let offset = 0; ; offset += 1000) {
+        const { data: rows, error: ledgerError } = await db
+          .from(table)
+          .select("*")
+          .eq("account_id", id)
+          .order("created_at", { ascending: true })
+          .order("id", { ascending: true })
+          .range(offset, offset + 999);
+        if (ledgerError)
+          return new Response("Unable to load account ledger", { status: 503 });
+        for (const r of rows || [])
+          entries.push({
+            at: r.created_at,
+            label:
+              table === "parchis"
+                ? `Fuel credit / ${number(r.liters, 2)} L / ${r.id.slice(0, 8)}`
+                : `Payment / ${r.reference}`,
+            value: `${table === "parchis" ? "+" : "-"} PKR ${number(r.amount, 2)}`,
+          });
+        if (!rows || rows.length < 1000) break;
+        if (offset >= 19000)
+          return new Response(
+            "This ledger requires a date-bounded export. Contact the station administrator.",
+            { status: 413 },
+          );
+      }
+    }
+    entries.sort((a, b) => a.at.localeCompare(b.at));
+    report.rows.push(
+      ...entries.map((r) => ({
+        label: `${date(r.at)} / ${r.label}`,
+        value: r.value,
+      })),
+    );
+    if (!entries.length)
+      report.rows.push({
+        label: "Ledger activity",
+        value: "No recorded transactions",
+      });
+    report.total = {
+      label: "Current recorded outstanding balance",
+      value: `PKR ${number(record.balance, 2)}`,
+    };
+    report.notes.push(
+      "The balance is the account balance at generation time. Synthetic opening balances in Design Lab are not represented as payment transactions.",
+    );
   }
-  page.drawText(
-    "Generated from saved PumpShield records. This is not a tax invoice.",
-    { x: 48, y: 55, size: 9, font, color: rgb(0.4, 0.4, 0.4) },
-  );
-  const bytes = await doc.save();
+  const bytes = await createReport(report);
   return new Response(new Uint8Array(bytes), {
     headers: {
       "Content-Type": "application/pdf",

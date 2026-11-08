@@ -35,7 +35,8 @@ import { toast } from "sonner";
 import { browserDb } from "@/lib/supabase/client";
 import { command } from "@/lib/api";
 import { date, money, number } from "@/lib/utils";
-import type { Dashboard, Delivery } from "@/lib/types";
+import type { Dashboard } from "@/lib/types";
+import { DeliveryBoard } from "./delivery-board";
 import { OperationsHero } from "./operations-hero";
 import { Brand } from "./brand";
 import { Button } from "./ui/button";
@@ -869,39 +870,15 @@ export function Workspace({
                   />
                 </div>
               </div>
-              {deliveries.length ? (
-                <div className="delivery-grid">
-                  {deliveries
-                    .filter((d) =>
-                      `${d.vehicle} ${d.reference}`
-                        .toLowerCase()
-                        .includes(search.toLowerCase()),
-                    )
-                    .map((d) => (
-                      <DeliveryCard
-                        key={d.id}
-                        delivery={d}
-                        owner={owner}
-                        moneyLabel={moneyLabel}
-                        onOpen={() => open("delivery_detail", d.id)}
-                      />
-                    ))}
-                </div>
-              ) : (
-                <section className="panel">
-                  <Empty
-                    icon={Truck}
-                    title="A clear journey, from the first delivery."
-                    description={
-                      owner
-                        ? "Add a dispatch with its invoice and certified chamber charts. Your Munshi can then capture the arrival audit."
-                        : "Your owner’s incoming deliveries will appear here for inspection."
-                    }
-                    action={owner ? "Add first delivery" : undefined}
-                    onAction={() => open("delivery")}
-                  />
-                </section>
-              )}
+              <DeliveryBoard
+                deliveries={deliveries.filter((d) =>
+                  `${d.vehicle} ${d.reference}`
+                    .toLowerCase()
+                    .includes(search.toLowerCase()),
+                )}
+                owner={owner}
+                onOpen={(id) => open("delivery_detail", id)}
+              />
             </>
           )}
           {tab === "shifts" && (
@@ -1678,76 +1655,5 @@ export function Workspace({
         )}
       </Dialog>
     </div>
-  );
-}
-function DeliveryCard({
-  delivery: d,
-  owner,
-  moneyLabel,
-  onOpen,
-}: {
-  delivery: Delivery;
-  owner: boolean;
-  moneyLabel: (n: number) => string;
-  onOpen: () => void;
-}) {
-  return (
-    <button className="panel delivery-card" onClick={onOpen}>
-      <div className="delivery-top">
-        <span className="delivery-icon">
-          <Truck size={25} strokeWidth={1.5} />
-        </span>
-        <Status value={d.status} />
-      </div>
-      <div className="delivery-title">
-        <h2>{d.vehicle}</h2>
-        <span>{d.reference}</span>
-      </div>
-      <p className="muted">
-        {d.depot}
-        <ArrowRight size={14} />
-        Station
-      </p>
-      <div className="delivery-timeline">
-        {["dispatched", "submitted", "approved", "decanted"].map((s, i) => (
-          <span
-            key={s}
-            className={
-              i <=
-              ["dispatched", "submitted", "approved", "decanted"].indexOf(
-                d.status,
-              )
-                ? "complete"
-                : ""
-            }
-          >
-            <i />
-            {["Dispatch", "Audit", "Approve", "Decant"][i]}
-          </span>
-        ))}
-      </div>
-      {owner && (
-        <div className="delivery-metrics">
-          <div>
-            <span>Invoice volume</span>
-            <strong>
-              {number(d.invoice)} <small>L</small>
-            </strong>
-          </div>
-          <div>
-            <span>Reviewable claim</span>
-            <strong className={d.claim && d.claim > 0 ? "text-danger" : ""}>
-              {d.claim === null ? "—" : moneyLabel(d.claim)}
-            </strong>
-          </div>
-        </div>
-      )}
-      <div className="delivery-footer">
-        <span>{date(d.created_at)}</span>
-        <span>
-          View delivery <ArrowUpRight size={15} />
-        </span>
-      </div>
-    </button>
   );
 }
