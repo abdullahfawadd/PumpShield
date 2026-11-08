@@ -12,6 +12,7 @@ The previous login used large perspective cards and a dense vertical form. The m
 
 [Desktop reference capture](review/2026-11-08/reference-desktop-new.png) · [Phone reference capture](review/2026-11-08/reference-mobile-new.png) · [Revised phone capture](review/2026-11-08/login-after-mobile.png)
 
+- Auth redirect configuration includes both production Vercel aliases for email confirmation and password recovery; the hosted diff was checked before and after applying the allow-list addition.
 - Verified viewport/document widths and heights match at 1366 × 768, 390 × 844 and 320 × 568; no horizontal or vertical page scrolling in the normal login state.
 - Signup and reset modes also fit 320 × 568. Input errors use a bounded status region. The visual-viewport handler adapts when the soft keyboard reduces the available height; physical iOS/Android keyboard testing remains a client-device check.
 - Recorded reference and PumpShield pointer/wheel sessions in ignored local `output/playwright/reference-motion.webm` and `pumpshield-login-motion.webm`. Reference motion responds to wheel/touch; pointer-position easing was added to PumpShield as requested.
