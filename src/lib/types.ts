@@ -12,6 +12,9 @@ export type Station = {
   omc: string;
   city: string;
   tolerance: number;
+  latitude?: number | null;
+  longitude?: number | null;
+  geofence_m?: number;
 };
 export type Tank = {
   id: string;
@@ -62,6 +65,8 @@ export type Delivery = {
     arrival_temp: number;
     dips: number[];
     evidence_id: string;
+    offline_request_id?: string;
+    offline_captured_at?: string;
   } | null;
   created_at: string;
   submitted_at: string;
@@ -107,6 +112,8 @@ export type Shift = {
     }[];
     tanks: { id: string; dip: number; evidence_id: string }[];
     pos_evidence_id?: string;
+    offline_request_id?: string;
+    offline_captured_at?: string;
   } | null;
   review_note: string | null;
 };
@@ -135,6 +142,8 @@ export type Parchi = {
   liters: number;
   price: number;
   amount: number;
+  offline_captured_at?: string;
+  offline_request_id?: string;
   created_at: string;
 };
 export type Dashboard = {

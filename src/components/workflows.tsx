@@ -12,7 +12,7 @@ import {
   QrCode,
   ShieldCheck,
   Truck,
-} from "lucide-react";
+} from "@/components/icons";
 import { toast } from "sonner";
 import { command } from "@/lib/api";
 import { date, money, number } from "@/lib/utils";
@@ -21,6 +21,8 @@ import { Dialog } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { ActionForm, Field, Select, parseChart } from "./forms";
 import { CameraCapture } from "./camera";
+import { ParchiForm } from "./parchi-form";
+import { vehicleCredential } from "@/lib/vehicle-credential";
 import { ContractorTracking } from "./tracking";
 export type Modal = { type: string; id?: string };
 const names: Record<string, string> = {
@@ -580,10 +582,18 @@ function DeliveryDetail({
         </div>
         <span className="subtle-pill capitalize">{d.status}</span>
       </div>
+      {d.measurement?.offline_request_id && (
+        <div className="notice warning">
+          Captured offline{" "}
+          {date(d.measurement.offline_captured_at || d.submitted_at)} PKT.
+          Review the saved photo time and location before approving.
+        </div>
+      )}
       {owner && (
         <ContractorTracking
           deliveryId={d.id}
           dispatched={d.status === "dispatched"}
+          station={data.stations.find((s) => s.id === stationId)}
         />
       )}{" "}
       {d.status === "dispatched" && (
@@ -890,6 +900,13 @@ function ShiftDetail({
   const r = s.result;
   return (
     <div className="detail-stack">
+      {s.submission?.offline_request_id && (
+        <div className="notice warning">
+          Readings captured offline{" "}
+          {date(s.submission.offline_captured_at || s.closed_at)} PKT. Review
+          evidence and any late flag before verifying this shift.
+        </div>
+      )}
       <div className="detail-summary">
         <span className="detail-symbol">
           <ClipboardCheck size={27} />
@@ -1047,7 +1064,7 @@ function VehicleCard({
   const [show, setShow] = useState(false);
   useEffect(() => {
     if (show && canvas.current)
-      void QRCode.toCanvas(canvas.current, v.token, {
+      void QRCode.toCanvas(canvas.current, vehicleCredential(v.token), {
         width: 220,
         margin: 2,
         errorCorrectionLevel: "M",
@@ -1094,6 +1111,14 @@ function VehicleCard({
             <Download size={15} />
             Download QR
           </Button>
+          <a
+            className="button button-secondary"
+            href={`/api/vehicle-pass/${v.id}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Print vehicle fuel pass <ExternalLink size={15} />
+          </a>
           <p className="fine-print">
             Share only with the authorized vehicle operator. Disable the vehicle
             to revoke this credential.
@@ -1105,144 +1130,6 @@ function VehicleCard({
           Disable vehicle authorization
         </button>
       )}
-    </div>
-  );
-}
-function ParchiForm({
-  data,
-  stationId,
-  nozzles,
-  onDone,
-}: {
-  data: Dashboard;
-  stationId: string;
-  nozzles: Dashboard["nozzles"];
-  onDone: () => void;
-}) {
-  const [evidence, setEvidence] = useState("");
-  const [token, setToken] = useState("");
-  const [requestId] = useState(() => crypto.randomUUID());
-  return (
-    <ActionForm
-      op="parchi"
-      base={{ station_id: stationId, request_id: requestId }}
-      onDone={onDone}
-      submit="Verify limit & record parchi"
-      transform={(f) => {
-        if (!evidence) throw new Error("Capture the nozzle evidence first.");
-        return {
-          ...Object.fromEntries(f),
-          token: token.trim(),
-          evidence_id: evidence,
-        };
-      }}
-    >
-      <QrScan onRead={setToken} />
-      <label>
-        Vehicle QR credential
-        <input
-          name="token"
-          value={token}
-          onChange={(e) => setToken(e.target.value)}
-          required
-          placeholder="Scan or enter the vehicle’s UUID credential"
-          pattern="[0-9a-fA-F-]{36}"
-        />
-      </label>
-      <Select
-        label="Dispensing nozzle"
-        name="nozzle_id"
-        options={nozzles.map((n) => ({ value: n.id, label: n.name }))}
-      />
-      <Field label="Litres dispensed" name="liters" type="number" min={0.01} />
-      <CameraCapture
-        stationId={stationId}
-        workspaceId={data.member!.workspace_id}
-        value={evidence}
-        onCapture={setEvidence}
-        label="Capture final nozzle reading"
-      />
-      <div className="notice">
-        The server checks the vehicle’s fuel grade, per-fill allowance,
-        available account credit, and the open shift. Prices and balances are
-        never entered here.
-      </div>
-    </ActionForm>
-  );
-}
-type Detector = {
-  detect: (source: HTMLVideoElement) => Promise<{ rawValue: string }[]>;
-};
-function QrScan({ onRead }: { onRead: (value: string) => void }) {
-  const [active, setActive] = useState(false);
-  const [error, setError] = useState("");
-  const video = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    if (!active) return;
-    let stream: MediaStream | undefined;
-    let timer: ReturnType<typeof setInterval> | undefined;
-    let canceled = false;
-    async function start() {
-      try {
-        const ctor = (
-          window as unknown as {
-            BarcodeDetector?: new (options: { formats: string[] }) => Detector;
-          }
-        ).BarcodeDetector;
-        if (!ctor)
-          throw new Error(
-            "QR scanning is unavailable in this browser. Use your phone camera to read the QR and paste its credential below.",
-          );
-        const detector = new ctor({ formats: ["qr_code"] });
-        stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "environment" },
-        });
-        if (canceled) {
-          stream.getTracks().forEach((t) => t.stop());
-          return;
-        }
-        if (video.current) {
-          video.current.srcObject = stream;
-          await video.current.play();
-        }
-        timer = setInterval(async () => {
-          if (video.current?.readyState === 4) {
-            const codes = await detector.detect(video.current);
-            if (codes[0]) {
-              onRead(codes[0].rawValue);
-              setActive(false);
-            }
-          }
-        }, 500);
-      } catch (e) {
-        setError(e instanceof Error ? e.message : "Camera unavailable");
-        setActive(false);
-      }
-    }
-    void start();
-    return () => {
-      canceled = true;
-      stream?.getTracks().forEach((t) => t.stop());
-      if (timer) clearInterval(timer);
-    };
-  }, [active, onRead]);
-  return (
-    <div>
-      <Button
-        variant="secondary"
-        type="button"
-        onClick={() => {
-          setError("");
-          setActive(!active);
-        }}
-      >
-        <QrCode size={17} />
-        {active ? "Stop scanning" : "Scan vehicle QR"}
-      </Button>
-      {active && (
-        <video ref={video} autoPlay playsInline muted className="qr-video" />
-      )}
-      {error && <p className="fine-print">{error}</p>}
     </div>
   );
 }

@@ -10,9 +10,11 @@ export type MapPoint = {
 export default function RouteMap({
   points,
   label = "Reported contractor locations",
+  onPick,
 }: {
   points: MapPoint[];
   label?: string;
+  onPick?: (point: { latitude: number; longitude: number }) => void;
 }) {
   const element = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -29,6 +31,10 @@ export default function RouteMap({
           '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 18,
       }).addTo(map);
+      if (onPick)
+        map.on("click", (event) =>
+          onPick({ latitude: event.latlng.lat, longitude: event.latlng.lng }),
+        );
       if (points.length) {
         const coords = points.map(
           (p) => [p.latitude, p.longitude] as [number, number],
@@ -58,7 +64,7 @@ export default function RouteMap({
       disposed = true;
       map?.remove();
     };
-  }, [points]);
+  }, [points, onPick]);
   return (
     <div className="route-map" ref={element} role="region" aria-label={label} />
   );

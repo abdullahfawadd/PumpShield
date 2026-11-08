@@ -8,7 +8,7 @@ import {
   Clock3,
   CheckCircle2,
   ClipboardCheck,
-} from "lucide-react";
+} from "@/components/icons";
 import { toast } from "sonner";
 import type { Delivery } from "@/lib/types";
 import { date, number } from "@/lib/utils";

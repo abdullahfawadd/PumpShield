@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import { ArrowUpRight, FileText, Search } from "lucide-react";
+import { ArrowUpRight, FileText, Search } from "@/components/icons";
 import type { Dashboard } from "@/lib/types";
 import { date } from "@/lib/utils";
 export function DocumentCentre({

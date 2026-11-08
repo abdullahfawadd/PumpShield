@@ -11,7 +11,7 @@ import {
   RefreshCw,
   Search,
   Wrench,
-} from "lucide-react";
+} from "@/components/icons";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Dialog } from "./ui/dialog";

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Camera, Check, Loader2, RotateCcw } from "lucide-react";
+import { Camera, Check, Loader2, RotateCcw } from "@/components/icons";
+import type { CapturedEvidence } from "@/lib/evidence-capture";
 import { browserDb } from "@/lib/supabase/client";
 import { command } from "@/lib/api";
 import { Button } from "./ui/button";
@@ -9,12 +10,14 @@ export function CameraCapture({
   stationId,
   workspaceId,
   onCapture,
+  onLocalCapture,
   label = "Capture evidence",
   value,
 }: {
   stationId: string;
   workspaceId: string;
-  onCapture: (id: string) => void;
+  onCapture?: (id: string) => void;
+  onLocalCapture?: (capture: CapturedEvidence) => void;
   label?: string;
   value?: string;
 }) {
@@ -112,6 +115,19 @@ export function CameraCapture({
       const sha256 = Array.from(new Uint8Array(digest))
         .map((x) => x.toString(16).padStart(2, "0"))
         .join("");
+      if (onLocalCapture) {
+        onLocalCapture({
+          captureId: crypto.randomUUID(),
+          blob,
+          capturedAt,
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          accuracy: position.coords.accuracy,
+          sha256,
+        });
+        setOpen(false);
+        return;
+      }
       const db = browserDb();
       const {
         data: { user },
@@ -131,7 +147,7 @@ export function CameraCapture({
         accuracy: position.coords.accuracy,
         sha256,
       });
-      onCapture(result.id);
+      onCapture?.(result.id);
       setOpen(false);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Capture failed.");

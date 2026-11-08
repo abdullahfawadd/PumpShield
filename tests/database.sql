@@ -5,7 +5,7 @@ do $$
 declare
  owner_a uuid=gen_random_uuid(); owner_b uuid=gen_random_uuid(); munshi uuid=gen_random_uuid();
  wa uuid; wb uuid; sid uuid; tank uuid; nozzle uuid; delivery uuid; shift uuid; account uuid; vehicle uuid; credential uuid; eid uuid; e2 uuid; e3 uuid; e4 uuid; e5 uuid;
- indent uuid; result jsonb; tracking_token text; failed boolean; amount numeric;
+ indent uuid; result jsonb; tracking_token text; old_tracking_token text; failed boolean; amount numeric;
 begin
  insert into auth.users(id,email,email_confirmed_at,aud,role) values(owner_a,owner_a||'@example.invalid',now(),'authenticated','authenticated'),(owner_b,owner_b||'@example.invalid',now(),'authenticated','authenticated'),(munshi,munshi||'@example.invalid',now(),'authenticated','authenticated');
  perform set_config('request.jwt.claim.sub',owner_a::text,true);
@@ -24,10 +24,17 @@ begin
  select token into credential from public.vehicles where id=vehicle;
  delivery=(public.command('delivery',jsonb_build_object('station_id',sid,'tank_id',tank,'reference',gen_random_uuid(),'vehicle','QA-2','depot','QA depot','invoice',10000,'loading_temp',38,'chambers','[[{"mm":0,"liters":0},{"mm":1000,"liters":10000}]]'::jsonb))->>'id')::uuid;
  tracking_token=public.tracking('create',jsonb_build_object('delivery_id',delivery,'depot_lat',24,'depot_lon',67,'station_lat',25,'station_lon',68))->>'token';
+ old_tracking_token=tracking_token;
+ tracking_token=public.tracking('create',jsonb_build_object('delivery_id',delivery,'depot_lat',24,'depot_lon',67,'station_lat',25,'station_lon',68))->>'token';
+ result=public.tracking('read',jsonb_build_object('delivery_id',delivery));
+ assert result->'session'->>'revoked'='false','Newest issued session was not selected';
+ assert not(result->'session' ? 'token_hash'),'Tracking hash disclosed to browser';
  perform set_config('request.jwt.claim.sub','',true);
  execute 'set local role anon';
  assert public.tracking('status',jsonb_build_object('token',tracking_token))->>'vehicle'='QA-2','Valid driver token rejected';
- perform public.tracking('ping',jsonb_build_object('token',tracking_token,'latitude',24.5,'longitude',67.5,'accuracy',15));
+ failed=false;begin perform public.tracking('status',jsonb_build_object('token',old_tracking_token));exception when others then failed=true;end;assert failed,'Replaced driver link remained active';
+ assert public.tracking('status',jsonb_build_object('token',tracking_token))->>'station_lat'='25','Driver destination missing';
+ perform public.tracking('ping',jsonb_build_object('token',tracking_token,'latitude',24.5,'longitude',67.5,'accuracy',15,'heading',90,'speed_ms',10));
  failed=false;begin perform public.tracking('read',jsonb_build_object('delivery_id',delivery));exception when others then failed=true;end;assert failed,'Anonymous caller could read owner tracking data';
  failed=false;begin perform public.tracking('status',jsonb_build_object('token',repeat('a',64)));exception when others then failed=true;end;assert failed,'Invalid tracking token accepted';
  execute 'set local role authenticated';

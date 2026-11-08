@@ -13,3 +13,4 @@ playwright-report/
 .playwright-cli/
 __pycache__/
 *.pyc
+public/maplibre/

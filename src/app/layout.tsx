@@ -5,6 +5,7 @@ import "./globals.css";
 import "./editorial.css";
 import "./login.css";
 import "./operations.css";
+import "./field.css";
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 export const metadata: Metadata = {
@@ -15,6 +16,12 @@ export const metadata: Metadata = {
   description:
     "Independent fuel-station operations. Delivery verification, shift reconciliation, and digital credit in one secure workspace.",
   robots: { index: false, follow: false },
+  appleWebApp: {
+    capable: true,
+    title: "PumpShield",
+    statusBarStyle: "default",
+  },
+  icons: { apple: "/brand/icon-192.png" },
 };
 export const viewport: Viewport = {
   width: "device-width",

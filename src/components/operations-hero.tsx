@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { ArrowUpRight, Truck, ShieldCheck, Navigation } from "lucide-react";
+import { ArrowUpRight, Truck, ShieldCheck, Navigation } from "@/components/icons";
 import type { Delivery, Tank } from "@/lib/types";
 import type { MapPoint } from "./route-map";
 import { number } from "@/lib/utils";
-const RouteMap = dynamic(() => import("./route-map"), {
+const RouteMap = dynamic(() => import("./field-map"), {
   ssr: false,
   loading: () => <div className="map-loading">Loading map…</div>,
 });

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2 } from "@/components/icons";
 import { toast } from "sonner";
 import { command } from "@/lib/api";
 import { Button } from "./ui/button";
