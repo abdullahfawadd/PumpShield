@@ -1,16 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Image from "next/image";
+import { DesignCanvas } from "./design-canvas";
 import {
   ArrowUpRight,
   ArrowRight,
-  Check,
   Eye,
   EyeOff,
   ShieldCheck,
   Fingerprint,
-  Layers3,
   Loader2,
 } from "lucide-react";
 import { browserDb } from "@/lib/supabase/client";
@@ -230,70 +228,7 @@ export function Login() {
           className="login-art"
           aria-label="PumpShield product illustration"
         >
-          <Image
-            src="/liquid-metal.png"
-            alt="Sculptural silver ribbon with soft lime reflections"
-            fill
-            priority
-            sizes="(max-width: 900px) 100vw, 52vw"
-            className="metal-art"
-          />
-          <div className="art-top">
-            <span className="art-chip">
-              <span className="status-dot" /> PRECISION, WITHOUT THE NOISE.
-            </span>
-            <ArrowUpRight size={22} />
-          </div>
-          <div className="canvas-grid">
-            <div className="canvas-card canvas-main">
-              <div className="canvas-card-head">
-                <span>
-                  <ShieldCheck size={17} /> THE VERIFICATION LAYER
-                </span>
-                <span className="tiny-pill">PumpShield</span>
-              </div>
-              <h3>
-                Confidence.
-                <br />
-                Built into every shift.
-              </h3>
-              <div className="decorative-chart" aria-hidden="true">
-                {[
-                  25, 38, 31, 54, 40, 62, 48, 78, 55, 66, 82, 74, 90, 80, 95,
-                  85, 100, 91, 110, 102, 117, 108, 126, 118,
-                ].map((h, i) => (
-                  <i key={i} style={{ height: h }} />
-                ))}
-              </div>
-              <div className="canvas-caption">
-                <span>Capture</span>
-                <span>Reconcile</span>
-                <span>
-                  Verify <Check size={12} />
-                </span>
-              </div>
-            </div>
-            <div className="canvas-card canvas-mini">
-              <span className="canvas-icon">
-                <Layers3 size={22} />
-              </span>
-              <div>
-                <strong>One source of truth.</strong>
-                <p>From delivery to daily close.</p>
-              </div>
-              <span className="mini-check">
-                <Check size={15} />
-              </span>
-            </div>
-          </div>
-          <div className="art-bottom">
-            <p>
-              Less guesswork.
-              <br />
-              <span>More peace of mind.</span>
-            </p>
-            <span>01 — 03</span>
-          </div>
+          <DesignCanvas />
         </aside>
       </div>
     </main>
