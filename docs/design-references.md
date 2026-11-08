@@ -27,3 +27,11 @@ Warm paper `#F6F7F4`, ink `#222720`, soft lime `#D6EF84`, evergreen `#345E31`, m
 ## Liquid Glass refinement
 
 [Glisse 0.5.0](https://github.com/0kzh/glisse) supplies the actual mobile navigation TabBar, reporting-period SegmentedControl, amount-privacy Switch, and notification Button. Its controls retain PumpShield's olive palette; transaction forms, evidence and financial tables remain opaque. Backdrop-filter and reduced-transparency fallbacks keep controls readable. The existing desktop sidebar remains available, and mobile Settings remains accessible from the navigation menu.
+
+## November 8 editorial redesign
+
+The Flowing launch and coming-soon pages and the supplied recording informed the black split-panel login and angled component wall. The component wall is original DOM/SVG artwork; it does not reuse Flowing source or claim to show live business data. RonDesignLab and CreditTB supplied the direction for pearl surfaces, ink navigation, iris/apricot gradients and larger editorial type.
+
+An original transparent studio tanker asset was generated with built-in ImageGen and saved at `public/tanker-studio.png`. Prompt: photorealistic unbranded ivory petroleum tanker, brushed stainless steel cylinder, front-left three-quarter view, transparent background, complete vehicle in frame, soft studio light, no text or logo. The real maps use Leaflet with attributed OpenStreetMap tiles. Synthetic Design Lab locations are explicitly marked.
+
+Owner and Munshi design-review accounts live in an isolated Design Lab workspace. Their synthetic shifts, deliveries, rates, stock, credit and route never enter another workspace. Generated credentials are stored only in ignored `output/design-lab-credentials.json`, never committed. The source fixture generator refuses to overwrite that credential file.

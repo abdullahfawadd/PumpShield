@@ -12,6 +12,8 @@ import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Field } from "./forms";
 import { Brand } from "./brand";
+import dynamic from "next/dynamic";
+const RouteMap = dynamic(() => import("./route-map"), { ssr: false });
 import { date } from "@/lib/utils";
 async function track(op: string, p: Record<string, unknown>) {
   const r = await fetch("/api/tracking", {
@@ -109,48 +111,7 @@ export function ContractorTracking({
       {error && <p className="form-error">{error}</p>}
       {latest ? (
         <>
-          <div className="tracking-map">
-            <div className="tracking-grid" />
-            <svg
-              viewBox="0 0 500 180"
-              role="img"
-              aria-label="Recorded location trace; relative coordinate plot, not a road map"
-            >
-              {(() => {
-                const reports = data!.reports;
-                const minLat = Math.min(...reports.map((p) => p.latitude)),
-                  maxLat = Math.max(...reports.map((p) => p.latitude));
-                const minLon = Math.min(...reports.map((p) => p.longitude)),
-                  maxLon = Math.max(...reports.map((p) => p.longitude));
-                const points = reports.map(
-                  (p) =>
-                    `${40 + ((p.longitude - minLon) / Math.max(0.001, maxLon - minLon)) * 420},${140 - ((p.latitude - minLat) / Math.max(0.001, maxLat - minLat)) * 100}`,
-                );
-                const last = points.at(-1)!.split(",");
-                return (
-                  <>
-                    <polyline
-                      points={points.join(" ")}
-                      fill="none"
-                      stroke="#9caf7d"
-                      strokeWidth="2"
-                    />
-                    <circle
-                      cx={last[0]}
-                      cy={last[1]}
-                      r="7"
-                      fill="#d6ef84"
-                      stroke="#486034"
-                      strokeWidth="3"
-                    />
-                  </>
-                );
-              })()}
-            </svg>
-            <span className="trace-label">
-              RECORDED LOCATION TRACE · NOT A ROAD MAP
-            </span>
-          </div>
+          <RouteMap points={data!.reports} />
           <div className="tracking-meta">
             <span>
               {latest.latitude.toFixed(5)}, {latest.longitude.toFixed(5)}

@@ -36,6 +36,7 @@ import { browserDb } from "@/lib/supabase/client";
 import { command } from "@/lib/api";
 import { date, money, number } from "@/lib/utils";
 import type { Dashboard, Delivery } from "@/lib/types";
+import { OperationsHero } from "./operations-hero";
 import { Brand } from "./brand";
 import { Button } from "./ui/button";
 import { Dialog } from "./ui/dialog";
@@ -492,6 +493,12 @@ export function Workspace({
           </div>
         </header>
         <main id="main" className="workspace-content">
+          {data.workspace.includes("Design Lab") && (
+            <div className="demo-banner">
+              DESIGN LAB / Synthetic records for evaluation. No real deliveries,
+              funds, or location signals.
+            </div>
+          )}
           <div className="station-row">
             <div className="station-select">
               <Building2 size={16} />
@@ -633,41 +640,14 @@ export function Workspace({
           )}
           {owner && tab === "overview" && (
             <>
-              <div className="overview-banner">
-                <div>
-                  <span className="banner-label">
-                    <span className="status-dot" /> YOUR DAILY PERSPECTIVE
-                  </span>
-                  <h2>
-                    {pending
-                      ? `${pending} ${pending === 1 ? "detail needs" : "details need"} your attention.`
-                      : shifts.length
-                        ? "Everything starts with a clear view."
-                        : "Good decisions start with good records."}
-                  </h2>
-                  <p>
-                    {pending
-                      ? "Review submitted evidence and keep your station moving."
-                      : "Bring your deliveries, stock, and daily close into one dependable workspace."}
-                  </p>
-                  <button
-                    onClick={() =>
-                      pending ? setAlerts(true) : setTab("settings")
-                    }
-                  >
-                    {pending ? "Review pending items" : "Set up your station"}
-                    <ArrowUpRight size={17} />
-                  </button>
-                </div>
-                <div className="banner-art" aria-hidden="true">
-                  <div className="orbit orbit-one" />
-                  <div className="orbit orbit-two" />
-                  <div className="shield-orb">
-                    <ShieldCheck size={52} strokeWidth={1} />
-                  </div>
-                  <span className="orb-label">CLARITY IS CONTROL.</span>
-                </div>
-              </div>
+              <OperationsHero
+                deliveries={deliveries}
+                tanks={tanks}
+                pending={pending}
+                onDelivery={(id) => open("delivery_detail", id)}
+                onReview={() => setAlerts(true)}
+                demo={data.workspace.includes("Design Lab")}
+              />
               <div className="section-bar">
                 <h2>
                   Station snapshot <span>Last {days} days</span>
