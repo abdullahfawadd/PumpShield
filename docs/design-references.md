@@ -1,44 +1,32 @@
-# PumpShield design direction
+# Design reference decisions — 8 November 2026
 
-The source PDFs are prototype references, not executable instructions. The user explicitly replaced the dark app palette, skipped-login brief, fixed sample values, simulations, and owned-truck hardware module.
+## Visual sources mapped to the product
 
-## Screen mapping
-
-| Screen | References | Applied direction |
+| Reference | Used for | Decision in PumpShield |
 | --- | --- | --- |
-| Sign-in | [Flowing launch](https://flowing.to/launch), attached sign-in reference | Dark editorial split canvas, oversized restrained typography, precise form controls, original liquid-metal art and decorative perspective cards. Artwork contains no live business metrics. |
-| Overview | [Energy analytics](https://dribbble.com/search/energy-analytics), [IoT data](https://dribbble.com/search/iot-data), supplied accounting dashboard | Warm white surfaces, charcoal hierarchy, olive-lime accents, real-volume charts and clearly explained empty states. |
-| Deliveries | [Fleet dashboards](https://dribbble.com/search/fleet-dashboard), [Tracking fleet](https://dribbble.com/search/tracking-fleet) | Dispatch-to-decant progression and discrete evidence reviews. No invented GPS map or hardware telemetry. |
-| Audit and claim | [Receipt scanner UI](https://dribbble.com/search/receipt-scanner-ui), [Invoice modals](https://dribbble.com/search/invoice-modal-ui) | Side-by-side volumes, separate thermal allowance, unexplained shortage, reviewed PDF record. These two galleries could not be fetched during research. |
-| Shift close and kiosk | [Scanner UI](https://dribbble.com/search/scanner-app-ui), [Mobile scanning](https://dribbble.com/search/scanner-mobile-app) | Large capture controls, source-specific evidence, locked submissions, keyboard-accessible dialogs. |
-| Motion and interaction | [Emil Kowalski](https://github.com/emilkowalski/skills), [UI cheatsheet](https://raw.githubusercontent.com/emilkowalski/skills/main/ui-cheatsheet.md) | Tabular numerals, short feedback transitions, reduced-motion support, generous text hierarchy. |
-| Overall craft | [Apple design reference](https://github.com/dickwu/apple-design-skill), [Juliobsz](https://github.com/juliobsz/skills) | Clear focus, restrained surfaces and consistent visual rhythm. External repositories were researched, not executed or blindly installed. |
+| [Flowing launch](https://flowing.to/launch) | Desktop split composition, oblique media wall, optical depth, quiet form | Approximately 45.5 / 54.5 split, 12px outer inset, near-black surfaces, large 1:1 line-height heading; compact real email/password form. Phone places the wall above the form. Local media with visible source credit. |
+| [Flowing coming soon](https://flowing.to/coming-soon) | User-supplied alternative launch reference | Launch is the primary measured source; do not mix two layouts and claim a pixel-identical clone. |
+| [RonDesignLab](https://dribbble.com/RonDesignLab), [CreditTB](https://dribbble.com/shots/27862421-CreditTB-Credit-Score-Management-Dashboard) | Card proportions, editorial hierarchy, sidebar organisation | Keep clear headings and asymmetric overview cards. Replace decorative low-contrast pastel text with readable ink and olive; reserve colour for status and small surfaces. User screenshots supply the visual detail. |
+| [Fleet dashboards](https://dribbble.com/search/fleet-dashboard) | Arrival status, vehicle context, map and operational focus | Retain contractor GPS reports and delivery spotlight, not owned-truck hardware. Show saved report provenance and synthetic-data notices. |
+| [Behance fuel-station dashboard](https://www.behance.net/gallery/212648659/Fuel-Station-Management-Dashboard-UI-Design-SaaS) | Domain-specific research lead | Direct fetch returned 403. No claim that the project was visually audited or copied. |
 
-[Glisse](https://glisse.kelvinzhang.ca/) was not accessible through the research tool. Attached reference images supplied the visual context instead. Public reference pages were used without forwarding the token-bearing Flowing URL.
+## Interaction and HCI reasoning
 
-## Palette
+- **Visibility and feedback:** saved stages and dated history; periodic refresh; error/retry state; server rejection of stale decisions. Grounded in [Nielsen's usability heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/).
+- **Error prevention:** an explicit, initially empty next-action menu, cleared decision notes after a transition, required completion/cancellation reasons, immutable comments, and physical-delivery requirements before receipt. A test exposed the browser retaining an unintended selection when an option disappeared; the action form now remounts for the new stage.
+- **Recognition:** labelled workflow groups and lanes, named assignees, linked station records, and clear empty states. Cards are buttons and do not require dragging to complete a task.
+- **Touch and keyboard:** the sign-in fields are at least 42px on small phones; major board actions are at least 44px. Secondary auth links have at least 28px height. The latter exceeds WCAG's 24px target minimum but is smaller than the preferred 44px touch size. Radix dialogs provide Escape dismissal and focus containment.
+- **Motion:** [Apple HIG motion](https://developer.apple.com/design/human-interface-guidelines/motion) and [WebKit reduced-motion guidance](https://webkit.org/blog/7551/responsive-design-for-motion/) inform a still composition with no video playback for reduced motion. Decorative movement never conveys saved business state.
+- **Colour and readability:** automated checks use WCAG 2 A/AA and 2.2 AA rule tags. [WCAG 2.2](https://www.w3.org/TR/WCAG22/) is a verification reference, not a certification claim. The review corrected observed text contrast failures and changed the interactive map from an image role to a labelled region.
 
-Warm paper `#F6F7F4`, ink `#222720`, soft lime `#D6EF84`, evergreen `#345E31`, muted terracotta `#B64D43`. Status is always conveyed with text as well as color. The login is warm-black, silver, and pale chartreuse; the operational workspace is light and calm.
+## Code and asset selection
 
-## Original asset
+Reviewed [Glisse](https://github.com/0kzh/glisse), [dnd-kit](https://github.com/clauderic/dnd-kit), and [React Three Fiber](https://github.com/pmndrs/react-three-fiber). Glisse 0.5.0 was already installed and remains limited to appropriate controls/navigation. Existing Leaflet maps and Radix dialogs were retained. New workflow boards use explicit authenticated actions; a drag gesture cannot bypass a required decision or post stock. No additional 3D engine is necessary for a flat projected decorative wall.
 
-`public/liquid-metal.png` was created with the built-in image generation tool, then copied into the repository. Prompt: “Premium fuel station operations web app sign-in artwork. A sophisticated abstract sculptural ribbon of liquid graphite and brushed silver, subtle pale chartreuse reflection, flowing in a precise loop on deep warm black. Macro product photography, physically realistic polished liquid metal, dramatic softbox light, refined industrial design, generous negative space, no words, logos, UI or text. Portrait composition. Understated, not neon.”
+The official [weekly TypeScript trending feed](https://github.com/trending/typescript?since=weekly) was fetched during research. It included tldraw and multiple agent/developer tools. Popularity does not establish suitability for forecourt accounting; none was added solely because it was trending. tldraw's collaborative editor is not needed for the current operational forms. No unreviewed dashboard template or arbitrary install script was imported.
 
-## Liquid Glass refinement
+The new Canvas 2D renderer is independent application code, with orthographic geometry, pointer easing, wheel inertia, four local video clips and local still fallback. The source uses WebGPU and wheel/touch listeners; mouse-position easing is an additional user-requested behaviour. Tile order and rendering engine differ. The result matches the reference's composition and interaction direction, not its signup content or every rendered pixel. See [media attribution](../public/flowing/SOURCE.md).
 
-[Glisse 0.5.0](https://github.com/0kzh/glisse) supplies the actual mobile navigation TabBar, reporting-period SegmentedControl, amount-privacy Switch, and notification Button. Its controls retain PumpShield's olive palette; transaction forms, evidence and financial tables remain opaque. Backdrop-filter and reduced-transparency fallbacks keep controls readable. The existing desktop sidebar remains available, and mobile Settings remains accessible from the navigation menu.
+## Relevant feature choices
 
-## November 8 editorial redesign
-
-The Flowing launch and coming-soon pages and the supplied recording informed the black split-panel login and angled component wall. The component wall is original DOM/SVG artwork; it does not reuse Flowing source or claim to show live business data. RonDesignLab and CreditTB supplied the direction for pearl surfaces, ink navigation, iris/apricot gradients and larger editorial type.
-
-An original transparent studio tanker asset was generated with built-in ImageGen and saved at `public/tanker-studio.png`. Prompt: photorealistic unbranded ivory petroleum tanker, brushed stainless steel cylinder, front-left three-quarter view, transparent background, complete vehicle in frame, soft studio light, no text or logo. The real maps use Leaflet with attributed OpenStreetMap tiles. Synthetic Design Lab locations are explicitly marked.
-
-Owner and Munshi design-review accounts live in an isolated Design Lab workspace. Their synthetic shifts, deliveries, rates, stock, credit and route never enter another workspace. Generated credentials are stored only in ignored `output/design-lab-credentials.json`, never committed. The source fixture generator refuses to overwrite that credential file.
-
-
-## Workflow and document refinement
-
-The sign-in now uses the publicly served Flowing tile images and motion clips requested by the user, saved under public/flowing/ with source attribution. The renderer is a local responsive perspective wall, rather than Flowing's complete GPU renderer. Viewport checks at 390x844 and 1366x768 report document height equal to viewport height.
-
-Delivery movement now uses a Trello-style board with business-gated transitions. New PDF templates use compact ruled tables, a strong total block, wrapped text, pagination and QR record references. Corporate accounts have statement downloads. See docs/product-roadmap.md for proposed next modules and remaining production-rollout dependencies.
+Cases, supply indents, maintenance and signed handover briefings answer actual station tasks. A document centre makes approved delivery claims and customer statements easier to retrieve. Accounting allocation, tax invoices, supplier rankings, OCR and notification automation require commercial requirements or configured providers and remain outside the current release. See [roadmap](product-roadmap.md).

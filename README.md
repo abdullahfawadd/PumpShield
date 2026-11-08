@@ -21,7 +21,9 @@ Create and confirm your account, then create your owner workspace. In Settings, 
 - Shift baselines, camera/location evidence, nozzle/tank/cash reconciliation, owner review and CSV exports.
 - Corporate credit accounts, controlled vehicle QR credentials, transactional credit-limit checks, digital parchis, receipts and payment recording.
 - Expiring contractor driver links, explicit location-sharing consent, real location reports, stale-signal status and stop-review flags. Owned-truck hardware tracking is excluded.
-- Responsive dark sign-in, light operational dashboard, amount masking, accessible dialogs and reduced-motion support.
+- Discrepancy case desk, owner-approved fuel indents, equipment maintenance and named-recipient handovers, with immutable history and guarded state transitions.
+- Searchable document centre for approved claims, issued parchis and current customer statements.
+- Responsive reference-inspired sign-in canvas, pointer motion, local media, still fallback, amount masking, accessible dialogs and reduced-motion support.
 
 ## Validation
 
@@ -32,9 +34,10 @@ npm test
 npm run build
 npm audit
 npx supabase db query --linked --project-ref yfeqjemxzfhzqbpgblfm --file tests/database.sql
+npx supabase db query --linked --project-ref yfeqjemxzfhzqbpgblfm --file tests/operations.sql
 ```
 
-The SQL suite creates temporary users and business records inside a transaction and rolls them all back. It checks tenant isolation, kiosk projections, role escalation, locked submissions, approval gates, double-decant prevention, credit limits, stock/cash reconciliation and revocation. Run with a migration-admin connection, never a browser key.
+The SQL suite creates temporary users and business records inside a transaction and rolls them all back. It checks tenant isolation, kiosk projections, role escalation, locked submissions, approval gates, double-decant prevention, credit limits, stock/cash reconciliation and revocation. The operations suite checks assignment, owner-only cases, state ordering, decision notes, recipient acknowledgements, stale requests and immutable history. Indent receipt is integrated with the real decant flow and checked for duplicate stock posting. Run with a migration-admin connection, never a browser key.
 
 ## Deployment and updates
 
@@ -44,7 +47,7 @@ Require the Quality check on `main` before merging. Do not merge dependency upda
 
 ## Operational boundaries
 
-There are no seeded business metrics or simulated integrations. Automated WhatsApp, OCR and PPDA partner offers are not configured. Captured images are reviewed by people. Phone GPS depends on browser permission, coverage and an open page; it cannot guarantee background tracking. The route display plots reported coordinates, rather than claiming to provide a road map.
+The isolated PumpShield - Design Lab workspace contains explicitly labelled synthetic records for evaluation. Other workspaces use entered business records; integrations are not simulated. Automated WhatsApp, OCR and PPDA partner offers are not configured. Captured images are reviewed by people. Phone GPS depends on browser permission, coverage and an open page; it cannot guarantee background tracking. The Leaflet/OpenStreetMap display plots saved coordinate reports; it does not calculate a verified road route or ETA.
 
 The thermal result is a calculated commercial claim for review, not a legal determination or evidence of theft. Fuel rates and coefficients are entered by the owner from verified sources. Prices are not scraped or hardcoded.
 
@@ -53,3 +56,5 @@ Shift deadlines occur at the earliest of 12 hours, midnight PKT, or a scheduled 
 Before a business-critical rollout, connect production SMTP for unrestricted staff confirmation/recovery emails, configure backup retention and monitoring, verify charts and measurement procedures, and perform a supervised station acceptance run. Supabase's default SMTP may restrict recipients. Leaked-password screening depends on your Supabase plan/settings.
 
 See [security controls](SECURITY.md) and [screen-by-screen design references](docs/design-references.md).
+
+See the [design and workflow verification report](docs/design-review-2026-11-08.md) and [station feature roadmap](docs/product-roadmap.md).

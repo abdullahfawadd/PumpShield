@@ -1,21 +1,28 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DesignCanvas } from "./design-canvas";
-import {
-  ArrowUpRight,
-  ArrowRight,
-  Eye,
-  EyeOff,
-  ShieldCheck,
-  Fingerprint,
-  Loader2,
-} from "lucide-react";
+import { ArrowUpRight, ArrowRight, Eye, EyeOff, Loader2 } from "lucide-react";
 import { browserDb } from "@/lib/supabase/client";
 import { Brand } from "./brand";
 import { Button } from "./ui/button";
 export function Login() {
   const router = useRouter();
+  const root = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    const update = () => {
+      if (!viewport || !root.current) return;
+      root.current.style.setProperty("--auth-height", `${viewport.height}px`);
+      root.current.toggleAttribute(
+        "data-keyboard",
+        viewport.height < window.innerHeight * 0.74,
+      );
+    };
+    update();
+    viewport?.addEventListener("resize", update);
+    return () => viewport?.removeEventListener("resize", update);
+  }, []);
   const [mode, setMode] = useState<"login" | "signup" | "reset">("login");
   const [visible, setVisible] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -45,9 +52,7 @@ export function Login() {
           },
         });
         if (error) throw error;
-        setMessage(
-          "Check your inbox to confirm your email, then sign in. Invited Munshi accounts receive access to their assigned station.",
-        );
+        setMessage("Check your inbox to confirm your email, then sign in.");
       } else {
         const { error } = await db.auth.resetPasswordForEmail(email, {
           redirectTo: `${window.location.origin}/auth/callback?next=/auth/password`,
@@ -66,70 +71,56 @@ export function Login() {
     }
   }
   return (
-    <main id="main" className="login-page">
+    <main ref={root} id="main" className="login-page">
       <div className="login-frame">
         <section className="login-left">
           <header>
             <Brand />
-            <span className="login-header-label">
-              <span className="status-dot" /> STATION OPERATIONS
-            </span>
           </header>
           <div className="login-content">
-            <span className="eyebrow">
-              <span className="small-line" /> YOUR STATION. YOUR CONTROL.
-            </span>
             <h1>
+              Every detail.
+              <br />
               Every litre.
               <br />
-              Every shift.
-              <br />
-              <span>Accounted for.</span>
+              <span>Under control.</span>
             </h1>
             <p className="login-description">
-              A clearer picture of your forecourt.
+              A clearer picture of your forecourt.{" "}
               <br />
-              One secure workspace for everything that matters.
+              One workspace for everything that matters.
             </p>
-            <div className="login-form-heading">
-              <h2>
-                {mode === "login"
-                  ? "Welcome back."
-                  : mode === "signup"
-                    ? "Make it official."
-                    : "Let’s get you back in."}
-              </h2>
-              <span>
-                {mode === "login"
-                  ? "Sign in to your workspace"
-                  : mode === "signup"
-                    ? "Create your secure account"
-                    : "Reset your password"}
-              </span>
-            </div>
+            <h2 className="login-mode-label">
+              {mode === "signup"
+                ? "Create your account"
+                : mode === "reset"
+                  ? "Reset your password"
+                  : "Sign in to your workspace"}
+            </h2>
             <form onSubmit={submit} className="login-form">
               <label>
-                Email address
+                <span className="sr-only">Email address</span>
                 <input
                   autoComplete="email"
                   name="email"
                   type="email"
-                  placeholder="you@yourstation.pk"
+                  placeholder="Email address"
                   required
                   maxLength={254}
                 />
               </label>
               {mode !== "reset" && (
                 <label>
-                  Password
+                  <span className="sr-only">Password</span>
                   <span className="password-input">
                     <input
                       name="password"
+                      aria-label="Password"
                       type={visible ? "text" : "password"}
                       autoComplete={
                         mode === "signup" ? "new-password" : "current-password"
                       }
-                      placeholder="Enter your password"
+                      placeholder="Password"
                       minLength={mode === "signup" ? 12 : 1}
                       maxLength={128}
                       required
@@ -144,27 +135,9 @@ export function Login() {
                   </span>
                 </label>
               )}
-              {mode === "login" && (
-                <div className="login-form-note">
-                  <span>
-                    <ShieldCheck size={14} /> Owner & Munshi access
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setMode("reset");
-                      setMessage("");
-                      setError("");
-                    }}
-                  >
-                    Forgot password?
-                  </button>
-                </div>
-              )}
               {mode === "signup" && (
                 <p className="muted">
-                  Use 12 or more characters. Your role is assigned securely
-                  after email confirmation.
+                  Use 12 or more characters. Confirm your email to finish setup.
                 </p>
               )}
               {error && (
@@ -181,7 +154,7 @@ export function Login() {
                 {busy ? (
                   <Loader2 className="spin" size={18} />
                 ) : mode === "login" ? (
-                  "Sign in to PumpShield"
+                  "Sign in"
                 ) : mode === "signup" ? (
                   "Create account"
                 ) : (
@@ -191,38 +164,45 @@ export function Login() {
               </Button>
             </form>
             <div className="login-switch">
-              {mode === "login" ? (
-                <>
-                  New to PumpShield?{" "}
+              {mode === "login" && (
+                <button
+                  onClick={() => {
+                    setMode("reset");
+                    setMessage("");
+                    setError("");
+                  }}
+                >
+                  Forgot password?
+                </button>
+              )}
+              <span>
+                {mode === "login" ? (
+                  <>
+                    New to PumpShield?{" "}
+                    <button
+                      onClick={() => {
+                        setMode("signup");
+                        setError("");
+                        setMessage("");
+                      }}
+                    >
+                      Create an account <ArrowUpRight size={13} />
+                    </button>
+                  </>
+                ) : (
                   <button
                     onClick={() => {
-                      setMode("signup");
+                      setMode("login");
                       setError("");
                       setMessage("");
                     }}
                   >
-                    Create an account <ArrowUpRight size={13} />
+                    Back to sign in <ArrowRight size={13} />
                   </button>
-                </>
-              ) : (
-                <button
-                  onClick={() => {
-                    setMode("login");
-                    setError("");
-                    setMessage("");
-                  }}
-                >
-                  Back to sign in <ArrowRight size={13} />
-                </button>
-              )}
+                )}
+              </span>
             </div>
           </div>
-          <footer>
-            <span>© {new Date().getFullYear()} PumpShield PK</span>
-            <span>
-              <Fingerprint size={15} /> Built around your trust.
-            </span>
-          </footer>
         </section>
         <aside
           className="login-art"

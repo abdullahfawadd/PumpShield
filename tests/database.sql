@@ -5,7 +5,7 @@ do $$
 declare
  owner_a uuid=gen_random_uuid(); owner_b uuid=gen_random_uuid(); munshi uuid=gen_random_uuid();
  wa uuid; wb uuid; sid uuid; tank uuid; nozzle uuid; delivery uuid; shift uuid; account uuid; vehicle uuid; credential uuid; eid uuid; e2 uuid; e3 uuid; e4 uuid; e5 uuid;
- result jsonb; tracking_token text; failed boolean; amount numeric;
+ indent uuid; result jsonb; tracking_token text; failed boolean; amount numeric;
 begin
  insert into auth.users(id,email,email_confirmed_at,aud,role) values(owner_a,owner_a||'@example.invalid',now(),'authenticated','authenticated'),(owner_b,owner_b||'@example.invalid',now(),'authenticated','authenticated'),(munshi,munshi||'@example.invalid',now(),'authenticated','authenticated');
  perform set_config('request.jwt.claim.sub',owner_a::text,true);
@@ -57,9 +57,22 @@ begin
  perform set_config('request.jwt.claim.sub',owner_a::text,true);
  select claim into amount from public.deliveries where id=delivery;
  assert amount=9300,'Thermal claim was incorrectly calculated';
+ indent=(public.ops_command('create',jsonb_build_object('station_id',sid,'kind','indent','title','QA procurement request','supplier','QA OMC','grade','MS','liters',10000,'assigned_to',munshi))->>'id')::uuid;
+ perform public.ops_command('transition',jsonb_build_object('id',indent,'expected_status','requested','status','approved'));
+ perform public.ops_command('transition',jsonb_build_object('id',indent,'expected_status','approved','status','dispatched','delivery_id',delivery));
+ failed=false;begin perform public.ops_command('transition',jsonb_build_object('id',indent,'expected_status','dispatched','status','received'));exception when others then failed=true;end;assert failed,'Indent received before physical decant';
+
  perform public.command('approve_delivery',jsonb_build_object('station_id',sid,'id',delivery));
  perform set_config('request.jwt.claim.sub',munshi::text,true);
  perform public.command('decant',jsonb_build_object('station_id',sid,'id',delivery));
+ perform set_config('request.jwt.claim.sub',owner_a::text,true);
+ select stock into amount from public.tanks where id=tank;
+ perform set_config('request.jwt.claim.sub',munshi::text,true);
+ perform public.ops_command('transition',jsonb_build_object('id',indent,'expected_status','dispatched','status','received'));
+ perform set_config('request.jwt.claim.sub',owner_a::text,true);
+ assert (select stock from public.tanks where id=tank)=amount,'Indent receipt duplicated stock posting';
+ perform set_config('request.jwt.claim.sub',munshi::text,true);
+ assert (select status from public.station_work_items where id=indent)='received','Indent not received';
  failed=false;begin perform public.command('decant',jsonb_build_object('station_id',sid,'id',delivery));exception when others then failed=true;end;assert failed,'Duplicate decant accepted';
  perform public.command('parchi',jsonb_build_object('station_id',sid,'token',credential,'nozzle_id',nozzle,'liters',100,'evidence_id',e2,'request_id',gen_random_uuid()));
  failed=false;begin perform public.command('parchi',jsonb_build_object('station_id',sid,'token',credential,'nozzle_id',nozzle,'liters',100,'evidence_id',e3,'request_id',gen_random_uuid()));exception when others then failed=true;end;assert failed,'Credit limit exceeded';

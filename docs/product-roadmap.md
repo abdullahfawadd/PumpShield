@@ -1,27 +1,30 @@
-# PumpShield product concepts and delivery priorities
+# PumpShield station workflows and delivery priorities
 
-## Delivered in this iteration
+## Shipped
 
-- Delivery movement board: in transit, audit review, cleared to decant, completed. Dragging a card opens its next required workflow; it cannot bypass evidence, owner approval, or posting confirmation. Explicit card buttons work on touchscreens and keyboards.
-- Viewport-fitted sign-in with the actual Flowing launch media tiles and motion clips, local assets, source credit and reduced-motion handling.
-- Shared multipage PDF system for delivery claims, credit-fill receipts and corporate account statements. Documents wrap long content, paginate, carry record IDs and machine-readable QR references, and identify synthetic records.
+| Module | Working flow | Boundary |
+| --- | --- | --- |
+| Delivery movement board | In transit → arrival audit → owner approval → decant; explicit buttons plus desktop dragging | Evidence and stock-posting gates remain authoritative. |
+| Discrepancy cases | Open → investigating → resolved; priority, assignee, due time, related shift/delivery, discussion | Owner only. Resolution requires a note. No automatic theft judgement or financial deduction. |
+| Fuel indents | Requested → owner approved → dispatched → received | Dispatch links a same-grade delivery; receipt requires its posted decant. A delivery can fulfil only one active indent. No second stock posting. |
+| Equipment maintenance | Scheduled → in progress → completed; equipment reference, due date, assignee, completion note | A work register; certification attachments and automated reminders are future integrations. |
+| Shift handover | Briefing → named recipient accepts; optional related closed shift | Sender cannot accept for the recipient. Does not transfer funds or change closed readings. |
+| Document centre | Search/filter delivery claims, fuel parchis, account statements; authenticated PDF links | Uses up to 200 recent dashboard records per type; not a complete archival search. |
+| Login | Reference-inspired full-height composition, local motion tiles, pointer response, phone layout, reset/signup, reduced motion | Real Supabase authentication; no role selection or advertised access roles on the sign-in page. |
+| Records | Timestamped history, due states, saved comments, stale-transition protection | Board lists 500 most recently updated station items; detail history loads 100 entries per page with older-entry navigation. |
 
-## Next modules worth building
+These are actual database-backed workflows. Only the isolated Design Lab contains labelled synthetic records. Existing delivery, shift, and account state was retained.
 
-| Priority | Module | Concrete workflow | Why it earns its place | Required foundation |
-| --- | --- | --- | --- | --- |
-| 1 | Exception case desk | Turn a stock/cash discrepancy into a case; assign an owner, attach evidence, record investigation, resolve with a reason. | A variance should lead to a traceable resolution rather than another red card. | Tenant-scoped case, comment and attachment tables; immutable resolution history. |
-| 1 | Procurement / indent board | Requested → approved → supplier confirmed → dispatched → reconciled. Link the resulting dispatch directly to delivery verification. | Connects purchasing intent to what actually reaches the tank. | Supplier contacts, approval limits, purchase-order numbering and quantities. |
-| 1 | Document centre | Search claims, receipts and statements by period, vehicle, counterparty and amount; bulk download a reviewed period. | Removes the need to find a PDF inside individual record dialogs. | Date-bounded APIs, immutable issued-document snapshots and retention policy. |
-| 2 | Accounts receivable | Invoice batches, received payments, allocation to invoices, overdue buckets and a customer statement. | Current balances alone do not show what is overdue or which receipt settled which fill. | Double-entry or allocation ledger; accurate opening balances; reviewed tax requirements. |
-| 2 | Shift handover | Incoming supervisor accepts keys, cash, unresolved issues and instrument status. Outgoing submission remains locked. | Makes responsibility transfer explicit across shifts. | Acceptance records, escalation rules and role-bound signing. |
-| 2 | Equipment maintenance board | Schedule nozzle calibration, tank cleaning and meter inspection; track due dates, evidence and service completion. | Prevents recurring variances caused by equipment drift. | Equipment registry, certified service attachments and reminder provider. |
-| 2 | Inventory planning | Consumption trend, minimum stock, expected deliveries and actionable reorder suggestions. | Converts inventory into purchasing decisions. | Reliable historical readings, delivery lead times and configurable reserve limits. |
-| 3 | Supplier scorecards | Compare delivery quantity, unexplained shortages, audit timeliness and dispute resolution by supplier. | Supports factual supplier conversations. | Sufficient reviewed history; no unsupported theft labels. |
-| 3 | Corporate fleet portal | Customers see only their authorized vehicles, fills and statements; request revocation of a lost credential. | Reduces reconciliation messages between the station and corporate clients. | A separate customer role and tested row policies. |
+## Next petrol-station improvements
 
-## Production rollout work
+1. **Receivable allocation and ageing:** allocate each receipt to actual issued credit fills/invoices, reconcile opening balances, agree payment terms, then calculate overdue buckets. Current ledger balances and generated statements remain available. Avoid inferred settlements or tax invoices without accounting requirements.
+2. **Reserve-based purchasing:** configurable tank reserves, trustworthy historical consumption and supplier lead times before recommending order quantities. Manual indents already work.
+3. **Service evidence and reminders:** certified calibration documents, linked equipment registry and monitored notification delivery. Basic maintenance work tracking already works.
+4. **Supplier scorecards:** reviewed delivery quantity, variance, timeliness and case resolution. Require enough comparable history and an agreed supplier identifier before ranking.
+5. **Customer portal:** a separately authorised corporate-customer role for its own vehicles, fills and statements. Do not reuse supervisor privileges.
 
-The deployed controls use real authentication, database state and guarded operations. They do not make the deployment fully ready for every station's business process. Before expanding the pilot: connect production SMTP and monitored notification delivery, agree on calibration and commercial standards, exercise backup restoration, define retention, test real cameras/locations on the station's devices, and validate accounting balances with the owner. WhatsApp and OCR require configured providers and their own failure/review paths.
+## Client launch prerequisites
 
-Do not auto-close a shift using invented meter readings, infer theft from a variance, or move a financial board card by silently changing a status. Keep speculative financial and operational modules out of the live navigation until their data model and complete workflow exist.
+Agree calibration tables and commercial tolerances with the station owner; reconcile opening stock and credit balances; configure production email and operational notifications; exercise backup restoration and retention; test cameras, connectivity and location permission on actual station devices. Confirm incident handling and staff access ownership. The hosted Auth advisor still reports leaked-password protection disabled; enable it on an eligible plan: https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection.
+
+No unconfigured OCR, WhatsApp, banking, automatic accounting allocation or hardware signals are represented as working features.

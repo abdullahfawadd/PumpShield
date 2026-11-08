@@ -89,9 +89,7 @@ export function OperationsHero({
               {d ? number(d.invoice) : "—"} <em>L</em>
             </strong>
           </div>
-          <span className="vehicle-caption">
-            CONTRACTOR DELIVERY / NO HARDWARE REQUIRED
-          </span>
+          <span className="vehicle-caption">CONTRACTOR DELIVERY</span>
         </div>
         <div className="dispatch-stages">
           {["Dispatched", "Arrival audit", "Owner approval", "Decanted"].map(
@@ -122,7 +120,7 @@ export function OperationsHero({
         <h2>
           {pending ? (
             <>
-              {pending} decisions.
+              {pending} {pending === 1 ? "decision" : "decisions"}.
               <br />
               One clear picture.
             </>
