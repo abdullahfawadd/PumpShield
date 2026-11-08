@@ -32,12 +32,13 @@ import {
   Building2,
   Columns3,
   Files,
-} from "lucide-react";
+} from "@/components/icons";
 import { toast } from "sonner";
 import { browserDb } from "@/lib/supabase/client";
 import { command } from "@/lib/api";
 import { date, money, number } from "@/lib/utils";
 import type { Dashboard } from "@/lib/types";
+import { StationLocation } from "./station-location";
 import { StationOperations } from "./station-operations";
 import { DocumentCentre } from "./document-centre";
 import { DeliveryBoard } from "./delivery-board";
@@ -316,6 +317,12 @@ export function Workspace({
     URL.revokeObjectURL(url);
   }
   async function logout() {
+    const channel =
+      "BroadcastChannel" in window
+        ? new BroadcastChannel("pumpshield-session")
+        : null;
+    channel?.postMessage("lock");
+    channel?.close();
     await browserDb().auth.signOut();
     router.replace("/login");
     router.refresh();
@@ -419,6 +426,10 @@ export function Workspace({
             <CircleHelp size={18} /> Help & getting started
             <ArrowUpRight size={14} />
           </button>
+          <a className="nav-item" href="/offline">
+            <Download size={18} />
+            <span>Offline terminal</span>
+          </a>
           {owner && (
             <button
               className={`nav-item ${tab === "settings" ? "active" : ""}`}
@@ -1333,6 +1344,13 @@ export function Workspace({
                 </div>
               </div>
             </>
+          )}
+          {owner && tab === "settings" && station && (
+            <StationLocation
+              key={station.id}
+              station={station}
+              onSaved={() => void refresh()}
+            />
           )}
           {owner && tab === "settings" && (
             <>

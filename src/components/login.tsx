@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { DesignCanvas } from "./design-canvas";
-import { ArrowUpRight, ArrowRight, Eye, EyeOff, Loader2 } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Eye, EyeOff, Loader2 } from "@/components/icons";
 import { browserDb } from "@/lib/supabase/client";
 import { Brand } from "./brand";
 import { Button } from "./ui/button";
@@ -75,7 +75,7 @@ export function Login() {
       <div className="login-frame">
         <section className="login-left">
           <header>
-            <Brand />
+            <Brand compact />
           </header>
           <div className="login-content">
             <h1>

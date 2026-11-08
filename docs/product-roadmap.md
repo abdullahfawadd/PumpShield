@@ -11,6 +11,9 @@
 | Shift handover | Briefing → named recipient accepts; optional related closed shift | Sender cannot accept for the recipient. Does not transfer funds or change closed readings. |
 | Document centre | Search/filter delivery claims, fuel parchis, account statements; authenticated PDF links | Uses up to 200 recent dashboard records per type; not a complete archival search. |
 | Login | Reference-inspired full-height composition, local motion tiles, pointer response, phone layout, reset/signup, reduced motion | Real Supabase authentication; no role selection or advertised access roles on the sign-in page. |
+| Vehicle fuel passes | Owner issues a printable QR; Munshi scans, checks matched vehicle and captures final nozzle evidence | A pass does not approve credit. Limits and current access are checked at submission. |
+| Driver links and station map | Map-selected destination/depot, WhatsApp/SMS/native share, real received GPS trail and animated tanker | Browser consent/open page required; no predicted motion. Satellite imagery needs a licensed key. |
+| Offline field terminal | Installable encrypted drafts for parchi, arrival audit and shift close, ordered verification on reconnect | Prepare online first. Separate passphrase, 24-hour context and original shift rules; no offline credit approval or promised closed-browser sync. |
 | Records | Timestamped history, due states, saved comments, stale-transition protection | Board lists 500 most recently updated station items; detail history loads 100 entries per page with older-entry navigation. |
 
 These are actual database-backed workflows. Only the isolated Design Lab contains labelled synthetic records. Existing delivery, shift, and account state was retained.

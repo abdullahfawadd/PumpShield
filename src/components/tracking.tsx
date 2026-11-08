@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import {
   Copy,
   MapPin,
@@ -7,41 +8,57 @@ import {
   Radio,
   ShieldCheck,
   Square,
-} from "lucide-react";
+  ArrowUpRight,
+} from "./icons";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
-import { Field } from "./forms";
 import { Brand } from "./brand";
-import dynamic from "next/dynamic";
-const RouteMap = dynamic(() => import("./route-map"), { ssr: false });
+import { LocationPicker } from "./location-picker";
+import type { Station } from "@/lib/types";
+import type { Geo } from "@/lib/geo";
 import { date } from "@/lib/utils";
-async function track(op: string, p: Record<string, unknown>) {
+const FieldMap = dynamic(() => import("./field-map"), { ssr: false });
+async function track(
+  op: string,
+  p: Record<string, unknown>,
+  signal?: AbortSignal,
+) {
   const r = await fetch("/api/tracking", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ op, p }),
+    signal,
+    cache: "no-store",
   });
   const data = await r.json();
   if (!r.ok) throw new Error(data.error || "Unable to update tracking");
   return data;
 }
-type Report = {
-  latitude: number;
-  longitude: number;
+type Report = Geo & {
   accuracy: number;
   received_at: string;
   review_stop: boolean;
+  heading?: number | null;
+  speed_ms?: number | null;
 };
-type TrackingData = {
-  session: { id: string; revoked: boolean; expires_at: string } | null;
-  reports: Report[];
+type Session = {
+  id: string;
+  revoked: boolean;
+  expires_at: string;
+  depot_lat: number;
+  depot_lon: number;
+  station_lat: number;
+  station_lon: number;
 };
+type TrackingData = { session: Session | null; reports: Report[] };
 export function ContractorTracking({
   deliveryId,
   dispatched,
+  station,
 }: {
   deliveryId: string;
   dispatched: boolean;
+  station?: Station;
 }) {
   const [data, setData] = useState<TrackingData | null>(null);
   const [setup, setSetup] = useState(false);
@@ -49,40 +66,80 @@ export function ContractorTracking({
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [now, setNow] = useState(() => Date.now());
-  const refresh = useCallback(async () => {
-    try {
-      setData(await track("read", { delivery_id: deliveryId }));
-      setNow(Date.now());
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Tracking unavailable");
-    }
-  }, [deliveryId]);
+  const [destination, setDestination] = useState<Geo | null>(
+    station?.latitude != null && station.longitude != null
+      ? {
+          latitude: Number(station.latitude),
+          longitude: Number(station.longitude),
+        }
+      : null,
+  );
+  const [depot, setDepot] = useState<Geo | null>(null);
+  const [choosing, setChoosing] = useState<"station" | "depot">("station");
+  const refresh = useCallback(
+    async (signal?: AbortSignal) => {
+      try {
+        const result = await track("read", { delivery_id: deliveryId }, signal);
+        if (!signal?.aborted) {
+          setData(result);
+          setNow(Date.now());
+          setError("");
+        }
+      } catch (e) {
+        if (e instanceof Error && e.name !== "AbortError") setError(e.message);
+      }
+    },
+    [deliveryId],
+  );
   useEffect(() => {
-    let canceled = false;
-    track("read", { delivery_id: deliveryId })
-      .then((next) => {
-        if (!canceled) setData(next);
-      })
-      .catch((e) => {
-        if (!canceled) setError(e.message);
-      });
-    const t = setInterval(() => void refresh(), 30000);
+    const c = new AbortController();
+    const first = setTimeout(() => void refresh(c.signal), 0);
+    const timer = setInterval(() => {
+      if (!document.hidden) void refresh(c.signal);
+    }, 8000);
     return () => {
-      canceled = true;
-      clearInterval(t);
+      c.abort();
+      clearTimeout(first);
+      clearInterval(timer);
     };
-  }, [deliveryId, refresh]);
+  }, [refresh]);
+  const latest = data?.reports.at(-1);
+  const stale = !!latest && now - Date.parse(latest.received_at) > 90000;
+  const session = data?.session;
+  const stationPoint = session
+    ? {
+        latitude: Number(session.station_lat),
+        longitude: Number(session.station_lon),
+      }
+    : destination;
+  const depotPoint = session
+    ? {
+        latitude: Number(session.depot_lat),
+        longitude: Number(session.depot_lon),
+      }
+    : depot;
   async function create(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!destination || !depot) {
+      setError(
+        "Choose both the receiving station and loading depot on the map.",
+      );
+      return;
+    }
     setBusy(true);
     setError("");
     try {
-      const f = new FormData(e.currentTarget);
+      const form = new FormData(e.currentTarget);
       const result = await track("create", {
         delivery_id: deliveryId,
-        ...Object.fromEntries(f),
+        depot_lat: depot.latitude,
+        depot_lon: depot.longitude,
+        station_lat: destination.latitude,
+        station_lon: destination.longitude,
+        radius_m: Number(form.get("radius_m")),
+        save_station: form.get("save_station") === "on",
       });
-      setLink(`${window.location.origin}/gate/${result.token}`);
+      setLink(`${location.origin}/gate/${result.token}`);
       setSetup(false);
       await refresh();
     } catch (e) {
@@ -91,168 +148,318 @@ export function ContractorTracking({
       setBusy(false);
     }
   }
-  const latest = data?.reports.at(-1);
-  const stale = latest && now - new Date(latest.received_at).getTime() > 90000;
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(link);
+      toast.success("Driver link copied");
+    } catch {
+      setError("Copy the link from the field below.");
+    }
+  }
+  async function share() {
+    try {
+      if (navigator.share)
+        await navigator.share({
+          title: "PumpShield delivery tracking",
+          text: "Open this secure delivery link and choose Share my location. Keep it open during the trip.",
+          url: link,
+        });
+      else await copy();
+    } catch (e) {
+      if (e instanceof Error && e.name !== "AbortError")
+        setError(
+          "Sharing was unavailable. Use the WhatsApp, SMS, or copy buttons.",
+        );
+    }
+  }
+  const shareText = `PumpShield delivery tracking: ${link}\nOpen the link, allow location, and tap Share my location. Keep the page open during the trip.`;
   return (
-    <section className="tracking-panel">
-      <div className="tracking-heading">
-        <span>
-          <Navigation size={17} />
-          Contractor phone tracking
+    <section className="tracking-experience">
+      <header className="tracking-title">
+        <div>
+          <span className="eyebrow">DELIVERY SIGNAL</span>
+          <h3>Follow the delivery.</h3>
+        </div>
+        <span
+          className={`tracking-state ${stale ? "stale" : latest ? "live" : "waiting"}`}
+        >
+          <i />
+          {session?.revoked
+            ? "Link revoked"
+            : stale
+              ? "Signal stale"
+              : latest
+                ? "GPS reporting"
+                : "Awaiting driver"}
         </span>
-        {latest && (
-          <span
-            className={`status ${stale ? "status-pending" : "status-active"}`}
-          >
-            {stale ? "Signal stale" : "Reporting"}
-          </span>
-        )}
-      </div>
-      {error && <p className="form-error">{error}</p>}
-      {latest ? (
-        <>
-          <RouteMap points={data!.reports} />
-          <div className="tracking-meta">
+      </header>
+      {!setup && (
+        <div className="tracking-map-wrap">
+          <FieldMap
+            points={data?.reports || []}
+            station={stationPoint}
+            depot={depotPoint}
+          />
+          <div className="tracking-glass-card">
             <span>
-              {latest.latitude.toFixed(5)}, {latest.longitude.toFixed(5)}
+              <Navigation size={15} />
+              {station?.name || "Receiving station"}
             </span>
-            <span>Accuracy ±{Math.round(latest.accuracy)} m</span>
+            <strong>
+              {latest?.speed_ms != null
+                ? `${Math.max(0, Math.round(latest.speed_ms * 3.6))}`
+                : "—"}
+              <small>
+                {latest?.speed_ms != null ? "km/h reported" : "last known GPS"}
+              </small>
+            </strong>
+            <p>
+              {latest
+                ? `Accuracy ±${Math.round(latest.accuracy)} m`
+                : "Driver consent required"}
+            </p>
           </div>
-          <p className="fine-print">
-            Last received {date(latest.received_at)} PKT
-          </p>
-          {stale ? (
-            <div className="notice warning">
-              Location is stale. The phone may be offline or the browser may be
-              suspended. No current location is inferred.
-            </div>
-          ) : (
-            latest.review_stop && (
-              <div className="notice warning">
-                Stop requires review: approximately 8+ minutes outside the
-                configured depot and station geofences. Contact the driver; this
-                is not evidence of theft.
-              </div>
-            )
-          )}
-        </>
-      ) : (
-        <p className="fine-print">
-          {data?.session && !data.session.revoked
-            ? "Waiting for the driver to open the link and consent to location sharing."
-            : "Create a short-lived driver link to receive real phone location reports. No hardware is used."}
+        </div>
+      )}
+      {error && (
+        <p role="alert" className="form-error">
+          {error}
         </p>
       )}
-      {link && (
-        <div className="gatepass-link">
-          <input readOnly value={link} aria-label="Driver tracking link" />
-          <Button
-            variant="secondary"
-            type="button"
-            onClick={() =>
-              void navigator.clipboard
-                .writeText(link)
-                .then(() => toast.success("Driver link copied"))
-            }
-          >
-            <Copy size={15} />
-            Copy
-          </Button>
-          <p className="fine-print">
-            Share directly with the driver. The bearer link expires in 48 hours.
-            Creating another link revokes the old one.
+      {latest && (
+        <div className="tracking-signal-details">
+          <span>
+            <small>LAST RECEIVED · PKT</small>
+            {date(latest.received_at)}
+          </span>
+          <span>
+            <small>RECENT REPORTS</small>
+            {data!.reports.length}
+          </span>
+          <span>
+            <small>COORDINATES</small>
+            {latest.latitude.toFixed(5)}, {latest.longitude.toFixed(5)}
+          </span>
+        </div>
+      )}
+      {stale && (
+        <div className="notice warning">
+          The phone’s location is stale. The marker stays at the last report; no
+          movement is predicted.
+        </div>
+      )}
+      {latest?.review_stop && (
+        <div className="notice warning">
+          An extended stop outside configured geofences needs a check with the
+          driver. Location data alone does not establish theft.
+        </div>
+      )}
+      {!latest && !setup && (
+        <p className="fine-print">
+          {session && !session.revoked
+            ? "Waiting for the driver to open the link and consent to sharing."
+            : "Create an expiring link and send it to the driver. No truck hardware or app installation is needed."}
+        </p>
+      )}
+      {link && !setup && (
+        <div className="tracking-share">
+          <label>
+            Private driver link
+            <input
+              readOnly
+              value={link}
+              aria-label="Driver tracking link"
+              onFocus={(e) => e.target.select()}
+            />
+          </label>
+          <div>
+            <Button type="button" onClick={() => void share()}>
+              <ArrowUpRight size={16} />
+              Share link
+            </Button>
+            <a
+              className="button button-secondary"
+              href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              WhatsApp
+            </a>
+            <a
+              className="button button-secondary"
+              href={`sms:?body=${encodeURIComponent(shareText)}`}
+            >
+              SMS
+            </a>
+            <Button type="button" variant="ghost" onClick={() => void copy()}>
+              <Copy size={16} />
+              Copy
+            </Button>
+          </div>
+          <p>
+            Share only with this delivery’s driver. The link expires in 48 hours
+            and stops accepting reports when the arrival audit begins.
           </p>
         </div>
       )}
       {dispatched && !setup && (
         <Button
-          variant="secondary"
           type="button"
-          onClick={() => setSetup(true)}
+          variant="secondary"
+          onClick={() => {
+            if (session) {
+              setDepot({
+                latitude: Number(session.depot_lat),
+                longitude: Number(session.depot_lon),
+              });
+              setDestination({
+                latitude: Number(session.station_lat),
+                longitude: Number(session.station_lon),
+              });
+            }
+            setChoosing("station");
+            setSetup(true);
+          }}
         >
-          {data?.session ? "Replace driver link" : "Create driver gate-pass"}
-          <MapPin size={15} />
+          <MapPin size={16} />
+          {session ? "Replace driver link" : "Create & share driver link"}
         </Button>
       )}
       {setup && (
-        <form onSubmit={create} className="form-stack">
-          <div className="form-grid">
-            <Field
-              name="depot_lat"
-              label="Depot latitude"
-              type="number"
-              min={-90}
-              max={90}
-            />
-            <Field
-              name="depot_lon"
-              label="Depot longitude"
-              type="number"
-              min={-180}
-              max={180}
-            />
-            <Field
-              name="station_lat"
-              label="Station latitude"
-              type="number"
-              min={-90}
-              max={90}
-            />
-            <Field
-              name="station_lon"
-              label="Station longitude"
-              type="number"
-              min={-180}
-              max={180}
-            />
+        <form className="tracking-setup" onSubmit={create}>
+          <div
+            className="map-location-tabs"
+            role="group"
+            aria-label="Tracking locations"
+          >
+            <button
+              type="button"
+              aria-pressed={choosing === "station"}
+              onClick={() => setChoosing("station")}
+            >
+              1 · Receiving station {destination ? "✓" : ""}
+            </button>
+            <button
+              type="button"
+              aria-pressed={choosing === "depot"}
+              onClick={() => setChoosing("depot")}
+            >
+              2 · Loading depot {depot ? "✓" : ""}
+            </button>
           </div>
-          <Field
-            name="radius_m"
-            label="Geofence radius (metres)"
-            type="number"
-            min={100}
-            max={5000}
-            defaultValue={500}
+          <LocationPicker
+            key={choosing}
+            label={
+              choosing === "station"
+                ? "Receiving petrol station"
+                : "Loading depot"
+            }
+            value={choosing === "station" ? destination : depot}
+            onChange={choosing === "station" ? setDestination : setDepot}
           />
-          <Button disabled={busy}>Create expiring driver link</Button>
+          {choosing === "station" && (
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => setChoosing("depot")}
+            >
+              Next: place the loading depot <ArrowUpRight size={15} />
+            </Button>
+          )}
+          <label>
+            Geofence radius (metres)
+            <input
+              type="number"
+              name="radius_m"
+              defaultValue={station?.geofence_m || 500}
+              min={100}
+              max={5000}
+              required
+            />
+          </label>
+          <label className="inline-check">
+            <input type="checkbox" name="save_station" defaultChecked />
+            Save this receiving pin as the station’s default location
+          </label>
+          {session && !session.revoked && (
+            <p className="notice warning">
+              Creating a replacement will revoke the previous link. Send the new
+              link to the driver.
+            </p>
+          )}
+          <div className="form-actions">
+            <Button disabled={!destination || !depot || busy}>
+              {busy ? "Creating…" : "Create private driver link"}
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => setSetup(false)}
+            >
+              Cancel
+            </Button>
+          </div>
         </form>
       )}
-      {data?.session && !data.session.revoked && (
-        <Button
-          variant="ghost"
+      {session && !session.revoked && !setup && (
+        <button
+          className="text-link text-danger"
           type="button"
-          onClick={() =>
-            void track("revoke", { delivery_id: deliveryId })
-              .then(() => {
-                setLink("");
-                void refresh();
-              })
-              .catch((e) => toast.error(e.message))
-          }
+          disabled={busy}
+          onClick={async () => {
+            setBusy(true);
+            try {
+              await track("revoke", { delivery_id: deliveryId });
+              setLink("");
+              await refresh();
+            } catch (e) {
+              setError(e instanceof Error ? e.message : "Unable to revoke");
+            } finally {
+              setBusy(false);
+            }
+          }}
         >
-          Revoke tracking link
-        </Button>
+          Revoke driver link
+        </button>
       )}
+      <p className="tracking-provenance">
+        Truck animation connects received GPS reports. The trail is not a
+        calculated road route. Location sharing depends on phone permission and
+        an open browser.
+      </p>
     </section>
   );
 }
+type GateInfo = {
+  vehicle: string;
+  depot: string;
+  station: string;
+  expires_at: string;
+  station_lat: number;
+  station_lon: number;
+  depot_lat: number;
+  depot_lon: number;
+};
 export function DriverGate({ token }: { token: string }) {
-  const [info, setInfo] = useState<{
-    vehicle: string;
-    depot: string;
-    station: string;
-    expires_at: string;
-  } | null>(null);
+  const [info, setInfo] = useState<GateInfo | null>(null);
   const [active, setActive] = useState(false);
   const [error, setError] = useState("");
   const [last, setLast] = useState("");
+  const [reports, setReports] = useState<Report[]>([]);
   const watcher = useRef<number | null>(null);
   const sentAt = useRef(0);
+  const sending = useRef(false);
   useEffect(() => {
-    track("status", { token })
-      .then(setInfo)
-      .catch((e) => setError(e.message));
+    let cancelled = false;
+    void track("status", { token })
+      .then((data) => {
+        if (!cancelled) setInfo(data);
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e.message);
+      });
     return () => {
+      cancelled = true;
       if (watcher.current !== null)
         navigator.geolocation.clearWatch(watcher.current);
     };
@@ -269,29 +476,54 @@ export function DriverGate({ token }: { token: string }) {
       setError("Location is unavailable in this browser.");
       return;
     }
+    if (watcher.current !== null) return;
     setActive(true);
+    sentAt.current = 0;
     watcher.current = navigator.geolocation.watchPosition(
       async (p) => {
-        if (Date.now() - sentAt.current < 30000) return;
-        sentAt.current = Date.now();
+        if (sending.current || Date.now() - sentAt.current < 30000) return;
+        sending.current = true;
         try {
           const result = await track("ping", {
             token,
             latitude: p.coords.latitude,
             longitude: p.coords.longitude,
             accuracy: p.coords.accuracy,
+            heading: p.coords.heading,
+            speed_ms: p.coords.speed,
           });
-          if (result.received_at) setLast(result.received_at);
+          if (result.received_at) {
+            sentAt.current = Date.now();
+            setLast(result.received_at);
+            setReports((previous) => [
+              ...previous.slice(-119),
+              {
+                latitude: p.coords.latitude,
+                longitude: p.coords.longitude,
+                accuracy: p.coords.accuracy,
+                heading: p.coords.heading,
+                speed_ms: p.coords.speed,
+                received_at: result.received_at,
+                review_stop: false,
+              },
+            ]);
+          }
           setError("");
         } catch (e) {
-          setError(e instanceof Error ? e.message : "Connection lost");
+          setError(
+            e instanceof Error
+              ? e.message
+              : "Connection lost. Keep this page open to retry.",
+          );
+        } finally {
+          sending.current = false;
         }
       },
       (e) => {
         setError(
           e.code === 1
-            ? "Location permission was denied. Enable it in your browser to share your position."
-            : "Unable to get a reliable location. Check GPS and network coverage.",
+            ? "Location permission was denied. Enable location in your browser to share."
+            : "Unable to get a reliable position. Check GPS and network coverage.",
         );
         if (e.code === 1) stop();
       },
@@ -301,30 +533,39 @@ export function DriverGate({ token }: { token: string }) {
   return (
     <main id="main" className="driver-page">
       <Brand />
-      <div className="driver-card">
-        <span className="empty-icon">
-          <Navigation size={28} />
-        </span>
-        <span className="eyebrow">DRIVER GATE-PASS</span>
-        <h1>{info ? info.vehicle : "Your delivery link"}</h1>
+      <div className="driver-card driver-card-modern">
+        <span className="eyebrow">PRIVATE DELIVERY LINK</span>
+        <h1>{info?.vehicle || "Your delivery link"}</h1>
         {info && (
           <p>
-            {info.depot} <span>→</span> {info.station}
+            {info.depot} → {info.station}
           </p>
         )}
-        <div className="notice">
-          <ShieldCheck size={19} />
-          <span>
-            With your permission, PumpShield shares this phone’s location with
-            the receiving station owner approximately every 30 seconds. Sharing
-            ends when you stop it, close this page, or the delivery audit
-            begins.
-          </span>
+        {info && (
+          <FieldMap
+            points={reports}
+            compact
+            station={{
+              latitude: Number(info.station_lat),
+              longitude: Number(info.station_lon),
+            }}
+            depot={{
+              latitude: Number(info.depot_lat),
+              longitude: Number(info.depot_lon),
+            }}
+          />
+        )}
+        <div className="driver-consent">
+          <ShieldCheck size={22} />
+          <p>
+            With your permission, this phone sends its location to the receiving
+            station approximately every 30 seconds. Sharing stops when you stop
+            it, close the page, or the arrival audit starts.
+          </p>
         </div>
         <p className="muted">
-          Keep this page open, your phone charged, and location enabled.
-          Background tracking is not guaranteed. You can stop sharing at any
-          time.
+          Keep this page open and the phone charged. Browser background tracking
+          is not guaranteed.
         </p>
         {error && (
           <p className="form-error" role="alert">
@@ -333,17 +574,19 @@ export function DriverGate({ token }: { token: string }) {
         )}
         {info && (
           <Button className="full-width" onClick={active ? stop : start}>
-            {active ? <Square size={17} /> : <Radio size={17} />}{" "}
+            {active ? <Square size={17} /> : <Radio size={17} />}
             {active ? "Stop sharing location" : "I agree · Share my location"}
           </Button>
         )}
         {last && (
           <p className="fine-print" role="status">
-            Last report received: {date(last)} PKT
+            Last report received {date(last)} PKT
           </p>
         )}
         {info && (
-          <p className="fine-print">Link expires {date(info.expires_at)} PKT</p>
+          <p className="fine-print">
+            Private link expires {date(info.expires_at)} PKT
+          </p>
         )}
       </div>
     </main>

@@ -1,15 +1,22 @@
-import { ShieldCheck } from "lucide-react";
+import Image from "next/image";
 export function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <span className="brand">
+    <span
+      className={`brand ${compact ? "brand-compact" : ""}`}
+      aria-label="PumpShield"
+      role="img"
+    >
       <span className="brand-mark">
-        <ShieldCheck size={23} strokeWidth={1.8} />
+        <Image
+          src="/brand/mark.webp"
+          alt=""
+          width={36}
+          height={36}
+          priority
+          unoptimized
+        />
       </span>
-      {!compact && (
-        <>
-          PumpShield<span className="brand-country">PK</span>
-        </>
-      )}
+      {!compact && <span className="brand-name">PumpShield</span>}
     </span>
   );
 }
