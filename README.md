@@ -2,6 +2,8 @@
 
 Fuel-station operations built with Next.js 16, React 19, TypeScript, Tailwind 4, shadcn-style Radix components, and Supabase Auth/Postgres/Storage.
 
+[Live app](https://pumpshield-seven.vercel.app) · [10 November release and verification](docs/release-2026-11-10.md) · [Email designs and delivery requirements](docs/email-delivery-2026-11-10.md)
+
 ## Run locally
 
 Use Node.js 24. Copy `.env.example` to `.env.local`, set the Supabase URL and publishable key, then:
@@ -28,7 +30,7 @@ Create and confirm your account, then explicitly create your owner workspace. In
 - Context-aware Owner overview: real daily shift totals and drilldowns, payment mix, recorded tank levels, delivery-stage filters, and a permanent review queue. Versioned browser preferences hide/reorder optional panels without storing business values. Missing days are not fabricated as zero sales.
 - Validated URL view/station/record state, desktop board and phone list presentations, compact reconciliation register and progressive operational forms.
 - MapLibre 3D maps, optional licensed satellite imagery, real terrain, reported-position tanker animation, station pin selection and WhatsApp/SMS/native link sharing.
-- Installable `/offline` field terminal: encrypted local parchi, arrival-audit and shift-close drafts; camera evidence; ordered reconnect verification; idempotent posting and review states.
+- The installed shortcut opens `/app`, with a cached device workspace on offline navigation failure: encrypted parchi, arrival-audit and shift-close drafts, opt-in 24-hour trusted access, and ordered/idempotent reconnect verification while open and unlocked. Account passwords are not stored by this feature.
 
 ## Validation
 
@@ -42,7 +44,7 @@ docker run --name pumpshield-redesign-validation --network none -e POSTGRES_HOST
 python scripts/test-database.py
 ```
 
-The database harness applies every migration to a fresh database in the named disposable, unexposed PostgreSQL container. Auth/Storage schemas are minimal test fixtures, not running Supabase services. Four rolled-back SQL suites check tenant isolation, kiosk projections, role escalation, approval/decant/credit/shift invariants, operations transitions, offline replay, explicit invitation consent and finite numeric boundaries. Results are written under ignored `output/`. This does not substitute for an isolated full Supabase browser-to-database acceptance run. Never point this harness at a client database. Remove the dedicated test container when finished; do not clear unrelated containers or pending device drafts.
+The database harness applies every migration to a fresh database in the named disposable, unexposed PostgreSQL container. Auth/Storage schemas are minimal test fixtures, not running Supabase services. Five rolled-back SQL suites check tenant isolation, kiosk projections, role escalation, approval/decant/credit/shift invariants, operations transitions, offline replay, explicit invitation consent, finite numeric boundaries and the independent High Octane lifecycle. Results are written under ignored `output/`. This does not substitute for an isolated full Supabase browser-to-database acceptance run. Never point this harness at a client database. Remove the dedicated test container when finished; do not clear unrelated containers or pending device drafts.
 
 ## Deployment and updates
 
