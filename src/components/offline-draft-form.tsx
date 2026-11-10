@@ -9,6 +9,7 @@ import { QrScan } from "./qr-scan";
 import { Button } from "./ui/button";
 import { Camera, Check, Plus } from "./icons";
 import { date } from "@/lib/utils";
+import { fuelGradeLabel } from "@/lib/fuel-grades";
 export function OfflineDraftForm({
   context,
   onSave,
@@ -231,7 +232,7 @@ export function OfflineDraftForm({
                   </option>
                   {context.nozzles.map((n) => (
                     <option key={n.id} value={n.id}>
-                      {n.name} · {n.grade}
+                      {n.name} · {fuelGradeLabel(n.grade)}
                     </option>
                   ))}
                 </select>
@@ -317,7 +318,7 @@ export function OfflineDraftForm({
               {context.nozzles.map((n) => (
                 <fieldset key={n.id} className="offline-reading-group">
                   <legend>
-                    {n.name} · {n.grade}
+                    {n.name} · {fuelGradeLabel(n.grade)}
                   </legend>
                   <label>
                     Closing totalizer (L)
@@ -346,7 +347,7 @@ export function OfflineDraftForm({
               {context.tanks.map((t) => (
                 <fieldset key={t.id} className="offline-reading-group">
                   <legend>
-                    {t.name} · {t.grade}
+                    {t.name} · {fuelGradeLabel(t.grade)}
                   </legend>
                   <label>
                     Closing tank dip (mm)

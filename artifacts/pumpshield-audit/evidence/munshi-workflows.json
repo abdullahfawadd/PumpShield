@@ -1,0 +1,1430 @@
+{
+  "rows": [
+    {
+      "role": "munshi",
+      "module": "parchi",
+      "state": "vehicle-pass",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:25:02.945Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/parchi/desktop-1440x900/vehicle-pass-viewport.png",
+        "full": "screenshots/munshi/parchi/desktop-1440x900/vehicle-pass-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Authorized refuelling",
+          "A paperless, accountable fill",
+          "Scan the vehicle\u2019s PumpShield fuel pass."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "MUNSHI / FIELD TERMINAL",
+        "Ready when you are, Adeel.",
+        "Capture the reading. Submit the evidence. We\u2019ll take it from there.",
+        "Authorized refuelling",
+        "A paperless, accountable fill",
+        "Real records. Clear accountability.",
+        "Scan the vehicle\u2019s PumpShield fuel pass.",
+        "The owner creates it under Digital parchi \u2192 account \u2192 Vehicles & QR credentials. Print it or keep it on the authorised driver\u2019s phone. It is not a payment or receipt QR.",
+        "Vehicle pass code",
+        "Dispensing nozzleSelect dispensing nozzleNozzle 01 - PetrolNozzle 02 - Diesel",
+        "Litres dispensed",
+        "Credit availability, vehicle allowance, fuel grade and the open shift are checked again when you submit. A scanned pass alone does not approve a fill."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Vehicle pass code",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "nozzle_id",
+          "label": "Dispensing nozzleSelect dispensing nozzleNozzle 01 - PetrolNozzle 02 - Diesel",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "liters",
+          "label": "Litres dispensed",
+          "required": true,
+          "min": "0.01",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"A paperless, accountable fill\":\n  - heading \"A paperless, accountable fill\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - list:\n    - listitem: 1 Vehicle pass\n    - listitem: 2 Fill & evidence\n    - listitem: 3 Server approval\n  - img\n  - heading \"Scan the vehicle\u2019s PumpShield fuel pass.\" [level=3]\n  - paragraph:\n    - text: The owner creates it under\n    - strong: Digital parchi \u2192 account \u2192 Vehicles & QR credentials\n    - text: . Print it or keep it on the authorised driver\u2019s phone. It is not a payment or receipt QR.\n  - button \"Scan vehicle fuel pass\":\n    - img\n    - text: Scan vehicle fuel pass\n  - text: Vehicle pass code\n  - textbox \"Vehicle pass code\":\n    - /placeholder: Scan a pass or enter its code\n  - button \"Check vehicle\" [disabled]\n  - group:\n    - text: Dispensing nozzle\n    - combobox \"Dispensing nozzle\" [disabled]:\n      - option \"Select dispensing nozzle\" [disabled] [selected]\n      - option \"Nozzle 01 - Petrol\" [disabled]\n      - option \"Nozzle 02 - Diesel\" [disabled]\n    - text: Litres dispensed\n    - spinbutton \"Litres dispensed\" [disabled]\n    - button \"Capture final nozzle reading\" [disabled]:\n      - img\n      - text: Capture final nozzle reading\n  - img\n  - paragraph: Credit availability, vehicle allowance, fuel grade and the open shift are checked again when you submit. A scanned pass alone does not approve a fill.\n  - button \"Verify credit & record fuel fill\"\n  - link \"No connection? Open the offline terminal to save a draft \u2192\":\n    - /url: /offline",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "parchi",
+      "state": "vehicle-pass",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:25:03.790Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/parchi/mobile-390x844/vehicle-pass-viewport.png",
+        "full": "screenshots/munshi/parchi/mobile-390x844/vehicle-pass-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1068,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Authorized refuelling",
+          "A paperless, accountable fill",
+          "Scan the vehicle\u2019s PumpShield fuel pass."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "parchi",
+      "state": "vehicle-pass",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:25:04.457Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/parchi/mobile-320x640/vehicle-pass-viewport.png",
+        "full": "screenshots/munshi/parchi/mobile-320x640/vehicle-pass-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 1108,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Authorized refuelling",
+          "A paperless, accountable fill",
+          "Scan the vehicle\u2019s PumpShield fuel pass."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "parchi",
+      "state": "invalid-pass",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:25:05.271Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/parchi/desktop-1440x900/invalid-pass-viewport.png",
+        "full": "screenshots/munshi/parchi/desktop-1440x900/invalid-pass-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Authorized refuelling",
+          "A paperless, accountable fill",
+          "Scan the vehicle\u2019s PumpShield fuel pass."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "MUNSHI / FIELD TERMINAL",
+        "Ready when you are, Adeel.",
+        "Capture the reading. Submit the evidence. We\u2019ll take it from there.",
+        "Authorized refuelling",
+        "A paperless, accountable fill",
+        "Real records. Clear accountability.",
+        "Scan the vehicle\u2019s PumpShield fuel pass.",
+        "The owner creates it under Digital parchi \u2192 account \u2192 Vehicles & QR credentials. Print it or keep it on the authorised driver\u2019s phone. It is not a payment or receipt QR.",
+        "Vehicle pass code",
+        "Scan an owner-issued PumpShield vehicle pass. Payment QRs, number plates, and receipt QRs cannot authorise a credit fill.",
+        "Dispensing nozzleSelect dispensing nozzleNozzle 01 - PetrolNozzle 02 - Diesel",
+        "Litres dispensed",
+        "Credit availability, vehicle allowance, fuel grade and the open shift are checked again when you submit. A scanned pass alone does not approve a fill."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Vehicle pass code",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "nozzle_id",
+          "label": "Dispensing nozzleSelect dispensing nozzleNozzle 01 - PetrolNozzle 02 - Diesel",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "liters",
+          "label": "Litres dispensed",
+          "required": true,
+          "min": "0.01",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"A paperless, accountable fill\":\n  - heading \"A paperless, accountable fill\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - list:\n    - listitem: 1 Vehicle pass\n    - listitem: 2 Fill & evidence\n    - listitem: 3 Server approval\n  - img\n  - heading \"Scan the vehicle\u2019s PumpShield fuel pass.\" [level=3]\n  - paragraph:\n    - text: The owner creates it under\n    - strong: Digital parchi \u2192 account \u2192 Vehicles & QR credentials\n    - text: . Print it or keep it on the authorised driver\u2019s phone. It is not a payment or receipt QR.\n  - button \"Scan vehicle fuel pass\":\n    - img\n    - text: Scan vehicle fuel pass\n  - text: Vehicle pass code\n  - textbox \"Vehicle pass code\":\n    - /placeholder: Scan a pass or enter its code\n    - text: not-a-vehicle-pass\n  - button \"Check vehicle\"\n  - alert: Scan an owner-issued PumpShield vehicle pass. Payment QRs, number plates, and receipt QRs cannot authorise a credit fill.\n  - group:\n    - text: Dispensing nozzle\n    - combobox \"Dispensing nozzle\" [disabled]:\n      - option \"Select dispensing nozzle\" [disabled] [selected]\n      - option \"Nozzle 01 - Petrol\" [disabled]\n      - option \"Nozzle 02 - Diesel\" [disabled]\n    - text: Litres dispensed\n    - spinbutton \"Litres dispensed\" [disabled]\n    - button \"Capture final nozzle reading\" [disabled]:\n      - img\n      - text: Capture final nozzle reading\n  - img\n  - paragraph: Credit availability, vehicle allowance, fuel grade and the open shift are checked again when you submit. A scanned pass alone does not approve a fill.\n  - button \"Verify credit & record fuel fill\"\n  - link \"No connection? Open the offline terminal to save a draft \u2192\":\n    - /url: /offline",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "parchi",
+      "state": "invalid-pass",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:25:05.920Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/parchi/mobile-390x844/invalid-pass-viewport.png",
+        "full": "screenshots/munshi/parchi/mobile-390x844/invalid-pass-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1068,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Authorized refuelling",
+          "A paperless, accountable fill",
+          "Scan the vehicle\u2019s PumpShield fuel pass."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "parchi",
+      "state": "scanner-permission",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:25:06.730Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/parchi/desktop-1440x900/scanner-permission-viewport.png",
+        "full": "screenshots/munshi/parchi/desktop-1440x900/scanner-permission-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Authorized refuelling",
+          "A paperless, accountable fill",
+          "Scan the vehicle\u2019s PumpShield fuel pass."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "MUNSHI / FIELD TERMINAL",
+        "Ready when you are, Adeel.",
+        "Capture the reading. Submit the evidence. We\u2019ll take it from there.",
+        "Authorized refuelling",
+        "A paperless, accountable fill",
+        "Real records. Clear accountability.",
+        "Scan the vehicle\u2019s PumpShield fuel pass.",
+        "The owner creates it under Digital parchi \u2192 account \u2192 Vehicles & QR credentials. Print it or keep it on the authorised driver\u2019s phone. It is not a payment or receipt QR.",
+        "Vehicle pass code",
+        "Scan an owner-issued PumpShield vehicle pass. Payment QRs, number plates, and receipt QRs cannot authorise a credit fill.",
+        "Dispensing nozzleSelect dispensing nozzleNozzle 01 - PetrolNozzle 02 - Diesel",
+        "Litres dispensed",
+        "Credit availability, vehicle allowance, fuel grade and the open shift are checked again when you submit. A scanned pass alone does not approve a fill."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Vehicle pass code",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "nozzle_id",
+          "label": "Dispensing nozzleSelect dispensing nozzleNozzle 01 - PetrolNozzle 02 - Diesel",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "liters",
+          "label": "Litres dispensed",
+          "required": true,
+          "min": "0.01",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"A paperless, accountable fill\":\n  - heading \"A paperless, accountable fill\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - list:\n    - listitem: 1 Vehicle pass\n    - listitem: 2 Fill & evidence\n    - listitem: 3 Server approval\n  - img\n  - heading \"Scan the vehicle\u2019s PumpShield fuel pass.\" [level=3]\n  - paragraph:\n    - text: The owner creates it under\n    - strong: Digital parchi \u2192 account \u2192 Vehicles & QR credentials\n    - text: . Print it or keep it on the authorised driver\u2019s phone. It is not a payment or receipt QR.\n  - button \"Close scanner\":\n    - img\n    - text: Close scanner\n  - img\n  - text: Place the vehicle pass inside the frame Vehicle pass code\n  - textbox \"Vehicle pass code\":\n    - /placeholder: Scan a pass or enter its code\n    - text: not-a-vehicle-pass\n  - button \"Check vehicle\"\n  - alert: Scan an owner-issued PumpShield vehicle pass. Payment QRs, number plates, and receipt QRs cannot authorise a credit fill.\n  - group:\n    - text: Dispensing nozzle\n    - combobox \"Dispensing nozzle\" [disabled]:\n      - option \"Select dispensing nozzle\" [disabled] [selected]\n      - option \"Nozzle 01 - Petrol\" [disabled]\n      - option \"Nozzle 02 - Diesel\" [disabled]\n    - text: Litres dispensed\n    - spinbutton \"Litres dispensed\" [disabled]\n    - button \"Capture final nozzle reading\" [disabled]:\n      - img\n      - text: Capture final nozzle reading\n  - img\n  - paragraph: Credit availability, vehicle allowance, fuel grade and the open shift are checked again when you submit. A scanned pass alone does not approve a fill.\n  - button \"Verify credit & record fuel fill\"\n  - link \"No connection? Open the offline terminal to save a draft \u2192\":\n    - /url: /offline",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "parchi",
+      "state": "scanner-permission",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:25:07.448Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/parchi/mobile-390x844/scanner-permission-viewport.png",
+        "full": "screenshots/munshi/parchi/mobile-390x844/scanner-permission-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1068,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Authorized refuelling",
+          "A paperless, accountable fill",
+          "Scan the vehicle\u2019s PumpShield fuel pass."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "deliveries",
+      "state": "arrival-audit",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:25:08.960Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/deliveries/desktop-1440x900/arrival-audit-viewport.png",
+        "full": "screenshots/munshi/deliveries/desktop-1440x900/arrival-audit-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1472,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Keep every arrival moving.",
+          "Delivery verification",
+          "TKA-842"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "MUNSHI / FIELD TERMINAL",
+        "Ready when you are, Adeel.",
+        "Capture the reading. Submit the evidence. We\u2019ll take it from there.",
+        "DELIVERY PIPELINE",
+        "Keep every arrival moving.",
+        "Drag to the next stage to open its required checklist. Changes save only after confirmation.",
+        "Dispatch registered",
+        "Pre-decant audit submitted",
+        "Owner approval recorded",
+        "Stock received and posted",
+        "Delivery verification",
+        "Real records. Clear accountability.",
+        "TKA-842",
+        "SAMPLE-OMC-1042 \u00b7 Keamari depot",
+        "Pump arrival temperature (\u00b0C)",
+        "Chamber 1 dip (mm)",
+        "Chamber 2 dip (mm)",
+        "Chamber 3 dip (mm)",
+        "Chamber 4 dip (mm)",
+        "Do not unload until the owner reviews and approves this audit. Submitted measurements cannot be edited."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search deliveries",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Filter board stage",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "arrival_temp",
+          "label": "Pump arrival temperature (\u00b0C)",
+          "required": true,
+          "min": "-20",
+          "max": "80",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_0",
+          "label": "Chamber 1 dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_1",
+          "label": "Chamber 2 dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_2",
+          "label": "Chamber 3 dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_3",
+          "label": "Chamber 4 dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Delivery verification\":\n  - heading \"Delivery verification\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - img\n  - heading \"TKA-842\" [level=2]\n  - paragraph: SAMPLE-OMC-1042 \u00b7 Keamari depot\n  - text: dispatched Pump arrival temperature (\u00b0C)\n  - spinbutton \"Pump arrival temperature (\u00b0C)\"\n  - text: Chamber 1 dip (mm)\n  - spinbutton \"Chamber 1 dip (mm)\"\n  - text: Chamber 2 dip (mm)\n  - spinbutton \"Chamber 2 dip (mm)\"\n  - text: Chamber 3 dip (mm)\n  - spinbutton \"Chamber 3 dip (mm)\"\n  - text: Chamber 4 dip (mm)\n  - spinbutton \"Chamber 4 dip (mm)\"\n  - button \"Capture thermometer & dip evidence\":\n    - img\n    - text: Capture thermometer & dip evidence\n  - text: Do not unload until the owner reviews and approves this audit. Submitted measurements cannot be edited.\n  - button \"Submit & lock pre-decant audit\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "deliveries",
+      "state": "arrival-audit",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:25:09.883Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/deliveries/mobile-390x844/arrival-audit-viewport.png",
+        "full": "screenshots/munshi/deliveries/mobile-390x844/arrival-audit-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2004,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Keep every arrival moving.",
+          "Delivery verification",
+          "TKA-842"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "deliveries",
+      "state": "arrival-audit",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:25:10.631Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/deliveries/mobile-320x640/arrival-audit-viewport.png",
+        "full": "screenshots/munshi/deliveries/mobile-320x640/arrival-audit-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 2039,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Keep every arrival moving.",
+          "Delivery verification",
+          "TKA-842"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "shifts",
+      "state": "close",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:25:11.892Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/shifts/desktop-1440x900/close-viewport.png",
+        "full": "screenshots/munshi/shifts/desktop-1440x900/close-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1026,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Shift register",
+          "Close your shift with confidence",
+          "01 / Nozzle readings",
+          "02 / Physical tank dips",
+          "03 / Cash & settlement"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "MUNSHI / FIELD TERMINAL",
+        "Ready when you are, Adeel.",
+        "Capture the reading. Submit the evidence. We\u2019ll take it from there.",
+        "Shift register",
+        "Capture fresh evidence before your shift cutoff.",
+        "Close your shift with confidence",
+        "Submitted readings are permanent. Check the numbers and capture fresh evidence before submitting.",
+        "Cutoff: 9 Nov, 12:00 am PKT. A submission after this time is flagged for owner review. Record readings at the cutoff.",
+        "01 / Nozzle readings",
+        "Closing totalizer (L)",
+        "Testing returned to tank (L)",
+        "Closing totalizer (L)",
+        "Testing returned to tank (L)",
+        "02 / Physical tank dips",
+        "Premier petrol \u00b7 Closing dip (mm)",
+        "High-speed diesel \u00b7 Closing dip (mm)",
+        "03 / Cash & settlement",
+        "Physical cash handed over (PKR)",
+        "Bank POS settlement (PKR)",
+        "I confirm these are the actual closing readings and funds handed over."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "closing_c5054196-f43d-4e6c-a4d2-77981e6b3729",
+          "label": "Closing totalizer (L)",
+          "required": true,
+          "min": "152400",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "testing_c5054196-f43d-4e6c-a4d2-77981e6b3729",
+          "label": "Testing returned to tank (L)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "closing_d5c0be8f-333c-4dd2-b612-106e15168a97",
+          "label": "Closing totalizer (L)",
+          "required": true,
+          "min": "152400",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "testing_d5c0be8f-333c-4dd2-b612-106e15168a97",
+          "label": "Testing returned to tank (L)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_7ad697b6-3fca-479b-a26e-7764ab721efb",
+          "label": "Premier petrol \u00b7 Closing dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_233b4bef-20a5-4312-9996-331aabea3f7f",
+          "label": "High-speed diesel \u00b7 Closing dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "cash",
+          "label": "Physical cash handed over (PKR)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "pos",
+          "label": "Bank POS settlement (PKR)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "I confirm these are the actual closing readings and funds handed over.",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Close your shift with confidence\":\n  - heading \"Close your shift with confidence\" [level=2]\n  - paragraph: Submitted readings are permanent. Check the numbers and capture fresh evidence before submitting.\n  - button \"Close dialog\":\n    - img\n  - text: \"Cutoff: 9 Nov, 12:00 am PKT. A submission after this time is flagged for owner review. Record readings at the cutoff.\"\n  - heading \"01 / Nozzle readings\" [level=3]:\n    - img\n    - text: 01 / Nozzle readings\n  - strong: Nozzle 01 - Petrol\n  - text: Opening 152,400 L Closing totalizer (L)\n  - spinbutton \"Closing totalizer (L)\"\n  - text: Testing returned to tank (L)\n  - spinbutton \"Testing returned to tank (L)\": \"0\"\n  - button \"Capture nozzle totalizer\":\n    - img\n    - text: Capture nozzle totalizer\n  - strong: Nozzle 02 - Diesel\n  - text: Opening 152,400 L Closing totalizer (L)\n  - spinbutton \"Closing totalizer (L)\"\n  - text: Testing returned to tank (L)\n  - spinbutton \"Testing returned to tank (L)\": \"0\"\n  - button \"Capture nozzle totalizer\":\n    - img\n    - text: Capture nozzle totalizer\n  - heading \"02 / Physical tank dips\" [level=3]:\n    - img\n    - text: 02 / Physical tank dips\n  - text: Premier petrol \u00b7 Closing dip (mm)\n  - spinbutton \"Premier petrol \u00b7 Closing dip (mm)\"\n  - button \"Capture wet dipstick mark\":\n    - img\n    - text: Capture wet dipstick mark\n  - text: High-speed diesel \u00b7 Closing dip (mm)\n  - spinbutton \"High-speed diesel \u00b7 Closing dip (mm)\"\n  - button \"Capture wet dipstick mark\":\n    - img\n    - text: Capture wet dipstick mark\n  - heading \"03 / Cash & settlement\" [level=3]\n  - text: Physical cash handed over (PKR)\n  - spinbutton \"Physical cash handed over (PKR)\"\n  - text: Bank POS settlement (PKR)\n  - spinbutton \"Bank POS settlement (PKR)\"\n  - button \"Capture POS settlement report\":\n    - img\n    - text: Capture POS settlement report\n  - checkbox \"I confirm these are the actual closing readings and funds handed over.\"\n  - text: I confirm these are the actual closing readings and funds handed over.\n  - button \"Submit & permanently lock shift\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "shifts",
+      "state": "close",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:25:12.665Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/shifts/mobile-390x844/close-viewport.png",
+        "full": "screenshots/munshi/shifts/mobile-390x844/close-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1556,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Shift register",
+          "Close your shift with confidence",
+          "01 / Nozzle readings",
+          "02 / Physical tank dips",
+          "03 / Cash & settlement"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "shifts",
+      "state": "close",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:25:13.348Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/shifts/mobile-320x640/close-viewport.png",
+        "full": "screenshots/munshi/shifts/mobile-320x640/close-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 1625,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Ready when you are, Adeel.",
+          "Shift register",
+          "Close your shift with confidence",
+          "01 / Nozzle readings",
+          "02 / Physical tank dips",
+          "03 / Cash & settlement"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "maintenance",
+      "state": "create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:25:14.542Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/maintenance/desktop-1440x900/create-viewport.png",
+        "full": "screenshots/munshi/maintenance/desktop-1440x900/create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "New maintenance"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "MUNSHI / FIELD TERMINAL",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Maintenance",
+        "Plan equipment work and record what was done, by whom, and when.",
+        "Include cancelled",
+        "Loading saved station work\u2026",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "New maintenance",
+        "Plan equipment work and record what was done, by whom, and when.",
+        "Title",
+        "Details",
+        "Assigned toChoose a person",
+        "PriorityNormalHighUrgent",
+        "Due at (local time)",
+        "Equipment reference"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "title",
+          "label": "Title",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 3,
+          "maxLength": 140,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "description",
+          "label": "Details",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "assigned_to",
+          "label": "Assigned toChoose a person",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "priority",
+          "label": "PriorityNormalHighUrgent",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "datetime-local",
+          "name": "due_at",
+          "label": "Due at (local time)",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "equipment",
+          "label": "Equipment reference",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 140,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"New maintenance\":\n  - heading \"New maintenance\" [level=2]\n  - paragraph: Plan equipment work and record what was done, by whom, and when.\n  - button \"Close dialog\":\n    - img\n  - text: Title\n  - textbox \"Title\":\n    - /placeholder: Calibrate MS dispenser 02\n  - text: Details\n  - textbox \"Details\":\n    - /placeholder: Include what happened, the next action, and any relevant evidence references.\n  - text: Assigned to\n  - combobox \"Assigned to\":\n    - option \"Choose a person\" [selected]\n  - text: Priority\n  - combobox \"Priority\":\n    - option \"Normal\" [selected]\n    - option \"High\"\n    - option \"Urgent\"\n  - text: Due at (local time)\n  - textbox \"Due at (local time)\"\n  - text: Equipment reference\n  - textbox \"Equipment reference\":\n    - /placeholder: Tank, nozzle, dispenser, or safety equipment\n  - button \"Create record\":\n    - text: Create record\n    - img",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "maintenance",
+      "state": "create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:25:15.410Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/maintenance/mobile-390x844/create-viewport.png",
+        "full": "screenshots/munshi/maintenance/mobile-390x844/create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed",
+          "New maintenance"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "prepare",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:25:16.883Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/desktop-1920x1080/prepare-viewport.png",
+        "full": "screenshots/munshi/offline/desktop-1920x1080/prepare-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1302,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your station.Even between signals.",
+          "Prepare a trusted device."
+        ],
+        "smallTargets": [
+          {
+            "label": "Sign in online",
+            "width": 484,
+            "height": 18
+          }
+        ]
+      },
+      "copy": [
+        "PUMPSHIELD FIELD TERMINAL",
+        "Your station.Even between signals.",
+        "Capture readings and camera evidence. Keep them encrypted until the server can verify them.",
+        "iPhone: Share \u2192 Add to Home Screen.Android: browser menu \u2192 Install app.",
+        "Prepare a trusted device.",
+        "Sign in online and choose a station, then create an offline passphrase. Saved station data and photos will be encrypted on this device.",
+        "StationChoose a station",
+        "Offline passphrase",
+        "Confirm offline passphrase",
+        "Use a personal or station-controlled device. Without the offline passphrase, unsynced drafts cannot be recovered."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "StationChoose a station",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "password",
+          "name": "passphrase",
+          "label": "Offline passphrase",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 12,
+          "maxLength": 128,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "password",
+          "name": "confirm",
+          "label": "Confirm offline passphrase",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 12,
+          "maxLength": 128,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - link \"Online workspace\":\n    - /url: /app\n    - text: Online workspace\n    - img\n  - text: PUMPSHIELD FIELD TERMINAL\n  - heading \"Your station. Even between signals.\" [level=1]\n  - paragraph: Capture readings and camera evidence. Keep them encrypted until the server can verify them.\n  - text: Connection available\n  - img\n  - strong: Add PumpShield to your home screen\n  - text: Open this page online once to prepare the offline terminal.\n  - paragraph: \"iPhone: Share \u2192 Add to Home Screen. Android: browser menu \u2192 Install app.\"\n  - img\n  - heading \"Prepare a trusted device.\" [level=2]\n  - paragraph: Sign in online and choose a station, then create an offline passphrase. Saved station data and photos will be encrypted on this device.\n  - text: Station\n  - combobox \"Station\":\n    - option \"Choose a station\" [selected]\n  - text: Offline passphrase\n  - textbox \"Offline passphrase\"\n  - text: Confirm offline passphrase\n  - textbox \"Confirm offline passphrase\"\n  - button \"Prepare offline workspace\" [disabled]\n  - paragraph: Use a personal or station-controlled device. Without the offline passphrase, unsynced drafts cannot be recovered.\n  - link \"Sign in online\":\n    - /url: /login\n  - img\n  - text: Encrypted local drafts \u00b7 current authorisation checked on every submission \u00b7 locks after inactivity\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "prepare",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:25:17.366Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/desktop-1440x900/prepare-viewport.png",
+        "full": "screenshots/munshi/offline/desktop-1440x900/prepare-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1302,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your station.Even between signals.",
+          "Prepare a trusted device."
+        ],
+        "smallTargets": [
+          {
+            "label": "Sign in online",
+            "width": 484,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "prepare",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:25:17.789Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/desktop-1366x768/prepare-viewport.png",
+        "full": "screenshots/munshi/offline/desktop-1366x768/prepare-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1302,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your station.Even between signals.",
+          "Prepare a trusted device."
+        ],
+        "smallTargets": [
+          {
+            "label": "Sign in online",
+            "width": 484,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "prepare",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:25:18.171Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/mobile-430x932/prepare-viewport.png",
+        "full": "screenshots/munshi/offline/mobile-430x932/prepare-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 1367,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "Prepare a trusted device."
+        ],
+        "smallTargets": [
+          {
+            "label": "Sign in online",
+            "width": 352,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "prepare",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:25:18.444Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/mobile-390x844/prepare-viewport.png",
+        "full": "screenshots/munshi/offline/mobile-390x844/prepare-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1367,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "Prepare a trusted device."
+        ],
+        "smallTargets": [
+          {
+            "label": "Sign in online",
+            "width": 312,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "prepare",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:25:18.761Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/mobile-360x800/prepare-viewport.png",
+        "full": "screenshots/munshi/offline/mobile-360x800/prepare-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 1459,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "Prepare a trusted device."
+        ],
+        "smallTargets": [
+          {
+            "label": "Sign in online",
+            "width": 282,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "prepare",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:25:19.099Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/mobile-320x640/prepare-viewport.png",
+        "full": "screenshots/munshi/offline/mobile-320x640/prepare-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 1499,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "Prepare a trusted device."
+        ],
+        "smallTargets": [
+          {
+            "label": "Sign in online",
+            "width": 242,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "prepare",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:25:19.431Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/tablet-768x1024/prepare-viewport.png",
+        "full": "screenshots/munshi/offline/tablet-768x1024/prepare-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1327,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "Prepare a trusted device."
+        ],
+        "smallTargets": [
+          {
+            "label": "Sign in online",
+            "width": 508,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "outcomes": [
+    {
+      "flow": "Vehicle lookup",
+      "action": "Malformed pass",
+      "actual": [
+        "Scan an owner-issued PumpShield vehicle pass. Payment QRs, number plates, and receipt QRs cannot authorise a credit fill."
+      ],
+      "serverMutation": false
+    }
+  ]
+}

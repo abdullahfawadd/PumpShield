@@ -1,0 +1,477 @@
+{
+  "rows": [
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "unlocked",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:26:31.310Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/desktop-1440x900/unlocked-viewport.png",
+        "full": "screenshots/munshi/offline/desktop-1440x900/unlocked-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1701,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your station.Even between signals.",
+          "New field record",
+          "Submission queue",
+          "Nothing waiting."
+        ],
+        "smallTargets": []
+      },
+      "copy": [
+        "PUMPSHIELD FIELD TERMINAL",
+        "Your station.Even between signals.",
+        "Capture readings and camera evidence. Keep them encrypted until the server can verify them.",
+        "iPhone: Share \u2192 Add to Home Screen.Android: browser menu \u2192 Install app.",
+        "Device prepared. Save the offline passphrase somewhere safe; it cannot be recovered.",
+        "CAPTURE WITHOUT A CONNECTION",
+        "New field record",
+        "An offline draft does not approve credit or authorise a fill. Follow the station\u2019s manual approval procedure until the server verifies it.",
+        "Owner-issued vehicle pass code",
+        "Dispensing nozzleChoose a nozzleNozzle 01 - Petrol \u00b7 MSNozzle 02 - Diesel \u00b7 HSD",
+        "Litres dispensed",
+        "Photos and readings stay encrypted on this device until a verified online submission succeeds.",
+        "THIS DEVICE",
+        "Submission queue",
+        "Nothing waiting.",
+        "Saved field drafts appear here. No private server pages are cached.",
+        "Sync runs while this terminal is open and unlocked. A changed shift, revoked pass, insufficient credit or old evidence can require owner review. Closed-browser background sync is not promised."
+      ],
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Owner-issued vehicle pass code",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "nozzle_id",
+          "label": "Dispensing nozzleChoose a nozzleNozzle 01 - Petrol \u00b7 MSNozzle 02 - Diesel \u00b7 HSD",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "liters",
+          "label": "Litres dispensed",
+          "required": true,
+          "min": "0.01",
+          "max": "10000",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - link \"Online workspace\":\n    - /url: /app\n    - text: Online workspace\n    - img\n  - text: PUMPSHIELD FIELD TERMINAL\n  - heading \"Your station. Even between signals.\" [level=1]\n  - paragraph: Capture readings and camera evidence. Keep them encrypted until the server can verify them.\n  - text: Connection available\n  - img\n  - strong: Add PumpShield to your home screen\n  - text: The offline terminal is prepared on this browser.\n  - paragraph: \"iPhone: Share \u2192 Add to Home Screen. Android: browser menu \u2192 Install app.\"\n  - status: Device prepared. Save the offline passphrase somewhere safe; it cannot be recovered.\n  - strong: Clifton Petroleum - Sample\n  - text: Adeel - Demo \u00b7 Prepared 9 Nov, 12:30 pm PKT\n  - button \"Refresh data\":\n    - img\n    - text: Refresh data\n  - button \"Lock\":\n    - img\n    - text: Lock\n  - text: CAPTURE WITHOUT A CONNECTION\n  - heading \"New field record\" [level=2]\n  - text: Draft only\n  - group \"Offline record type\":\n    - button \"Fuel parchi\" [pressed]\n    - button \"Arrival audit\"\n    - button \"Shift close\"\n  - text: An offline draft does not approve credit or authorise a fill. Follow the station\u2019s manual approval procedure until the server verifies it.\n  - button \"Scan vehicle fuel pass\":\n    - img\n    - text: Scan vehicle fuel pass\n  - text: Owner-issued vehicle pass code\n  - textbox \"Owner-issued vehicle pass code\":\n    - /placeholder: Scan the vehicle fuel pass\n  - text: Dispensing nozzle\n  - combobox \"Dispensing nozzle\":\n    - option \"Choose a nozzle\" [disabled] [selected]\n    - option \"Nozzle 01 - Petrol \u00b7 MS\"\n    - option \"Nozzle 02 - Diesel \u00b7 HSD\"\n  - text: Litres dispensed\n  - spinbutton \"Litres dispensed\"\n  - img\n  - text: Final nozzle reading\n  - button \"Capture photo\":\n    - img\n    - text: Capture photo\n  - button \"Save encrypted draft\":\n    - img\n    - text: Save encrypted draft\n  - paragraph: Photos and readings stay encrypted on this device until a verified online submission succeeds.\n  - text: THIS DEVICE\n  - heading \"Submission queue\" [level=2]\n  - text: 0 pending\n  - button \"Sync pending records\" [disabled]:\n    - img\n    - text: Sync pending records\n  - img\n  - heading \"Nothing waiting.\" [level=3]\n  - paragraph: Saved field drafts appear here. No private server pages are cached.\n  - paragraph: Sync runs while this terminal is open and unlocked. A changed shift, revoked pass, insufficient credit or old evidence can require owner review. Closed-browser background sync is not promised.\n  - img\n  - text: Encrypted local drafts \u00b7 current authorisation checked on every submission \u00b7 locks after inactivity\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "unlocked",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:26:31.701Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/mobile-390x844/unlocked-viewport.png",
+        "full": "screenshots/munshi/offline/mobile-390x844/unlocked-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2316,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "New field record",
+          "Submission queue",
+          "Nothing waiting."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "unlocked",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:26:32.029Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/mobile-320x640/unlocked-viewport.png",
+        "full": "screenshots/munshi/offline/mobile-320x640/unlocked-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 2449,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "New field record",
+          "Submission queue",
+          "Nothing waiting."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "network-offline",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:26:32.694Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/desktop-1440x900/network-offline-viewport.png",
+        "full": "screenshots/munshi/offline/desktop-1440x900/network-offline-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1629,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your station.Even between signals.",
+          "New field record",
+          "Submission queue",
+          "Nothing waiting."
+        ],
+        "smallTargets": []
+      },
+      "copy": [
+        "PUMPSHIELD FIELD TERMINAL",
+        "Your station.Even between signals.",
+        "Capture readings and camera evidence. Keep them encrypted until the server can verify them.",
+        "iPhone: Share \u2192 Add to Home Screen.Android: browser menu \u2192 Install app.",
+        "CAPTURE WITHOUT A CONNECTION",
+        "New field record",
+        "An offline draft does not approve credit or authorise a fill. Follow the station\u2019s manual approval procedure until the server verifies it.",
+        "Owner-issued vehicle pass code",
+        "Dispensing nozzleChoose a nozzleNozzle 01 - Petrol \u00b7 MSNozzle 02 - Diesel \u00b7 HSD",
+        "Litres dispensed",
+        "Photos and readings stay encrypted on this device until a verified online submission succeeds.",
+        "THIS DEVICE",
+        "Submission queue",
+        "Nothing waiting.",
+        "Saved field drafts appear here. No private server pages are cached.",
+        "Sync runs while this terminal is open and unlocked. A changed shift, revoked pass, insufficient credit or old evidence can require owner review. Closed-browser background sync is not promised."
+      ],
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Owner-issued vehicle pass code",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "nozzle_id",
+          "label": "Dispensing nozzleChoose a nozzleNozzle 01 - Petrol \u00b7 MSNozzle 02 - Diesel \u00b7 HSD",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "liters",
+          "label": "Litres dispensed",
+          "required": true,
+          "min": "0.01",
+          "max": "10000",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - link \"Online workspace\":\n    - /url: /app\n    - text: Online workspace\n    - img\n  - text: PUMPSHIELD FIELD TERMINAL\n  - heading \"Your station. Even between signals.\" [level=1]\n  - paragraph: Capture readings and camera evidence. Keep them encrypted until the server can verify them.\n  - text: Offline \u00b7 drafts only\n  - img\n  - strong: Add PumpShield to your home screen\n  - text: The offline terminal is prepared on this browser.\n  - paragraph: \"iPhone: Share \u2192 Add to Home Screen. Android: browser menu \u2192 Install app.\"\n  - strong: Clifton Petroleum - Sample\n  - text: Adeel - Demo \u00b7 Prepared 9 Nov, 12:30 pm PKT\n  - button \"Refresh data\" [disabled]:\n    - img\n    - text: Refresh data\n  - button \"Lock\":\n    - img\n    - text: Lock\n  - text: CAPTURE WITHOUT A CONNECTION\n  - heading \"New field record\" [level=2]\n  - text: Draft only\n  - group \"Offline record type\":\n    - button \"Fuel parchi\" [pressed]\n    - button \"Arrival audit\"\n    - button \"Shift close\"\n  - text: An offline draft does not approve credit or authorise a fill. Follow the station\u2019s manual approval procedure until the server verifies it.\n  - button \"Scan vehicle fuel pass\":\n    - img\n    - text: Scan vehicle fuel pass\n  - text: Owner-issued vehicle pass code\n  - textbox \"Owner-issued vehicle pass code\":\n    - /placeholder: Scan the vehicle fuel pass\n  - text: Dispensing nozzle\n  - combobox \"Dispensing nozzle\":\n    - option \"Choose a nozzle\" [disabled] [selected]\n    - option \"Nozzle 01 - Petrol \u00b7 MS\"\n    - option \"Nozzle 02 - Diesel \u00b7 HSD\"\n  - text: Litres dispensed\n  - spinbutton \"Litres dispensed\"\n  - img\n  - text: Final nozzle reading\n  - button \"Capture photo\":\n    - img\n    - text: Capture photo\n  - button \"Save encrypted draft\":\n    - img\n    - text: Save encrypted draft\n  - paragraph: Photos and readings stay encrypted on this device until a verified online submission succeeds.\n  - text: THIS DEVICE\n  - heading \"Submission queue\" [level=2]\n  - text: 0 pending\n  - button \"Sync pending records\" [disabled]:\n    - img\n    - text: Sync pending records\n  - img\n  - heading \"Nothing waiting.\" [level=3]\n  - paragraph: Saved field drafts appear here. No private server pages are cached.\n  - paragraph: Sync runs while this terminal is open and unlocked. A changed shift, revoked pass, insufficient credit or old evidence can require owner review. Closed-browser background sync is not promised.\n  - img\n  - text: Encrypted local drafts \u00b7 current authorisation checked on every submission \u00b7 locks after inactivity\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "network-offline",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:26:33.125Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/mobile-390x844/network-offline-viewport.png",
+        "full": "screenshots/munshi/offline/mobile-390x844/network-offline-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2316,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "New field record",
+          "Submission queue",
+          "Nothing waiting."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "locked-offline",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:26:33.622Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/desktop-1440x900/locked-offline-viewport.png",
+        "full": "screenshots/munshi/offline/desktop-1440x900/locked-offline-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1199,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your station.Even between signals.",
+          "Unlock your offline workspace."
+        ],
+        "smallTargets": [
+          {
+            "label": "Remove this device\u2019s offline workspace",
+            "width": 215,
+            "height": 18
+          },
+          {
+            "label": "Sign in online",
+            "width": 484,
+            "height": 18
+          }
+        ]
+      },
+      "copy": [
+        "PUMPSHIELD FIELD TERMINAL",
+        "Your station.Even between signals.",
+        "Capture readings and camera evidence. Keep them encrypted until the server can verify them.",
+        "iPhone: Share \u2192 Add to Home Screen.Android: browser menu \u2192 Install app.",
+        "Workspace locked. Enter the offline passphrase to continue.",
+        "Unlock your offline workspace.",
+        "Use the offline passphrase you chose on this device. Your account password is separate.",
+        "Offline passphrase",
+        "Use a personal or station-controlled device. Without the offline passphrase, unsynced drafts cannot be recovered."
+      ],
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "password",
+          "name": "passphrase",
+          "label": "Offline passphrase",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 12,
+          "maxLength": 128,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - link \"Online workspace\":\n    - /url: /app\n    - text: Online workspace\n    - img\n  - text: PUMPSHIELD FIELD TERMINAL\n  - heading \"Your station. Even between signals.\" [level=1]\n  - paragraph: Capture readings and camera evidence. Keep them encrypted until the server can verify them.\n  - text: Offline \u00b7 drafts only\n  - img\n  - strong: Add PumpShield to your home screen\n  - text: The offline terminal is prepared on this browser.\n  - paragraph: \"iPhone: Share \u2192 Add to Home Screen. Android: browser menu \u2192 Install app.\"\n  - status: Workspace locked. Enter the offline passphrase to continue.\n  - img\n  - heading \"Unlock your offline workspace.\" [level=2]\n  - paragraph: Use the offline passphrase you chose on this device. Your account password is separate.\n  - text: Offline passphrase\n  - textbox \"Offline passphrase\"\n  - button \"Unlock workspace\"\n  - paragraph: Use a personal or station-controlled device. Without the offline passphrase, unsynced drafts cannot be recovered.\n  - button \"Remove this device\u2019s offline workspace\"\n  - link \"Sign in online\":\n    - /url: /login\n  - img\n  - text: Encrypted local drafts \u00b7 current authorisation checked on every submission \u00b7 locks after inactivity\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "locked-offline",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:26:33.948Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/mobile-390x844/locked-offline-viewport.png",
+        "full": "screenshots/munshi/offline/mobile-390x844/locked-offline-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1310,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "Unlock your offline workspace."
+        ],
+        "smallTargets": [
+          {
+            "label": "Remove this device\u2019s offline workspace",
+            "width": 215,
+            "height": 18
+          },
+          {
+            "label": "Sign in online",
+            "width": 312,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "unlocked-without-network",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:26:35.916Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/desktop-1440x900/unlocked-without-network-viewport.png",
+        "full": "screenshots/munshi/offline/desktop-1440x900/unlocked-without-network-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1701,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your station.Even between signals.",
+          "New field record",
+          "Submission queue",
+          "Nothing waiting."
+        ],
+        "smallTargets": []
+      },
+      "copy": [
+        "PUMPSHIELD FIELD TERMINAL",
+        "Your station.Even between signals.",
+        "Capture readings and camera evidence. Keep them encrypted until the server can verify them.",
+        "iPhone: Share \u2192 Add to Home Screen.Android: browser menu \u2192 Install app.",
+        "Offline workspace unlocked.",
+        "CAPTURE WITHOUT A CONNECTION",
+        "New field record",
+        "An offline draft does not approve credit or authorise a fill. Follow the station\u2019s manual approval procedure until the server verifies it.",
+        "Owner-issued vehicle pass code",
+        "Dispensing nozzleChoose a nozzleNozzle 01 - Petrol \u00b7 MSNozzle 02 - Diesel \u00b7 HSD",
+        "Litres dispensed",
+        "Photos and readings stay encrypted on this device until a verified online submission succeeds.",
+        "THIS DEVICE",
+        "Submission queue",
+        "Nothing waiting.",
+        "Saved field drafts appear here. No private server pages are cached.",
+        "Sync runs while this terminal is open and unlocked. A changed shift, revoked pass, insufficient credit or old evidence can require owner review. Closed-browser background sync is not promised."
+      ],
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Owner-issued vehicle pass code",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "nozzle_id",
+          "label": "Dispensing nozzleChoose a nozzleNozzle 01 - Petrol \u00b7 MSNozzle 02 - Diesel \u00b7 HSD",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "liters",
+          "label": "Litres dispensed",
+          "required": true,
+          "min": "0.01",
+          "max": "10000",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - link \"Online workspace\":\n    - /url: /app\n    - text: Online workspace\n    - img\n  - text: PUMPSHIELD FIELD TERMINAL\n  - heading \"Your station. Even between signals.\" [level=1]\n  - paragraph: Capture readings and camera evidence. Keep them encrypted until the server can verify them.\n  - text: Offline \u00b7 drafts only\n  - img\n  - strong: Add PumpShield to your home screen\n  - text: The offline terminal is prepared on this browser.\n  - paragraph: \"iPhone: Share \u2192 Add to Home Screen. Android: browser menu \u2192 Install app.\"\n  - status: Offline workspace unlocked.\n  - strong: Clifton Petroleum - Sample\n  - text: Adeel - Demo \u00b7 Prepared 9 Nov, 12:30 pm PKT\n  - button \"Refresh data\" [disabled]:\n    - img\n    - text: Refresh data\n  - button \"Lock\":\n    - img\n    - text: Lock\n  - text: CAPTURE WITHOUT A CONNECTION\n  - heading \"New field record\" [level=2]\n  - text: Draft only\n  - group \"Offline record type\":\n    - button \"Fuel parchi\" [pressed]\n    - button \"Arrival audit\"\n    - button \"Shift close\"\n  - text: An offline draft does not approve credit or authorise a fill. Follow the station\u2019s manual approval procedure until the server verifies it.\n  - button \"Scan vehicle fuel pass\":\n    - img\n    - text: Scan vehicle fuel pass\n  - text: Owner-issued vehicle pass code\n  - textbox \"Owner-issued vehicle pass code\":\n    - /placeholder: Scan the vehicle fuel pass\n  - text: Dispensing nozzle\n  - combobox \"Dispensing nozzle\":\n    - option \"Choose a nozzle\" [disabled] [selected]\n    - option \"Nozzle 01 - Petrol \u00b7 MS\"\n    - option \"Nozzle 02 - Diesel \u00b7 HSD\"\n  - text: Litres dispensed\n  - spinbutton \"Litres dispensed\"\n  - img\n  - text: Final nozzle reading\n  - button \"Capture photo\":\n    - img\n    - text: Capture photo\n  - button \"Save encrypted draft\":\n    - img\n    - text: Save encrypted draft\n  - paragraph: Photos and readings stay encrypted on this device until a verified online submission succeeds.\n  - text: THIS DEVICE\n  - heading \"Submission queue\" [level=2]\n  - text: 0 pending\n  - button \"Sync pending records\" [disabled]:\n    - img\n    - text: Sync pending records\n  - img\n  - heading \"Nothing waiting.\" [level=3]\n  - paragraph: Saved field drafts appear here. No private server pages are cached.\n  - paragraph: Sync runs while this terminal is open and unlocked. A changed shift, revoked pass, insufficient credit or old evidence can require owner review. Closed-browser background sync is not promised.\n  - img\n  - text: Encrypted local drafts \u00b7 current authorisation checked on every submission \u00b7 locks after inactivity\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "offline",
+      "state": "unlocked-without-network",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:26:36.261Z",
+      "url": "https://pumpshield-seven.vercel.app/offline",
+      "paths": {
+        "viewport": "screenshots/munshi/offline/mobile-390x844/unlocked-without-network-viewport.png",
+        "full": "screenshots/munshi/offline/mobile-390x844/unlocked-without-network-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2388,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your station.Even between signals.",
+          "New field record",
+          "Submission queue",
+          "Nothing waiting."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "outcomes": [
+    {
+      "flow": "Offline prepare / lock / offline unlock / reconnect",
+      "result": "Real encrypted local vault, no draft or online financial posting attempted",
+      "passphrase": "Ephemeral; never persisted in audit"
+    }
+  ]
+}

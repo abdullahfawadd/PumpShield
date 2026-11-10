@@ -1,0 +1,50 @@
+
+> pumpshield@1.0.0 prebuild
+> node scripts/prepare-map-assets.mjs
+
+
+> pumpshield@1.0.0 build
+> next build
+
+▲ Next.js 16.4.5 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 427ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 11.0s
+  Running TypeScript ...
+  Finished TypeScript in 58s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/15) ...
+  Generating static pages using 7 workers (3/15) 
+  Generating static pages using 7 workers (7/15) 
+  Generating static pages using 7 workers (11/15) 
+✓ Generating static pages using 7 workers (15/15) in 1665ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/command
+├ ƒ /api/dashboard
+├ ƒ /api/documents/[kind]/[id]
+├ ƒ /api/evidence/[id]
+├ ƒ /api/field
+├ ƒ /api/operations
+├ ƒ /api/tracking
+├ ƒ /api/vehicle-pass/[id]
+├ ƒ /app
+├ ƒ /auth/callback
+├ ○ /auth/password
+├ ƒ /gate/[token]
+├ ○ /icon.svg
+├ ○ /login
+├ ○ /manifest.webmanifest
+└ ○ /offline
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

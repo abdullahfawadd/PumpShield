@@ -1,0 +1,24 @@
+
+> pumpshield@1.0.0 lint
+> eslint .
+
+
+D:\PumpShield\artifacts\pumpshield-audit\tools\capture-common.js
+   3:7   warning  'KEY' is assigned a value but never used   @typescript-eslint/no-unused-vars
+   4:7   warning  'PAIR' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  12:16  warning  'nav' is defined but never used            @typescript-eslint/no-unused-vars
+  13:16  warning  'closeDialog' is defined but never used    @typescript-eslint/no-unused-vars
+  14:16  warning  'capture' is defined but never used        @typescript-eslint/no-unused-vars
+  36:16  warning  'verifyLab' is defined but never used      @typescript-eslint/no-unused-vars
+
+D:\PumpShield\artifacts\pumpshield-audit\tools\login-owner.js
+  1:1  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+D:\PumpShield\artifacts\pumpshield-audit\tools\owner-pages.js
+   1:1   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   4:7   warning  'KEY' is assigned a value but never used                               @typescript-eslint/no-unused-vars
+   5:7   warning  'PAIR' is assigned a value but never used                              @typescript-eslint/no-unused-vars
+  14:16  warning  'closeDialog' is defined but never used                                @typescript-eslint/no-unused-vars
+
+✖ 11 problems (0 errors, 11 warnings)
+

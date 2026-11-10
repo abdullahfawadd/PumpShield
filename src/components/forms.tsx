@@ -14,6 +14,8 @@ export function Field({
   min,
   max,
   step,
+  minLength,
+  maxLength,
   ...props
 }: {
   label: string;
@@ -25,6 +27,8 @@ export function Field({
   min?: number;
   max?: number;
   step?: number | string;
+  minLength?: number;
+  maxLength?: number;
   autoComplete?: string;
 }) {
   return (
@@ -33,13 +37,15 @@ export function Field({
       <input
         name={name}
         type={type}
+        inputMode={type === "number" ? "decimal" : undefined}
         placeholder={placeholder}
         defaultValue={defaultValue}
         required={required}
         min={min}
         max={max}
         step={step || (type === "number" ? "any" : undefined)}
-        maxLength={type === "text" ? 250 : undefined}
+        minLength={minLength}
+        maxLength={maxLength ?? (type === "text" ? 250 : undefined)}
         {...props}
       />
     </label>
@@ -53,7 +59,7 @@ export function Select({
 }: {
   label: string;
   name: string;
-  options: { value: string; label: string }[];
+  options: readonly { value: string; label: string }[];
   defaultValue?: string;
 }) {
   return (

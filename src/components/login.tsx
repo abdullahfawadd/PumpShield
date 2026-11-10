@@ -6,6 +6,7 @@ import { ArrowUpRight, ArrowRight, Eye, EyeOff, Loader2 } from "@/components/ico
 import { browserDb } from "@/lib/supabase/client";
 import { Brand } from "./brand";
 import { Button } from "./ui/button";
+import { PASSWORD_MIN_LENGTH, newPasswordError } from "@/lib/password-policy";
 export function Login() {
   const router = useRouter();
   const root = useRef<HTMLElement>(null);
@@ -44,6 +45,8 @@ export function Login() {
         router.replace("/app");
         router.refresh();
       } else if (mode === "signup") {
+        const passwordError = newPasswordError(password);
+        if (passwordError) throw new Error(passwordError);
         const { error } = await db.auth.signUp({
           email,
           password,
@@ -121,8 +124,8 @@ export function Login() {
                         mode === "signup" ? "new-password" : "current-password"
                       }
                       placeholder="Password"
-                      minLength={mode === "signup" ? 12 : 1}
-                      maxLength={128}
+                      minLength={mode === "signup" ? PASSWORD_MIN_LENGTH : 1}
+                      maxLength={mode === "signup" ? 256 : undefined}
                       required
                     />
                     <button
@@ -137,7 +140,7 @@ export function Login() {
               )}
               {mode === "signup" && (
                 <p className="muted">
-                  Use 12 or more characters. Confirm your email to finish setup.
+                  Use 15 or more characters. Confirm your email to finish setup.
                 </p>
               )}
               {error && (

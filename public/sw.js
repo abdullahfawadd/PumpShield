@@ -1,10 +1,10 @@
 /* Public offline shell only. Never cache APIs, signed-in pages, evidence or bearer links. */
-const VERSION = "pumpshield-field-v2";
+const VERSION = "pumpshield-field-v4";
 const SHELL = "/offline";
 const ASSETS = [
   SHELL,
   "/manifest.webmanifest",
-  "/brand/mark.webp",
+  "/brand/mark.svg",
   "/brand/icon-192.png",
   "/brand/icon-512.png",
   "/icon.svg",
@@ -42,17 +42,17 @@ self.addEventListener("fetch", (event) => {
     url.pathname.startsWith("/api/") ||
     url.pathname.startsWith("/gate/") ||
     url.pathname.startsWith("/auth/") ||
-    url.pathname === "/app" ||
+
     url.pathname.startsWith("/app/") ||
     url.pathname === "/login"
   )
     return;
-  if (request.mode === "navigate" && url.pathname === SHELL) {
+  if (request.mode === "navigate" && (url.pathname === SHELL || url.pathname === "/app")) {
     event.respondWith(
       fetch(request)
         .then((response) => {
           if (
-            response.ok &&
+            url.pathname === SHELL && response.ok &&
             response.headers.get("content-type")?.includes("text/html")
           ) {
             const copy = response.clone();

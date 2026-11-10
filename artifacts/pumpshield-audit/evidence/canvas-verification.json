@@ -1,0 +1,295 @@
+{
+  "rows": [
+    {
+      "theme": "petroleum",
+      "screen": "overview",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Station overview"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "deliveries",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Deliveries"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "staff",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Receive a delivery"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "specimens",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Design system"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "overview",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Station overview"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "deliveries",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Deliveries"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "staff",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Receive a delivery"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "specimens",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Design system"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "overview",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Station overview"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "deliveries",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Deliveries"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "staff",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Receive a delivery"
+    },
+    {
+      "theme": "petroleum",
+      "screen": "specimens",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Design system"
+    },
+    {
+      "theme": "graphite",
+      "screen": "overview",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Station overview"
+    },
+    {
+      "theme": "graphite",
+      "screen": "deliveries",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Deliveries"
+    },
+    {
+      "theme": "graphite",
+      "screen": "staff",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Receive a delivery"
+    },
+    {
+      "theme": "graphite",
+      "screen": "specimens",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Design system"
+    },
+    {
+      "theme": "graphite",
+      "screen": "overview",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Station overview"
+    },
+    {
+      "theme": "graphite",
+      "screen": "deliveries",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Deliveries"
+    },
+    {
+      "theme": "graphite",
+      "screen": "staff",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Receive a delivery"
+    },
+    {
+      "theme": "graphite",
+      "screen": "specimens",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Design system"
+    },
+    {
+      "theme": "graphite",
+      "screen": "overview",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Station overview"
+    },
+    {
+      "theme": "graphite",
+      "screen": "deliveries",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Deliveries"
+    },
+    {
+      "theme": "graphite",
+      "screen": "staff",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Receive a delivery"
+    },
+    {
+      "theme": "graphite",
+      "screen": "specimens",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Design system"
+    },
+    {
+      "theme": "ivory",
+      "screen": "overview",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Station overview"
+    },
+    {
+      "theme": "ivory",
+      "screen": "deliveries",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Deliveries"
+    },
+    {
+      "theme": "ivory",
+      "screen": "staff",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Receive a delivery"
+    },
+    {
+      "theme": "ivory",
+      "screen": "specimens",
+      "width": 1440,
+      "documentWidth": 1440,
+      "innerWidth": 1440,
+      "heading": "Design system"
+    },
+    {
+      "theme": "ivory",
+      "screen": "overview",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Station overview"
+    },
+    {
+      "theme": "ivory",
+      "screen": "deliveries",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Deliveries"
+    },
+    {
+      "theme": "ivory",
+      "screen": "staff",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Receive a delivery"
+    },
+    {
+      "theme": "ivory",
+      "screen": "specimens",
+      "width": 390,
+      "documentWidth": 390,
+      "innerWidth": 390,
+      "heading": "Design system"
+    },
+    {
+      "theme": "ivory",
+      "screen": "overview",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Station overview"
+    },
+    {
+      "theme": "ivory",
+      "screen": "deliveries",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Deliveries"
+    },
+    {
+      "theme": "ivory",
+      "screen": "staff",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Receive a delivery"
+    },
+    {
+      "theme": "ivory",
+      "screen": "specimens",
+      "width": 320,
+      "documentWidth": 320,
+      "innerWidth": 320,
+      "heading": "Design system"
+    }
+  ],
+  "dialogOpened": true,
+  "dialogEscapeClosed": true,
+  "errors": []
+}

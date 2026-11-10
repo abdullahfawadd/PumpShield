@@ -1,0 +1,950 @@
+{
+  "rows": [
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "new-account",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:39:15.898Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/desktop-1440x900/new-account-viewport.png",
+        "full": "screenshots/owner/credit/desktop-1440x900/new-account-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1353,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "A new corporate relationship"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / CREDIT",
+        "Credit, without the paper trail.",
+        "Vehicle-authorized fuel, controlled limits, and an accountable ledger.",
+        "Corporate accounts",
+        "SAMPLE - Atlas Logistics",
+        "SAMPLE - Metro Transport",
+        "SAMPLE - Coastline Textiles",
+        "Digital parchi ledger",
+        "Amounts are calculated using the open shift\u2019s locked price.",
+        "No paper. No guesswork.Recorded credit fills appear here once your first parchi is submitted.",
+        "No paper. No guesswork.",
+        "Recorded credit fills appear here once your first parchi is submitted.",
+        "A new corporate relationship",
+        "Real records. Clear accountability.",
+        "Business / fleet name",
+        "Approved credit limit (PKR)",
+        "Every credit fill checks the remaining limit inside a database transaction. Simultaneous fills cannot exceed the account limit."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "name",
+          "label": "Business / fleet name",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "credit_limit",
+          "label": "Approved credit limit (PKR)",
+          "required": true,
+          "min": "1",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"A new corporate relationship\":\n  - heading \"A new corporate relationship\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - text: Business / fleet name\n  - textbox \"Business / fleet name\"\n  - text: Approved credit limit (PKR)\n  - spinbutton \"Approved credit limit (PKR)\"\n  - text: Every credit fill checks the remaining limit inside a database transaction. Simultaneous fills cannot exceed the account limit.\n  - button \"Create corporate account\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "new-account",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:39:16.662Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-390x844/new-account-viewport.png",
+        "full": "screenshots/owner/credit/mobile-390x844/new-account-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2500,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "A new corporate relationship"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "new-account",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:39:17.373Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-320x640/new-account-viewport.png",
+        "full": "screenshots/owner/credit/mobile-320x640/new-account-full.png"
+      },
+      "geometry": {
+        "width": 340,
+        "height": 680,
+        "documentWidth": 340,
+        "documentHeight": 2541,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "A new corporate relationship"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "add-vehicle",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:39:18.871Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/desktop-1440x900/add-vehicle-viewport.png",
+        "full": "screenshots/owner/credit/desktop-1440x900/add-vehicle-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1353,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Authorize a vehicle"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / CREDIT",
+        "Credit, without the paper trail.",
+        "Vehicle-authorized fuel, controlled limits, and an accountable ledger.",
+        "Corporate accounts",
+        "SAMPLE - Atlas Logistics",
+        "SAMPLE - Metro Transport",
+        "SAMPLE - Coastline Textiles",
+        "Digital parchi ledger",
+        "Amounts are calculated using the open shift\u2019s locked price.",
+        "No paper. No guesswork.Recorded credit fills appear here once your first parchi is submitted.",
+        "No paper. No guesswork.",
+        "Recorded credit fills appear here once your first parchi is submitted.",
+        "Authorize a vehicle",
+        "Real records. Clear accountability.",
+        "Vehicle registration",
+        "Permitted fuel gradeSelect permitted fuel gradeMS \u00b7 PetrolHSD \u00b7 Diesel",
+        "Maximum litres per fill",
+        "Treat the QR credential as a controlled fueling authorization. An authenticated station operator must still capture evidence and submit the fill."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "registration",
+          "label": "Vehicle registration",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "grade",
+          "label": "Permitted fuel gradeSelect permitted fuel gradeMS \u00b7 PetrolHSD \u00b7 Diesel",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "max_liters",
+          "label": "Maximum litres per fill",
+          "required": true,
+          "min": "1",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Authorize a vehicle\":\n  - heading \"Authorize a vehicle\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - text: Vehicle registration\n  - textbox \"Vehicle registration\"\n  - text: Permitted fuel grade\n  - combobox \"Permitted fuel grade\":\n    - option \"Select permitted fuel grade\" [disabled] [selected]\n    - option \"MS \u00b7 Petrol\"\n    - option \"HSD \u00b7 Diesel\"\n  - text: Maximum litres per fill\n  - spinbutton \"Maximum litres per fill\"\n  - paragraph: Treat the QR credential as a controlled fueling authorization. An authenticated station operator must still capture evidence and submit the fill.\n  - button \"Authorize & generate QR\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "add-vehicle",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:39:19.714Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-390x844/add-vehicle-viewport.png",
+        "full": "screenshots/owner/credit/mobile-390x844/add-vehicle-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2500,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Authorize a vehicle"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "add-vehicle",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:39:20.524Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-320x640/add-vehicle-viewport.png",
+        "full": "screenshots/owner/credit/mobile-320x640/add-vehicle-full.png"
+      },
+      "geometry": {
+        "width": 340,
+        "height": 680,
+        "documentWidth": 340,
+        "documentHeight": 2541,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Authorize a vehicle"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "qr-pass-masked",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:39:21.964Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/desktop-1440x900/qr-pass-masked-viewport.png",
+        "full": "screenshots/owner/credit/desktop-1440x900/qr-pass-masked-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1353,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Vehicles & QR credentials",
+          "Rs 480,000"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "Disable vehicle authorization",
+            "width": 118,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / CREDIT",
+        "Credit, without the paper trail.",
+        "Vehicle-authorized fuel, controlled limits, and an accountable ledger.",
+        "Corporate accounts",
+        "SAMPLE - Atlas Logistics",
+        "SAMPLE - Metro Transport",
+        "SAMPLE - Coastline Textiles",
+        "Digital parchi ledger",
+        "Amounts are calculated using the open shift\u2019s locked price.",
+        "No paper. No guesswork.Recorded credit fills appear here once your first parchi is submitted.",
+        "No paper. No guesswork.",
+        "Recorded credit fills appear here once your first parchi is submitted.",
+        "Vehicles & QR credentials",
+        "Real records. Clear accountability.",
+        "Rs 480,000"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Vehicles & QR credentials\":\n  - heading \"Vehicles & QR credentials\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - text: SAMPLE - Atlas Logistics\n  - heading \"Rs 480,000\" [level=2]\n  - text: of Rs 1,500,000 credit limit\n  - button \"Add vehicle\":\n    - img\n    - text: Add vehicle\n  - link \"Download account statement PDF\":\n    - /url: /api/documents/statement/8dfa6f17-12f0-4346-8ee7-3bd3670c8559\n    - img\n    - text: Download account statement PDF\n  - img\n  - strong: SAMPLE-KHI-9921\n  - text: HSD \u00b7 Max 200 L / fill \u00b7 Active\n  - button \"QR\":\n    - img\n    - text: QR\n  - code: [credential redacted]\n  - button \"Download QR\":\n    - img\n    - text: Download QR\n  - link \"Print vehicle fuel pass\":\n    - /url: /api/vehicle-pass/02923438-4bfd-4156-ac8d-d741c6d60336\n    - text: Print vehicle fuel pass\n    - img\n  - paragraph: Share only with the authorized vehicle operator. Disable the vehicle to revoke this credential.\n  - button \"Disable vehicle authorization\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "qr-pass-masked",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:39:22.961Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-390x844/qr-pass-masked-viewport.png",
+        "full": "screenshots/owner/credit/mobile-390x844/qr-pass-masked-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2500,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Vehicles & QR credentials",
+          "Rs 480,000"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "Disable vehicle authorization",
+            "width": 118,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "search-empty",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:39:23.936Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/desktop-1440x900/search-empty-viewport.png",
+        "full": "screenshots/owner/deliveries/desktop-1440x900/search-empty-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1083,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / DELIVERIES",
+        "Every delivery, verified.",
+        "From dispatch to decant, with evidence at every step.",
+        "DELIVERY PIPELINE",
+        "Keep every arrival moving.",
+        "Drag to the next stage to open its required checklist. Changes save only after confirmation.",
+        "Dispatch registered",
+        "Pre-decant audit submitted",
+        "Owner approval recorded",
+        "Stock received and posted"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search deliveries",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Filter board stage",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Deliveries\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / DELIVERIES\n  - heading \"Every delivery, verified.\" [level=1]\n  - paragraph: From dispatch to decant, with evidence at every step.\n  - button \"New delivery\":\n    - img\n    - text: New delivery\n  - text: All deliveries 3 0 awaiting approval\n  - img\n  - textbox \"Search deliveries\":\n    - /placeholder: Search vehicle or reference\u2026\n    - text: AUDIT-NO-MATCH-9835\n  - region \"Delivery movement board\":\n    - text: DELIVERY PIPELINE\n    - heading \"Keep every arrival moving.\" [level=2]\n    - paragraph: Drag to the next stage to open its required checklist. Changes save only after confirmation.\n    - combobox \"Filter board stage\":\n      - option \"All stages\" [selected]\n      - option \"In transit\"\n      - option \"Ready for review\"\n      - option \"Cleared to decant\"\n      - option \"Completed\"\n    - region \"In transit\":\n      - img\n      - text: In transit 0\n      - paragraph: Dispatch registered\n      - img\n      - text: No deliveries in this stage\n    - region \"Ready for review\":\n      - img\n      - text: Ready for review 0\n      - paragraph: Pre-decant audit submitted\n      - img\n      - text: No deliveries in this stage\n    - region \"Cleared to decant\":\n      - img\n      - text: Cleared to decant 0\n      - paragraph: Owner approval recorded\n      - img\n      - text: No deliveries in this stage\n    - region \"Completed\":\n      - img\n      - text: Completed 0\n      - paragraph: Stock received and posted\n      - img\n      - text: No deliveries in this stage\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "search-empty",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:39:24.745Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-390x844/search-empty-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-390x844/search-empty-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1355,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "search-empty",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:39:30.554Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/desktop-1440x900/search-empty-viewport.png",
+        "full": "screenshots/owner/documents/desktop-1440x900/search-empty-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "No matching documents"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / DOCUMENTS",
+        "A record you can return to.",
+        "Station documents, ready to review and share.",
+        "Documents, in one place.",
+        "Verified delivery claims, fuel parchis, and current account statements.",
+        "No matching documents",
+        "Approved deliveries and issued credit fuel create their documents automatically.",
+        "Based on the records loaded in this workspace (up to 200 recent deliveries and parchis). Statements are generated from the current account ledger when opened. PDFs require an authenticated session."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search documents",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Document type",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Documents\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / DOCUMENTS\n  - heading \"A record you can return to.\" [level=1]\n  - paragraph: Station documents, ready to review and share.\n  - text: STATION RECORDS\n  - heading \"Documents, in one place.\" [level=2]\n  - paragraph: Verified delivery claims, fuel parchis, and current account statements.\n  - text: 5 available documents\n  - img\n  - textbox \"Search documents\":\n    - /placeholder: Search reference, vehicle, or account\u2026\n    - text: AUDIT-NO-MATCH-9835\n  - combobox \"Document type\":\n    - option \"All documents\" [selected]\n    - option \"Delivery claims\"\n    - option \"Fuel parchis\"\n    - option \"Account statements\"\n  - img\n  - heading \"No matching documents\" [level=3]\n  - paragraph: Approved deliveries and issued credit fuel create their documents automatically.\n  - paragraph: Based on the records loaded in this workspace (up to 200 recent deliveries and parchis). Statements are generated from the current account ledger when opened. PDFs require an authenticated session.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "search-empty",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:39:31.355Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/mobile-390x844/search-empty-viewport.png",
+        "full": "screenshots/owner/documents/mobile-390x844/search-empty-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1037,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "No matching documents"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "privacy",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:39:33.413Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/desktop-1440x900/privacy-viewport.png",
+        "full": "screenshots/owner/overview/desktop-1440x900/privacy-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 2335,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "1 decision.One clear picture.",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "YOUR OPERATIONS, AT A GLANCE",
+        "A clearer view of your station.",
+        "The details that matter. All in one place.",
+        "Keamari depot \u2192 Station",
+        "TKA-842 \u00b7 SAMPLE-OMC-1042",
+        "1 decision.One clear picture.",
+        "Review the details that need your judgement. Evidence first, decisions second.",
+        "63,000 litres",
+        "Measured. Reconciled. Accounted for.",
+        "Station snapshot Last 7 days",
+        "Fuel movement",
+        "Dispensed litres, by closed shift",
+        "In the ground",
+        "Last recorded tank stock",
+        "Recent activity",
+        "An accountable trail of workspace changes"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Overview\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\" [checked]\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 YOUR OPERATIONS, AT A GLANCE\n  - heading \"A clearer view of your station.\" [level=1]\n  - paragraph: The details that matter. All in one place.\n  - button \"Export\":\n    - img\n    - text: Export\n  - button \"Close shift\":\n    - img\n    - text: Close shift\n  - text: DELIVERY SPOTLIGHT\n  - button \"Open featured delivery\":\n    - img\n  - heading \"Keamari depot \u2192 Station\" [level=2]\n  - paragraph: TKA-842 \u00b7 SAMPLE-OMC-1042\n  - text: dispatched\n  - img \"Studio illustration of a petroleum tanker\"\n  - text: INVOICE VOLUME\n  - strong:\n    - text: 40,000\n    - emphasis: L\n  - text: CONTRACTOR DELIVERY Dispatched Arrival audit Owner approval Decanted\n  - img\n  - text: THE OWNER\u2019S BRIEF\n  - heading \"1 decision. One clear picture.\" [level=2]\n  - paragraph: Review the details that need your judgement. Evidence first, decisions second.\n  - strong: 70%\n  - text: Tank capacity in use\n  - button \"Open review queue\":\n    - text: Open review queue\n    - img\n  - img\n  - text: DELIVERY LOCATION SYNTHETIC ROUTE\n  - region \"Delivery map\":\n    - region \"Map\"\n    - button \"Zoom in\"\n    - button \"Zoom out\"\n    - button \"Drag to rotate map, click to reset north\"\n    - text: 1 km REPORTED DELIVERY TRAIL\n    - button \"2D\" [disabled] [pressed]\n    - button \"Terrain\" [disabled]\n    - button \"Follow last reported position\" [pressed]:\n      - img\n    - status:\n      - img\n      - text: Loading map\u2026\n  - img\n  - text: Route plotted from saved location reports. Sample positions are synthetic. UNDERGROUND INVENTORY\n  - heading \"63,000 litres\" [level=2]\n  - paragraph: Measured. Reconciled. Accounted for.\n  - text: Premier petrol 35,000 L\n  - emphasis\n  - text: MS \u00b7 15,000 L ullage High-speed diesel 28,000 L\n  - emphasis\n  - text: HSD \u00b7 12,000 L ullage\n  - heading \"Station snapshot Last 7 days\" [level=2]\n  - radiogroup \"Reporting period\":\n    - radio \"7 days\" [checked]\n    - radio \"30 days\"\n  - text: Recorded revenue\n  - img\n  - text: \u2022\u2022\u2022\u2022\u2022\u2022 PKR 6 closed shifts in this period Fuel dispensed\n  - img\n  - text: 53,650 L From submitted nozzle readings Recorded stock\n  - img\n  - text: 63,000 L 2 calibrated underground tanks Needs your review\n  - img\n  - text: 1 Submitted shifts and delivery audits\n  - heading \"Fuel movement\" [level=2]\n  - paragraph: Dispensed litres, by closed shift\n  - text: Recorded volume 9,800\n  - button \"Sample shift 5, 9800 litres\"\n  - text: 3 Nov 10,200\n  - button \"Sample shift 6, 10200 litres\"\n  - text: 4 Nov 8,750\n  - button \"Sample shift 7, 8750 litres\"\n  - text: 5 Nov 9,100\n  - button \"Sample shift 8, 9100 litres\"\n  - text: 6 Nov 7,600\n  - button \"Sample shift 9, 7600 litres\"\n  - text: 7 Nov 8,200\n  - button \"Sample shift 10, 8200 litres\"\n  - text: 8 Nov\n  - heading \"In the ground\" [level=2]\n  - paragraph: Last recorded tank stock\n  - button \"View stock\":\n    - img\n  - strong: Premier petrol\n  - text: Petrol \u00b7 35,000 L 70%\n  - strong: High-speed diesel\n  - text: Diesel \u00b7 28,000 L 70%\n  - heading \"Recent activity\" [level=2]\n  - paragraph: An accountable trail of workspace changes\n  - img\n  - text: Recorded securely\n  - img\n  - strong: work item create\n  - text: 8427a67e\n  - time: 9 Nov, 12:35 pm\n  - img\n  - strong: evidence\n  - text: 0fe63d48\n  - time: 8 Nov, 10:12 pm\n  - img\n  - strong: evidence\n  - text: d876570a\n  - time: 8 Nov, 10:12 pm\n  - img\n  - strong: work item transition\n  - text: 63fbcb7b\n  - time: 8 Nov, 10:01 pm\n  - img\n  - strong: work item transition\n  - text: 63fbcb7b\n  - time: 8 Nov, 10:01 pm\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "privacy",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:39:35.083Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/mobile-390x844/privacy-viewport.png",
+        "full": "screenshots/owner/overview/mobile-390x844/privacy-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 3298,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shell",
+      "state": "mobile-navigation",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:39:37.009Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shell/mobile-390x844/mobile-navigation-viewport.png",
+        "full": "screenshots/owner/shell/mobile-390x844/mobile-navigation-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 3298,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Close navigation",
+            "width": 20,
+            "height": 36
+          },
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "YOUR OPERATIONS, AT A GLANCE",
+        "A clearer view of your station.",
+        "The details that matter. All in one place.",
+        "Keamari depot \u2192 Station",
+        "TKA-842 \u00b7 SAMPLE-OMC-1042",
+        "63,000 litres",
+        "Measured. Reconciled. Accounted for.",
+        "Station snapshot Last 7 days",
+        "Fuel movement",
+        "Dispensed litres, by closed shift",
+        "In the ground",
+        "Last recorded tank stock",
+        "Recent activity",
+        "An accountable trail of workspace changes"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - button \"Close navigation\":\n    - img\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- button \"Close navigation\"\n- banner:\n  - button \"Open navigation\":\n    - img\n  - text: Workspace /\n  - strong: Overview\n  - button \"Connected\"\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: Mon, 9 Nov 2026 YOUR OPERATIONS, AT A GLANCE\n  - heading \"A clearer view of your station.\" [level=1]\n  - paragraph: The details that matter. All in one place.\n  - button \"Export\":\n    - img\n    - text: Export\n  - button \"Close shift\":\n    - img\n    - text: Close shift\n  - text: DELIVERY SPOTLIGHT\n  - button \"Open featured delivery\":\n    - img\n  - heading \"Keamari depot \u2192 Station\" [level=2]\n  - paragraph: TKA-842 \u00b7 SAMPLE-OMC-1042\n  - text: dispatched\n  - img \"Studio illustration of a petroleum tanker\"\n  - text: INVOICE VOLUME\n  - strong:\n    - text: 40,000\n    - emphasis: L\n  - text: CONTRACTOR DELIVERY Dispatched Arrival audit Owner approval Decanted\n  - img\n  - text: DELIVERY LOCATION SYNTHETIC ROUTE\n  - region \"Delivery map\":\n    - region \"Map\"\n    - img \"Last reported tanker position\"\n    - button \"Zoom in\"\n    - button \"Zoom out\"\n    - button \"Drag to rotate map, click to reset north\"\n    - text: 3 km\n    - group:\n      - link \"OpenFreeMap\":\n        - /url: https://openfreemap.org\n      - link \"\u00a9 OpenMapTiles\":\n        - /url: https://www.openmaptiles.org/\n      - text: Data from\n      - link \"OpenStreetMap\":\n        - /url: https://www.openstreetmap.org/copyright\n    - text: REPORTED DELIVERY TRAIL\n    - button \"2D\" [pressed]\n    - button \"Terrain\"\n    - button \"Follow last reported position\" [pressed]:\n      - img\n  - img\n  - text: Route plotted from saved location reports. Sample positions are synthetic. UNDERGROUND INVENTORY\n  - heading \"63,000 litres\" [level=2]\n  - paragraph: Measured. Reconciled. Accounted for.\n  - text: Premier petrol 35,000 L\n  - emphasis\n  - text: MS \u00b7 15,000 L ullage High-speed diesel 28,000 L\n  - emphasis\n  - text: HSD \u00b7 12,000 L ullage\n  - heading \"Station snapshot\" [level=2]\n  - radiogroup \"Reporting period\":\n    - radio \"7 days\" [checked]\n    - radio \"30 days\"\n  - text: Recorded revenue\n  - img\n  - text: 16,095,000 PKR 6 closed shifts in this period Fuel dispensed\n  - img\n  - text: 53,650 L From submitted nozzle readings Recorded stock\n  - img\n  - text: 63,000 L 2 calibrated underground tanks Needs your review\n  - img\n  - text: 1 Submitted shifts and delivery audits\n  - heading \"Fuel movement\" [level=2]\n  - paragraph: Dispensed litres, by closed shift\n  - text: 9,800\n  - button \"Sample shift 5, 9800 litres\"\n  - text: 3 Nov 10,200\n  - button \"Sample shift 6, 10200 litres\"\n  - text: 4 Nov 8,750\n  - button \"Sample shift 7, 8750 litres\"\n  - text: 5 Nov 9,100\n  - button \"Sample shift 8, 9100 litres\"\n  - text: 6 Nov 7,600\n  - button \"Sample shift 9, 7600 litres\"\n  - text: 7 Nov 8,200\n  - button \"Sample shift 10, 8200 litres\"\n  - text: 8 Nov\n  - heading \"In the ground\" [level=2]\n  - paragraph: Last recorded tank stock\n  - button \"View stock\":\n    - img\n  - strong: Premier petrol\n  - text: Petrol \u00b7 35,000 L 70%\n  - strong: High-speed diesel\n  - text: Diesel \u00b7 28,000 L 70%\n  - heading \"Recent activity\" [level=2]\n  - paragraph: An accountable trail of workspace changes\n  - img\n  - text: Recorded securely\n  - img\n  - strong: work item create\n  - text: 8427a67e\n  - time: 9 Nov, 12:35 pm\n  - img\n  - strong: evidence\n  - text: 0fe63d48\n  - time: 8 Nov, 10:12 pm\n  - img\n  - strong: evidence\n  - text: d876570a\n  - time: 8 Nov, 10:12 pm\n  - img\n  - strong: work item transition\n  - text: 63fbcb7b\n  - time: 8 Nov, 10:01 pm\n  - img\n  - strong: work item transition\n  - text: 63fbcb7b\n  - time: 8 Nov, 10:01 pm\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- navigation \"Station navigation\":\n  - tablist \"Station sections\":\n    - tab \"Home\" [selected]\n    - tab \"Deliveries\"\n    - tab \"Shifts\"\n    - tab \"Parchi\"\n    - tab \"Operations\"\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "checks": []
+}

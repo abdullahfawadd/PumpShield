@@ -1,7 +1,7 @@
 "use client";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "@/components/icons";
-import type { ReactNode } from "react";
+import { useLayoutEffect, useRef, type ReactNode } from "react";
 export function Dialog({
   open,
   onOpenChange,
@@ -15,17 +15,41 @@ export function Dialog({
   description?: string;
   children: ReactNode;
 }) {
+  const returnFocus = useRef<HTMLElement | null>(null);
+  useLayoutEffect(() => {
+    if (open && document.activeElement instanceof HTMLElement)
+      returnFocus.current = document.activeElement;
+  }, [open]);
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className="dialog-overlay" />
-        <DialogPrimitive.Content className="dialog-content">
+        <DialogPrimitive.Content
+          className="dialog-content"
+          onCloseAutoFocus={(event) => {
+            event.preventDefault();
+            const target = returnFocus.current;
+            if (target?.isConnected && target !== document.body) target.focus();
+            else
+              document
+                .querySelector<HTMLElement>(
+                  ".page-heading button, #main button, a[href='/app']",
+                )
+                ?.focus();
+          }}
+        >
           <DialogPrimitive.Title className="dialog-title">
             {title}
           </DialogPrimitive.Title>
-          <DialogPrimitive.Description className="muted">
-            {description || "Complete the details below."}
-          </DialogPrimitive.Description>
+          {description ? (
+            <DialogPrimitive.Description className="muted">
+              {description}
+            </DialogPrimitive.Description>
+          ) : (
+            <DialogPrimitive.Description className="sr-only">
+              {title}
+            </DialogPrimitive.Description>
+          )}
           <DialogPrimitive.Close
             className="dialog-close"
             aria-label="Close dialog"

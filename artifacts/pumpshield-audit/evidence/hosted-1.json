@@ -1,0 +1,13 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"migrations\":[{\"version\":\"20261106131830\",\"name\":\"initial_platform\"},{\"version\":\"20261106134114\",\"name\":\"evidence_integrity\"},{\"version\":\"20261106134929\",\"name\":\"contractor_tracking\"},{\"version\":\"20261106183009\",\"name\":\"final_access_controls\"},{\"version\":\"20261108163715\",\"name\":\"station_operations\"},{\"version\":\"20261108165128\",\"name\":\"operations_delivery_integrity\"},{\"version\":\"20261108165354\",\"name\":\"paginated_work_history\"},{\"version\":\"20261108203536\",\"name\":\"mobile_field_operations\"},{\"version\":\"20261108205813\",\"name\":\"serialize_driver_link_lifecycle\"}]}"
+      }
+    ],
+    "structuredContent": null,
+    "isError": false
+  }
+}

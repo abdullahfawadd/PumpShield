@@ -1,0 +1,80 @@
+{
+  "scope": "Static TypeScript imports resolved from initial tracked inventory. Dynamic imports/CommonJS not a complete cycle analysis.",
+  "cycles": [],
+  "changedOriginalTrackedFiles": [],
+  "originalTrackedCount": 168,
+  "largestTextFiles": [
+    {
+      "path": "package-lock.json",
+      "bytes": 327129,
+      "sha256": "0fcc3186be1bbb7e2aae43d42b27d32475668519d5b6dc1b39396e6461ba46ec",
+      "lines": 9096
+    },
+    {
+      "path": "src/app/globals.css",
+      "bytes": 69869,
+      "sha256": "6b8125d80e7d972ccd0830b4cfc1afaa04e1c20d4c7bb94767e27c866ce52fba",
+      "lines": 3780
+    },
+    {
+      "path": "src/components/workspace.tsx",
+      "bytes": 64805,
+      "sha256": "5e6a26e002d1e71a348c2e02441390f883d578c7c593396bde48635d257d24e7",
+      "lines": 1710
+    },
+    {
+      "path": "src/app/field.css",
+      "bytes": 29704,
+      "sha256": "0270b290507c62a9c40a1395f04318ec2243afa7f7630024fe394b014a9d2a6d",
+      "lines": 1529
+    },
+    {
+      "path": "src/components/workflows.tsx",
+      "bytes": 36556,
+      "sha256": "290d061095c767fe43356dfee0317ac3514e2b64add4c21f94fb8ec994bf81cf",
+      "lines": 1135
+    },
+    {
+      "path": "src/app/operations.css",
+      "bytes": 20432,
+      "sha256": "dfdd888bca18b13a31bf553c45756473d438f9f0a1c738131f92512e6a621b7d",
+      "lines": 1041
+    },
+    {
+      "path": "src/components/station-operations.tsx",
+      "bytes": 25375,
+      "sha256": "1c29c85904f2e38b183433efabdc80d38a20f06a2b098873149ee6c947597354",
+      "lines": 759
+    },
+    {
+      "path": "src/components/offline-terminal.tsx",
+      "bytes": 27048,
+      "sha256": "db2c5ea9b04e1d4e6c885de60233fb61402c2beb613bb86e5f21955c2a73b7d6",
+      "lines": 727
+    },
+    {
+      "path": "src/components/tracking.tsx",
+      "bytes": 19022,
+      "sha256": "8105a215840ba1473725ec05dad0b518d9ced79c366b546ccdd4605a2eae140b",
+      "lines": 594
+    },
+    {
+      "path": "src/app/login.css",
+      "bytes": 9902,
+      "sha256": "3d78d09adf17b7630505e9ca9e023abfc36e488f8ff07162979bb88c677b5b8d",
+      "lines": 491
+    },
+    {
+      "path": "src/components/offline-draft-form.tsx",
+      "bytes": 15484,
+      "sha256": "eb59203e5fb91a3a004d9592cda279f1c1f4bf72d798d492a64277f6c4265b3b",
+      "lines": 426
+    },
+    {
+      "path": "src/components/field-map.tsx",
+      "bytes": 12817,
+      "sha256": "a7c4678c2f531d1d5e4ff26578a93e5e5f3adb1999156564941499c4b9f943ae",
+      "lines": 365
+    }
+  ]
+}

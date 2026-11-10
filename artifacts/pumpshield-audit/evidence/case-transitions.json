@@ -1,0 +1,546 @@
+{
+  "rows": [
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "before-transition",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T08:09:06.165Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1440x900/before-transition-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1440x900/before-transition-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Discrepancy cases",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Include cancelled",
+        "open",
+        "Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.",
+        "investigating",
+        "Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.",
+        "resolved",
+        "Synthetic test of case creation, decision history, and keyboard-accessible controls.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+        "Discrepancy cases \u00b7 open \u00b7 Unassigned",
+        "Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.",
+        "Next action",
+        "ActionChoose an actioninvestigatingCancel with a reason",
+        "Decision / completion note",
+        "Record history",
+        "Add to the record"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "status",
+          "label": "ActionChoose an actioninvestigatingCancel with a reason",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Decision / completion note",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Add to the record",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 4000,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09\":\n  - heading \"AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09\" [level=2]\n  - paragraph: Discrepancy cases \u00b7 open \u00b7 Unassigned\n  - button \"Close dialog\":\n    - img\n  - paragraph: Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.\n  - term: Created by\n  - definition: Abdullah - Demo\n  - term: Created\n  - definition: 9 Nov, 12:35 pm\n  - heading \"Next action\" [level=3]\n  - text: Action\n  - combobox \"Action\":\n    - option \"Choose an action\" [disabled] [selected]\n    - option \"investigating\"\n    - option \"Cancel with a reason\"\n  - text: Decision / completion note\n  - textbox \"Decision / completion note\":\n    - /placeholder: Record the decision or completed work (required to resolve, complete, or cancel).\n  - button \"Confirm action\":\n    - text: Confirm action\n    - img\n  - heading \"Record history\" [level=3]\n  - list:\n    - listitem:\n      - strong: created\n      - text: Abdullah - Demo \ufffd 9 Nov, 12:35 pm\n  - text: Add to the record\n  - textbox \"Add to the record\"\n  - button \"Add note\":\n    - img\n    - text: Add note",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "before-transition",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T08:09:07.076Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-390x844/before-transition-viewport.png",
+        "full": "screenshots/owner/cases/mobile-390x844/before-transition-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "after-investigating",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T08:09:08.559Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1440x900/after-investigating-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1440x900/after-investigating-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Discrepancy cases",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Include cancelled",
+        "open",
+        "Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.",
+        "investigating",
+        "Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.",
+        "resolved",
+        "Synthetic test of case creation, decision history, and keyboard-accessible controls.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+        "Discrepancy cases \u00b7 open \u00b7 Unassigned",
+        "Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.",
+        "Next action",
+        "ActionChoose an actioninvestigatingCancel with a reason",
+        "Decision / completion note",
+        "Record history",
+        "Add to the record"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "status",
+          "label": "ActionChoose an actioninvestigatingCancel with a reason",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Decision / completion note",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Add to the record",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 4000,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09\":\n  - heading \"AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09\" [level=2]\n  - paragraph: Discrepancy cases \u00b7 open \u00b7 Unassigned\n  - button \"Close dialog\":\n    - img\n  - paragraph: Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.\n  - term: Created by\n  - definition: Abdullah - Demo\n  - term: Created\n  - definition: 9 Nov, 12:35 pm\n  - heading \"Next action\" [level=3]\n  - text: Action\n  - combobox \"Action\":\n    - option \"Choose an action\" [disabled]\n    - option \"investigating\" [selected]\n    - option \"Cancel with a reason\"\n  - text: Decision / completion note\n  - textbox \"Decision / completion note\":\n    - /placeholder: Record the decision or completed work (required to resolve, complete, or cancel).\n    - text: \"Synthetic audit only: checking workflow state and immutable history. No settlement or stock effects.\"\n  - button \"Saving\u2026\" [disabled]:\n    - text: Saving\u2026\n    - img\n  - heading \"Record history\" [level=3]\n  - list:\n    - listitem:\n      - strong: created\n      - text: Abdullah - Demo \ufffd 9 Nov, 12:35 pm\n  - text: Add to the record\n  - textbox \"Add to the record\"\n  - button \"Add note\" [disabled]:\n    - img\n    - text: Add note",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "after-investigating",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T08:09:09.365Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-390x844/after-investigating-viewport.png",
+        "full": "screenshots/owner/cases/mobile-390x844/after-investigating-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1568,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "after-resolved",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T08:09:10.870Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1440x900/after-resolved-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1440x900/after-resolved-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1291,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Discrepancy cases",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Include cancelled",
+        "open",
+        "investigating",
+        "Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.",
+        "Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.",
+        "resolved",
+        "Synthetic test of case creation, decision history, and keyboard-accessible controls.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+        "Discrepancy cases \u00b7 investigating \u00b7 Unassigned",
+        "Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.",
+        "Next action",
+        "ActionChoose an actionresolvedCancel with a reason",
+        "Decision / completion note",
+        "Record history",
+        "Synthetic audit only: checking workflow state and immutable history. No settlement or stock effects.",
+        "Add to the record"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "status",
+          "label": "ActionChoose an actionresolvedCancel with a reason",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Decision / completion note",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Add to the record",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 4000,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\":\n  - list:\n    - listitem: Saved to the station record\n- dialog \"AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09\":\n  - heading \"AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09\" [level=2]\n  - paragraph: Discrepancy cases \u00b7 investigating \u00b7 Unassigned\n  - button \"Close dialog\":\n    - img\n  - paragraph: Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.\n  - term: Created by\n  - definition: Abdullah - Demo\n  - term: Created\n  - definition: 9 Nov, 12:35 pm\n  - heading \"Next action\" [level=3]\n  - text: Action\n  - combobox \"Action\":\n    - option \"Choose an action\" [disabled]\n    - option \"resolved\" [selected]\n    - option \"Cancel with a reason\"\n  - text: Decision / completion note\n  - textbox \"Decision / completion note\":\n    - /placeholder: Record the decision or completed work (required to resolve, complete, or cancel).\n    - text: Synthetic usability verification complete. No discrepancy, financial adjustment, inventory change or client business record involved.\n  - button \"Saving\u2026\" [disabled]:\n    - text: Saving\u2026\n    - img\n  - heading \"Record history\" [level=3]\n  - list:\n    - listitem:\n      - strong: created\n      - text: Abdullah - Demo \ufffd 9 Nov, 12:35 pm\n    - listitem:\n      - strong: investigating\n      - text: Abdullah - Demo \ufffd 9 Nov, 01:13 pm\n      - paragraph: \"Synthetic audit only: checking workflow state and immutable history. No settlement or stock effects.\"\n  - text: Add to the record\n  - textbox \"Add to the record\"\n  - button \"Add note\" [disabled]:\n    - img\n    - text: Add note",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "after-resolved",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T08:09:11.698Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-390x844/after-resolved-viewport.png",
+        "full": "screenshots/owner/cases/mobile-390x844/after-resolved-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1520,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "outcomes": [
+    {
+      "status": "investigating",
+      "http": 200,
+      "response": {
+        "id": "8427a67e-f2a6-405c-b921-0ec478cfd1e2"
+      }
+    },
+    {
+      "status": "resolved",
+      "http": 200,
+      "response": {
+        "id": "8427a67e-f2a6-405c-b921-0ec478cfd1e2"
+      }
+    }
+  ],
+  "title": "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09"
+}

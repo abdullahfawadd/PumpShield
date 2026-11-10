@@ -4,5 +4,5 @@ import ts from "eslint-config-next/typescript";
 export default defineConfig([
   ...next,
   ...ts,
-  globalIgnores([".next/**", "output/**", "public/maplibre/**", "next-env.d.ts"]),
+  globalIgnores([".next/**", "output/**", "artifacts/**", "public/maplibre/**", "next-env.d.ts"]),
 ]);

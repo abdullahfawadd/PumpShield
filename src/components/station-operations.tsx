@@ -17,6 +17,8 @@ import { Button } from "./ui/button";
 import { Dialog } from "./ui/dialog";
 import type { Dashboard } from "@/lib/types";
 import { date, number } from "@/lib/utils";
+import { FUEL_GRADE_OPTIONS, fuelGradeLabel, type FuelGrade } from "@/lib/fuel-grades";
+import { useMobileLayout } from "@/lib/use-mobile-layout";
 type Kind = "exception" | "indent" | "maintenance" | "handover";
 type Item = {
   id: string;
@@ -29,7 +31,7 @@ type Item = {
   due_at: string | null;
   assigned_to: string | null;
   supplier: string | null;
-  grade: string | null;
+  grade: FuelGrade | null;
   liters: number | null;
   equipment: string | null;
   delivery_id: string | null;
@@ -88,17 +90,43 @@ const kinds: {
     stages: ["pending", "accepted"],
   },
 ];
-const label = (v: string) => v.replaceAll("_", " ");
+const label = (v: string) =>
+  ({
+    created: "Created",
+    open: "Open",
+    investigating: "Investigating",
+    resolved: "Resolved",
+    requested: "Requested",
+    approved: "Approved",
+    dispatched: "Dispatched",
+    received: "Received",
+    scheduled: "Scheduled",
+    in_progress: "In progress",
+    completed: "Completed",
+    pending: "Pending",
+    accepted: "Accepted",
+    cancelled: "Cancelled",
+    comment: "Note added",
+  })[v] || v.replaceAll("_", " ");
 const terminal = ["resolved", "received", "completed", "accepted", "cancelled"];
 export function StationOperations({
   stationId,
   data,
+  workKind,
+  onWorkKindChange,
 }: {
   stationId: string;
   data: Dashboard;
+  workKind?: string;
+  onWorkKindChange?: (kind: string) => void;
 }) {
   const owner = data.member?.role === "owner";
-  const [kind, setKind] = useState<Kind>(owner ? "exception" : "handover");
+  const [localKind, setKind] = useState<Kind>(owner ? "exception" : "handover");
+  const requestedKind = kinds.some((k) => k.id === workKind)
+    ? (workKind as Kind)
+    : localKind;
+  const kind: Kind =
+    !owner && requestedKind === "exception" ? "handover" : requestedKind;
   const [snapshot, setSnapshot] = useState<Snapshot>({
     items: [],
     people: [],
@@ -110,6 +138,10 @@ export function StationOperations({
   const [selected, setSelected] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const [archive, setArchive] = useState(false);
+  const [stageFilter, setStageFilter] = useState("all");
+  const [view, setView] = useState<"auto" | "board" | "list">("auto");
+  const mobile = useMobileLayout();
+  const layout = view === "auto" ? (mobile ? "list" : "board") : view;
   const requestVersion = useRef(0);
   const load = useCallback(
     async (signal?: AbortSignal) => {
@@ -181,6 +213,7 @@ export function StationOperations({
   const items = snapshot.items.filter(
     (i) =>
       i.kind === kind &&
+      (stageFilter === "all" || i.status === stageFilter) &&
       (!archive ? i.status !== "cancelled" : true) &&
       `${i.title} ${i.supplier || ""} ${i.equipment || ""} ${i.description}`
         .toLowerCase()
@@ -193,7 +226,7 @@ export function StationOperations({
   if (!stationId)
     return <div className="ops-empty">Add a station to organise its work.</div>;
   return (
-    <section className="station-operations">
+    <section className={`station-operations ops-view-${layout}`}>
       <div className="ops-tabs" role="group" aria-label="Station workflows">
         {kinds
           .filter((k) => owner || k.id !== "exception")
@@ -203,7 +236,9 @@ export function StationOperations({
               aria-pressed={kind === k.id}
               onClick={() => {
                 setKind(k.id);
+                onWorkKindChange?.(k.id);
                 setQuery("");
+                setStageFilter("all");
               }}
             >
               <k.icon size={16} />
@@ -220,9 +255,10 @@ export function StationOperations({
       </div>
       <div className="ops-heading">
         <div>
-          <span className="ops-kicker">STATION WORKSPACE</span>
           <h2>{config.name}</h2>
-          <p>{config.caption}</p>
+          <p>
+            {items.length} {items.length === 1 ? "record" : "records"}
+          </p>
         </div>
         {canCreate && (
           <Button onClick={() => setCreate(true)}>
@@ -241,11 +277,49 @@ export function StationOperations({
             onChange={(e) => setQuery(e.target.value)}
           />
         </label>
+        <select
+          aria-label="Filter work status"
+          value={stageFilter}
+          onChange={(e) => setStageFilter(e.target.value)}
+        >
+          <option value="all">All statuses</option>
+          {[...config.stages, ...(archive ? ["cancelled"] : [])].map(
+            (stage) => (
+              <option key={stage} value={stage}>
+                {label(stage)}
+              </option>
+            ),
+          )}
+        </select>
+        <div
+          className="view-toggle"
+          role="group"
+          aria-label="Station work layout"
+        >
+          <button
+            type="button"
+            aria-pressed={layout === "board"}
+            onClick={() => setView("board")}
+          >
+            Board
+          </button>
+          <button
+            type="button"
+            aria-pressed={layout === "list"}
+            onClick={() => setView("list")}
+          >
+            List
+          </button>
+        </div>
         <label className="ops-check">
           <input
             type="checkbox"
             checked={archive}
-            onChange={(e) => setArchive(e.target.checked)}
+            onChange={(e) => {
+              setArchive(e.target.checked);
+              if (!e.target.checked && stageFilter === "cancelled")
+                setStageFilter("all");
+            }}
           />
           Include cancelled
         </label>
@@ -264,10 +338,16 @@ export function StationOperations({
       )}
       {loading ? (
         <p role="status">Loading saved station work…</p>
-      ) : (
-        <div className="ops-board">
-          {[...config.stages, ...(archive ? ["cancelled"] : [])].map(
-            (stage) => (
+      ) : layout === "board" ? (
+        <div
+          className="ops-board"
+          role="region"
+          aria-label={`${config.name} stages`}
+          tabIndex={0}
+        >
+          {[...config.stages, ...(archive ? ["cancelled"] : [])]
+            .filter((stage) => stageFilter === "all" || stage === stageFilter)
+            .map((stage) => (
               <section className="ops-lane" key={stage}>
                 <header>
                   <span className={`ops-stage-dot stage-${stage}`} />
@@ -286,7 +366,7 @@ export function StationOperations({
                         <div className="ops-card-top">
                           <span>
                             {i.kind === "indent"
-                              ? `${i.grade} · ${number(i.liters || 0)} L`
+                              ? `${fuelGradeLabel(i.grade)} · ${number(i.liters || 0)} L`
                               : i.equipment || `#${i.id.slice(0, 6)}`}
                           </span>
                           <span>{i.priority}</span>
@@ -322,14 +402,64 @@ export function StationOperations({
                   )}
                 </div>
               </section>
-            ),
+            ))}
+        </div>
+      ) : null}
+      {!loading && layout === "list" && (
+        <div className="ops-list" aria-label={`${config.name} list`}>
+          {items.map((record) => (
+            <button
+              key={record.id}
+              className="ops-list-row"
+              onClick={() => setSelected(record.id)}
+            >
+              <div>
+                <span className={`status work-status-${record.status}`}>
+                  {label(record.status)}
+                </span>
+                <h3>{record.title}</h3>
+                <p>
+                  {record.kind === "indent"
+                    ? `${fuelGradeLabel(record.grade)} · ${number(record.liters || 0)} L`
+                    : record.equipment || config.name}
+                </p>
+              </div>
+              <span className="ops-list-assignee">
+                {person(record.assigned_to)}
+              </span>
+              <span
+                className={`ops-list-due ${record.due_at && new Date(record.due_at) < new Date() && !terminal.includes(record.status) ? "overdue" : ""}`}
+              >
+                {record.due_at ? date(record.due_at) : "No due date"}
+              </span>
+              <ArrowRight size={18} />
+            </button>
+          ))}
+          {!items.length && (
+            <div className="ops-empty">
+              <p>
+                {query || stageFilter !== "all"
+                  ? "No matching records."
+                  : "No records yet."}
+              </p>
+              {(query || stageFilter !== "all") && (
+                <button
+                  className="text-link"
+                  onClick={() => {
+                    setQuery("");
+                    setStageFilter("all");
+                  }}
+                >
+                  Clear filters
+                </button>
+              )}
+            </div>
           )}
         </div>
       )}
       <p className="ops-footnote">
-        Saved records · refreshed every 20 seconds · up to 500 most recently
-        updated items per station. Open a card to view its history and advance
-        its workflow.
+        Up to 500 recent station records. Open a record for its history and next
+        action.
       </p>
       <Dialog
         open={create}
@@ -420,8 +550,7 @@ export function StationOperations({
               <label>
                 Fuel grade
                 <select name="grade">
-                  <option value="MS">MS · Petrol</option>
-                  <option value="HSD">HSD · Diesel</option>
+                  {FUEL_GRADE_OPTIONS.map(grade => <option key={grade.value} value={grade.value}>{grade.label}</option>)}
                 </select>
               </label>
               <label>
@@ -513,7 +642,7 @@ export function StationOperations({
                   <div>
                     <dt>Requested</dt>
                     <dd>
-                      {number(item.liters)} L · {item.grade} · {item.supplier}
+                      {number(item.liters)} L · {fuelGradeLabel(item.grade)} · {item.supplier}
                     </dd>
                   </div>
                 )}
@@ -725,7 +854,7 @@ function WorkHistory({
           <button onClick={() => void load()}>Retry</button>
         </p>
       )}
-      {busy && <p role="status">Loading record history�</p>}
+      {busy && <p role="status">Loading record history…</p>}
       {next && (
         <Button
           variant="ghost"
@@ -747,7 +876,7 @@ function WorkHistory({
               <span>
                 {people.find((p) => p.id === e.actor_id)?.name ||
                   "Former team member"}{" "}
-                � {date(e.created_at)}
+                · {date(e.created_at)}
               </span>
               {e.note && <p>{e.note}</p>}
             </div>

@@ -1,8 +1,10 @@
 "use client";
+import { useClock } from "@/lib/use-clock";
 import { useState } from "react";
 import type { Dashboard } from "@/lib/types";
 import { field } from "@/lib/field-api";
 import { parseVehicleCredential } from "@/lib/vehicle-credential";
+import { fuelGradeLabel, nozzlesForFuelGrade } from "@/lib/fuel-grades";
 import { number } from "@/lib/utils";
 import { ActionForm, Field, Select } from "./forms";
 import { QrScan } from "./qr-scan";
@@ -26,6 +28,7 @@ export function ParchiForm({
   nozzles: Dashboard["nozzles"];
   onDone: () => void;
 }) {
+  const now = useClock();
   const [evidence, setEvidence] = useState("");
   const [token, setToken] = useState("");
   const [requestId] = useState(() => crypto.randomUUID());
@@ -36,6 +39,7 @@ export function ParchiForm({
   async function verify(value = token) {
     setError("");
     setMatch(null);
+    setEvidence("");
     setBusy(true);
     try {
       const parsed = parseVehicleCredential(value);
@@ -52,7 +56,32 @@ export function ParchiForm({
       setBusy(false);
     }
   }
+  const shift = data.shifts.find(
+    (s) => s.station_id === stationId && s.status === "open",
+  );
+  if (!shift || Date.parse(shift.due_at) <= now)
+    return (
+      <div role="status" className="notice warning">
+        <div>
+          <strong>
+            {shift
+              ? "Close the overdue shift first"
+              : "Open a shift before dispensing on credit"}
+          </strong>
+          <p>
+            A current shift is required to verify the allowance and record a
+            fill. Submit the previous readings before opening the next shift.
+          </p>
+          <a href={`/app?view=shifts&station=${stationId}`}>Go to shifts</a>
+        </div>
+      </div>
+    );
   const valid = !!match && token === checkedToken;
+  const eligibleNozzles = nozzlesForFuelGrade(
+    nozzles,
+    data.tanks,
+    valid ? match.grade : null,
+  );
   return (
     <div className="parchi-flow">
       <ol className="parchi-steps">
@@ -63,21 +92,21 @@ export function ParchiForm({
           <span>2</span>Fill & evidence
         </li>
         <li>
-          <span>3</span>Server approval
+          <span>3</span>Verify & record
         </li>
       </ol>
       <div className="parchi-explainer">
         <QrCode size={30} />
         <div>
-          <h3>Scan the vehicle’s PumpShield fuel pass.</h3>
-          <p>
-            The owner creates it under{" "}
-            <strong>
-              Digital parchi → account → Vehicles & QR credentials
-            </strong>
-            . Print it or keep it on the authorised driver’s phone. It is not a
-            payment or receipt QR.
-          </p>
+          <h3>Scan the vehicle fuel pass</h3>
+          <details className="pass-help">
+            <summary>Which QR should I scan?</summary>
+            <p>
+              The owner issues it under Digital parchi → account → Vehicles & QR
+              credentials. Scan the printed pass or driver’s saved copy. Payment
+              and receipt QRs cannot authorize a fill.
+            </p>
+          </details>
         </div>
       </div>
       <QrScan
@@ -126,10 +155,16 @@ export function ParchiForm({
             <p>{match.account}</p>
           </div>
           <div>
-            <strong>{match.grade}</strong>
+            <strong>{fuelGradeLabel(match.grade)}</strong>
             <small>Up to {number(match.max_liters)} L per fill</small>
           </div>
         </div>
+      )}
+      {valid && !eligibleNozzles.length && (
+        <p role="alert" className="form-error">
+          No nozzle is configured for this vehicle’s fuel grade. Ask the owner
+          to check its tank mapping.
+        </p>
       )}
       <ActionForm
         op="parchi"
@@ -147,11 +182,17 @@ export function ParchiForm({
           };
         }}
       >
-        <fieldset disabled={!valid || busy} className="parchi-fields">
+        <fieldset
+          disabled={!valid || busy || !eligibleNozzles.length}
+          className="parchi-fields"
+        >
           <Select
             label="Dispensing nozzle"
             name="nozzle_id"
-            options={nozzles.map((n) => ({ value: n.id, label: n.name }))}
+            options={eligibleNozzles.map((n) => ({
+              value: n.id,
+              label: n.name,
+            }))}
           />
           <Field
             label="Litres dispensed"
@@ -178,7 +219,7 @@ export function ParchiForm({
         </div>
       </ActionForm>
       <a className="offline-flow-link" href="/offline">
-        No connection? Open the offline terminal to save a draft →
+        No connection? Continue on this device to save a draft →
       </a>
     </div>
   );

@@ -1,0 +1,5264 @@
+{
+  "rows": [
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:23:00.010Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/desktop-1440x900/create-viewport.png",
+        "full": "screenshots/owner/deliveries/desktop-1440x900/create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1396,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving.",
+          "Register an incoming delivery"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / DELIVERIES",
+        "Every delivery, verified.",
+        "From dispatch to decant, with evidence at every step.",
+        "DELIVERY PIPELINE",
+        "Keep every arrival moving.",
+        "Drag to the next stage to open its required checklist. Changes save only after confirmation.",
+        "Dispatch registered",
+        "Pre-decant audit submitted",
+        "Owner approval recorded",
+        "Stock received and posted",
+        "Register an incoming delivery",
+        "Real records. Clear accountability.",
+        "Invoice / dispatch reference",
+        "Vehicle registration",
+        "Loading depot",
+        "Receiving tankSelect receiving tankPremier petrol \u00b7 MSHigh-speed diesel \u00b7 HSD",
+        "Invoice volume (L)",
+        "Gantry loading temperature (\u00b0C)",
+        "Number of chambers12345678",
+        "Chamber 1 certified chart (mm, litres)",
+        "Each chamber uses its own certified chart. The current fuel price and coefficient are locked to this delivery."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search deliveries",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Filter board stage",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "reference",
+          "label": "Invoice / dispatch reference",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "vehicle",
+          "label": "Vehicle registration",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "depot",
+          "label": "Loading depot",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "tank_id",
+          "label": "Receiving tankSelect receiving tankPremier petrol \u00b7 MSHigh-speed diesel \u00b7 HSD",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "invoice",
+          "label": "Invoice volume (L)",
+          "required": true,
+          "min": "1",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "loading_temp",
+          "label": "Gantry loading temperature (\u00b0C)",
+          "required": true,
+          "min": "-20",
+          "max": "80",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Number of chambers12345678",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "chart_0",
+          "label": "Chamber 1 certified chart (mm, litres)",
+          "required": true,
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Register an incoming delivery\":\n  - heading \"Register an incoming delivery\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - text: Invoice / dispatch reference\n  - textbox \"Invoice / dispatch reference\"\n  - text: Vehicle registration\n  - textbox \"Vehicle registration\"\n  - text: Loading depot\n  - textbox \"Loading depot\"\n  - text: Receiving tank\n  - combobox \"Receiving tank\":\n    - option \"Select receiving tank\" [disabled] [selected]\n    - option \"Premier petrol \u00b7 MS\"\n    - option \"High-speed diesel \u00b7 HSD\"\n  - text: Invoice volume (L)\n  - spinbutton \"Invoice volume (L)\"\n  - text: Gantry loading temperature (\u00b0C)\n  - spinbutton \"Gantry loading temperature (\u00b0C)\"\n  - text: Number of chambers\n  - combobox \"Number of chambers\":\n    - option \"1\" [selected]\n    - option \"2\"\n    - option \"3\"\n    - option \"4\"\n    - option \"5\"\n    - option \"6\"\n    - option \"7\"\n    - option \"8\"\n  - text: Chamber 1 certified chart (mm, litres)\n  - textbox \"Chamber 1 certified chart (mm, litres)\":\n    - /placeholder: \"mm,liters\\nPaste the certified chart for this chamber\"\n  - paragraph: Each chamber uses its own certified chart. The current fuel price and coefficient are locked to this delivery.\n  - button \"Create dispatch\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:23:00.940Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-390x844/create-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-390x844/create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1668,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving.",
+          "Register an incoming delivery"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "create",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:23:01.732Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-320x640/create-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-320x640/create-full.png"
+      },
+      "geometry": {
+        "width": 355,
+        "height": 710,
+        "documentWidth": 355,
+        "documentHeight": 1689,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving.",
+          "Register an incoming delivery"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "arrival-audit",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:23:04.767Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/desktop-1440x900/arrival-audit-viewport.png",
+        "full": "screenshots/owner/deliveries/desktop-1440x900/arrival-audit-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1396,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving.",
+          "Delivery verification",
+          "TKA-842",
+          "Follow the delivery."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "Revoke driver link",
+            "width": 98,
+            "height": 18
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / DELIVERIES",
+        "Every delivery, verified.",
+        "From dispatch to decant, with evidence at every step.",
+        "DELIVERY PIPELINE",
+        "Keep every arrival moving.",
+        "Drag to the next stage to open its required checklist. Changes save only after confirmation.",
+        "Dispatch registered",
+        "Pre-decant audit submitted",
+        "Owner approval recorded",
+        "Stock received and posted",
+        "Delivery verification",
+        "Real records. Clear accountability.",
+        "TKA-842",
+        "SAMPLE-OMC-1042 \u00b7 Keamari depot",
+        "DELIVERY SIGNAL",
+        "Follow the delivery.",
+        "Accuracy \u00b115 m",
+        "The phone\u2019s location is stale. The marker stays at the last report; no movement is predicted.",
+        "Truck animation connects received GPS reports. The trail is not a calculated road route. Location sharing depends on phone permission and an open browser.",
+        "Pump arrival temperature (\u00b0C)",
+        "Chamber 1 dip (mm)",
+        "Chamber 2 dip (mm)",
+        "Chamber 3 dip (mm)",
+        "Chamber 4 dip (mm)",
+        "Do not unload until the owner reviews and approves this audit. Submitted measurements cannot be edited."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search deliveries",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Filter board stage",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "arrival_temp",
+          "label": "Pump arrival temperature (\u00b0C)",
+          "required": true,
+          "min": "-20",
+          "max": "80",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_0",
+          "label": "Chamber 1 dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_1",
+          "label": "Chamber 2 dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_2",
+          "label": "Chamber 3 dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_3",
+          "label": "Chamber 4 dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Delivery verification\":\n  - heading \"Delivery verification\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - img\n  - heading \"TKA-842\" [level=2]\n  - paragraph: SAMPLE-OMC-1042 \u00b7 Keamari depot\n  - text: dispatched DELIVERY SIGNAL\n  - heading \"Follow the delivery.\" [level=3]\n  - text: Signal stale\n  - region \"Delivery map\":\n    - region \"Map\"\n    - button \"Zoom in\"\n    - button \"Zoom out\"\n    - button \"Drag to rotate map, click to reset north\"\n    - text: 1 km REPORTED DELIVERY TRAIL\n    - button \"2D\" [disabled] [pressed]\n    - button \"Terrain\" [disabled]\n    - button \"Follow last reported position\" [pressed]:\n      - img\n    - status:\n      - img\n      - text: Loading map\u2026\n  - img\n  - text: Clifton Petroleum - Sample\n  - strong: \u2014last known GPS\n  - paragraph: Accuracy \u00b115 m\n  - text: LAST RECEIVED \u00b7 PKT 8 Nov, 07:49 pm RECENT REPORTS 7 COORDINATES 24.84000, 67.04000 The phone\u2019s location is stale. The marker stays at the last report; no movement is predicted.\n  - button \"Replace driver link\":\n    - img\n    - text: Replace driver link\n  - button \"Revoke driver link\"\n  - paragraph: Truck animation connects received GPS reports. The trail is not a calculated road route. Location sharing depends on phone permission and an open browser.\n  - text: Pump arrival temperature (\u00b0C)\n  - spinbutton \"Pump arrival temperature (\u00b0C)\"\n  - text: Chamber 1 dip (mm)\n  - spinbutton \"Chamber 1 dip (mm)\"\n  - text: Chamber 2 dip (mm)\n  - spinbutton \"Chamber 2 dip (mm)\"\n  - text: Chamber 3 dip (mm)\n  - spinbutton \"Chamber 3 dip (mm)\"\n  - text: Chamber 4 dip (mm)\n  - spinbutton \"Chamber 4 dip (mm)\"\n  - button \"Capture thermometer & dip evidence\":\n    - img\n    - text: Capture thermometer & dip evidence\n  - text: Do not unload until the owner reviews and approves this audit. Submitted measurements cannot be edited.\n  - button \"Submit & lock pre-decant audit\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "arrival-audit",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:23:06.213Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-390x844/arrival-audit-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-390x844/arrival-audit-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1668,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving.",
+          "Delivery verification",
+          "TKA-842",
+          "Follow the delivery."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "Revoke driver link",
+            "width": 98,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "arrival-audit",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:23:07.286Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-320x640/arrival-audit-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-320x640/arrival-audit-full.png"
+      },
+      "geometry": {
+        "width": 355,
+        "height": 710,
+        "documentWidth": 355,
+        "documentHeight": 1689,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving.",
+          "Delivery verification",
+          "TKA-842",
+          "Follow the delivery."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "Revoke driver link",
+            "width": 98,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "approved-decant",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:23:10.507Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/desktop-1440x900/approved-decant-viewport.png",
+        "full": "screenshots/owner/deliveries/desktop-1440x900/approved-decant-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1396,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving.",
+          "Delivery verification",
+          "TKA-843",
+          "Follow the delivery."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / DELIVERIES",
+        "Every delivery, verified.",
+        "From dispatch to decant, with evidence at every step.",
+        "DELIVERY PIPELINE",
+        "Keep every arrival moving.",
+        "Drag to the next stage to open its required checklist. Changes save only after confirmation.",
+        "Dispatch registered",
+        "Pre-decant audit submitted",
+        "Owner approval recorded",
+        "Stock received and posted",
+        "Delivery verification",
+        "Real records. Clear accountability.",
+        "TKA-843",
+        "SAMPLE-OMC-1043 \u00b7 Keamari depot",
+        "DELIVERY SIGNAL",
+        "Follow the delivery.",
+        "Driver consent required",
+        "Create an expiring link and send it to the driver. No truck hardware or app installation is needed.",
+        "Truck animation connects received GPS reports. The trail is not a calculated road route. Location sharing depends on phone permission and an open browser.",
+        "A calculated discrepancy is not proof of theft. Confirm charts, measurement quality, agreed temperature standard, and commercial terms before approval.",
+        "The approved delivery has been fully unloaded into the assigned tank.",
+        "This updates the tank\u2019s recorded stock once. The tank must have enough recorded capacity."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search deliveries",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Filter board stage",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "The approved delivery has been fully unloaded into the assigned tank.",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Delivery verification\":\n  - heading \"Delivery verification\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - img\n  - heading \"TKA-843\" [level=2]\n  - paragraph: SAMPLE-OMC-1043 \u00b7 Keamari depot\n  - text: approved DELIVERY SIGNAL\n  - heading \"Follow the delivery.\" [level=3]\n  - text: Awaiting driver\n  - region \"Delivery map\":\n    - region \"Map\"\n    - button \"Zoom in\"\n    - button \"Zoom out\"\n    - button \"Drag to rotate map, click to reset north\"\n    - text: 1 km\n    - group:\n      - link \"OpenFreeMap\":\n        - /url: https://openfreemap.org\n      - link \"\u00a9 OpenMapTiles\":\n        - /url: https://www.openmaptiles.org/\n      - text: Data from\n      - link \"OpenStreetMap\":\n        - /url: https://www.openstreetmap.org/copyright\n    - text: REPORTED DELIVERY TRAIL\n    - button \"2D\" [disabled] [pressed]\n    - button \"Terrain\" [disabled]\n    - button \"Follow last reported position\" [pressed]:\n      - img\n    - status:\n      - img\n      - text: Loading map\u2026\n  - img\n  - text: Clifton Petroleum - Sample\n  - strong: \u2014last known GPS\n  - paragraph: Driver consent required\n  - paragraph: Create an expiring link and send it to the driver. No truck hardware or app installation is needed.\n  - paragraph: Truck animation connects received GPS reports. The trail is not a calculated road route. Location sharing depends on phone permission and an open browser.\n  - text: Invoice volume\n  - strong: 40,000 L\n  - text: Measured volume\n  - strong: 39,600 L\n  - text: Thermal allowance\n  - strong: 276 L\n  - text: Unexplained shortage\n  - strong: 124 L\n  - text: 38\u00b0C loading \u2192 32\u00b0C arrival Coefficient 0.00115 / \u00b0C \u00b7 Rs 300 / L Calculated claim for review\n  - strong: Rs 37,200\n  - paragraph: A calculated discrepancy is not proof of theft. Confirm charts, measurement quality, agreed temperature standard, and commercial terms before approval.\n  - link \"Download shortage claim PDF\":\n    - /url: /api/documents/claim/d170147b-e228-40b1-8cae-823cf07d7cf1\n    - img\n    - text: Download shortage claim PDF\n  - checkbox \"The approved delivery has been fully unloaded into the assigned tank.\"\n  - text: The approved delivery has been fully unloaded into the assigned tank.\n  - paragraph: This updates the tank\u2019s recorded stock once. The tank must have enough recorded capacity.\n  - button \"Confirm completed decant\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "approved-decant",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:23:11.511Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-390x844/approved-decant-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-390x844/approved-decant-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1668,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving.",
+          "Delivery verification",
+          "TKA-843",
+          "Follow the delivery."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "approved-decant",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:23:12.739Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-320x640/approved-decant-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-320x640/approved-decant-full.png"
+      },
+      "geometry": {
+        "width": 355,
+        "height": 710,
+        "documentWidth": 355,
+        "documentHeight": 1689,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving.",
+          "Delivery verification",
+          "TKA-843",
+          "Follow the delivery."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "close",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:23:14.998Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/desktop-1440x900/close-viewport.png",
+        "full": "screenshots/owner/shifts/desktop-1440x900/close-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1660,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register",
+          "Close your shift with confidence",
+          "01 / Nozzle readings",
+          "02 / Physical tank dips",
+          "03 / Cash & settlement"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SHIFTS",
+        "Close the shift. Open the facts.",
+        "Meter readings, physical stock, and cash. Reconciled together.",
+        "Shift register",
+        "Select a shift to inspect its evidence and reconciliation.",
+        "Close your shift with confidence",
+        "Submitted readings are permanent. Check the numbers and capture fresh evidence before submitting.",
+        "Cutoff: 9 Nov, 12:00 am PKT. A submission after this time is flagged for owner review. Record readings at the cutoff.",
+        "01 / Nozzle readings",
+        "Closing totalizer (L)",
+        "Testing returned to tank (L)",
+        "Closing totalizer (L)",
+        "Testing returned to tank (L)",
+        "02 / Physical tank dips",
+        "Premier petrol \u00b7 Closing dip (mm)",
+        "High-speed diesel \u00b7 Closing dip (mm)",
+        "03 / Cash & settlement",
+        "Physical cash handed over (PKR)",
+        "Bank POS settlement (PKR)",
+        "I confirm these are the actual closing readings and funds handed over."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "closing_c5054196-f43d-4e6c-a4d2-77981e6b3729",
+          "label": "Closing totalizer (L)",
+          "required": true,
+          "min": "152400",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "testing_c5054196-f43d-4e6c-a4d2-77981e6b3729",
+          "label": "Testing returned to tank (L)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "closing_d5c0be8f-333c-4dd2-b612-106e15168a97",
+          "label": "Closing totalizer (L)",
+          "required": true,
+          "min": "152400",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "testing_d5c0be8f-333c-4dd2-b612-106e15168a97",
+          "label": "Testing returned to tank (L)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_7ad697b6-3fca-479b-a26e-7764ab721efb",
+          "label": "Premier petrol \u00b7 Closing dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip_233b4bef-20a5-4312-9996-331aabea3f7f",
+          "label": "High-speed diesel \u00b7 Closing dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "cash",
+          "label": "Physical cash handed over (PKR)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "pos",
+          "label": "Bank POS settlement (PKR)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "I confirm these are the actual closing readings and funds handed over.",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Close your shift with confidence\":\n  - heading \"Close your shift with confidence\" [level=2]\n  - paragraph: Submitted readings are permanent. Check the numbers and capture fresh evidence before submitting.\n  - button \"Close dialog\":\n    - img\n  - text: \"Cutoff: 9 Nov, 12:00 am PKT. A submission after this time is flagged for owner review. Record readings at the cutoff.\"\n  - heading \"01 / Nozzle readings\" [level=3]:\n    - img\n    - text: 01 / Nozzle readings\n  - strong: Nozzle 01 - Petrol\n  - text: Opening 152,400 L Closing totalizer (L)\n  - spinbutton \"Closing totalizer (L)\"\n  - text: Testing returned to tank (L)\n  - spinbutton \"Testing returned to tank (L)\": \"0\"\n  - button \"Capture nozzle totalizer\":\n    - img\n    - text: Capture nozzle totalizer\n  - strong: Nozzle 02 - Diesel\n  - text: Opening 152,400 L Closing totalizer (L)\n  - spinbutton \"Closing totalizer (L)\"\n  - text: Testing returned to tank (L)\n  - spinbutton \"Testing returned to tank (L)\": \"0\"\n  - button \"Capture nozzle totalizer\":\n    - img\n    - text: Capture nozzle totalizer\n  - heading \"02 / Physical tank dips\" [level=3]:\n    - img\n    - text: 02 / Physical tank dips\n  - text: Premier petrol \u00b7 Closing dip (mm)\n  - spinbutton \"Premier petrol \u00b7 Closing dip (mm)\"\n  - button \"Capture wet dipstick mark\":\n    - img\n    - text: Capture wet dipstick mark\n  - text: High-speed diesel \u00b7 Closing dip (mm)\n  - spinbutton \"High-speed diesel \u00b7 Closing dip (mm)\"\n  - button \"Capture wet dipstick mark\":\n    - img\n    - text: Capture wet dipstick mark\n  - heading \"03 / Cash & settlement\" [level=3]\n  - text: Physical cash handed over (PKR)\n  - spinbutton \"Physical cash handed over (PKR)\"\n  - text: Bank POS settlement (PKR)\n  - spinbutton \"Bank POS settlement (PKR)\"\n  - button \"Capture POS settlement report\":\n    - img\n    - text: Capture POS settlement report\n  - checkbox \"I confirm these are the actual closing readings and funds handed over.\"\n  - text: I confirm these are the actual closing readings and funds handed over.\n  - button \"Submit & permanently lock shift\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "close",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:23:15.985Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/mobile-390x844/close-viewport.png",
+        "full": "screenshots/owner/shifts/mobile-390x844/close-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1892,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register",
+          "Close your shift with confidence",
+          "01 / Nozzle readings",
+          "02 / Physical tank dips",
+          "03 / Cash & settlement"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "close",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:23:16.983Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/mobile-320x640/close-viewport.png",
+        "full": "screenshots/owner/shifts/mobile-320x640/close-full.png"
+      },
+      "geometry": {
+        "width": 370,
+        "height": 740,
+        "documentWidth": 370,
+        "documentHeight": 1910,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register",
+          "Close your shift with confidence",
+          "01 / Nozzle readings",
+          "02 / Physical tank dips",
+          "03 / Cash & settlement"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "review",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:23:18.643Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/desktop-1440x900/review-viewport.png",
+        "full": "screenshots/owner/shifts/desktop-1440x900/review-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1660,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register",
+          "Shift reconciliation",
+          "Sample shift 10",
+          "Supporting evidence"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SHIFTS",
+        "Close the shift. Open the facts.",
+        "Meter readings, physical stock, and cash. Reconciled together.",
+        "Shift register",
+        "Select a shift to inspect its evidence and reconciliation.",
+        "Shift reconciliation",
+        "Real records. Clear accountability.",
+        "Sample shift 10",
+        "7 Nov, 07:52 pm \u2192 8 Nov, 06:52 am",
+        "Nozzle revenueRs 2,460,000",
+        "Verified digital credit\u2212 Rs 0",
+        "Reported POS settlement\u2212 Rs 180,000",
+        "Expected cashRs 2,280,000",
+        "Cash handed overRs 2,280,000",
+        "Cash varianceRs -2,400",
+        "Supporting evidence",
+        "Review notes",
+        "I reviewed the evidence and recorded any unresolved discrepancies."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Review notes",
+          "required": true,
+          "minLength": 3,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "I reviewed the evidence and recorded any unresolved discrepancies.",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Shift reconciliation\":\n  - heading \"Shift reconciliation\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - img\n  - heading \"Sample shift 10\" [level=2]\n  - paragraph: 7 Nov, 07:52 pm \u2192 8 Nov, 06:52 am\n  - table:\n    - rowgroup:\n      - row \"Tank Sold Expected Actual Variance\":\n        - columnheader \"Tank\"\n        - columnheader \"Sold\"\n        - columnheader \"Expected\"\n        - columnheader \"Actual\"\n        - columnheader \"Variance\"\n    - rowgroup:\n      - row \"Premier petrol 8,200 L 35,000 L 34,985 L -15 L\":\n        - cell \"Premier petrol\"\n        - cell \"8,200 L\"\n        - cell \"35,000 L\"\n        - cell \"34,985 L\"\n        - cell \"-15 L\"\n  - paragraph:\n    - text: Nozzle revenue\n    - strong: Rs 2,460,000\n  - paragraph:\n    - text: Verified digital credit\n    - strong: \u2212 Rs 0\n  - paragraph:\n    - text: Reported POS settlement\n    - strong: \u2212 Rs 180,000\n  - paragraph:\n    - text: Expected cash\n    - strong: Rs 2,280,000\n  - paragraph:\n    - text: Cash handed over\n    - strong: Rs 2,280,000\n  - paragraph:\n    - text: Cash variance\n    - strong: Rs -2,400\n  - heading \"Supporting evidence\" [level=3]\n  - text: Review notes\n  - textbox \"Review notes\":\n    - /placeholder: Document findings and follow-up for any variance.\n  - checkbox \"I reviewed the evidence and recorded any unresolved discrepancies.\"\n  - text: I reviewed the evidence and recorded any unresolved discrepancies.\n  - button \"Complete owner review\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "review",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:23:19.467Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/mobile-390x844/review-viewport.png",
+        "full": "screenshots/owner/shifts/mobile-390x844/review-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1892,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register",
+          "Shift reconciliation",
+          "Sample shift 10",
+          "Supporting evidence"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "review",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:23:20.270Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/mobile-320x640/review-viewport.png",
+        "full": "screenshots/owner/shifts/mobile-320x640/review-full.png"
+      },
+      "geometry": {
+        "width": 370,
+        "height": 740,
+        "documentWidth": 370,
+        "documentHeight": 1910,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register",
+          "Shift reconciliation",
+          "Sample shift 10",
+          "Supporting evidence"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "manage-vehicles",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:23:52.200Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/desktop-1440x900/manage-vehicles-viewport.png",
+        "full": "screenshots/owner/credit/desktop-1440x900/manage-vehicles-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1353,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Vehicles & QR credentials",
+          "Rs 480,000"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "Disable vehicle authorization",
+            "width": 118,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / CREDIT",
+        "Credit, without the paper trail.",
+        "Vehicle-authorized fuel, controlled limits, and an accountable ledger.",
+        "Corporate accounts",
+        "SAMPLE - Atlas Logistics",
+        "SAMPLE - Metro Transport",
+        "SAMPLE - Coastline Textiles",
+        "Digital parchi ledger",
+        "Amounts are calculated using the open shift\u2019s locked price.",
+        "No paper. No guesswork.Recorded credit fills appear here once your first parchi is submitted.",
+        "No paper. No guesswork.",
+        "Recorded credit fills appear here once your first parchi is submitted.",
+        "Vehicles & QR credentials",
+        "Real records. Clear accountability.",
+        "Rs 480,000"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Vehicles & QR credentials\":\n  - heading \"Vehicles & QR credentials\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - text: SAMPLE - Atlas Logistics\n  - heading \"Rs 480,000\" [level=2]\n  - text: of Rs 1,500,000 credit limit\n  - button \"Add vehicle\":\n    - img\n    - text: Add vehicle\n  - link \"Download account statement PDF\":\n    - /url: /api/documents/statement/8dfa6f17-12f0-4346-8ee7-3bd3670c8559\n    - img\n    - text: Download account statement PDF\n  - img\n  - strong: SAMPLE-KHI-9921\n  - text: HSD \u00b7 Max 200 L / fill \u00b7 Active\n  - button \"QR\":\n    - img\n    - text: QR\n  - button \"Disable vehicle authorization\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "manage-vehicles",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:23:53.078Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-390x844/manage-vehicles-viewport.png",
+        "full": "screenshots/owner/credit/mobile-390x844/manage-vehicles-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2500,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Vehicles & QR credentials",
+          "Rs 480,000"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "Disable vehicle authorization",
+            "width": 118,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "manage-vehicles",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:23:53.991Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-320x640/manage-vehicles-viewport.png",
+        "full": "screenshots/owner/credit/mobile-320x640/manage-vehicles-full.png"
+      },
+      "geometry": {
+        "width": 340,
+        "height": 680,
+        "documentWidth": 340,
+        "documentHeight": 2541,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Vehicles & QR credentials",
+          "Rs 480,000"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "Disable vehicle authorization",
+            "width": 118,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "payment",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:23:55.432Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/desktop-1440x900/payment-viewport.png",
+        "full": "screenshots/owner/credit/desktop-1440x900/payment-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1353,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Record a credit payment"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 73,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / CREDIT",
+        "Credit, without the paper trail.",
+        "Vehicle-authorized fuel, controlled limits, and an accountable ledger.",
+        "Corporate accounts",
+        "SAMPLE - Atlas Logistics",
+        "SAMPLE - Metro Transport",
+        "SAMPLE - Coastline Textiles",
+        "Digital parchi ledger",
+        "Amounts are calculated using the open shift\u2019s locked price.",
+        "No paper. No guesswork.Recorded credit fills appear here once your first parchi is submitted.",
+        "No paper. No guesswork.",
+        "Recorded credit fills appear here once your first parchi is submitted.",
+        "Record a credit payment",
+        "Real records. Clear accountability.",
+        "Outstanding: Rs 480,000",
+        "Amount received (PKR)",
+        "Bank / receipt reference",
+        "Record only received and independently verified funds."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "amount",
+          "label": "Amount received (PKR)",
+          "required": true,
+          "min": "0.01",
+          "max": "480000",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "reference",
+          "label": "Bank / receipt reference",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Record a credit payment\":\n  - heading \"Record a credit payment\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - paragraph:\n    - text: \"Outstanding:\"\n    - strong: Rs 480,000\n  - text: Amount received (PKR)\n  - spinbutton \"Amount received (PKR)\"\n  - text: Bank / receipt reference\n  - textbox \"Bank / receipt reference\"\n  - paragraph: Record only received and independently verified funds.\n  - button \"Record received payment\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "payment",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:23:56.257Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-390x844/payment-viewport.png",
+        "full": "screenshots/owner/credit/mobile-390x844/payment-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2500,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Record a credit payment"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "payment",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:23:57.197Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-320x640/payment-viewport.png",
+        "full": "screenshots/owner/credit/mobile-320x640/payment-full.png"
+      },
+      "geometry": {
+        "width": 334,
+        "height": 668,
+        "documentWidth": 334,
+        "documentHeight": 2541,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork.",
+          "Record a credit payment"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "new-station",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:23:59.094Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/desktop-1440x900/new-station-viewport.png",
+        "full": "screenshots/owner/settings/desktop-1440x900/new-station-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1966,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "A new station. A clearer picture."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SETTINGS",
+        "Make this workspace yours.",
+        "Station equipment, people, and access. Set up with care.",
+        "Station location",
+        "Place the receiving pin once. Driver tracking uses this destination.",
+        "Pan and zoom, then tap to place the pin.",
+        "Station setup",
+        "A solid foundation for accurate records.",
+        "Nozzle mapping",
+        "Readings flow into the correct tank.",
+        "People & access",
+        "Owner controls. Focused Munshi access.",
+        "Your workspace, clearly separated.Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "A new station. A clearer picture.",
+        "Real records. Clear accountability.",
+        "Station name",
+        "Oil marketing companySelect oil marketing companyPSOPARCO GunvorWafi / ShellAPLGOOther",
+        "City"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "name",
+          "label": "Station name",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "omc",
+          "label": "Oil marketing companySelect oil marketing companyPSOPARCO GunvorWafi / ShellAPLGOOther",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "city",
+          "label": "City",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"A new station. A clearer picture.\":\n  - heading \"A new station. A clearer picture.\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - text: Station name\n  - textbox \"Station name\":\n    - /placeholder: e.g. Your station name\n  - text: Oil marketing company\n  - combobox \"Oil marketing company\":\n    - option \"Select oil marketing company\" [disabled] [selected]\n    - option \"PSO\"\n    - option \"PARCO Gunvor\"\n    - option \"Wafi / Shell\"\n    - option \"APL\"\n    - option \"GO\"\n    - option \"Other\"\n  - text: City\n  - textbox \"City\":\n    - /placeholder: e.g. Karachi\n  - button \"Add station\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "new-station",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:00.468Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-390x844/new-station-viewport.png",
+        "full": "screenshots/owner/settings/mobile-390x844/new-station-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2473,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "A new station. A clearer picture."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "new-station",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:01.350Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-320x640/new-station-viewport.png",
+        "full": "screenshots/owner/settings/mobile-320x640/new-station-full.png"
+      },
+      "geometry": {
+        "width": 348,
+        "height": 696,
+        "documentWidth": 348,
+        "documentHeight": 2679,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "A new station. A clearer picture."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "tank",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:03.255Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/desktop-1440x900/tank-viewport.png",
+        "full": "screenshots/owner/settings/desktop-1440x900/tank-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1966,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Configure an underground tank"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SETTINGS",
+        "Make this workspace yours.",
+        "Station equipment, people, and access. Set up with care.",
+        "Station location",
+        "Place the receiving pin once. Driver tracking uses this destination.",
+        "Pan and zoom, then tap to place the pin.",
+        "Station setup",
+        "A solid foundation for accurate records.",
+        "Nozzle mapping",
+        "Readings flow into the correct tank.",
+        "People & access",
+        "Owner controls. Focused Munshi access.",
+        "Your workspace, clearly separated.Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Configure an underground tank",
+        "Real records. Clear accountability.",
+        "Tank name",
+        "Fuel gradeSelect fuel gradeMS \u00b7 PetrolHSD \u00b7 Diesel",
+        "Capacity (litres)",
+        "Current dip (mm)",
+        "Certified calibration chart (CSV)",
+        "Millimetres, litres",
+        "Use the tank\u2019s certified chart. Values between chart points use linear interpolation. Out-of-range dips are rejected; no generic cylinder estimate is substituted."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "name",
+          "label": "Tank name",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "grade",
+          "label": "Fuel gradeSelect fuel gradeMS \u00b7 PetrolHSD \u00b7 Diesel",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "capacity",
+          "label": "Capacity (litres)",
+          "required": true,
+          "min": "1",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "dip",
+          "label": "Current dip (mm)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "file",
+          "name": "",
+          "label": "Certified calibration chart (CSV)",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "",
+          "label": "Millimetres, litres",
+          "required": true,
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Configure an underground tank\":\n  - heading \"Configure an underground tank\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - text: Tank name\n  - textbox \"Tank name\":\n    - /placeholder: e.g. Petrol tank 01\n  - text: Fuel grade\n  - combobox \"Fuel grade\":\n    - option \"Select fuel grade\" [disabled] [selected]\n    - option \"MS \u00b7 Petrol\"\n    - option \"HSD \u00b7 Diesel\"\n  - text: Capacity (litres)\n  - spinbutton \"Capacity (litres)\"\n  - text: Current dip (mm)\n  - spinbutton \"Current dip (mm)\"\n  - text: Certified calibration chart (CSV)\n  - button \"Certified calibration chart (CSV)\"\n  - text: Millimetres, litres\n  - textbox \"Millimetres, litres\":\n    - /placeholder: \"mm,liters\\nPaste values from your certified tank chart\"\n  - text: Use the tank\u2019s certified chart. Values between chart points use linear interpolation. Out-of-range dips are rejected; no generic cylinder estimate is substituted.\n  - button \"Save calibrated tank\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "tank",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:04.589Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-390x844/tank-viewport.png",
+        "full": "screenshots/owner/settings/mobile-390x844/tank-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2473,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Configure an underground tank"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "tank",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:05.631Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-320x640/tank-viewport.png",
+        "full": "screenshots/owner/settings/mobile-320x640/tank-full.png"
+      },
+      "geometry": {
+        "width": 348,
+        "height": 696,
+        "documentWidth": 348,
+        "documentHeight": 2679,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Configure an underground tank"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "nozzle",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:07.251Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/desktop-1440x900/nozzle-viewport.png",
+        "full": "screenshots/owner/settings/desktop-1440x900/nozzle-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1966,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Connect a nozzle"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SETTINGS",
+        "Make this workspace yours.",
+        "Station equipment, people, and access. Set up with care.",
+        "Station location",
+        "Place the receiving pin once. Driver tracking uses this destination.",
+        "Pan and zoom, then tap to place the pin.",
+        "Station setup",
+        "A solid foundation for accurate records.",
+        "Nozzle mapping",
+        "Readings flow into the correct tank.",
+        "People & access",
+        "Owner controls. Focused Munshi access.",
+        "Your workspace, clearly separated.Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Connect a nozzle",
+        "Real records. Clear accountability.",
+        "Nozzle name",
+        "Source tankSelect source tankPremier petrol \u00b7 MSHigh-speed diesel \u00b7 HSD",
+        "Current totalizer (litres)",
+        "Equipment changes are blocked while a shift is open."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "name",
+          "label": "Nozzle name",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "tank_id",
+          "label": "Source tankSelect source tankPremier petrol \u00b7 MSHigh-speed diesel \u00b7 HSD",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "totalizer",
+          "label": "Current totalizer (litres)",
+          "required": true,
+          "min": "0",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Connect a nozzle\":\n  - heading \"Connect a nozzle\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - text: Nozzle name\n  - textbox \"Nozzle name\":\n    - /placeholder: e.g. Nozzle 01\n  - text: Source tank\n  - combobox \"Source tank\":\n    - option \"Select source tank\" [disabled] [selected]\n    - option \"Premier petrol \u00b7 MS\"\n    - option \"High-speed diesel \u00b7 HSD\"\n  - text: Current totalizer (litres)\n  - spinbutton \"Current totalizer (litres)\"\n  - paragraph: Equipment changes are blocked while a shift is open.\n  - button \"Add nozzle\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "nozzle",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:08.219Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-390x844/nozzle-viewport.png",
+        "full": "screenshots/owner/settings/mobile-390x844/nozzle-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2473,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Connect a nozzle"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "nozzle",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:09.104Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-320x640/nozzle-viewport.png",
+        "full": "screenshots/owner/settings/mobile-320x640/nozzle-full.png"
+      },
+      "geometry": {
+        "width": 348,
+        "height": 696,
+        "documentWidth": 348,
+        "documentHeight": 2679,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Connect a nozzle"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "price",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:10.876Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/desktop-1440x900/price-viewport.png",
+        "full": "screenshots/owner/settings/desktop-1440x900/price-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1966,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Record a verified fuel price"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 73,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SETTINGS",
+        "Make this workspace yours.",
+        "Station equipment, people, and access. Set up with care.",
+        "Station location",
+        "Place the receiving pin once. Driver tracking uses this destination.",
+        "Pan and zoom, then tap to place the pin.",
+        "Station setup",
+        "A solid foundation for accurate records.",
+        "Nozzle mapping",
+        "Readings flow into the correct tank.",
+        "People & access",
+        "Owner controls. Focused Munshi access.",
+        "Your workspace, clearly separated.Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Record a verified fuel price",
+        "Real records. Clear accountability.",
+        "Fuel gradeSelect fuel gradeMS \u00b7 PetrolHSD \u00b7 Diesel",
+        "Retail price (PKR / L)",
+        "Dealer margin (PKR / L)",
+        "Thermal coefficient (per \u00b0C)",
+        "Effective time (your device\u2019s local time)",
+        "Source / notification reference",
+        "Enter a coefficient approved for the fuel and measurement standard in use. The app calculates a thermal allowance; it does not certify legal entitlement to a deduction. Close any affected shift before changing its price."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "grade",
+          "label": "Fuel gradeSelect fuel gradeMS \u00b7 PetrolHSD \u00b7 Diesel",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "price",
+          "label": "Retail price (PKR / L)",
+          "required": true,
+          "min": "0.01",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "margin",
+          "label": "Dealer margin (PKR / L)",
+          "required": true,
+          "min": "0.01",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "beta",
+          "label": "Thermal coefficient (per \u00b0C)",
+          "required": true,
+          "min": "0",
+          "max": "0.01",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "datetime-local",
+          "name": "effective_at",
+          "label": "Effective time (your device\u2019s local time)",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "source",
+          "label": "Source / notification reference",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Record a verified fuel price\":\n  - heading \"Record a verified fuel price\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - text: Fuel grade\n  - combobox \"Fuel grade\":\n    - option \"Select fuel grade\" [disabled] [selected]\n    - option \"MS \u00b7 Petrol\"\n    - option \"HSD \u00b7 Diesel\"\n  - text: Retail price (PKR / L)\n  - spinbutton \"Retail price (PKR / L)\"\n  - text: Dealer margin (PKR / L)\n  - spinbutton \"Dealer margin (PKR / L)\"\n  - text: Thermal coefficient (per \u00b0C)\n  - spinbutton \"Thermal coefficient (per \u00b0C)\"\n  - text: Effective time (your device\u2019s local time)\n  - textbox \"Effective time (your device\u2019s local time)\": 2026-11-09T12:24\n  - text: Source / notification reference\n  - textbox \"Source / notification reference\":\n    - /placeholder: Verified notification reference\n  - text: Enter a coefficient approved for the fuel and measurement standard in use. The app calculates a thermal allowance; it does not certify legal entitlement to a deduction. Close any affected shift before changing its price.\n  - button \"Record fuel price\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "price",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:11.928Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-390x844/price-viewport.png",
+        "full": "screenshots/owner/settings/mobile-390x844/price-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2473,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Record a verified fuel price"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "price",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:13.101Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-320x640/price-viewport.png",
+        "full": "screenshots/owner/settings/mobile-320x640/price-full.png"
+      },
+      "geometry": {
+        "width": 342,
+        "height": 684,
+        "documentWidth": 342,
+        "documentHeight": 2679,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Record a verified fuel price"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "invite",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:14.743Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/desktop-1440x900/invite-viewport.png",
+        "full": "screenshots/owner/settings/desktop-1440x900/invite-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1966,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Give your Munshi the right access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SETTINGS",
+        "Make this workspace yours.",
+        "Station equipment, people, and access. Set up with care.",
+        "Station location",
+        "Place the receiving pin once. Driver tracking uses this destination.",
+        "Pan and zoom, then tap to place the pin.",
+        "Station setup",
+        "A solid foundation for accurate records.",
+        "Nozzle mapping",
+        "Readings flow into the correct tank.",
+        "People & access",
+        "Owner controls. Focused Munshi access.",
+        "Your workspace, clearly separated.Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Give your Munshi the right access",
+        "Authorize an email address. Your Munshi signs up with that exact email and confirms it to receive access.",
+        "Munshi\u2019s full name",
+        "Munshi\u2019s email address",
+        "Access is restricted to Clifton Petroleum - Sample. No revenue ledger, calibration charts, or variance formulas are exposed. No invitation email is sent by this action; share the sign-in address with your team."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "name",
+          "label": "Munshi\u2019s full name",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 250,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "email",
+          "name": "email",
+          "label": "Munshi\u2019s email address",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Give your Munshi the right access\":\n  - heading \"Give your Munshi the right access\" [level=2]\n  - paragraph: Authorize an email address. Your Munshi signs up with that exact email and confirms it to receive access.\n  - button \"Close dialog\":\n    - img\n  - text: Munshi\u2019s full name\n  - textbox \"Munshi\u2019s full name\"\n  - text: Munshi\u2019s email address\n  - textbox \"Munshi\u2019s email address\"\n  - img\n  - text: Access is restricted to Clifton Petroleum - Sample. No revenue ledger, calibration charts, or variance formulas are exposed. No invitation email is sent by this action; share the sign-in address with your team.\n  - button \"Authorize this email\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "invite",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:15.737Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-390x844/invite-viewport.png",
+        "full": "screenshots/owner/settings/mobile-390x844/invite-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2473,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Give your Munshi the right access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "invite",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:16.636Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-320x640/invite-viewport.png",
+        "full": "screenshots/owner/settings/mobile-320x640/invite-full.png"
+      },
+      "geometry": {
+        "width": 348,
+        "height": 696,
+        "documentWidth": 348,
+        "documentHeight": 2679,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Give your Munshi the right access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "revoke",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:18.286Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/desktop-1440x900/revoke-viewport.png",
+        "full": "screenshots/owner/settings/desktop-1440x900/revoke-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1966,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Revoke Munshi access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SETTINGS",
+        "Make this workspace yours.",
+        "Station equipment, people, and access. Set up with care.",
+        "Station location",
+        "Place the receiving pin once. Driver tracking uses this destination.",
+        "Pan and zoom, then tap to place the pin.",
+        "Station setup",
+        "A solid foundation for accurate records.",
+        "Nozzle mapping",
+        "Readings flow into the correct tank.",
+        "People & access",
+        "Owner controls. Focused Munshi access.",
+        "Your workspace, clearly separated.Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Revoke Munshi access",
+        "Real records. Clear accountability.",
+        "Adeel - Demo will lose workspace access immediately. Their submitted records remain in the audit trail."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Revoke Munshi access\":\n  - heading \"Revoke Munshi access\" [level=2]\n  - paragraph: Real records. Clear accountability.\n  - button \"Close dialog\":\n    - img\n  - paragraph: Adeel - Demo will lose workspace access immediately. Their submitted records remain in the audit trail.\n  - button \"Revoke access\"",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "revoke",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:19.226Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-390x844/revoke-viewport.png",
+        "full": "screenshots/owner/settings/mobile-390x844/revoke-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2473,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Revoke Munshi access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "revoke",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:20.056Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-320x640/revoke-viewport.png",
+        "full": "screenshots/owner/settings/mobile-320x640/revoke-full.png"
+      },
+      "geometry": {
+        "width": 348,
+        "height": 696,
+        "documentWidth": 348,
+        "documentHeight": 2679,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Revoke Munshi access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shell",
+      "state": "help",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:21.802Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shell/desktop-1440x900/help-viewport.png",
+        "full": "screenshots/owner/shell/desktop-1440x900/help-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1966,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "A good start makes every shift easier."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SETTINGS",
+        "Make this workspace yours.",
+        "Station equipment, people, and access. Set up with care.",
+        "Station location",
+        "Place the receiving pin once. Driver tracking uses this destination.",
+        "Pan and zoom, then tap to place the pin.",
+        "Station setup",
+        "A solid foundation for accurate records.",
+        "Nozzle mapping",
+        "Readings flow into the correct tank.",
+        "People & access",
+        "Owner controls. Focused Munshi access.",
+        "Your workspace, clearly separated.Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "A good start makes every shift easier.",
+        "Your PumpShield setup guide",
+        "Owned-truck hardware integrations, automated WhatsApp, and automated OCR are not active. Contractor phone tracking is available through an expiring driver link. Evidence is captured directly and measurements are entered by your team."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"A good start makes every shift easier.\":\n  - heading \"A good start makes every shift easier.\" [level=2]\n  - paragraph: Your PumpShield setup guide\n  - button \"Close dialog\":\n    - img\n  - list:\n    - listitem: Add a station in Settings.\n    - listitem: Add tanks with certified calibration charts, then map nozzles.\n    - listitem: Enter current prices from your verified source.\n    - listitem: Authorize a Munshi\u2019s email. They create and confirm their account to join.\n    - listitem: Open a shift. Capture real evidence when closing or auditing a delivery.\n    - listitem: Review discrepancies before approving. A variance is a reason to investigate.\n  - text: Owned-truck hardware integrations, automated WhatsApp, and automated OCR are not active. Contractor phone tracking is available through an expiring driver link. Evidence is captured directly and measurements are entered by your team.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shell",
+      "state": "help",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:22.925Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shell/mobile-390x844/help-viewport.png",
+        "full": "screenshots/owner/shell/mobile-390x844/help-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2473,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "A good start makes every shift easier."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shell",
+      "state": "help",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:23.792Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shell/mobile-320x640/help-viewport.png",
+        "full": "screenshots/owner/shell/mobile-320x640/help-full.png"
+      },
+      "geometry": {
+        "width": 348,
+        "height": 696,
+        "documentWidth": 348,
+        "documentHeight": 2679,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "A good start makes every shift easier."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shell",
+      "state": "review-queue",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:25.803Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shell/desktop-1440x900/review-queue-viewport.png",
+        "full": "screenshots/owner/shell/desktop-1440x900/review-queue-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1966,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Your review queue"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 73,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SETTINGS",
+        "Make this workspace yours.",
+        "Station equipment, people, and access. Set up with care.",
+        "Station location",
+        "Place the receiving pin once. Driver tracking uses this destination.",
+        "Pan and zoom, then tap to place the pin.",
+        "Station setup",
+        "A solid foundation for accurate records.",
+        "Nozzle mapping",
+        "Readings flow into the correct tank.",
+        "People & access",
+        "Owner controls. Focused Munshi access.",
+        "Your workspace, clearly separated.Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Your review queue",
+        "Decisions that need an owner\u2019s attention."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Your review queue\":\n  - heading \"Your review queue\" [level=2]\n  - paragraph: Decisions that need an owner\u2019s attention.\n  - button \"Close dialog\":\n    - img\n  - button \"Sample shift 10 Shift reconciliation\":\n    - img\n    - strong: Sample shift 10\n    - text: Shift reconciliation\n    - img",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shell",
+      "state": "review-queue",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:26.777Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shell/mobile-390x844/review-queue-viewport.png",
+        "full": "screenshots/owner/shell/mobile-390x844/review-queue-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2473,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Your review queue"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shell",
+      "state": "review-queue",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:27.712Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shell/mobile-320x640/review-queue-viewport.png",
+        "full": "screenshots/owner/shell/mobile-320x640/review-queue-full.png"
+      },
+      "geometry": {
+        "width": 348,
+        "height": 696,
+        "documentWidth": 348,
+        "documentHeight": 2679,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access",
+          "Your review queue"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:29.659Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1440x900/create-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1440x900/create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "New discrepancy case"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Discrepancy cases",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Include cancelled",
+        "open",
+        "investigating",
+        "Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.",
+        "resolved",
+        "Synthetic test of case creation, decision history, and keyboard-accessible controls.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "New discrepancy case",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Title",
+        "Details",
+        "Assigned toChoose a personAbdullah - DemoAdeel - Demo",
+        "PriorityNormalHighUrgent",
+        "Due at (local time)",
+        "Related closed shift (optional)No linked shiftSample shift 10 \u00b7 8 Nov, 06:52 amSample shift 9 \u00b7 7 Nov, 06:52 amSample shift 8 \u00b7 6 Nov, 06:52 amSample shift 7 \u00b7 5 Nov, 06:52 amSample shift 6 \u00b7 4 Nov, 06:52 amSample shift 5 \u00b7 3 Nov, 06:52 amSample shift 4 \u00b7 2 Nov, 06:52 amSample shift 3 \u00b7 1 Nov, 06:52 amSample shift 2 \u00b7 31 Oct, 06:52 amSample shift 1 \u00b7 30 Oct, 06:52 am",
+        "Related delivery (optional)No linked deliverySAMPLE-OMC-1042SAMPLE-OMC-1043SAMPLE-OMC-1044"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "title",
+          "label": "Title",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 3,
+          "maxLength": 140,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "description",
+          "label": "Details",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "assigned_to",
+          "label": "Assigned toChoose a personAbdullah - DemoAdeel - Demo",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "priority",
+          "label": "PriorityNormalHighUrgent",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "datetime-local",
+          "name": "due_at",
+          "label": "Due at (local time)",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "shift_id",
+          "label": "Related closed shift (optional)No linked shiftSample shift 10 \u00b7 8 Nov, 06:52 amSample shift 9 \u00b7 7 Nov, 06:52 amSample shift 8 \u00b7 6 Nov, 06:52 amSample shift 7 \u00b7 5 Nov, 06:52 amSample shift 6 \u00b7 4 Nov, 06:52 amSample shift 5 \u00b7 3 Nov, 06:52 amSample shift 4 \u00b7 2 Nov, 06:52 amSample shift 3 \u00b7 1 Nov, 06:52 amSample shift 2 \u00b7 31 Oct, 06:52 amSample shift 1 \u00b7 30 Oct, 06:52 am",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "delivery_id",
+          "label": "Related delivery (optional)No linked deliverySAMPLE-OMC-1042SAMPLE-OMC-1043SAMPLE-OMC-1044",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"New discrepancy case\":\n  - heading \"New discrepancy case\" [level=2]\n  - paragraph: Investigate shortages and cash differences. Keep the decision with the evidence.\n  - button \"Close dialog\":\n    - img\n  - text: Title\n  - textbox \"Title\":\n    - /placeholder: A clear, specific title\n  - text: Details\n  - textbox \"Details\":\n    - /placeholder: Include what happened, the next action, and any relevant evidence references.\n  - text: Assigned to\n  - combobox \"Assigned to\":\n    - option \"Choose a person\" [selected]\n    - option \"Abdullah - Demo\"\n    - option \"Adeel - Demo\"\n  - text: Priority\n  - combobox \"Priority\":\n    - option \"Normal\" [selected]\n    - option \"High\"\n    - option \"Urgent\"\n  - text: Due at (local time)\n  - textbox \"Due at (local time)\"\n  - text: Related closed shift (optional)\n  - combobox \"Related closed shift (optional)\":\n    - option \"No linked shift\" [selected]\n    - option \"Sample shift 10 \u00b7 8 Nov, 06:52 am\"\n    - option \"Sample shift 9 \u00b7 7 Nov, 06:52 am\"\n    - option \"Sample shift 8 \u00b7 6 Nov, 06:52 am\"\n    - option \"Sample shift 7 \u00b7 5 Nov, 06:52 am\"\n    - option \"Sample shift 6 \u00b7 4 Nov, 06:52 am\"\n    - option \"Sample shift 5 \u00b7 3 Nov, 06:52 am\"\n    - option \"Sample shift 4 \u00b7 2 Nov, 06:52 am\"\n    - option \"Sample shift 3 \u00b7 1 Nov, 06:52 am\"\n    - option \"Sample shift 2 \u00b7 31 Oct, 06:52 am\"\n    - option \"Sample shift 1 \u00b7 30 Oct, 06:52 am\"\n  - text: Related delivery (optional)\n  - combobox \"Related delivery (optional)\":\n    - option \"No linked delivery\" [selected]\n    - option \"SAMPLE-OMC-1042\"\n    - option \"SAMPLE-OMC-1043\"\n    - option \"SAMPLE-OMC-1044\"\n  - button \"Create record\":\n    - text: Create record\n    - img",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:30.728Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-390x844/create-viewport.png",
+        "full": "screenshots/owner/cases/mobile-390x844/create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "New discrepancy case"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "create",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:31.483Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-320x640/create-viewport.png",
+        "full": "screenshots/owner/cases/mobile-320x640/create-full.png"
+      },
+      "geometry": {
+        "width": 358,
+        "height": 716,
+        "documentWidth": 358,
+        "documentHeight": 1456,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "New discrepancy case"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "detail",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:32.960Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1440x900/detail-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1440x900/detail-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "Sample \u00b7 Review the delivery variance",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Discrepancy cases",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Include cancelled",
+        "open",
+        "investigating",
+        "Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.",
+        "resolved",
+        "Synthetic test of case creation, decision history, and keyboard-accessible controls.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "Sample \u00b7 Review the delivery variance",
+        "Discrepancy cases \u00b7 investigating \u00b7 Abdullah - Demo",
+        "Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.",
+        "Next action",
+        "ActionChoose an actionresolvedCancel with a reason",
+        "Decision / completion note",
+        "Record history",
+        "Loading record history\ufffd",
+        "Add to the record"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "status",
+          "label": "ActionChoose an actionresolvedCancel with a reason",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Decision / completion note",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Add to the record",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 4000,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Sample \u00b7 Review the delivery variance\":\n  - heading \"Sample \u00b7 Review the delivery variance\" [level=2]\n  - paragraph: Discrepancy cases \u00b7 investigating \u00b7 Abdullah - Demo\n  - button \"Close dialog\":\n    - img\n  - paragraph: Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.\n  - term: Created by\n  - definition: Abdullah - Demo\n  - term: Created\n  - definition: 8 Nov, 09:41 pm\n  - heading \"Next action\" [level=3]\n  - text: Action\n  - combobox \"Action\":\n    - option \"Choose an action\" [disabled] [selected]\n    - option \"resolved\"\n    - option \"Cancel with a reason\"\n  - text: Decision / completion note\n  - textbox \"Decision / completion note\":\n    - /placeholder: Record the decision or completed work (required to resolve, complete, or cancel).\n  - button \"Confirm action\":\n    - text: Confirm action\n    - img\n  - heading \"Record history\" [level=3]\n  - status: Loading record history\ufffd\n  - list\n  - text: Add to the record\n  - textbox \"Add to the record\"\n  - button \"Add note\":\n    - img\n    - text: Add note",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "detail",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:33.803Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-390x844/detail-viewport.png",
+        "full": "screenshots/owner/cases/mobile-390x844/detail-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "Sample \u00b7 Review the delivery variance",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "detail",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:34.571Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-320x640/detail-viewport.png",
+        "full": "screenshots/owner/cases/mobile-320x640/detail-full.png"
+      },
+      "geometry": {
+        "width": 358,
+        "height": 716,
+        "documentWidth": 358,
+        "documentHeight": 1456,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "Sample \u00b7 Review the delivery variance",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:36.176Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/desktop-1440x900/create-viewport.png",
+        "full": "screenshots/owner/indents/desktop-1440x900/create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received",
+          "New indent"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Fuel indents",
+        "Request supply, authorise the order, and connect it to a verified delivery.",
+        "Include cancelled",
+        "requested",
+        "Synthetic procurement request. Link a real Design Lab delivery when dispatch is confirmed.",
+        "approved",
+        "dispatched",
+        "received",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "New indent",
+        "Request supply, authorise the order, and connect it to a verified delivery.",
+        "Title",
+        "Details",
+        "Assigned toChoose a personAbdullah - DemoAdeel - Demo",
+        "PriorityNormalHighUrgent",
+        "Due at (local time)",
+        "Supplier / OMC",
+        "Fuel gradeMS \u00b7 PetrolHSD \u00b7 Diesel",
+        "Requested litres"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "title",
+          "label": "Title",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 3,
+          "maxLength": 140,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "description",
+          "label": "Details",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "assigned_to",
+          "label": "Assigned toChoose a personAbdullah - DemoAdeel - Demo",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "priority",
+          "label": "PriorityNormalHighUrgent",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "datetime-local",
+          "name": "due_at",
+          "label": "Due at (local time)",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "supplier",
+          "label": "Supplier / OMC",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 2,
+          "maxLength": 140,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "grade",
+          "label": "Fuel gradeMS \u00b7 PetrolHSD \u00b7 Diesel",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "name": "liters",
+          "label": "Requested litres",
+          "required": true,
+          "min": "1",
+          "max": "1000000",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"New indent\":\n  - heading \"New indent\" [level=2]\n  - paragraph: Request supply, authorise the order, and connect it to a verified delivery.\n  - button \"Close dialog\":\n    - img\n  - text: Title\n  - textbox \"Title\":\n    - /placeholder: A clear, specific title\n  - text: Details\n  - textbox \"Details\":\n    - /placeholder: Include what happened, the next action, and any relevant evidence references.\n  - text: Assigned to\n  - combobox \"Assigned to\":\n    - option \"Choose a person\" [selected]\n    - option \"Abdullah - Demo\"\n    - option \"Adeel - Demo\"\n  - text: Priority\n  - combobox \"Priority\":\n    - option \"Normal\" [selected]\n    - option \"High\"\n    - option \"Urgent\"\n  - text: Due at (local time)\n  - textbox \"Due at (local time)\"\n  - text: Supplier / OMC\n  - textbox \"Supplier / OMC\"\n  - text: Fuel grade\n  - combobox \"Fuel grade\":\n    - option \"MS \u00b7 Petrol\" [selected]\n    - option \"HSD \u00b7 Diesel\"\n  - text: Requested litres\n  - spinbutton \"Requested litres\"\n  - button \"Create record\":\n    - text: Create record\n    - img",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:37.062Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/mobile-390x844/create-viewport.png",
+        "full": "screenshots/owner/indents/mobile-390x844/create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1353,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received",
+          "New indent"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "create",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:37.819Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/mobile-320x640/create-viewport.png",
+        "full": "screenshots/owner/indents/mobile-320x640/create-full.png"
+      },
+      "geometry": {
+        "width": 358,
+        "height": 716,
+        "documentWidth": 358,
+        "documentHeight": 1407,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received",
+          "New indent"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "detail",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:39.075Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/desktop-1440x900/detail-viewport.png",
+        "full": "screenshots/owner/indents/desktop-1440x900/detail-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received",
+          "Sample \u00b7 Next MS replenishment",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Fuel indents",
+        "Request supply, authorise the order, and connect it to a verified delivery.",
+        "Include cancelled",
+        "requested",
+        "Synthetic procurement request. Link a real Design Lab delivery when dispatch is confirmed.",
+        "approved",
+        "dispatched",
+        "received",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "Sample \u00b7 Next MS replenishment",
+        "Fuel indents \u00b7 requested \u00b7 Adeel - Demo",
+        "Synthetic procurement request. Link a real Design Lab delivery when dispatch is confirmed.",
+        "Next action",
+        "ActionChoose an actionapprovedCancel with a reason",
+        "Decision / completion note",
+        "Record history",
+        "Loading record history\ufffd",
+        "Add to the record"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "status",
+          "label": "ActionChoose an actionapprovedCancel with a reason",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Decision / completion note",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Add to the record",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 4000,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Sample \u00b7 Next MS replenishment\":\n  - heading \"Sample \u00b7 Next MS replenishment\" [level=2]\n  - paragraph: Fuel indents \u00b7 requested \u00b7 Adeel - Demo\n  - button \"Close dialog\":\n    - img\n  - paragraph: Synthetic procurement request. Link a real Design Lab delivery when dispatch is confirmed.\n  - term: Created by\n  - definition: Abdullah - Demo\n  - term: Created\n  - definition: 8 Nov, 09:41 pm\n  - term: Requested\n  - definition: 20,000 L \u00b7 MS \u00b7 Sample OMC\n  - heading \"Next action\" [level=3]\n  - text: Action\n  - combobox \"Action\":\n    - option \"Choose an action\" [disabled] [selected]\n    - option \"approved\"\n    - option \"Cancel with a reason\"\n  - text: Decision / completion note\n  - textbox \"Decision / completion note\":\n    - /placeholder: Record the decision or completed work (required to resolve, complete, or cancel).\n  - button \"Confirm action\":\n    - text: Confirm action\n    - img\n  - heading \"Record history\" [level=3]\n  - status: Loading record history\ufffd\n  - list\n  - text: Add to the record\n  - textbox \"Add to the record\"\n  - button \"Add note\":\n    - img\n    - text: Add note",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "detail",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:39.883Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/mobile-390x844/detail-viewport.png",
+        "full": "screenshots/owner/indents/mobile-390x844/detail-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1353,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received",
+          "Sample \u00b7 Next MS replenishment",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "detail",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:40.678Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/mobile-320x640/detail-viewport.png",
+        "full": "screenshots/owner/indents/mobile-320x640/detail-full.png"
+      },
+      "geometry": {
+        "width": 352,
+        "height": 704,
+        "documentWidth": 352,
+        "documentHeight": 1407,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received",
+          "Sample \u00b7 Next MS replenishment",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:42.715Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/desktop-1440x900/create-viewport.png",
+        "full": "screenshots/owner/maintenance/desktop-1440x900/create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed",
+          "New maintenance"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 73,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Maintenance",
+        "Plan equipment work and record what was done, by whom, and when.",
+        "Include cancelled",
+        "scheduled",
+        "Synthetic maintenance task. Inspect for leaks and record the work completed.",
+        "in progress",
+        "completed",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "New maintenance",
+        "Plan equipment work and record what was done, by whom, and when.",
+        "Title",
+        "Details",
+        "Assigned toChoose a personAbdullah - DemoAdeel - Demo",
+        "PriorityNormalHighUrgent",
+        "Due at (local time)",
+        "Equipment reference"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "title",
+          "label": "Title",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 3,
+          "maxLength": 140,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "description",
+          "label": "Details",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "assigned_to",
+          "label": "Assigned toChoose a personAbdullah - DemoAdeel - Demo",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "priority",
+          "label": "PriorityNormalHighUrgent",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "datetime-local",
+          "name": "due_at",
+          "label": "Due at (local time)",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "equipment",
+          "label": "Equipment reference",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 140,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"New maintenance\":\n  - heading \"New maintenance\" [level=2]\n  - paragraph: Plan equipment work and record what was done, by whom, and when.\n  - button \"Close dialog\":\n    - img\n  - text: Title\n  - textbox \"Title\":\n    - /placeholder: Calibrate MS dispenser 02\n  - text: Details\n  - textbox \"Details\":\n    - /placeholder: Include what happened, the next action, and any relevant evidence references.\n  - text: Assigned to\n  - combobox \"Assigned to\":\n    - option \"Choose a person\" [selected]\n    - option \"Abdullah - Demo\"\n    - option \"Adeel - Demo\"\n  - text: Priority\n  - combobox \"Priority\":\n    - option \"Normal\" [selected]\n    - option \"High\"\n    - option \"Urgent\"\n  - text: Due at (local time)\n  - textbox \"Due at (local time)\"\n  - text: Equipment reference\n  - textbox \"Equipment reference\":\n    - /placeholder: Tank, nozzle, dispenser, or safety equipment\n  - button \"Create record\":\n    - text: Create record\n    - img",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:43.675Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/mobile-390x844/create-viewport.png",
+        "full": "screenshots/owner/maintenance/mobile-390x844/create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed",
+          "New maintenance"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "create",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:44.647Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/mobile-320x640/create-viewport.png",
+        "full": "screenshots/owner/maintenance/mobile-320x640/create-full.png"
+      },
+      "geometry": {
+        "width": 352,
+        "height": 704,
+        "documentWidth": 352,
+        "documentHeight": 1426,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed",
+          "New maintenance"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "detail",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:46.299Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/desktop-1440x900/detail-viewport.png",
+        "full": "screenshots/owner/maintenance/desktop-1440x900/detail-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed",
+          "Sample \u00b7 Inspect dispenser seals",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 73,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Maintenance",
+        "Plan equipment work and record what was done, by whom, and when.",
+        "Include cancelled",
+        "scheduled",
+        "Synthetic maintenance task. Inspect for leaks and record the work completed.",
+        "in progress",
+        "completed",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "Sample \u00b7 Inspect dispenser seals",
+        "Maintenance \u00b7 scheduled \u00b7 Adeel - Demo",
+        "Synthetic maintenance task. Inspect for leaks and record the work completed.",
+        "Next action",
+        "ActionChoose an actionin progressCancel with a reason",
+        "Decision / completion note",
+        "Record history",
+        "Loading record history\ufffd",
+        "Add to the record"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "status",
+          "label": "ActionChoose an actionin progressCancel with a reason",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Decision / completion note",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Add to the record",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 4000,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Sample \u00b7 Inspect dispenser seals\":\n  - heading \"Sample \u00b7 Inspect dispenser seals\" [level=2]\n  - paragraph: Maintenance \u00b7 scheduled \u00b7 Adeel - Demo\n  - button \"Close dialog\":\n    - img\n  - paragraph: Synthetic maintenance task. Inspect for leaks and record the work completed.\n  - term: Created by\n  - definition: Abdullah - Demo\n  - term: Created\n  - definition: 8 Nov, 09:41 pm\n  - term: Equipment\n  - definition: MS dispenser 01\n  - heading \"Next action\" [level=3]\n  - text: Action\n  - combobox \"Action\":\n    - option \"Choose an action\" [disabled] [selected]\n    - option \"in progress\"\n    - option \"Cancel with a reason\"\n  - text: Decision / completion note\n  - textbox \"Decision / completion note\":\n    - /placeholder: Record the decision or completed work (required to resolve, complete, or cancel).\n  - button \"Confirm action\":\n    - text: Confirm action\n    - img\n  - heading \"Record history\" [level=3]\n  - status: Loading record history\ufffd\n  - list\n  - text: Add to the record\n  - textbox \"Add to the record\"\n  - button \"Add note\":\n    - img\n    - text: Add note",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "detail",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:47.257Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/mobile-390x844/detail-viewport.png",
+        "full": "screenshots/owner/maintenance/mobile-390x844/detail-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed",
+          "Sample \u00b7 Inspect dispenser seals",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "detail",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:48.223Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/mobile-320x640/detail-viewport.png",
+        "full": "screenshots/owner/maintenance/mobile-320x640/detail-full.png"
+      },
+      "geometry": {
+        "width": 358,
+        "height": 716,
+        "documentWidth": 358,
+        "documentHeight": 1426,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed",
+          "Sample \u00b7 Inspect dispenser seals",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:49.991Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/desktop-1440x900/create-viewport.png",
+        "full": "screenshots/owner/handovers/desktop-1440x900/create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "New handover"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Shift handovers",
+        "Leave a clear briefing. The named recipient acknowledges it personally.",
+        "Include cancelled",
+        "pending",
+        "accepted",
+        "Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "New handover",
+        "Leave a clear briefing. The named recipient acknowledges it personally.",
+        "Title",
+        "Briefing and outstanding actions",
+        "RecipientChoose a personAdeel - Demo",
+        "PriorityNormalHighUrgent",
+        "Due at (local time)",
+        "Related closed shift (optional)No linked shiftSample shift 10 \u00b7 8 Nov, 06:52 amSample shift 9 \u00b7 7 Nov, 06:52 amSample shift 8 \u00b7 6 Nov, 06:52 amSample shift 7 \u00b7 5 Nov, 06:52 amSample shift 6 \u00b7 4 Nov, 06:52 amSample shift 5 \u00b7 3 Nov, 06:52 amSample shift 4 \u00b7 2 Nov, 06:52 amSample shift 3 \u00b7 1 Nov, 06:52 amSample shift 2 \u00b7 31 Oct, 06:52 amSample shift 1 \u00b7 30 Oct, 06:52 am"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "title",
+          "label": "Title",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 3,
+          "maxLength": 140,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "description",
+          "label": "Briefing and outstanding actions",
+          "required": true,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "assigned_to",
+          "label": "RecipientChoose a personAdeel - Demo",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "priority",
+          "label": "PriorityNormalHighUrgent",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "datetime-local",
+          "name": "due_at",
+          "label": "Due at (local time)",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "shift_id",
+          "label": "Related closed shift (optional)No linked shiftSample shift 10 \u00b7 8 Nov, 06:52 amSample shift 9 \u00b7 7 Nov, 06:52 amSample shift 8 \u00b7 6 Nov, 06:52 amSample shift 7 \u00b7 5 Nov, 06:52 amSample shift 6 \u00b7 4 Nov, 06:52 amSample shift 5 \u00b7 3 Nov, 06:52 amSample shift 4 \u00b7 2 Nov, 06:52 amSample shift 3 \u00b7 1 Nov, 06:52 amSample shift 2 \u00b7 31 Oct, 06:52 amSample shift 1 \u00b7 30 Oct, 06:52 am",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"New handover\":\n  - heading \"New handover\" [level=2]\n  - paragraph: Leave a clear briefing. The named recipient acknowledges it personally.\n  - button \"Close dialog\":\n    - img\n  - text: Title\n  - textbox \"Title\":\n    - /placeholder: A clear, specific title\n  - text: Briefing and outstanding actions\n  - textbox \"Briefing and outstanding actions\":\n    - /placeholder: Include what happened, the next action, and any relevant evidence references.\n  - text: Recipient\n  - combobox \"Recipient\":\n    - option \"Choose a person\" [selected]\n    - option \"Adeel - Demo\"\n  - text: Priority\n  - combobox \"Priority\":\n    - option \"Normal\" [selected]\n    - option \"High\"\n    - option \"Urgent\"\n  - text: Due at (local time)\n  - textbox \"Due at (local time)\"\n  - text: Related closed shift (optional)\n  - combobox \"Related closed shift (optional)\":\n    - option \"No linked shift\" [selected]\n    - option \"Sample shift 10 \u00b7 8 Nov, 06:52 am\"\n    - option \"Sample shift 9 \u00b7 7 Nov, 06:52 am\"\n    - option \"Sample shift 8 \u00b7 6 Nov, 06:52 am\"\n    - option \"Sample shift 7 \u00b7 5 Nov, 06:52 am\"\n    - option \"Sample shift 6 \u00b7 4 Nov, 06:52 am\"\n    - option \"Sample shift 5 \u00b7 3 Nov, 06:52 am\"\n    - option \"Sample shift 4 \u00b7 2 Nov, 06:52 am\"\n    - option \"Sample shift 3 \u00b7 1 Nov, 06:52 am\"\n    - option \"Sample shift 2 \u00b7 31 Oct, 06:52 am\"\n    - option \"Sample shift 1 \u00b7 30 Oct, 06:52 am\"\n  - button \"Create record\":\n    - text: Create record\n    - img",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:51.227Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-390x844/create-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-390x844/create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1353,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "New handover"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "create",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:52.171Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-320x640/create-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-320x640/create-full.png"
+      },
+      "geometry": {
+        "width": 358,
+        "height": 716,
+        "documentWidth": 358,
+        "documentHeight": 1456,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "New handover"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "detail",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:24:53.536Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/desktop-1440x900/detail-viewport.png",
+        "full": "screenshots/owner/handovers/desktop-1440x900/detail-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "Sample \u00b7 Incoming shift briefing",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Shift handovers",
+        "Leave a clear briefing. The named recipient acknowledges it personally.",
+        "Include cancelled",
+        "pending",
+        "accepted",
+        "Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "Sample \u00b7 Incoming shift briefing",
+        "Shift handovers \u00b7 accepted \u00b7 Adeel - Demo",
+        "Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.",
+        "Record history",
+        "Loading record history\ufffd",
+        "Add to the record"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Add to the record",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 4000,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"Sample \u00b7 Incoming shift briefing\":\n  - heading \"Sample \u00b7 Incoming shift briefing\" [level=2]\n  - paragraph: Shift handovers \u00b7 accepted \u00b7 Adeel - Demo\n  - button \"Close dialog\":\n    - img\n  - paragraph: \"Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.\"\n  - term: Created by\n  - definition: Abdullah - Demo\n  - term: Created\n  - definition: 8 Nov, 09:41 pm\n  - heading \"Record history\" [level=3]\n  - status: Loading record history\ufffd\n  - list\n  - text: Add to the record\n  - textbox \"Add to the record\"\n  - button \"Add note\":\n    - img\n    - text: Add note",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "detail",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:24:54.367Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-390x844/detail-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-390x844/detail-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1353,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "Sample \u00b7 Incoming shift briefing",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "detail",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:24:55.124Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-320x640/detail-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-320x640/detail-full.png"
+      },
+      "geometry": {
+        "width": 352,
+        "height": 704,
+        "documentWidth": 352,
+        "documentHeight": 1456,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "Sample \u00b7 Incoming shift briefing",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 44,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "outcomes": [
+    {
+      "module": "deliveries",
+      "state": "create",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "deliveries",
+      "state": "arrival-audit",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "deliveries",
+      "state": "approved-decant",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "shifts",
+      "state": "close",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "shifts",
+      "state": "review",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "credit",
+      "state": "new-account",
+      "status": "Unverified",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'New account', exact: true })\u001b[22m\n"
+    },
+    {
+      "module": "credit",
+      "state": "manage-vehicles",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "credit",
+      "state": "payment",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "settings",
+      "state": "new-station",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "settings",
+      "state": "tank",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "settings",
+      "state": "nozzle",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "settings",
+      "state": "price",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "settings",
+      "state": "invite",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "settings",
+      "state": "revoke",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "shell",
+      "state": "help",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "shell",
+      "state": "review-queue",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "cases",
+      "state": "create",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "cases",
+      "state": "detail",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "indents",
+      "state": "create",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "indents",
+      "state": "detail",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "maintenance",
+      "state": "create",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "maintenance",
+      "state": "detail",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "handovers",
+      "state": "create",
+      "status": "Opened; no state-changing submission"
+    },
+    {
+      "module": "handovers",
+      "state": "detail",
+      "status": "Opened; no state-changing submission"
+    }
+  ]
+}

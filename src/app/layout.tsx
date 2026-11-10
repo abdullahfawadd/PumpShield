@@ -1,11 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
+import { Providers } from "./providers";
 import "./globals.css";
 import "./editorial.css";
 import "./login.css";
 import "./operations.css";
 import "./field.css";
+import "./workspace.css";
+import "./workflow-refinement.css";
+import "./overview.css";
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 export const metadata: Metadata = {
@@ -26,7 +30,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#171916",
+  themeColor: "#174C45",
 };
 export default function RootLayout({
   children,
@@ -39,8 +43,7 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        {children}
-        <Toaster position="bottom-right" richColors />
+        <Providers>{children}<Toaster position="bottom-right" richColors /></Providers>
       </body>
     </html>
   );

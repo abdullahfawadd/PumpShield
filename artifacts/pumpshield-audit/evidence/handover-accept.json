@@ -1,0 +1,350 @@
+{
+  "rows": [
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "before-accept",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T08:10:51.915Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/desktop-1440x900/before-accept-viewport.png",
+        "full": "screenshots/owner/handovers/desktop-1440x900/before-accept-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Shift handovers",
+        "Leave a clear briefing. The named recipient acknowledges it personally.",
+        "Include cancelled",
+        "pending",
+        "Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow.",
+        "accepted",
+        "Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09",
+        "Shift handovers \u00b7 pending \u00b7 Abdullah - Demo",
+        "Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow.",
+        "Next action",
+        "ActionChoose an actionacceptedCancel with a reason",
+        "Decision / completion note",
+        "Record history",
+        "Loading record history\ufffd",
+        "Add to the record"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "status",
+          "label": "ActionChoose an actionacceptedCancel with a reason",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Decision / completion note",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Add to the record",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 4000,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09\":\n  - heading \"AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09\" [level=2]\n  - paragraph: Shift handovers \u00b7 pending \u00b7 Abdullah - Demo\n  - button \"Close dialog\":\n    - img\n  - paragraph: Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow.\n  - term: Created by\n  - definition: Adeel - Demo\n  - term: Created\n  - definition: 9 Nov, 01:14 pm\n  - heading \"Next action\" [level=3]\n  - text: Action\n  - combobox \"Action\":\n    - option \"Choose an action\" [disabled] [selected]\n    - option \"accepted\"\n    - option \"Cancel with a reason\"\n  - text: Decision / completion note\n  - textbox \"Decision / completion note\":\n    - /placeholder: Record the decision or completed work (required to resolve, complete, or cancel).\n  - button \"Confirm action\":\n    - text: Confirm action\n    - img\n  - heading \"Record history\" [level=3]\n  - status: Loading record history\ufffd\n  - list\n  - text: Add to the record\n  - textbox \"Add to the record\"\n  - button \"Add note\":\n    - img\n    - text: Add note",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "before-accept",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T08:10:52.873Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-390x844/before-accept-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-390x844/before-accept-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1353,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "after-accept",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T08:10:54.375Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/desktop-1440x900/after-accept-viewport.png",
+        "full": "screenshots/owner/handovers/desktop-1440x900/after-accept-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09",
+          "Next action",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Shift handovers",
+        "Leave a clear briefing. The named recipient acknowledges it personally.",
+        "Include cancelled",
+        "pending",
+        "Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow.",
+        "accepted",
+        "Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09",
+        "Shift handovers \u00b7 pending \u00b7 Abdullah - Demo",
+        "Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow.",
+        "Next action",
+        "ActionChoose an actionacceptedCancel with a reason",
+        "Decision / completion note",
+        "Record history",
+        "Add to the record"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "status",
+          "label": "ActionChoose an actionacceptedCancel with a reason",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Decision / completion note",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "note",
+          "label": "Add to the record",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 4000,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09\":\n  - heading \"AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09\" [level=2]\n  - paragraph: Shift handovers \u00b7 pending \u00b7 Abdullah - Demo\n  - button \"Close dialog\":\n    - img\n  - paragraph: Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow.\n  - term: Created by\n  - definition: Adeel - Demo\n  - term: Created\n  - definition: 9 Nov, 01:14 pm\n  - heading \"Next action\" [level=3]\n  - text: Action\n  - combobox \"Action\":\n    - option \"Choose an action\" [disabled]\n    - option \"accepted\" [selected]\n    - option \"Cancel with a reason\"\n  - text: Decision / completion note\n  - textbox \"Decision / completion note\":\n    - /placeholder: Record the decision or completed work (required to resolve, complete, or cancel).\n    - text: Synthetic audit briefing acknowledged by the named recipient. No actual duty, stock or funds transferred.\n  - button \"Saving\u2026\" [disabled]:\n    - text: Saving\u2026\n    - img\n  - heading \"Record history\" [level=3]\n  - list:\n    - listitem:\n      - strong: created\n      - text: Adeel - Demo \ufffd 9 Nov, 01:14 pm\n  - text: Add to the record\n  - textbox \"Add to the record\"\n  - button \"Add note\" [disabled]:\n    - img\n    - text: Add note",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "after-accept",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T08:10:55.223Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-390x844/after-accept-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-390x844/after-accept-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1522,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09",
+          "Record history"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "http": 200,
+  "result": {
+    "id": "1e2a2d6e-bb46-4cce-ba4b-4113423a1223"
+  }
+}

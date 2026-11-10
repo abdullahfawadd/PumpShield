@@ -1,0 +1,198 @@
+[
+  {
+    "id": "linear",
+    "url": "https://linear.app/docs/board-layout",
+    "actualUrl": "https://linear.app/docs/board-layout",
+    "title": "Board layout \u2013 Linear Docs",
+    "images": [
+      {
+        "alt": "Linear app showing the board layout",
+        "src": "https://webassets.linear.app/images/ornj730p/production/04115ca5eb44c3c6fc38d9998e6a7af068cb8b61-3424x1920.png?w=1440&q=95&auto=format&dpr=2",
+        "width": 2880,
+        "height": 1615
+      }
+    ],
+    "interfaceImageCaptured": true,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "retool",
+    "url": "https://docs.retool.com/classic-apps/guides/data/table",
+    "actualUrl": "https://docs.retool.com/classic-apps/guides/data/table",
+    "title": "Getting started with the Table component | Retool Docs",
+    "images": [
+      {
+        "alt": "",
+        "src": "https://docs.retool.com/assets/images/retool-000387@2x-6e6320ccaad28397fbfa0624e1703ce4.png",
+        "width": 1800,
+        "height": 824
+      }
+    ],
+    "interfaceImageCaptured": true,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "pagerduty",
+    "url": "https://docs.pagerduty.com/get-started/navigate-incidents-page",
+    "actualUrl": "https://docs.pagerduty.com/get-started/navigate-incidents-page",
+    "title": "Navigate the Incidents Page | PagerDuty Docs",
+    "images": [
+      {
+        "alt": "A screenshot of the PagerDuty web app showing Incidents on all Teams",
+        "src": "https://docs.pagerduty.com/images/kb/84e213d3595ccb3c7dc8077217496283c4cc35755d2cb6ed751c0bf57cea7820-incidents.webp",
+        "width": 2826,
+        "height": 1096
+      },
+      {
+        "alt": "A screenshot of the PagerDuty web app showing incidents on all Teams",
+        "src": "https://docs.pagerduty.com/images/kb/b6f18dcf4e540ba94ce293f61c1cdb8ff86425f5bbb38cdf9f95defd8433fd9e-navigating-incidents-incidents-all-teams.webp",
+        "width": 1024,
+        "height": 181
+      },
+      {
+        "alt": "A screenshot of the PagerDuty web app showing high and low-urgency incidents",
+        "src": "https://docs.pagerduty.com/images/kb/60abf5277f5c07e9b2667ef1677699621a45d9137b9a658dcec7481c8bb688db-configurable-service-settings-low-urgency-incident.webp",
+        "width": 1812,
+        "height": 1242
+      },
+      {
+        "alt": "A screenshot of the PagerDuty web app showing Acknowledged incidents ordered with a high-urgency incident taking precedence over a low-urgency incident",
+        "src": "https://docs.pagerduty.com/images/kb/3fb4d3e2841ef45d8d6a31d6c752c3314ddfb7a479a1c1d748e0441acb766d8f-configurable-service-settings-post-ack.webp",
+        "width": 1074,
+        "height": 486
+      },
+      {
+        "alt": "A screenshot of the PagerDuty web app showing Activity over last 7 days",
+        "src": "https://docs.pagerduty.com/images/kb/333a0708c48444b75858efbcbb9a3e2e5f1d6889d242329a53831429acb467fd-navigating-the-incidents-page-activity.webp",
+        "width": 2244,
+        "height": 1026
+      }
+    ],
+    "interfaceImageCaptured": true,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "segment",
+    "url": "https://www.twilio.com/docs/segment/connections/sources/debugger",
+    "actualUrl": "https://www.twilio.com/docs/segment/connections/sources/debugger",
+    "title": "Using the Source Debugger | Twilio",
+    "images": [
+      {
+        "alt": "Debugger view with 'Product Added' track event and details in pretty view.",
+        "src": "https://docs-resources.prod.twilio.com/a252d44be638bfd56fdb86ccd9ce31a1ac5c19ad39276b77c7caedcf3aa2d925/3840.webp",
+        "width": 2336,
+        "height": 776
+      },
+      {
+        "alt": "Debugger view with advanced options for property values and filters like track, page, and screen.",
+        "src": "https://docs-resources.prod.twilio.com/d5d80dd743f6e43c0a6c15683068f299fd12f7187ef58e63d23216b69ab8cae6/1200.webp",
+        "width": 1180,
+        "height": 662
+      }
+    ],
+    "interfaceImageCaptured": true,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "shippo",
+    "url": "https://support.goshippo.com/hc/en-us/articles/360020308732-Orders-Page-Overview",
+    "actualUrl": "https://support.goshippo.com/hc/en-us/articles/360020308732-Orders-Page-Overview",
+    "title": "Just a moment...",
+    "images": [],
+    "interfaceImageCaptured": false,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "equipmentshare",
+    "url": "https://updates.equipmentshare.com/release/BXL6o-newly-redesigned-map-experience-in-t3-fleet-web-app",
+    "actualUrl": "https://updates.equipmentshare.com/release/BXL6o-newly-redesigned-map-experience-in-t3-fleet-web-app",
+    "title": "Newly Redesigned Map Experience in T3 Fleet Web App | EquipmentShare and T3 Release Notes",
+    "images": [],
+    "interfaceImageCaptured": false,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "gospotcheck",
+    "url": "https://www.gospotcheck.com/product/no-code-platform",
+    "actualUrl": "https://www.gospotcheck.com/product/no-code-platform",
+    "title": "GoSpotCheck l No-Code Platform",
+    "images": [
+      {
+        "alt": "",
+        "src": "https://cdn.prod.website-files.com/5b69e8315733f2850ec22669/5f314e6e31574cd40961e175_02-Accordion-Mission-Builder%40100x-p-1600.png",
+        "width": 1440,
+        "height": 1440
+      },
+      {
+        "alt": "",
+        "src": "https://cdn.prod.website-files.com/5b69e8315733f2850ec22669/5f3156fbf273cf169da19e38_06-Accordion-Email-Alerts%40100x.png",
+        "width": 1440,
+        "height": 1440
+      },
+      {
+        "alt": "",
+        "src": "https://cdn.prod.website-files.com/5b69e8315733f2850ec22669/5f314e6e31574cd40961e175_02-Accordion-Mission-Builder%40100x-p-1600.png",
+        "width": 1440,
+        "height": 1440
+      },
+      {
+        "alt": "",
+        "src": "https://cdn.prod.website-files.com/5b69e8315733f2850ec22669/5f314e6e31574cd40961e175_02-Accordion-Mission-Builder%40100x-p-1600.png",
+        "width": 1440,
+        "height": 1440
+      }
+    ],
+    "interfaceImageCaptured": false,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "flexport",
+    "url": "https://support.portal.flexport.com/hc/en-us/articles/4404789696023-Overview-of-the-Order-detail-page",
+    "actualUrl": "https://support.portal.flexport.com/hc/en-us/articles/4404789696023-Overview-of-the-Order-detail-page",
+    "title": "Just a moment...",
+    "images": [],
+    "interfaceImageCaptured": false,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "brex",
+    "url": "https://www.brex.com/support/expense-reimbursements",
+    "actualUrl": "https://www.brex.com/support/expense-reimbursements",
+    "title": "Expense reimbursements",
+    "images": [],
+    "interfaceImageCaptured": false,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "vercel",
+    "url": "https://vercel.com/docs/deployments/managing-deployments",
+    "actualUrl": "https://vercel.com/docs/deployments/managing-deployments",
+    "title": "Managing Deployments",
+    "images": [
+      {
+        "alt": "The Deployments tab with the status filter dropdown open.",
+        "src": "https://vercel.com/vc-ap-vercel-docs/_next/image?url=https%3A%2F%2F7nyt0uhk7sse4zvn.public.blob.vercel-storage.com%2Fdocs-assets%2Fstatic%2Fdocs%2Fconcepts%2Fdeployments%2Ffiltering-deployments%2Ffilter-status-light.png&w=640&q=75",
+        "width": 640,
+        "height": 369
+      }
+    ],
+    "interfaceImageCaptured": true,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  },
+  {
+    "id": "stripe",
+    "url": "https://docs.stripe.com/dashboard/basics",
+    "actualUrl": "https://docs.stripe.com/dashboard/basics",
+    "title": "Web Dashboard | Stripe Documentation",
+    "images": [
+      {
+        "alt": "",
+        "src": "https://b.stripecdn.com/docs-statics-srv/assets/stripe-yt-supportresources.f22b44b4b7adb7778ae6265a9a8bc1a4.png",
+        "width": 3208,
+        "height": 1006
+      }
+    ],
+    "interfaceImageCaptured": true,
+    "kind": "Public documentation / public product illustration, not authenticated product test"
+  }
+]

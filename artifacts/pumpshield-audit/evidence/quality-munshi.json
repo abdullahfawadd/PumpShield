@@ -1,0 +1,374 @@
+{
+  "rows": [],
+  "checks": [
+    {
+      "role": "munshi",
+      "module": "deliveries",
+      "viewport": "desktop-1440x900",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".selected"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.51 (foreground color: #6f8554, background color: #eaf1df, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".tab-pills > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.65 (foreground color: #748462, background color: #f4f4f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .movement-cards > article > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-submitted > header > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.5 (foreground color: #9a7841, background color: #efedef, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-submitted > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-submitted > .movement-cards > .board-empty > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.42 (foreground color: #738565, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > header > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.49 (foreground color: #487565, background color: #efedef, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > .movement-cards > article:nth-child(1) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-decanted > header > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.8 (foreground color: #667b85, background color: #efedef, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-decanted > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-decanted > .movement-cards > .board-empty > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.42 (foreground color: #738565, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 4
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "role": "munshi",
+      "module": "deliveries",
+      "viewport": "mobile-390x844",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".selected"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.51 (foreground color: #6f8554, background color: #eaf1df, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".tab-pills > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.65 (foreground color: #748462, background color: #f4f4f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .movement-cards > article > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > .movement-cards > article:nth-child(1) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 18
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "munshi",
+      "module": "deliveries",
+      "viewport": "mobile-320x640",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".selected"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.51 (foreground color: #6f8554, background color: #eaf1df, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".tab-pills > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.65 (foreground color: #748462, background color: #f4f4f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .movement-cards > article > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > .movement-cards > article:nth-child(1) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 17
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "munshi",
+      "module": "shifts",
+      "viewport": "desktop-1440x900",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #8565aa, background color: #eee8f7, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "passes": 26
+    },
+    {
+      "role": "munshi",
+      "module": "shifts",
+      "viewport": "mobile-390x844",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #8565aa, background color: #eee8f7, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 6
+        }
+      ],
+      "passes": 28
+    },
+    {
+      "role": "munshi",
+      "module": "shifts",
+      "viewport": "mobile-320x640",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #8565aa, background color: #eee8f7, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "passes": 28
+    },
+    {
+      "role": "munshi",
+      "module": "credit",
+      "viewport": "desktop-1440x900",
+      "violations": [],
+      "incomplete": [],
+      "passes": 24
+    },
+    {
+      "role": "munshi",
+      "module": "credit",
+      "viewport": "mobile-390x844",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 6
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "role": "munshi",
+      "module": "credit",
+      "viewport": "mobile-320x640",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "role": "munshi",
+      "module": "operations",
+      "viewport": "desktop-1440x900",
+      "violations": [],
+      "incomplete": [],
+      "passes": 25
+    },
+    {
+      "role": "munshi",
+      "module": "operations",
+      "viewport": "mobile-390x844",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "munshi",
+      "module": "operations",
+      "viewport": "mobile-320x640",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "passes": 27
+    }
+  ]
+}
