@@ -10,3 +10,30 @@ refresh_token_reuse_interval = 10
 [auth.email]
 enable_signup = true
 enable_confirmations = true
+
+# Desired local/future-hosted templates. The current free hosted project rejected
+# customization with its default provider; see docs/email-delivery-2026-11-10.md.
+# Committing this config does not apply hosted settings or configure SMTP.
+[auth.email.template.confirmation]
+subject = "Confirm your PumpShield account"
+content_path = "./supabase/templates/confirmation.html"
+
+[auth.email.template.recovery]
+subject = "Reset your PumpShield password"
+content_path = "./supabase/templates/recovery.html"
+
+[auth.email.template.invite]
+subject = "Your PumpShield invitation"
+content_path = "./supabase/templates/invite.html"
+
+[auth.email.template.email_change]
+subject = "Confirm your new PumpShield email"
+content_path = "./supabase/templates/email_change.html"
+
+[auth.email.template.magic_link]
+subject = "Sign in to PumpShield"
+content_path = "./supabase/templates/magic_link.html"
+
+[auth.email.template.reauthentication]
+subject = "Your PumpShield verification code"
+content_path = "./supabase/templates/reauthentication.html"

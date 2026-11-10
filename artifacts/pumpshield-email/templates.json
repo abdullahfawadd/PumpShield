@@ -1,0 +1,38 @@
+[
+  {
+    "type": "confirmation",
+    "subject": "Confirm your PumpShield account",
+    "template": "supabase/templates/confirmation.html",
+    "preview": "confirmation-preview.html"
+  },
+  {
+    "type": "recovery",
+    "subject": "Reset your PumpShield password",
+    "template": "supabase/templates/recovery.html",
+    "preview": "recovery-preview.html"
+  },
+  {
+    "type": "invite",
+    "subject": "Your PumpShield invitation",
+    "template": "supabase/templates/invite.html",
+    "preview": "invite-preview.html"
+  },
+  {
+    "type": "email_change",
+    "subject": "Confirm your new PumpShield email",
+    "template": "supabase/templates/email_change.html",
+    "preview": "email_change-preview.html"
+  },
+  {
+    "type": "magic_link",
+    "subject": "Sign in to PumpShield",
+    "template": "supabase/templates/magic_link.html",
+    "preview": "magic_link-preview.html"
+  },
+  {
+    "type": "reauthentication",
+    "subject": "Your PumpShield verification code",
+    "template": "supabase/templates/reauthentication.html",
+    "preview": "reauthentication-preview.html"
+  }
+]

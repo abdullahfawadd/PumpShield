@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-10",
+  "templates": 6,
+  "layout": {
+    "rows": [
+      {
+        "type": "confirmation",
+        "width": 680,
+        "overflow": false
+      },
+      {
+        "type": "confirmation",
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "type": "recovery",
+        "width": 680,
+        "overflow": false
+      },
+      {
+        "type": "recovery",
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "type": "invite",
+        "width": 680,
+        "overflow": false
+      },
+      {
+        "type": "invite",
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "type": "email_change",
+        "width": 680,
+        "overflow": false
+      },
+      {
+        "type": "email_change",
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "type": "magic_link",
+        "width": 680,
+        "overflow": false
+      },
+      {
+        "type": "magic_link",
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "type": "reauthentication",
+        "width": 680,
+        "overflow": false
+      },
+      {
+        "type": "reauthentication",
+        "width": 390,
+        "overflow": false
+      }
+    ],
+    "scope": "Browser HTML rendering only; not Outlook/Gmail inbox or delivery certification."
+  },
+  "resend": {
+    "connection": "CLI secure storage",
+    "verifiedDomains": 0,
+    "sender": "onboarding@resend.dev",
+    "recipient": "delivered@resend.dev",
+    "providerEmailId": "01a1c46e-0953-7a3b-b273-a79825f45261",
+    "event": "delivered",
+    "scope": "Resend simulator, not a real recipient inbox",
+    "idempotencyRepeatedSameId": true
+  },
+  "hostedAuth": {
+    "activation": "rejected",
+    "httpStatus": 400,
+    "reason": "Free tier with default email provider cannot customize templates",
+    "subjectsUnchangedOnReadback": true,
+    "otherDiffValuesUnchangedOnReadback": true,
+    "smtpDeclaredInSparseUpdate": false
+  },
+  "limitations": [
+    "No Gmail/Outlook real inbox certification",
+    "No production Resend SMTP without verified sender domain",
+    "Supabase default SMTP remains restricted to authorized team addresses"
+  ]
+}
