@@ -1,0 +1,18 @@
+{
+  "requiredFiles": 11,
+  "missingFiles": [],
+  "brokenLocalMarkdownLinks": [],
+  "originalSourceChanges": [],
+  "knownTemporaryCredentialLeaks": [],
+  "wordCounts": {
+    "01-executive-review.md": 1107,
+    "02-route-and-workflow-matrix.md": 1511,
+    "03-visual-audit.md": 2653,
+    "04-competitive-research.md": 1766,
+    "05-design-directions-and-colors.md": 1917,
+    "06-component-inventory.md": 1597,
+    "07-architecture-and-security.md": 2015,
+    "08-testing-and-verification.md": 1634,
+    "IMPLEMENTATION_MEGA_PROMPT.md": 5107
+  }
+}

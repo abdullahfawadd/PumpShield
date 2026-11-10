@@ -1,0 +1,20 @@
+[
+  {
+    "kind": "claim",
+    "status": 200,
+    "contentType": "application/pdf",
+    "cacheControl": "private, no-store",
+    "pages": 1,
+    "bytes": 4068,
+    "text": "PUMPSHIELD\nSTATION OPERATIONS / DOCUMENT REGISTER\nDelivery shortage claim\nIndependent station records. Clear commercial documentation.\nDESIGN LAB / SYNTHETIC DATA - NOT FOR SETTLEMENT\nStation\nClifton Petroleum - Sample\nLocation / OMC\nKarachi / PSO\nDocument reference\nSAMPLE-OMC-1043\nRecorded time (PKT)\n8 Nov, 03:52 pm\nVehicle / loading depot\nTKA-843 / Keamari depot\nInvoice volume\n40,000 L\nMeasured arrival volume\n39,600 L\nGantry / arrival temperature\n38 C / 32 C\nThermal coefficient\n0.00115 per C\nCalculated thermal allowance\n276 L\nUnexplained shortage\n124 L\nLocked retail rate\nPKR 300 / L\nOwner approval (PKT)\n8 Nov, 08:25 pm\nEvidence record\nNo evidence attached to this sample record\nCALCULATED CLAIM FOR SETTLEMENT REVIEW\nPKR 37,200\nThis document records saved station measurements and transactions. It is not a tax invoice.\nSubject to measurement review and agreed commercial terms. A discrepancy does not establish theft or legal liability.\nRECORD ID\nd170147b-e228-40b1-8cae-823cf07d7cf1\nPage 1 / 1\nGenerated from saved records. Not a tax invoice.\n"
+  },
+  {
+    "kind": "statement",
+    "status": 200,
+    "contentType": "application/pdf",
+    "cacheControl": "private, no-store",
+    "pages": 1,
+    "bytes": 3570,
+    "text": "PUMPSHIELD\nSTATION OPERATIONS / DOCUMENT REGISTER\nAccount statement\nIndependent station records. Clear commercial documentation.\nDESIGN LAB / SYNTHETIC DATA - NOT FOR SETTLEMENT\nStation\nClifton Petroleum - Sample\nLocation / OMC\nKarachi / PSO\nDocument reference\n8DFA6F17\nRecorded time (PKT)\n8 Nov, 07:52 pm\nCorporate account\nSAMPLE - Atlas Logistics\nApproved credit limit\nPKR 1,500,000\nStatement generated (PKT)\n9 Nov, 12:36 pm\nLedger activity\nNo recorded transactions\nCURRENT RECORDED OUTSTANDING BALANCE\nPKR 480,000\nThis document records saved station measurements and transactions. It is not a tax invoice.\nThe balance is the account balance at generation time. Synthetic opening balances in Design Lab are not represented as\npayment transactions.\nRECORD ID\n8dfa6f17-12f0-4346-8ee7-3bd3670c8559\nPage 1 / 1\nGenerated from saved records. Not a tax invoice.\n"
+  }
+]

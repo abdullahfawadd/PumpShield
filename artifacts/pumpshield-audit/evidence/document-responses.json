@@ -1,0 +1,18 @@
+[
+  {
+    "kind": "claim",
+    "status": 200,
+    "contentType": "application/pdf",
+    "cacheControl": "private, no-store"
+  },
+  {
+    "kind": "statement",
+    "status": 200,
+    "contentType": "application/pdf",
+    "cacheControl": "private, no-store"
+  },
+  {
+    "kind": "parchi",
+    "status": "No accessible seeded record"
+  }
+]

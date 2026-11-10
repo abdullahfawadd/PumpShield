@@ -1,0 +1,3980 @@
+[
+  {
+    "path": "screenshots/munshi/credit/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 85839
+  },
+  {
+    "path": "screenshots/munshi/credit/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 85839
+  },
+  {
+    "path": "screenshots/munshi/credit/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 92034
+  },
+  {
+    "path": "screenshots/munshi/credit/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 92034
+  },
+  {
+    "path": "screenshots/munshi/credit/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 97123
+  },
+  {
+    "path": "screenshots/munshi/credit/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 97123
+  },
+  {
+    "path": "screenshots/munshi/credit/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 1108,
+    "bytes": 66421
+  },
+  {
+    "path": "screenshots/munshi/credit/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 46762
+  },
+  {
+    "path": "screenshots/munshi/credit/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1108,
+    "bytes": 66469
+  },
+  {
+    "path": "screenshots/munshi/credit/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 54801
+  },
+  {
+    "path": "screenshots/munshi/credit/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1068,
+    "bytes": 66392
+  },
+  {
+    "path": "screenshots/munshi/credit/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 55379
+  },
+  {
+    "path": "screenshots/munshi/credit/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1068,
+    "bytes": 66252
+  },
+  {
+    "path": "screenshots/munshi/credit/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 60268
+  },
+  {
+    "path": "screenshots/munshi/credit/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 71766
+  },
+  {
+    "path": "screenshots/munshi/credit/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 71766
+  },
+  {
+    "path": "screenshots/munshi/deliveries/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1469,
+    "bytes": 145517
+  },
+  {
+    "path": "screenshots/munshi/deliveries/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 103577
+  },
+  {
+    "path": "screenshots/munshi/deliveries/desktop-1440x900/arrival-audit-full.png",
+    "width": 1440,
+    "height": 1472,
+    "bytes": 234683
+  },
+  {
+    "path": "screenshots/munshi/deliveries/desktop-1440x900/arrival-audit-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 199807
+  },
+  {
+    "path": "screenshots/munshi/deliveries/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1472,
+    "bytes": 150439
+  },
+  {
+    "path": "screenshots/munshi/deliveries/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 120596
+  },
+  {
+    "path": "screenshots/munshi/deliveries/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1473,
+    "bytes": 156156
+  },
+  {
+    "path": "screenshots/munshi/deliveries/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 137401
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-320x640/arrival-audit-full.png",
+    "width": 320,
+    "height": 2039,
+    "bytes": 92836
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-320x640/arrival-audit-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 35277
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 2039,
+    "bytes": 97463
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 46628
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 2039,
+    "bytes": 98406
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 54548
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-390x844/arrival-audit-full.png",
+    "width": 390,
+    "height": 2004,
+    "bytes": 91816
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-390x844/arrival-audit-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 40853
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 2004,
+    "bytes": 99635
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 55469
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 2004,
+    "bytes": 100223
+  },
+  {
+    "path": "screenshots/munshi/deliveries/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 61248
+  },
+  {
+    "path": "screenshots/munshi/deliveries/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1834,
+    "bytes": 126972
+  },
+  {
+    "path": "screenshots/munshi/deliveries/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 82222
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1143,
+    "bytes": 114692
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 94452
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1440x900/after-create-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 139107
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1440x900/after-create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 125679
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1440x900/before-create-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 213621
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1440x900/before-create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 199826
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 121138
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 108013
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1147,
+    "bytes": 123904
+  },
+  {
+    "path": "screenshots/munshi/handovers/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 118697
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 1456,
+    "bytes": 73084
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 48156
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1372,
+    "bytes": 73984
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 56982
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-390x844/after-create-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 85448
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-390x844/after-create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 58842
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-390x844/before-create-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 76538
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-390x844/before-create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 49890
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 79167
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 60247
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1286,
+    "bytes": 81746
+  },
+  {
+    "path": "screenshots/munshi/handovers/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 67994
+  },
+  {
+    "path": "screenshots/munshi/handovers/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1199,
+    "bytes": 97914
+  },
+  {
+    "path": "screenshots/munshi/handovers/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 86756
+  },
+  {
+    "path": "screenshots/munshi/home/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1469,
+    "bytes": 143392
+  },
+  {
+    "path": "screenshots/munshi/home/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 101485
+  },
+  {
+    "path": "screenshots/munshi/home/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1472,
+    "bytes": 148358
+  },
+  {
+    "path": "screenshots/munshi/home/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 118444
+  },
+  {
+    "path": "screenshots/munshi/home/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1473,
+    "bytes": 154129
+  },
+  {
+    "path": "screenshots/munshi/home/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 135352
+  },
+  {
+    "path": "screenshots/munshi/home/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 2039,
+    "bytes": 96590
+  },
+  {
+    "path": "screenshots/munshi/home/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 45811
+  },
+  {
+    "path": "screenshots/munshi/home/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 2039,
+    "bytes": 97699
+  },
+  {
+    "path": "screenshots/munshi/home/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 53907
+  },
+  {
+    "path": "screenshots/munshi/home/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 2004,
+    "bytes": 98561
+  },
+  {
+    "path": "screenshots/munshi/home/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 54441
+  },
+  {
+    "path": "screenshots/munshi/home/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 2004,
+    "bytes": 99460
+  },
+  {
+    "path": "screenshots/munshi/home/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 60353
+  },
+  {
+    "path": "screenshots/munshi/home/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1834,
+    "bytes": 125881
+  },
+  {
+    "path": "screenshots/munshi/home/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 81206
+  },
+  {
+    "path": "screenshots/munshi/indents/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1143,
+    "bytes": 115357
+  },
+  {
+    "path": "screenshots/munshi/indents/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 90288
+  },
+  {
+    "path": "screenshots/munshi/indents/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 123031
+  },
+  {
+    "path": "screenshots/munshi/indents/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 108033
+  },
+  {
+    "path": "screenshots/munshi/indents/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1147,
+    "bytes": 124621
+  },
+  {
+    "path": "screenshots/munshi/indents/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 119452
+  },
+  {
+    "path": "screenshots/munshi/indents/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 1388,
+    "bytes": 82795
+  },
+  {
+    "path": "screenshots/munshi/indents/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 46858
+  },
+  {
+    "path": "screenshots/munshi/indents/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1353,
+    "bytes": 84284
+  },
+  {
+    "path": "screenshots/munshi/indents/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 55919
+  },
+  {
+    "path": "screenshots/munshi/indents/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 85123
+  },
+  {
+    "path": "screenshots/munshi/indents/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 59943
+  },
+  {
+    "path": "screenshots/munshi/indents/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1286,
+    "bytes": 85771
+  },
+  {
+    "path": "screenshots/munshi/indents/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 70241
+  },
+  {
+    "path": "screenshots/munshi/indents/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1199,
+    "bytes": 97415
+  },
+  {
+    "path": "screenshots/munshi/indents/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 86228
+  },
+  {
+    "path": "screenshots/munshi/maintenance/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1143,
+    "bytes": 116987
+  },
+  {
+    "path": "screenshots/munshi/maintenance/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 94770
+  },
+  {
+    "path": "screenshots/munshi/maintenance/desktop-1440x900/create-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 179550
+  },
+  {
+    "path": "screenshots/munshi/maintenance/desktop-1440x900/create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 179550
+  },
+  {
+    "path": "screenshots/munshi/maintenance/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 123516
+  },
+  {
+    "path": "screenshots/munshi/maintenance/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 110273
+  },
+  {
+    "path": "screenshots/munshi/maintenance/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1147,
+    "bytes": 126323
+  },
+  {
+    "path": "screenshots/munshi/maintenance/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 121187
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 1426,
+    "bytes": 84785
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 49049
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1372,
+    "bytes": 85961
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 56810
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-390x844/create-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 77230
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-390x844/create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 43310
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 87502
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 62630
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1286,
+    "bytes": 87802
+  },
+  {
+    "path": "screenshots/munshi/maintenance/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 72418
+  },
+  {
+    "path": "screenshots/munshi/maintenance/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1199,
+    "bytes": 99396
+  },
+  {
+    "path": "screenshots/munshi/maintenance/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 88187
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1366x768/prepare-full.png",
+    "width": 1366,
+    "height": 1302,
+    "bytes": 95381
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1366x768/prepare-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 66928
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/locked-offline-full.png",
+    "width": 1440,
+    "height": 1199,
+    "bytes": 91389
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/locked-offline-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 73316
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/network-offline-full.png",
+    "width": 1440,
+    "height": 1629,
+    "bytes": 146724
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/network-offline-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 90456
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/prepare-full.png",
+    "width": 1440,
+    "height": 1302,
+    "bytes": 95976
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/prepare-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 74409
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/unlocked-full.png",
+    "width": 1440,
+    "height": 1701,
+    "bytes": 152782
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/unlocked-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 85533
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/unlocked-without-network-full.png",
+    "width": 1440,
+    "height": 1701,
+    "bytes": 150271
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1440x900/unlocked-without-network-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 82862
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1920x1080/prepare-full.png",
+    "width": 1920,
+    "height": 1302,
+    "bytes": 98773
+  },
+  {
+    "path": "screenshots/munshi/offline/desktop-1920x1080/prepare-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 85382
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-320x640/prepare-full.png",
+    "width": 320,
+    "height": 1499,
+    "bytes": 81360
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-320x640/prepare-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 39512
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-320x640/unlocked-full.png",
+    "width": 320,
+    "height": 2449,
+    "bytes": 133779
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-320x640/unlocked-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 41588
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-360x800/prepare-full.png",
+    "width": 360,
+    "height": 1459,
+    "bytes": 81820
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-360x800/prepare-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 51073
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/locked-offline-full.png",
+    "width": 390,
+    "height": 1310,
+    "bytes": 79268
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/locked-offline-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 56664
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/network-offline-full.png",
+    "width": 390,
+    "height": 2316,
+    "bytes": 133206
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/network-offline-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 56553
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/prepare-full.png",
+    "width": 390,
+    "height": 1367,
+    "bytes": 79709
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/prepare-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 56782
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/unlocked-full.png",
+    "width": 390,
+    "height": 2316,
+    "bytes": 133156
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/unlocked-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 56506
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/unlocked-without-network-full.png",
+    "width": 390,
+    "height": 2388,
+    "bytes": 136291
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-390x844/unlocked-without-network-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 55194
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-430x932/prepare-full.png",
+    "width": 430,
+    "height": 1367,
+    "bytes": 80200
+  },
+  {
+    "path": "screenshots/munshi/offline/mobile-430x932/prepare-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 59952
+  },
+  {
+    "path": "screenshots/munshi/offline/tablet-768x1024/prepare-full.png",
+    "width": 768,
+    "height": 1327,
+    "bytes": 86182
+  },
+  {
+    "path": "screenshots/munshi/offline/tablet-768x1024/prepare-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 68707
+  },
+  {
+    "path": "screenshots/munshi/parchi/desktop-1440x900/invalid-pass-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 199650
+  },
+  {
+    "path": "screenshots/munshi/parchi/desktop-1440x900/invalid-pass-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 199650
+  },
+  {
+    "path": "screenshots/munshi/parchi/desktop-1440x900/scanner-permission-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 186690
+  },
+  {
+    "path": "screenshots/munshi/parchi/desktop-1440x900/scanner-permission-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 186690
+  },
+  {
+    "path": "screenshots/munshi/parchi/desktop-1440x900/vehicle-pass-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 196838
+  },
+  {
+    "path": "screenshots/munshi/parchi/desktop-1440x900/vehicle-pass-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 196838
+  },
+  {
+    "path": "screenshots/munshi/parchi/mobile-320x640/vehicle-pass-full.png",
+    "width": 320,
+    "height": 1108,
+    "bytes": 74146
+  },
+  {
+    "path": "screenshots/munshi/parchi/mobile-320x640/vehicle-pass-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 47796
+  },
+  {
+    "path": "screenshots/munshi/parchi/mobile-390x844/invalid-pass-full.png",
+    "width": 390,
+    "height": 1068,
+    "bytes": 75551
+  },
+  {
+    "path": "screenshots/munshi/parchi/mobile-390x844/invalid-pass-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 57399
+  },
+  {
+    "path": "screenshots/munshi/parchi/mobile-390x844/scanner-permission-full.png",
+    "width": 390,
+    "height": 1068,
+    "bytes": 62695
+  },
+  {
+    "path": "screenshots/munshi/parchi/mobile-390x844/scanner-permission-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 44554
+  },
+  {
+    "path": "screenshots/munshi/parchi/mobile-390x844/vehicle-pass-full.png",
+    "width": 390,
+    "height": 1068,
+    "bytes": 76052
+  },
+  {
+    "path": "screenshots/munshi/parchi/mobile-390x844/vehicle-pass-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 58001
+  },
+  {
+    "path": "screenshots/munshi/shifts/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1024,
+    "bytes": 117474
+  },
+  {
+    "path": "screenshots/munshi/shifts/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 99014
+  },
+  {
+    "path": "screenshots/munshi/shifts/desktop-1440x900/close-full.png",
+    "width": 1440,
+    "height": 1026,
+    "bytes": 222136
+  },
+  {
+    "path": "screenshots/munshi/shifts/desktop-1440x900/close-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 209346
+  },
+  {
+    "path": "screenshots/munshi/shifts/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1026,
+    "bytes": 122600
+  },
+  {
+    "path": "screenshots/munshi/shifts/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 115372
+  },
+  {
+    "path": "screenshots/munshi/shifts/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 126976
+  },
+  {
+    "path": "screenshots/munshi/shifts/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 126976
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-320x640/close-full.png",
+    "width": 320,
+    "height": 1625,
+    "bytes": 95634
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-320x640/close-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 41537
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 1625,
+    "bytes": 94344
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 47019
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1609,
+    "bytes": 94998
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 54943
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-390x844/close-full.png",
+    "width": 390,
+    "height": 1556,
+    "bytes": 98907
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-390x844/close-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 52371
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1556,
+    "bytes": 95159
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 55759
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1548,
+    "bytes": 95083
+  },
+  {
+    "path": "screenshots/munshi/shifts/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 61858
+  },
+  {
+    "path": "screenshots/munshi/shifts/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1332,
+    "bytes": 103362
+  },
+  {
+    "path": "screenshots/munshi/shifts/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 86934
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1143,
+    "bytes": 143541
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 113745
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/after-create-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 165232
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/after-create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 150815
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/after-investigating-full.png",
+    "width": 1440,
+    "height": 1291,
+    "bytes": 255498
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/after-investigating-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 220496
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/after-resolved-full.png",
+    "width": 1440,
+    "height": 1264,
+    "bytes": 263435
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/after-resolved-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 219987
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/before-create-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 239035
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/before-create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 222618
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/before-transition-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 240373
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/before-transition-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 219653
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/create-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 231376
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 215140
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/detail-dialog-end.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 204828
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/detail-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 226095
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/detail-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 206003
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 149492
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 135227
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1147,
+    "bytes": 157239
+  },
+  {
+    "path": "screenshots/owner/cases/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 151752
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-320x640/create-full.png",
+    "width": 358,
+    "height": 1456,
+    "bytes": 81335
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-320x640/create-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 43646
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-320x640/detail-full.png",
+    "width": 358,
+    "height": 1456,
+    "bytes": 77841
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-320x640/detail-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 40460
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-320x640/normal-full.png",
+    "width": 358,
+    "height": 1456,
+    "bytes": 80149
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 53011
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1402,
+    "bytes": 80105
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 62633
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/after-create-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 93976
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/after-create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 64808
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/after-investigating-full.png",
+    "width": 390,
+    "height": 1568,
+    "bytes": 88486
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/after-investigating-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 55672
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/after-resolved-full.png",
+    "width": 390,
+    "height": 1520,
+    "bytes": 89333
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/after-resolved-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 60978
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/before-create-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 82059
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/before-create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 53633
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/before-transition-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 92249
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/before-transition-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 53068
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/create-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 75856
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 48100
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/detail-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 76614
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/detail-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 49024
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 85317
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 65022
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1286,
+    "bytes": 89141
+  },
+  {
+    "path": "screenshots/owner/cases/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 74045
+  },
+  {
+    "path": "screenshots/owner/cases/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1199,
+    "bytes": 116186
+  },
+  {
+    "path": "screenshots/owner/cases/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 104660
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1351,
+    "bytes": 153378
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 116131
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/add-vehicle-full.png",
+    "width": 1440,
+    "height": 1353,
+    "bytes": 248883
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/add-vehicle-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 219707
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/manage-vehicles-full.png",
+    "width": 1440,
+    "height": 1353,
+    "bytes": 253248
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/manage-vehicles-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 224181
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/new-account-full.png",
+    "width": 1440,
+    "height": 1353,
+    "bytes": 246724
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/new-account-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 217500
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1353,
+    "bytes": 167351
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 140534
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/payment-full.png",
+    "width": 1440,
+    "height": 1353,
+    "bytes": 243551
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/payment-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 214256
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/qr-pass-masked-full.png",
+    "width": 1440,
+    "height": 1353,
+    "bytes": 252044
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1440x900/qr-pass-masked-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 218068
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1355,
+    "bytes": 176795
+  },
+  {
+    "path": "screenshots/owner/credit/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 158868
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/add-vehicle-full.png",
+    "width": 340,
+    "height": 2541,
+    "bytes": 124106
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/add-vehicle-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 26399
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/manage-vehicles-full.png",
+    "width": 340,
+    "height": 2541,
+    "bytes": 131593
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/manage-vehicles-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 33602
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/new-account-full.png",
+    "width": 340,
+    "height": 2541,
+    "bytes": 125609
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/new-account-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 27808
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/normal-full.png",
+    "width": 340,
+    "height": 2541,
+    "bytes": 144050
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 54806
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/payment-full.png",
+    "width": 340,
+    "height": 2541,
+    "bytes": 122612
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-320x640/payment-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 24812
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 2518,
+    "bytes": 145658
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 63327
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/add-vehicle-full.png",
+    "width": 390,
+    "height": 2500,
+    "bytes": 112125
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/add-vehicle-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 28365
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/manage-vehicles-full.png",
+    "width": 390,
+    "height": 2500,
+    "bytes": 118655
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/manage-vehicles-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 35044
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/new-account-full.png",
+    "width": 390,
+    "height": 2500,
+    "bytes": 113091
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/new-account-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 29356
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 2500,
+    "bytes": 144541
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 67789
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/payment-full.png",
+    "width": 390,
+    "height": 2500,
+    "bytes": 110051
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/payment-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 26196
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/qr-pass-masked-full.png",
+    "width": 390,
+    "height": 2500,
+    "bytes": 128981
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-390x844/qr-pass-masked-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 45089
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 2465,
+    "bytes": 144224
+  },
+  {
+    "path": "screenshots/owner/credit/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 72593
+  },
+  {
+    "path": "screenshots/owner/credit/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1802,
+    "bytes": 136134
+  },
+  {
+    "path": "screenshots/owner/credit/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 95772
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1393,
+    "bytes": 147842
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 114045
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/approved-decant-dialog-end.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 211534
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/approved-decant-full.png",
+    "width": 1440,
+    "height": 1396,
+    "bytes": 292610
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/approved-decant-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 227486
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/arrival-audit-dialog-end.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 203986
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/arrival-audit-full.png",
+    "width": 1440,
+    "height": 1396,
+    "bytes": 315591
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/arrival-audit-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 222845
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/create-full.png",
+    "width": 1440,
+    "height": 1396,
+    "bytes": 236508
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 207941
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1396,
+    "bytes": 154277
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 129660
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/required-validation-full.png",
+    "width": 1440,
+    "height": 1396,
+    "bytes": 239030
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/required-validation-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 210664
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/search-empty-full.png",
+    "width": 1440,
+    "height": 1083,
+    "bytes": 122064
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1440x900/search-empty-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 115149
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1397,
+    "bytes": 162984
+  },
+  {
+    "path": "screenshots/owner/deliveries/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 147161
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-320x640/approved-decant-full.png",
+    "width": 355,
+    "height": 1689,
+    "bytes": 135966
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-320x640/approved-decant-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 91671
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-320x640/arrival-audit-full.png",
+    "width": 355,
+    "height": 1689,
+    "bytes": 136865
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-320x640/arrival-audit-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 92163
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-320x640/create-full.png",
+    "width": 355,
+    "height": 1689,
+    "bytes": 77567
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-320x640/create-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 34225
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-320x640/normal-full.png",
+    "width": 355,
+    "height": 1689,
+    "bytes": 83121
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 49695
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1668,
+    "bytes": 83423
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 61157
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/approved-decant-full.png",
+    "width": 390,
+    "height": 1668,
+    "bytes": 161007
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/approved-decant-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 133493
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/arrival-audit-full.png",
+    "width": 390,
+    "height": 1668,
+    "bytes": 155091
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/arrival-audit-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 142021
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/create-full.png",
+    "width": 390,
+    "height": 1668,
+    "bytes": 73210
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 45131
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1668,
+    "bytes": 85060
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 64259
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/required-validation-full.png",
+    "width": 390,
+    "height": 1668,
+    "bytes": 74663
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/required-validation-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 45867
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/search-empty-full.png",
+    "width": 390,
+    "height": 1355,
+    "bytes": 73166
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-390x844/search-empty-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 62829
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1668,
+    "bytes": 86870
+  },
+  {
+    "path": "screenshots/owner/deliveries/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 69862
+  },
+  {
+    "path": "screenshots/owner/deliveries/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1519,
+    "bytes": 114168
+  },
+  {
+    "path": "screenshots/owner/deliveries/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 95233
+  },
+  {
+    "path": "screenshots/owner/documents/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1238,
+    "bytes": 149513
+  },
+  {
+    "path": "screenshots/owner/documents/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 106953
+  },
+  {
+    "path": "screenshots/owner/documents/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1240,
+    "bytes": 155475
+  },
+  {
+    "path": "screenshots/owner/documents/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 122272
+  },
+  {
+    "path": "screenshots/owner/documents/desktop-1440x900/search-empty-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 115185
+  },
+  {
+    "path": "screenshots/owner/documents/desktop-1440x900/search-empty-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 115185
+  },
+  {
+    "path": "screenshots/owner/documents/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1242,
+    "bytes": 163018
+  },
+  {
+    "path": "screenshots/owner/documents/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 146279
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-320x640/normal-full.png",
+    "width": 361,
+    "height": 1716,
+    "bytes": 110199
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 51069
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-360x800/normal-full.png",
+    "width": 361,
+    "height": 1605,
+    "bytes": 110607
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 62291
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1426,
+    "bytes": 108225
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 69685
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-390x844/search-empty-full.png",
+    "width": 390,
+    "height": 1037,
+    "bytes": 76653
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-390x844/search-empty-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 67605
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1313,
+    "bytes": 106450
+  },
+  {
+    "path": "screenshots/owner/documents/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 82048
+  },
+  {
+    "path": "screenshots/owner/documents/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1246,
+    "bytes": 116406
+  },
+  {
+    "path": "screenshots/owner/documents/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 100518
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1143,
+    "bytes": 128309
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 106835
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/after-accept-full.png",
+    "width": 1440,
+    "height": 1225,
+    "bytes": 240324
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/after-accept-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 208037
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/before-accept-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 226200
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/before-accept-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 205653
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/create-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 212362
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 197668
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/detail-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 206721
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/detail-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 192297
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 135155
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 120924
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1147,
+    "bytes": 141600
+  },
+  {
+    "path": "screenshots/owner/handovers/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 136137
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-320x640/create-full.png",
+    "width": 358,
+    "height": 1456,
+    "bytes": 77744
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-320x640/create-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 39786
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-320x640/detail-full.png",
+    "width": 352,
+    "height": 1456,
+    "bytes": 74365
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-320x640/detail-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 37410
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-320x640/normal-full.png",
+    "width": 358,
+    "height": 1456,
+    "bytes": 78190
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 50636
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1372,
+    "bytes": 78406
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 61227
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/after-accept-full.png",
+    "width": 390,
+    "height": 1522,
+    "bytes": 85722
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/after-accept-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 54285
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/before-accept-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 90108
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/before-accept-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 53742
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/create-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 68739
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 42339
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/detail-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 69456
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/detail-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 33243
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 82920
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 64051
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1286,
+    "bytes": 85246
+  },
+  {
+    "path": "screenshots/owner/handovers/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 71491
+  },
+  {
+    "path": "screenshots/owner/handovers/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1199,
+    "bytes": 104144
+  },
+  {
+    "path": "screenshots/owner/handovers/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 92756
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1143,
+    "bytes": 130631
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 103806
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1440x900/create-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 213814
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1440x900/create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 196929
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1440x900/detail-dialog-end.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 195846
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1440x900/detail-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 220602
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1440x900/detail-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 198765
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 138752
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 122671
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1147,
+    "bytes": 144409
+  },
+  {
+    "path": "screenshots/owner/indents/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 138941
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-320x640/create-full.png",
+    "width": 358,
+    "height": 1407,
+    "bytes": 87375
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-320x640/create-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 37834
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-320x640/detail-full.png",
+    "width": 352,
+    "height": 1407,
+    "bytes": 87947
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-320x640/detail-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 39306
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-320x640/normal-full.png",
+    "width": 358,
+    "height": 1407,
+    "bytes": 89777
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 50951
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1372,
+    "bytes": 90656
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 60619
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-390x844/create-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 75075
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-390x844/create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 40829
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-390x844/detail-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 83575
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-390x844/detail-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 49627
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1353,
+    "bytes": 92410
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 67059
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1286,
+    "bytes": 92834
+  },
+  {
+    "path": "screenshots/owner/indents/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 77264
+  },
+  {
+    "path": "screenshots/owner/indents/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1199,
+    "bytes": 105482
+  },
+  {
+    "path": "screenshots/owner/indents/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 94064
+  },
+  {
+    "path": "screenshots/owner/inventory/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1252,
+    "bytes": 171652
+  },
+  {
+    "path": "screenshots/owner/inventory/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 123125
+  },
+  {
+    "path": "screenshots/owner/inventory/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1254,
+    "bytes": 171381
+  },
+  {
+    "path": "screenshots/owner/inventory/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 134421
+  },
+  {
+    "path": "screenshots/owner/inventory/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1256,
+    "bytes": 186200
+  },
+  {
+    "path": "screenshots/owner/inventory/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 166929
+  },
+  {
+    "path": "screenshots/owner/inventory/mobile-320x640/normal-full.png",
+    "width": 339,
+    "height": 2108,
+    "bytes": 127528
+  },
+  {
+    "path": "screenshots/owner/inventory/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 46494
+  },
+  {
+    "path": "screenshots/owner/inventory/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1927,
+    "bytes": 132356
+  },
+  {
+    "path": "screenshots/owner/inventory/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 64512
+  },
+  {
+    "path": "screenshots/owner/inventory/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1893,
+    "bytes": 132772
+  },
+  {
+    "path": "screenshots/owner/inventory/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 68140
+  },
+  {
+    "path": "screenshots/owner/inventory/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1874,
+    "bytes": 133514
+  },
+  {
+    "path": "screenshots/owner/inventory/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 70316
+  },
+  {
+    "path": "screenshots/owner/inventory/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1329,
+    "bytes": 131926
+  },
+  {
+    "path": "screenshots/owner/inventory/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 110637
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1143,
+    "bytes": 130610
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 106768
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1440x900/create-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 216637
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1440x900/create-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 201583
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1440x900/detail-dialog-end.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 190662
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1440x900/detail-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 216396
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1440x900/detail-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 196659
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1146,
+    "bytes": 137539
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 123260
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1147,
+    "bytes": 144441
+  },
+  {
+    "path": "screenshots/owner/maintenance/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 138982
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-320x640/create-full.png",
+    "width": 352,
+    "height": 1426,
+    "bytes": 88544
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-320x640/create-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 40132
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-320x640/detail-full.png",
+    "width": 358,
+    "height": 1426,
+    "bytes": 87292
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-320x640/detail-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 38519
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-320x640/normal-full.png",
+    "width": 358,
+    "height": 1426,
+    "bytes": 89756
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 51381
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 1372,
+    "bytes": 90511
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 61202
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-390x844/create-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 77400
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-390x844/create-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 43310
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-390x844/detail-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 82198
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-390x844/detail-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 48355
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1372,
+    "bytes": 92334
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 67366
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1286,
+    "bytes": 92966
+  },
+  {
+    "path": "screenshots/owner/maintenance/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 77541
+  },
+  {
+    "path": "screenshots/owner/maintenance/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1199,
+    "bytes": 105740
+  },
+  {
+    "path": "screenshots/owner/maintenance/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 94316
+  },
+  {
+    "path": "screenshots/owner/overview/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 2333,
+    "bytes": 460720
+  },
+  {
+    "path": "screenshots/owner/overview/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 235653
+  },
+  {
+    "path": "screenshots/owner/overview/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 2335,
+    "bytes": 468821
+  },
+  {
+    "path": "screenshots/owner/overview/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 269462
+  },
+  {
+    "path": "screenshots/owner/overview/desktop-1440x900/privacy-full.png",
+    "width": 1440,
+    "height": 2335,
+    "bytes": 396858
+  },
+  {
+    "path": "screenshots/owner/overview/desktop-1440x900/privacy-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 255647
+  },
+  {
+    "path": "screenshots/owner/overview/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 2381,
+    "bytes": 540490
+  },
+  {
+    "path": "screenshots/owner/overview/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 383824
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-320x640/normal-full.png",
+    "width": 353,
+    "height": 3425,
+    "bytes": 272116
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 51946
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 3349,
+    "bytes": 287393
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 108434
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 3298,
+    "bytes": 302210
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 124480
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-390x844/privacy-full.png",
+    "width": 390,
+    "height": 3298,
+    "bytes": 302635
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-390x844/privacy-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 124609
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 3247,
+    "bytes": 316224
+  },
+  {
+    "path": "screenshots/owner/overview/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 151398
+  },
+  {
+    "path": "screenshots/owner/overview/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 3187,
+    "bytes": 404385
+  },
+  {
+    "path": "screenshots/owner/overview/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 252835
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1964,
+    "bytes": 424967
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 280933
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/invite-full.png",
+    "width": 1440,
+    "height": 1966,
+    "bytes": 319416
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/invite-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 219158
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/new-station-full.png",
+    "width": 1440,
+    "height": 1966,
+    "bytes": 278778
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/new-station-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 179788
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1966,
+    "bytes": 206777
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 108873
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/nozzle-full.png",
+    "width": 1440,
+    "height": 1966,
+    "bytes": 307238
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/nozzle-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 207285
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/price-full.png",
+    "width": 1440,
+    "height": 1966,
+    "bytes": 326169
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/price-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 225555
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/revoke-full.png",
+    "width": 1440,
+    "height": 1966,
+    "bytes": 318969
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/revoke-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 218994
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/tank-full.png",
+    "width": 1440,
+    "height": 1966,
+    "bytes": 320372
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1440x900/tank-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 218096
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1968,
+    "bytes": 215394
+  },
+  {
+    "path": "screenshots/owner/settings/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 151397
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/invite-full.png",
+    "width": 348,
+    "height": 2679,
+    "bytes": 202062
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/invite-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 35070
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/new-station-full.png",
+    "width": 348,
+    "height": 2679,
+    "bytes": 191527
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/new-station-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 24444
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/normal-full.png",
+    "width": 348,
+    "height": 2679,
+    "bytes": 205802
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 48557
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/nozzle-full.png",
+    "width": 348,
+    "height": 2679,
+    "bytes": 192623
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/nozzle-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 25526
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/price-full.png",
+    "width": 348,
+    "height": 2679,
+    "bytes": 210233
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/price-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 42727
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/revoke-full.png",
+    "width": 348,
+    "height": 2679,
+    "bytes": 187991
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/revoke-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 20862
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/tank-full.png",
+    "width": 348,
+    "height": 2679,
+    "bytes": 200626
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-320x640/tank-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 34042
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 2546,
+    "bytes": 211179
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 85184
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/invite-full.png",
+    "width": 390,
+    "height": 2473,
+    "bytes": 153237
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/invite-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 35480
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/new-station-full.png",
+    "width": 390,
+    "height": 2473,
+    "bytes": 144854
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/new-station-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 26953
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 2473,
+    "bytes": 222860
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 113371
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/nozzle-full.png",
+    "width": 390,
+    "height": 2473,
+    "bytes": 145029
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/nozzle-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 27079
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/price-full.png",
+    "width": 390,
+    "height": 2473,
+    "bytes": 165400
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/price-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 48022
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/revoke-full.png",
+    "width": 390,
+    "height": 2473,
+    "bytes": 139578
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/revoke-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 21736
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/tank-full.png",
+    "width": 390,
+    "height": 2473,
+    "bytes": 166385
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-390x844/tank-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 49044
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 2457,
+    "bytes": 233259
+  },
+  {
+    "path": "screenshots/owner/settings/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 141284
+  },
+  {
+    "path": "screenshots/owner/settings/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 2315,
+    "bytes": 338861
+  },
+  {
+    "path": "screenshots/owner/settings/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 246523
+  },
+  {
+    "path": "screenshots/owner/shell/desktop-1440x900/help-full.png",
+    "width": 1440,
+    "height": 1966,
+    "bytes": 336858
+  },
+  {
+    "path": "screenshots/owner/shell/desktop-1440x900/help-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 238164
+  },
+  {
+    "path": "screenshots/owner/shell/desktop-1440x900/review-queue-full.png",
+    "width": 1440,
+    "height": 1966,
+    "bytes": 311022
+  },
+  {
+    "path": "screenshots/owner/shell/desktop-1440x900/review-queue-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 211087
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-320x640/help-full.png",
+    "width": 348,
+    "height": 2679,
+    "bytes": 218267
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-320x640/help-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 48408
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-320x640/review-queue-full.png",
+    "width": 348,
+    "height": 2679,
+    "bytes": 180285
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-320x640/review-queue-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 12627
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-390x844/help-full.png",
+    "width": 390,
+    "height": 2473,
+    "bytes": 168240
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-390x844/help-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 50501
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-390x844/mobile-navigation-full.png",
+    "width": 390,
+    "height": 3298,
+    "bytes": 281315
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-390x844/mobile-navigation-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 98925
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-390x844/review-queue-full.png",
+    "width": 390,
+    "height": 2473,
+    "bytes": 131855
+  },
+  {
+    "path": "screenshots/owner/shell/mobile-390x844/review-queue-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 13820
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 1658,
+    "bytes": 197924
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 106851
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1440x900/close-dialog-end.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 204254
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1440x900/close-full.png",
+    "width": 1440,
+    "height": 1660,
+    "bytes": 298591
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1440x900/close-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 217500
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 1660,
+    "bytes": 206294
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 131967
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1440x900/review-dialog-end.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 210770
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1440x900/review-full.png",
+    "width": 1440,
+    "height": 1660,
+    "bytes": 295562
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1440x900/review-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 214540
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1662,
+    "bytes": 216714
+  },
+  {
+    "path": "screenshots/owner/shifts/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 157067
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-320x640/close-full.png",
+    "width": 370,
+    "height": 1910,
+    "bytes": 126281
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-320x640/close-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 41537
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-320x640/normal-full.png",
+    "width": 370,
+    "height": 1910,
+    "bytes": 125739
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 52429
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-320x640/review-full.png",
+    "width": 370,
+    "height": 1910,
+    "bytes": 123226
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-320x640/review-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 38324
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-360x800/normal-full.png",
+    "width": 370,
+    "height": 1910,
+    "bytes": 133405
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 59371
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-390x844/close-full.png",
+    "width": 390,
+    "height": 1892,
+    "bytes": 130204
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-390x844/close-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 52371
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 1892,
+    "bytes": 135406
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 64479
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-390x844/review-full.png",
+    "width": 390,
+    "height": 1892,
+    "bytes": 130742
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-390x844/review-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 52859
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 1849,
+    "bytes": 133657
+  },
+  {
+    "path": "screenshots/owner/shifts/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 70947
+  },
+  {
+    "path": "screenshots/owner/shifts/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1713,
+    "bytes": 166824
+  },
+  {
+    "path": "screenshots/owner/shifts/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 111341
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 194926
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 194926
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 233746
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 233746
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 316479
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 316479
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 47085
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 47085
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 60558
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 60558
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 64637
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 64637
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 74406
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 74406
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 129810
+  },
+  {
+    "path": "screenshots/public/driver-invalid-link/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 129810
+  },
+  {
+    "path": "screenshots/public/login/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 508728
+  },
+  {
+    "path": "screenshots/public/login/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 507707
+  },
+  {
+    "path": "screenshots/public/login/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 599766
+  },
+  {
+    "path": "screenshots/public/login/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 598328
+  },
+  {
+    "path": "screenshots/public/login/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 908954
+  },
+  {
+    "path": "screenshots/public/login/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 909577
+  },
+  {
+    "path": "screenshots/public/login/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 93093
+  },
+  {
+    "path": "screenshots/public/login/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 93233
+  },
+  {
+    "path": "screenshots/public/login/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 125600
+  },
+  {
+    "path": "screenshots/public/login/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 125900
+  },
+  {
+    "path": "screenshots/public/login/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 149324
+  },
+  {
+    "path": "screenshots/public/login/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 149461
+  },
+  {
+    "path": "screenshots/public/login/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 188346
+  },
+  {
+    "path": "screenshots/public/login/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 188062
+  },
+  {
+    "path": "screenshots/public/login/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 382222
+  },
+  {
+    "path": "screenshots/public/login/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 380710
+  },
+  {
+    "path": "screenshots/public/not-found/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 20017
+  },
+  {
+    "path": "screenshots/public/not-found/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 20017
+  },
+  {
+    "path": "screenshots/public/not-found/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 21122
+  },
+  {
+    "path": "screenshots/public/not-found/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 21122
+  },
+  {
+    "path": "screenshots/public/not-found/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 23642
+  },
+  {
+    "path": "screenshots/public/not-found/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 23642
+  },
+  {
+    "path": "screenshots/public/not-found/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 16400
+  },
+  {
+    "path": "screenshots/public/not-found/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 16400
+  },
+  {
+    "path": "screenshots/public/not-found/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 17312
+  },
+  {
+    "path": "screenshots/public/not-found/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 17312
+  },
+  {
+    "path": "screenshots/public/not-found/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 17693
+  },
+  {
+    "path": "screenshots/public/not-found/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 17693
+  },
+  {
+    "path": "screenshots/public/not-found/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 17365
+  },
+  {
+    "path": "screenshots/public/not-found/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 17365
+  },
+  {
+    "path": "screenshots/public/not-found/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 19653
+  },
+  {
+    "path": "screenshots/public/not-found/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 19653
+  },
+  {
+    "path": "screenshots/public/password-recovery/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 538294
+  },
+  {
+    "path": "screenshots/public/password-recovery/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 537200
+  },
+  {
+    "path": "screenshots/public/password-recovery/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 629694
+  },
+  {
+    "path": "screenshots/public/password-recovery/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 627966
+  },
+  {
+    "path": "screenshots/public/password-recovery/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 907459
+  },
+  {
+    "path": "screenshots/public/password-recovery/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 910514
+  },
+  {
+    "path": "screenshots/public/password-recovery/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 104973
+  },
+  {
+    "path": "screenshots/public/password-recovery/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 104690
+  },
+  {
+    "path": "screenshots/public/password-recovery/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 142949
+  },
+  {
+    "path": "screenshots/public/password-recovery/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 143033
+  },
+  {
+    "path": "screenshots/public/password-recovery/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 163707
+  },
+  {
+    "path": "screenshots/public/password-recovery/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 163310
+  },
+  {
+    "path": "screenshots/public/password-recovery/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 211188
+  },
+  {
+    "path": "screenshots/public/password-recovery/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 211262
+  },
+  {
+    "path": "screenshots/public/password-recovery/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 430550
+  },
+  {
+    "path": "screenshots/public/password-recovery/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 429236
+  },
+  {
+    "path": "screenshots/public/password-update/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 23806
+  },
+  {
+    "path": "screenshots/public/password-update/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 23806
+  },
+  {
+    "path": "screenshots/public/password-update/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 24876
+  },
+  {
+    "path": "screenshots/public/password-update/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 24876
+  },
+  {
+    "path": "screenshots/public/password-update/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 27369
+  },
+  {
+    "path": "screenshots/public/password-update/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 27369
+  },
+  {
+    "path": "screenshots/public/password-update/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 19439
+  },
+  {
+    "path": "screenshots/public/password-update/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 19439
+  },
+  {
+    "path": "screenshots/public/password-update/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 20498
+  },
+  {
+    "path": "screenshots/public/password-update/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 20498
+  },
+  {
+    "path": "screenshots/public/password-update/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 20937
+  },
+  {
+    "path": "screenshots/public/password-update/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 20937
+  },
+  {
+    "path": "screenshots/public/password-update/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 20861
+  },
+  {
+    "path": "screenshots/public/password-update/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 20861
+  },
+  {
+    "path": "screenshots/public/password-update/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 23248
+  },
+  {
+    "path": "screenshots/public/password-update/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 23248
+  },
+  {
+    "path": "screenshots/public/signup/desktop-1366x768/normal-full.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 534763
+  },
+  {
+    "path": "screenshots/public/signup/desktop-1366x768/normal-viewport.png",
+    "width": 1366,
+    "height": 768,
+    "bytes": 535043
+  },
+  {
+    "path": "screenshots/public/signup/desktop-1440x900/normal-full.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 622570
+  },
+  {
+    "path": "screenshots/public/signup/desktop-1440x900/normal-viewport.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 622009
+  },
+  {
+    "path": "screenshots/public/signup/desktop-1920x1080/normal-full.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 918527
+  },
+  {
+    "path": "screenshots/public/signup/desktop-1920x1080/normal-viewport.png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 919563
+  },
+  {
+    "path": "screenshots/public/signup/mobile-320x640/normal-full.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 92380
+  },
+  {
+    "path": "screenshots/public/signup/mobile-320x640/normal-viewport.png",
+    "width": 320,
+    "height": 640,
+    "bytes": 92544
+  },
+  {
+    "path": "screenshots/public/signup/mobile-360x800/normal-full.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 122974
+  },
+  {
+    "path": "screenshots/public/signup/mobile-360x800/normal-viewport.png",
+    "width": 360,
+    "height": 800,
+    "bytes": 122972
+  },
+  {
+    "path": "screenshots/public/signup/mobile-390x844/normal-full.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 142388
+  },
+  {
+    "path": "screenshots/public/signup/mobile-390x844/normal-viewport.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 142483
+  },
+  {
+    "path": "screenshots/public/signup/mobile-430x932/normal-full.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 185231
+  },
+  {
+    "path": "screenshots/public/signup/mobile-430x932/normal-viewport.png",
+    "width": 430,
+    "height": 932,
+    "bytes": 184987
+  },
+  {
+    "path": "screenshots/public/signup/tablet-768x1024/normal-full.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 378957
+  },
+  {
+    "path": "screenshots/public/signup/tablet-768x1024/normal-viewport.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 378264
+  }
+]

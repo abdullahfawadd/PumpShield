@@ -40,6 +40,7 @@ export async function uploadOfflineEvidence(
     },
     signal,
   );
+  signal?.throwIfAborted();
   return result.id;
 }
 function replaceReferences(value: unknown, ids: Map<string, string>): unknown {
@@ -55,13 +56,15 @@ export async function postOfflineDraft(
   draft: FieldDraft,
   signal?: AbortSignal,
 ) {
+  signal?.throwIfAborted();
   const ids = new Map<string, string>();
   for (const evidence of Object.values(draft.evidence))
     ids.set(
       `local:${evidence.captureId}`,
       await uploadOfflineEvidence(draft, evidence, signal),
     );
-  return field<{ id: string; replayed?: boolean }>(
+  signal?.throwIfAborted();
+  const result = await field<{ id: string; replayed?: boolean }>(
     "sync",
     {
       station_id: draft.station_id,
@@ -75,4 +78,6 @@ export async function postOfflineDraft(
     },
     signal,
   );
+  signal?.throwIfAborted();
+  return result;
 }

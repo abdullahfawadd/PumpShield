@@ -66,16 +66,16 @@ export function DocumentCentre({
     <section className="document-centre">
       <div className="ops-heading">
         <div>
-          <span className="ops-kicker">STATION RECORDS</span>
-          <h2>Documents, in one place.</h2>
-          <p>
-            Verified delivery claims, fuel parchis, and current account
-            statements.
-          </p>
+          <h2>Recent documents</h2>
+          <p>Approved claims, issued parchis and current account statements.</p>
         </div>
         <span className="document-count">
-          {rows.length}
-          <small>available documents</small>
+          {visible.length}
+          <small>
+            {visible.length === rows.length
+              ? "loaded documents"
+              : `of ${rows.length} loaded`}
+          </small>
         </span>
       </div>
       <div className="ops-toolbar">
@@ -126,21 +126,32 @@ export function DocumentCentre({
           <div className="ops-empty">
             <FileText size={24} />
             <h3>
-              {search
+              {search || kind !== "all"
                 ? "No matching documents"
-                : "Your documents will appear here"}
+                : "No documents yet"}
             </h3>
-            <p>
-              Approved deliveries and issued credit fuel create their documents
-              automatically.
-            </p>
+            {search || kind !== "all" ? (
+              <button
+                className="text-link"
+                onClick={() => {
+                  setSearch("");
+                  setKind("all");
+                }}
+              >
+                Clear filters
+              </button>
+            ) : (
+              <p>
+                Documents appear after approved deliveries and recorded fills.
+              </p>
+            )}
           </div>
         )}
       </div>
       <p className="ops-footnote">
-        Based on the records loaded in this workspace (up to 200 recent
-        deliveries and parchis). Statements are generated from the current
-        account ledger when opened. PDFs require an authenticated session.
+        Recent records only: up to 200 deliveries and 200 parchis loaded for the
+        workspace. Statements use the current account ledger when opened. PDFs
+        require sign-in.
       </p>
     </section>
   );

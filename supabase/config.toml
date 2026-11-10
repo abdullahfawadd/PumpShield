@@ -2,7 +2,9 @@ project_id = "pumpshield"
 [auth]
 site_url = "https://pumpshield-m-abdullah-fawads-projects.vercel.app"
 additional_redirect_urls = ["https://pumpshield-seven.vercel.app/auth/callback", "https://pumpshield-seven.vercel.app/auth/callback?next=/auth/password", "https://pumpshield-m-abdullah-fawads-projects.vercel.app/auth/callback", "https://pumpshield-m-abdullah-fawads-projects.vercel.app/auth/callback?next=/auth/password", "http://localhost:3000/auth/callback", "http://localhost:3000/auth/callback?next=/auth/password"]
-minimum_password_length = 12
+# Local Auth policy; configure the hosted project separately before release.
+# Existing passwords remain usable for sign-in.
+minimum_password_length = 15
 enable_refresh_token_rotation = true
 refresh_token_reuse_interval = 10
 [auth.email]

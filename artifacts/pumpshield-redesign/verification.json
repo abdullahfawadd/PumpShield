@@ -1,0 +1,1088 @@
+{
+  "branch": "codex/petroleum-ledger-redesign",
+  "deployment": "Not pushed or deployed; hosted migration not applied",
+  "syntheticOnly": true,
+  "normalViewportStates": 168,
+  "normalScreenshots": 336,
+  "modules": 21,
+  "contactSheets": 21,
+  "horizontalOverflows": [],
+  "quality": {
+    "lint": "passed",
+    "typescript": "passed",
+    "unitTests": 39,
+    "unitFiles": 9,
+    "productionBuild": "passed",
+    "productionDependencyAudit": "zero known vulnerabilities at execution time"
+  },
+  "evidence": {
+    "redesign-prod-interactions": {
+      "role": "owner",
+      "workspace": "PumpShield - Design Lab",
+      "tests": [
+        {
+          "name": "Daily chart matches loaded closed shifts",
+          "passed": true
+        },
+        {
+          "name": "30 day control updates context",
+          "passed": true
+        },
+        {
+          "name": "Chart selection exposes record actions",
+          "passed": true
+        },
+        {
+          "name": "Chart opens authorized shift record",
+          "passed": true
+        },
+        {
+          "name": "Optional widget can be hidden",
+          "passed": true
+        },
+        {
+          "name": "Widget preference persists after reload",
+          "passed": true
+        },
+        {
+          "name": "Panels reorder with accessible buttons",
+          "passed": true
+        },
+        {
+          "name": "Reset restores default panels",
+          "passed": true
+        },
+        {
+          "name": "Privacy masks revenue chart",
+          "passed": true
+        },
+        {
+          "name": "Privacy masks payment mix",
+          "passed": true
+        },
+        {
+          "name": "Delivery stage filters loaded records",
+          "passed": true
+        },
+        {
+          "name": "Navigation is URL backed",
+          "passed": true
+        },
+        {
+          "name": "Reload preserves module",
+          "passed": true
+        },
+        {
+          "name": "Browser back restores module",
+          "passed": true
+        },
+        {
+          "name": "Nonfinite HTTP payload rejected without posting",
+          "passed": true
+        }
+      ],
+      "actions": [
+        "work_item_transition",
+        "work_item_create",
+        "evidence",
+        "open_shift",
+        "approve_delivery",
+        "sample_workspace_created",
+        "synthetic_dispatch_created"
+      ],
+      "scope": "Read-only live synthetic data; UI validation and rejected HTTP request only, no financial or stock commands."
+    },
+    "overview-visual-results": {
+      "scope": "Production build, local UI, authenticated synthetic Design Lab Owner; read-only server operations",
+      "checks": [
+        {
+          "name": "Generated tanker asset loads",
+          "passed": true,
+          "naturalWidth": 576,
+          "naturalHeight": 288,
+          "complete": true,
+          "src": "/_next/image?url=%2Fillustrations%2Ffuel-tanker-v1.webp&w=3840&q=75"
+        },
+        {
+          "name": "Next delivery changes selected identity",
+          "passed": true,
+          "before": "TKA-842\nSAMPLE-OMC-1042\n\u2190\n1 / 3\n\u2192",
+          "after": "TKA-843\nSAMPLE-OMC-1043\n\u2190\n2 / 3\n\u2192"
+        },
+        {
+          "name": "Receiving record opens selected database delivery",
+          "passed": true,
+          "expectedId": "d170147b-e228-40b1-8cae-823cf07d7cf1",
+          "actualId": "d170147b-e228-40b1-8cae-823cf07d7cf1",
+          "dialogTitle": "Delivery verification"
+        },
+        {
+          "name": "Zero-count stage shows explicit empty state",
+          "passed": true,
+          "count": 0
+        },
+        {
+          "name": "Tank inspection shows matching saved nozzle counters",
+          "passed": true,
+          "tank": "Premier petrol",
+          "expectedNozzles": [
+            "Nozzle 01 - Petrol"
+          ]
+        },
+        {
+          "name": "Payment category controls update percentage and explanation",
+          "passed": true,
+          "states": [
+            {
+              "category": "Cash",
+              "text": "93%\nCash",
+              "description": "Declared cash from submitted shifts.",
+              "selected": "true"
+            },
+            {
+              "category": "POS",
+              "text": "7%\nPOS",
+              "description": "POS collections from submitted shifts.",
+              "selected": "true"
+            },
+            {
+              "category": "Credit",
+              "text": "0%\nCredit",
+              "description": "Credit sales from submitted shifts.",
+              "selected": "true"
+            }
+          ]
+        },
+        {
+          "name": "Privacy hides revenue chart, values, and payment amounts",
+          "passed": true,
+          "paymentLabels": [
+            "Cash\u2022\u2022\u2022\u2022",
+            "POS\u2022\u2022\u2022\u2022",
+            "Credit\u2022\u2022\u2022\u2022"
+          ]
+        },
+        {
+          "name": "Map & sharing expands read-only tracking",
+          "passed": true,
+          "operations": [
+            "read"
+          ],
+          "status": 200
+        }
+      ],
+      "viewports": [
+        {
+          "width": 1440,
+          "height": 900,
+          "scrollWidth": 1440,
+          "axe": [],
+          "customizerAxe": [],
+          "customizer": {
+            "x": 1062,
+            "y": 332.59375,
+            "width": 350,
+            "height": 414.375
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390,
+          "axe": [],
+          "customizerAxe": [],
+          "customizer": {
+            "x": 24,
+            "y": 421.5,
+            "width": 350,
+            "height": 414.375
+          }
+        },
+        {
+          "width": 320,
+          "height": 640,
+          "scrollWidth": 320,
+          "axe": [],
+          "customizerAxe": [],
+          "customizer": {
+            "x": 16,
+            "y": 439.5,
+            "width": 288,
+            "height": 452.75
+          }
+        }
+      ],
+      "additionalChecks": [
+        {
+          "name": "320px touch-emulated customizer lower controls reachable above mobile navigation",
+          "passed": true,
+          "resetBox": {
+            "x": 37,
+            "y": 438.875,
+            "width": 93.140625,
+            "height": 36
+          },
+          "emulation": {
+            "width": 320,
+            "height": 640,
+            "deviceScaleFactor": 2,
+            "touch": true
+          }
+        },
+        {
+          "name": "Delivery dialog returns keyboard focus to receiving action",
+          "passed": true
+        }
+      ],
+      "dialogAxe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "html": "<span>Invoice volume</span>",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.98 (foreground color: #6a8053, background color: #f3f6ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "html": "<span>Measured volume</span>",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.98 (foreground color: #6a8053, background color: #f3f6ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "html": "<span>Thermal allowance</span>",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.98 (foreground color: #6a8053, background color: #f3f6ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "html": "<span>38\u00b0C loading \u2192 32\u00b0C arrival</span>",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #6a8053, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "html": "<span>Coefficient 0.00115 / \u00b0C \u00b7 Rs 300 / L</span>",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #6a8053, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "html": "<span>Calculated claim for review</span>",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b8254, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "manualInspection": {
+        "screenshotsInspected": [
+          "interactive-normal-1440.png",
+          "interactive-normal-320.png",
+          "interactive-customizer-320.png",
+          "interactive-customizer-390.png",
+          "interactive-delivery-record.png",
+          "interactive-empty-stage.png",
+          "interactive-customizer-lower-320.png"
+        ],
+        "findings": [
+          "No document horizontal overflow at 1440/390/320.",
+          "Customizer lower controls reachable at 320px with touch emulation and 2x scaling.",
+          "Receiving dialog legacy metadata colors fail text contrast; reported to parent for fix.",
+          "Customizer checkbox labels stack due inherited label layout; cosmetic refinement recommended.",
+          "Approved receipt contrast fix verified in restarted production: all7metadata labels #58645f,12px; zero axe violations. Earlier dispatch-only dialog check was insufficient; approved-state recheck is authoritative."
+        ],
+        "notTested": [
+          "Physical phones or GPS travel",
+          "Driver capability creation or real sharing",
+          "Financial, inventory, or workflow transitions"
+        ]
+      },
+      "dialogContrastRemediation": {
+        "before": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": [
+              {
+                "html": "<span>Invoice volume</span>",
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.98 (foreground color: #6a8053, background color: #f3f6ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "html": "<span>Measured volume</span>",
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.98 (foreground color: #6a8053, background color: #f3f6ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "html": "<span>Thermal allowance</span>",
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.98 (foreground color: #6a8053, background color: #f3f6ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "html": "<span>38\u00b0C loading \u2192 32\u00b0C arrival</span>",
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #6a8053, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "html": "<span>Coefficient 0.00115 / \u00b0C \u00b7 Rs 300 / L</span>",
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #6a8053, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "html": "<span>Calculated claim for review</span>",
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b8254, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ]
+          }
+        ],
+        "after": [],
+        "verifiedMetadata": [
+          {
+            "text": "Invoice volume",
+            "color": "rgb(88, 100, 95)",
+            "fontSize": "12px"
+          },
+          {
+            "text": "Measured volume",
+            "color": "rgb(88, 100, 95)",
+            "fontSize": "12px"
+          },
+          {
+            "text": "Thermal allowance",
+            "color": "rgb(88, 100, 95)",
+            "fontSize": "12px"
+          },
+          {
+            "text": "Unexplained shortage",
+            "color": "rgb(88, 100, 95)",
+            "fontSize": "12px"
+          },
+          {
+            "text": "38\u00b0C loading \u2192 32\u00b0C arrival",
+            "color": "rgb(88, 100, 95)",
+            "fontSize": "12px"
+          },
+          {
+            "text": "Coefficient 0.00115 / \u00b0C \u00b7 Rs 300 / L",
+            "color": "rgb(88, 100, 95)",
+            "fontSize": "12px"
+          },
+          {
+            "text": "Calculated claim for review",
+            "color": "rgb(88, 100, 95)",
+            "fontSize": "12px"
+          }
+        ],
+        "actualApprovedDeliveryId": "d170147b-e228-40b1-8cae-823cf07d7cf1",
+        "resolved": true,
+        "screenshot": "artifacts/pumpshield-redesign/screenshots/owner/overview/interactive-approved-contrast-fixed.png"
+      },
+      "settingsMap": {
+        "scope": "Readonly settings map; no permission requested, point selected, or location saved",
+        "elapsedMs": 1408,
+        "stateBefore": {
+          "canvas": true,
+          "loading": true,
+          "fallback": false
+        },
+        "state": {
+          "canvas": true,
+          "loading": false,
+          "fallback": false,
+          "flatMap": false,
+          "enabledControls": [
+            "3D",
+            "Terrain"
+          ],
+          "error": null,
+          "canvasSize": {
+            "width": 290,
+            "height": 330
+          }
+        },
+        "ready": true
+      }
+    },
+    "owner-readability-results": {
+      "scope": "Local production build, synthetic Owner read-only8 modules390 viewport; no transactions or settings saved",
+      "checks": [
+        {
+          "view": "overview",
+          "heading": "Station overview",
+          "width": 390,
+          "scrollWidth": 390,
+          "axe": []
+        },
+        {
+          "view": "deliveries",
+          "heading": "Deliveries",
+          "width": 390,
+          "scrollWidth": 390,
+          "axe": []
+        },
+        {
+          "view": "shifts",
+          "heading": "Shifts & reconciliation",
+          "width": 390,
+          "scrollWidth": 390,
+          "axe": []
+        },
+        {
+          "view": "credit",
+          "heading": "Corporate credit",
+          "width": 390,
+          "scrollWidth": 390,
+          "axe": []
+        },
+        {
+          "view": "operations",
+          "heading": "Station work",
+          "width": 390,
+          "scrollWidth": 390,
+          "axe": []
+        },
+        {
+          "view": "documents",
+          "heading": "Documents",
+          "width": 390,
+          "scrollWidth": 390,
+          "axe": []
+        },
+        {
+          "view": "stock",
+          "heading": "Recorded stock & prices",
+          "width": 390,
+          "scrollWidth": 390,
+          "axe": [],
+          "axeBeforeFix": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "nodes": [
+                {
+                  "html": "<span class=\"fuel-grade\">MS</span>",
+                  "target": [
+                    "tr:nth-child(1) > td:nth-child(1) > .fuel-grade"
+                  ],
+                  "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "html": "<span class=\"fuel-grade\">HSD</span>",
+                  "target": [
+                    "tr:nth-child(2) > td:nth-child(1) > .fuel-grade"
+                  ],
+                  "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "text": "MS",
+              "color": "rgb(52, 71, 62)",
+              "background": "rgb(233, 237, 231)",
+              "fontSize": "12px"
+            },
+            {
+              "text": "HSD",
+              "color": "rgb(52, 71, 62)",
+              "background": "rgb(233, 237, 231)",
+              "fontSize": "12px"
+            }
+          ]
+        },
+        {
+          "view": "settings",
+          "heading": "Station settings",
+          "width": 390,
+          "scrollWidth": 390,
+          "axe": []
+        }
+      ],
+      "receivingDialog": [],
+      "manualVisualInspection": {
+        "inspectedModules": [
+          "overview",
+          "deliveries",
+          "shifts",
+          "credit",
+          "operations",
+          "documents",
+          "stock",
+          "settings"
+        ],
+        "notes": [
+          "Reviewed all eight actual 390px full-page module screenshots.",
+          "Tables intentionally scroll inside labelled regions; no document horizontal overflow.",
+          "Settings map screenshot captured separately after real map tiles rendered.",
+          "Two fuel-grade price-table badges were the only normal-state axe failures; source fix applied and awaiting final rebuilt production retest.",
+          "Fuel-grade fix verified in final restarted production: zero stock axe violations; badges #34473e on #e9ede7,12px."
+        ]
+      },
+      "stockBadgeRemediation": {
+        "before": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": [
+              {
+                "html": "<span class=\"fuel-grade\">MS</span>",
+                "target": [
+                  "tr:nth-child(1) > td:nth-child(1) > .fuel-grade"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "html": "<span class=\"fuel-grade\">HSD</span>",
+                "target": [
+                  "tr:nth-child(2) > td:nth-child(1) > .fuel-grade"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ]
+          }
+        ],
+        "after": [],
+        "badges": [
+          {
+            "text": "MS",
+            "color": "rgb(52, 71, 62)",
+            "background": "rgb(233, 237, 231)",
+            "fontSize": "12px"
+          },
+          {
+            "text": "HSD",
+            "color": "rgb(52, 71, 62)",
+            "background": "rgb(233, 237, 231)",
+            "fontSize": "12px"
+          }
+        ],
+        "resolved": true,
+        "verifiedProduction": "http://localhost:3001"
+      }
+    },
+    "settings-map-results": {
+      "scope": "Readonly settings map; no permission requested, point selected, or location saved",
+      "elapsedMs": 1408,
+      "stateBefore": {
+        "canvas": true,
+        "loading": true,
+        "fallback": false
+      },
+      "state": {
+        "canvas": true,
+        "loading": false,
+        "fallback": false,
+        "flatMap": false,
+        "enabledControls": [
+          "3D",
+          "Terrain"
+        ],
+        "error": null,
+        "canvasSize": {
+          "width": 290,
+          "height": 330
+        }
+      },
+      "ready": true
+    },
+    "receiving-contrast-fixed": {
+      "scope": "Actual synthetic approved receiving receipt dialog in local production; no decant submitted",
+      "deliveryId": "d170147b-e228-40b1-8cae-823cf07d7cf1",
+      "axe": [],
+      "metadata": [
+        {
+          "text": "Invoice volume",
+          "color": "rgb(88, 100, 95)",
+          "fontSize": "12px"
+        },
+        {
+          "text": "Measured volume",
+          "color": "rgb(88, 100, 95)",
+          "fontSize": "12px"
+        },
+        {
+          "text": "Thermal allowance",
+          "color": "rgb(88, 100, 95)",
+          "fontSize": "12px"
+        },
+        {
+          "text": "Unexplained shortage",
+          "color": "rgb(88, 100, 95)",
+          "fontSize": "12px"
+        },
+        {
+          "text": "38\u00b0C loading \u2192 32\u00b0C arrival",
+          "color": "rgb(88, 100, 95)",
+          "fontSize": "12px"
+        },
+        {
+          "text": "Coefficient 0.00115 / \u00b0C \u00b7 Rs 300 / L",
+          "color": "rgb(88, 100, 95)",
+          "fontSize": "12px"
+        },
+        {
+          "text": "Calculated claim for review",
+          "color": "rgb(88, 100, 95)",
+          "fontSize": "12px"
+        }
+      ]
+    },
+    "redesign-owner-document": {
+      "role": "owner",
+      "status": 200,
+      "contentType": "application/pdf",
+      "pdfHeader": "%PDF-",
+      "bytes": 4018,
+      "passed": true,
+      "scope": "Read-only synthetic claim endpoint; no transaction posted."
+    },
+    "redesign-munshi-document": {
+      "role": "munshi",
+      "status": 404,
+      "contentType": "text/plain;charset=UTF-8",
+      "pdfHeader": null,
+      "bytes": 0,
+      "passed": true,
+      "scope": "Read-only synthetic claim endpoint; no transaction posted."
+    },
+    "workflow-final-results": {
+      "role": "owner",
+      "rows": [
+        {
+          "name": "deliveries",
+          "width": 1440,
+          "path": "D:/PumpShield/output/playwright/workflow-final/deliveries-1440.png",
+          "layout": 1440,
+          "documentWidth": 1440,
+          "visualWidth": 1440,
+          "dialog": null
+        },
+        {
+          "name": "deliveries",
+          "width": 390,
+          "path": "D:/PumpShield/output/playwright/workflow-final/deliveries-390.png",
+          "layout": 390,
+          "documentWidth": 390,
+          "visualWidth": 390,
+          "dialog": null
+        },
+        {
+          "name": "deliveries",
+          "width": 320,
+          "path": "D:/PumpShield/output/playwright/workflow-final/deliveries-320.png",
+          "layout": 320,
+          "documentWidth": 320,
+          "visualWidth": 320,
+          "dialog": null
+        },
+        {
+          "name": "delivery-create",
+          "width": 320,
+          "path": "D:/PumpShield/output/playwright/workflow-final/delivery-create-320.png",
+          "layout": 320,
+          "documentWidth": 320,
+          "visualWidth": 320,
+          "dialog": {
+            "x": 0,
+            "y": 0,
+            "width": 320,
+            "height": 640,
+            "scrollHeight": 1045,
+            "clientHeight": 640
+          }
+        },
+        {
+          "name": "arrival-audit",
+          "width": 320,
+          "path": "D:/PumpShield/output/playwright/workflow-final/arrival-audit-320.png",
+          "layout": 320,
+          "documentWidth": 320,
+          "visualWidth": 320,
+          "dialog": {
+            "x": 0,
+            "y": 0,
+            "width": 320,
+            "height": 640,
+            "scrollHeight": 1124,
+            "clientHeight": 640
+          }
+        },
+        {
+          "name": "arrival-audit",
+          "width": 390,
+          "path": "D:/PumpShield/output/playwright/workflow-final/arrival-audit-390.png",
+          "layout": 390,
+          "documentWidth": 390,
+          "visualWidth": 390,
+          "dialog": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844,
+            "scrollHeight": 1104,
+            "clientHeight": 844
+          }
+        },
+        {
+          "name": "work-list",
+          "width": 390,
+          "path": "D:/PumpShield/output/playwright/workflow-final/work-list-390.png",
+          "layout": 390,
+          "documentWidth": 390,
+          "visualWidth": 390,
+          "dialog": null
+        },
+        {
+          "name": "case-create",
+          "width": 390,
+          "path": "D:/PumpShield/output/playwright/workflow-final/case-create-390.png",
+          "layout": 390,
+          "documentWidth": 390,
+          "visualWidth": 390,
+          "dialog": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844,
+            "scrollHeight": 844,
+            "clientHeight": 844
+          }
+        },
+        {
+          "name": "case-create",
+          "width": 320,
+          "path": "D:/PumpShield/output/playwright/workflow-final/case-create-320.png",
+          "layout": 320,
+          "documentWidth": 320,
+          "visualWidth": 320,
+          "dialog": {
+            "x": 0,
+            "y": 0,
+            "width": 320,
+            "height": 640,
+            "scrollHeight": 827,
+            "clientHeight": 640
+          }
+        },
+        {
+          "name": "vehicle-disable-confirm",
+          "width": 390,
+          "path": "D:/PumpShield/output/playwright/workflow-final/vehicle-disable-confirm-390.png",
+          "layout": 390,
+          "documentWidth": 390,
+          "visualWidth": 390,
+          "dialog": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844,
+            "scrollHeight": 844,
+            "clientHeight": 844
+          }
+        }
+      ],
+      "checks": [
+        {
+          "test": "responsive delivery layout",
+          "width": 1440,
+          "list": 0,
+          "board": 1
+        },
+        {
+          "test": "responsive delivery layout",
+          "width": 390,
+          "list": 1,
+          "board": 0
+        },
+        {
+          "test": "responsive delivery layout",
+          "width": 320,
+          "list": 1,
+          "board": 0
+        },
+        {
+          "test": "delivery stage filter",
+          "rendered": 2,
+          "expected": 2
+        },
+        {
+          "test": "native dispatch validation",
+          "invalid": 8,
+          "commandPosts": 0
+        },
+        {
+          "test": "dialog focus return",
+          "returnedToNewDelivery": false
+        },
+        {
+          "test": "arrival task before tracking",
+          "captureVisible": true,
+          "trackingNotMounted": true
+        },
+        {
+          "test": "work form bounds",
+          "width": 390,
+          "fields": [
+            {
+              "tag": "INPUT",
+              "name": "title",
+              "width": 350,
+              "right": 370
+            },
+            {
+              "tag": "TEXTAREA",
+              "name": "description",
+              "width": 350,
+              "right": 370
+            },
+            {
+              "tag": "SELECT",
+              "name": "assigned_to",
+              "width": 350,
+              "right": 370
+            },
+            {
+              "tag": "SELECT",
+              "name": "priority",
+              "width": 350,
+              "right": 370
+            },
+            {
+              "tag": "INPUT",
+              "name": "due_at",
+              "width": 350,
+              "right": 370
+            },
+            {
+              "tag": "SELECT",
+              "name": "shift_id",
+              "width": 350,
+              "right": 370
+            },
+            {
+              "tag": "SELECT",
+              "name": "delivery_id",
+              "width": 350,
+              "right": 370
+            }
+          ]
+        },
+        {
+          "test": "work form bounds",
+          "width": 320,
+          "fields": [
+            {
+              "tag": "INPUT",
+              "name": "title",
+              "width": 280,
+              "right": 300
+            },
+            {
+              "tag": "TEXTAREA",
+              "name": "description",
+              "width": 280,
+              "right": 300
+            },
+            {
+              "tag": "SELECT",
+              "name": "assigned_to",
+              "width": 280,
+              "right": 300
+            },
+            {
+              "tag": "SELECT",
+              "name": "priority",
+              "width": 280,
+              "right": 300
+            },
+            {
+              "tag": "INPUT",
+              "name": "due_at",
+              "width": 280,
+              "right": 300
+            },
+            {
+              "tag": "SELECT",
+              "name": "shift_id",
+              "width": 280,
+              "right": 300
+            },
+            {
+              "tag": "SELECT",
+              "name": "delivery_id",
+              "width": 280,
+              "right": 300
+            }
+          ]
+        },
+        {
+          "test": "vehicle disable confirmation",
+          "present": true,
+          "commandPosts": 0
+        }
+      ],
+      "commandPosts": 0,
+      "limits": "Read-only UI exercise. No dispatch, evidence, credit, inventory, membership or vehicle authorization mutation submitted."
+    },
+    "workflow-focus-results": {
+      "captures": [
+        {
+          "method": "Escape",
+          "exact": true,
+          "tag": "BUTTON",
+          "text": "New delivery",
+          "label": null
+        },
+        {
+          "method": "Close dialog",
+          "exact": true,
+          "tag": "BUTTON",
+          "text": "New delivery",
+          "label": null
+        }
+      ],
+      "pageViolations": [],
+      "dialogViolations": []
+    },
+    "workflow-munshi-results": {
+      "role": "munshi",
+      "ownerControlsHidden": true,
+      "rows": [
+        {
+          "name": "munshi-parchi",
+          "width": 390,
+          "path": "D:/PumpShield/output/playwright/workflow-final/munshi-parchi-390.png",
+          "layout": 390,
+          "documentWidth": 390,
+          "visualWidth": 390
+        },
+        {
+          "name": "munshi-parchi",
+          "width": 320,
+          "path": "D:/PumpShield/output/playwright/workflow-final/munshi-parchi-320.png",
+          "layout": 320,
+          "documentWidth": 320,
+          "visualWidth": 320
+        },
+        {
+          "name": "munshi-parchi-validation",
+          "width": 320,
+          "path": "D:/PumpShield/output/playwright/workflow-final/munshi-parchi-validation-320.png",
+          "layout": 320,
+          "documentWidth": 320,
+          "visualWidth": 320
+        }
+      ],
+      "validation": {
+        "message": "Scan an owner-issued PumpShield vehicle pass. Payment QRs, number plates, and receipt QRs cannot authorise a credit fill.",
+        "dispensingDisabled": true,
+        "litresDisabled": true,
+        "commandPosts": 0
+      },
+      "focusReturn": true,
+      "violations": [],
+      "commandPosts": 0
+    },
+    "offline-lock-regression-results": {
+      "role": "munshi",
+      "preparedNewEmptyVault": true,
+      "priorDatabaseExisted": true,
+      "priorRecordCount": 0,
+      "noDrafts": true,
+      "oldContextHttpStatus": 200,
+      "stripAfterLock": 0,
+      "released": true,
+      "fulfillOutcome": "fulfilled",
+      "afterRelease": {
+        "heading": "Unlock field terminal",
+        "workspaceStrip": 0,
+        "unlockedForms": 0
+      },
+      "cache": [
+        {
+          "name": "pumpshield-field-v3",
+          "count": 29
+        }
+      ],
+      "privateCachePaths": [],
+      "offlineShell": {
+        "online": false,
+        "worker": true,
+        "heading": "Unlock field terminal"
+      },
+      "privateFetch": {
+        "blocked": true
+      },
+      "offlineUnlock": true,
+      "localVaultRemoved": true,
+      "commandPosts": 0,
+      "fieldOps": [
+        "context",
+        "context",
+        "context"
+      ],
+      "apiCacheControl": "private, no-store",
+      "screenshots": [
+        "offline-lock-after-delayed-context.png",
+        "offline-reload-locked.png"
+      ],
+      "limits": "No draft, financial, inventory, membership or hosted configuration mutation. Only fresh synthetic local encrypted context prepared and removed."
+    },
+    "redesign-performance": {
+      "conditions": "Local production Next server; approved hosted synthetic workspace; 390x844 mobile scale2; CPU4x; browser cache disabled; service worker bypassed; no network throttling; three consecutive full navigations with1s LCP observation after load. Not field CWV or a controlled historical benchmark.",
+      "runs": [
+        {
+          "run": 1,
+          "domContentLoadedMs": 2756.600000023842,
+          "loadMs": 2758.199999988079,
+          "lcpMs": 2300,
+          "cls": 0,
+          "transferBytes": 530875,
+          "javascriptEncodedBytes": 322523,
+          "resourceCount": 22,
+          "apiRequests": []
+        },
+        {
+          "run": 2,
+          "domContentLoadedMs": 1356.5,
+          "loadMs": 1589.699999988079,
+          "lcpMs": 1376,
+          "cls": 0,
+          "transferBytes": 530875,
+          "javascriptEncodedBytes": 322523,
+          "resourceCount": 22,
+          "apiRequests": []
+        },
+        {
+          "run": 3,
+          "domContentLoadedMs": 935,
+          "loadMs": 1955.6000000238419,
+          "lcpMs": 1752,
+          "cls": 0,
+          "transferBytes": 530875,
+          "javascriptEncodedBytes": 322523,
+          "resourceCount": 22,
+          "apiRequests": []
+        }
+      ]
+    },
+    "database": {
+      "engine": "PostgreSQL17 in isolated disposable container",
+      "migrations": 10,
+      "suites": [
+        {
+          "file": "tests\\database.sql",
+          "passed": true
+        },
+        {
+          "file": "tests\\operations.sql",
+          "passed": true
+        },
+        {
+          "file": "tests\\field.sql",
+          "passed": true
+        },
+        {
+          "file": "tests\\security-boundaries.sql",
+          "passed": true
+        }
+      ],
+      "allPassed": true,
+      "limitation": "Fixture Auth/Storage schemas, not full Supabase service E2E."
+    }
+  },
+  "accessibilitySummary": {
+    "ownerNormalModulesAt390": 8,
+    "remainingTestedOwnerNormalViolations": 0,
+    "stockBadgeRemediationVerified": true,
+    "note": "Before findings are retained in evidence alongside verified remediation. Normal, dialog and customizer sampling is not a WCAG certification."
+  }
+}

@@ -5,10 +5,10 @@ declare a uuid=gen_random_uuid(); b uuid=gen_random_uuid(); u uuid=gen_random_uu
 begin
  insert into auth.users(id,email,email_confirmed_at,aud,role) values(a,a||'@example.invalid',now(),'authenticated','authenticated'),(b,b||'@example.invalid',now(),'authenticated','authenticated'),(u,u||'@example.invalid',now(),'authenticated','authenticated');
  perform set_config('request.jwt.claim.sub',a::text,true); execute 'set local role authenticated';
- w=(public.command('join','{"name":"Operations QA","person":"Owner A"}')->>'id')::uuid;
+ w=(public.command('join','{"intent":"create_workspace","name":"Operations QA","person":"Owner A"}')->>'id')::uuid;
  sid=(public.command('station','{"name":"QA station","omc":"QA","city":"Karachi"}')->>'id')::uuid;
  perform public.command('invite',jsonb_build_object('station_id',sid,'email',u||'@example.invalid','name','Supervisor'));
- perform set_config('request.jwt.claim.sub',u::text,true); perform public.command('join','{}');
+ perform set_config('request.jwt.claim.sub',u::text,true); perform public.command('accept_invite',jsonb_build_object('invitation_id',public.onboarding()->'invitations'->0->>'id'));
  perform set_config('request.jwt.claim.sub',a::text,true);
  c=(public.ops_command('create',jsonb_build_object('station_id',sid,'kind','exception','title','Investigate discrepancy'))->>'id')::uuid;
  failed=false;begin perform public.ops_command('transition',jsonb_build_object('id',c,'expected_status','open','status','resolved','note','Skipped investigation'));exception when others then failed=true;end;assert failed,'Case skipped investigation';
@@ -36,7 +36,7 @@ begin
  perform public.ops_command('transition',jsonb_build_object('id',job,'expected_status','in_progress','status','completed','note','Replaced seal and checked the dispenser'));
  failed=false;begin update public.station_work_items set title='Bypassed workflow' where id=job;exception when insufficient_privilege then failed=true;end;assert failed,'Direct write permitted';
  failed=false;begin delete from public.work_item_events where item_id=job;exception when insufficient_privilege then failed=true;end;assert failed,'History deletion permitted';
- perform set_config('request.jwt.claim.sub',b::text,true);perform public.command('join','{"name":"Other workspace","person":"Owner B"}');
+ perform set_config('request.jwt.claim.sub',b::text,true);perform public.command('join','{"intent":"create_workspace","name":"Other workspace","person":"Owner B"}');
  foreign_sid=(public.command('station','{"name":"Foreign station","omc":"QA","city":"Karachi"}')->>'id')::uuid;
  assert (select count(*) from public.station_work_items where station_id=sid)=0,'Cross tenant read';
  failed=false;begin perform public.ops_snapshot(sid);exception when others then failed=true;end;assert failed,'Cross tenant snapshot';

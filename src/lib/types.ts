@@ -1,3 +1,5 @@
+import type { FuelGrade } from "./fuel-grades";
+
 export type Member = {
   user_id: string;
   workspace_id: string;
@@ -20,7 +22,7 @@ export type Tank = {
   id: string;
   station_id: string;
   name: string;
-  grade: "MS" | "HSD";
+  grade: FuelGrade;
   capacity: number;
   stock: number;
   chart: { mm: number; liters: number }[];
@@ -36,7 +38,7 @@ export type Nozzle = {
 export type Price = {
   id: string;
   station_id: string;
-  grade: "MS" | "HSD";
+  grade: FuelGrade;
   price: number;
   beta: number;
   margin: number;
@@ -94,7 +96,7 @@ export type Shift = {
     tanks: {
       tank_id: string;
       name: string;
-      grade: string;
+      grade: FuelGrade;
       sold: number;
       delivered: number;
       expected: number;
@@ -128,7 +130,7 @@ export type Vehicle = {
   id: string;
   account_id: string;
   registration: string;
-  grade: string;
+  grade: FuelGrade;
   max_liters: number;
   token: string;
   active: boolean;

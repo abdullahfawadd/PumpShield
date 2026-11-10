@@ -1,0 +1,840 @@
+{
+  "rows": [],
+  "checks": [
+    {
+      "role": "owner",
+      "module": "overview",
+      "viewport": "desktop-1440x900",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 22
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "viewport": "mobile-390x844",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 30
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "viewport": "mobile-320x640",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 32
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "viewport": "desktop-1440x900",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".selected"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.51 (foreground color: #6f8554, background color: #eaf1df, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".tab-pills > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.65 (foreground color: #748462, background color: #f4f4f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .movement-cards > article > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-submitted > header > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.5 (foreground color: #9a7841, background color: #efedef, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-submitted > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-submitted > .movement-cards > .board-empty > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.42 (foreground color: #738565, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > header > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.49 (foreground color: #487565, background color: #efedef, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > .movement-cards > article:nth-child(1) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-decanted > header > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.8 (foreground color: #667b85, background color: #efedef, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-decanted > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-decanted > .movement-cards > .board-empty > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.42 (foreground color: #738565, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "viewport": "mobile-390x844",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".selected"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.51 (foreground color: #6f8554, background color: #eaf1df, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".tab-pills > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.65 (foreground color: #748462, background color: #f4f4f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .movement-cards > article > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > .movement-cards > article:nth-child(1) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 18
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "viewport": "mobile-320x640",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".selected"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.51 (foreground color: #6f8554, background color: #eaf1df, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".tab-pills > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.65 (foreground color: #748462, background color: #f4f4f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .column-caption"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9c8daa, background color: #efedef, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-dispatched > .movement-cards > article > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".column-approved > .movement-cards > article:nth-child(1) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "article:nth-child(2) > .movement-card-top > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #a496af, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 18
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "viewport": "desktop-1440x900",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".status-open"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #8565aa, background color: #eee8f7, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(3) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(4) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(5) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(6) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(7) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(8) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(9) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(10) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(11) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1
+        }
+      ],
+      "passes": 28
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "viewport": "mobile-390x844",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".status-open"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #8565aa, background color: #eee8f7, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(3) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(4) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(5) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(6) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(7) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(8) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(9) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(10) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(11) > td:nth-child(3) > .status-verified.status"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #527969, background color: #e9f1ed, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 7
+        }
+      ],
+      "passes": 28
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "viewport": "mobile-320x640",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 8
+        }
+      ],
+      "passes": 28
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "viewport": "desktop-1440x900",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".account-card.panel:nth-child(1) > .account-avatar"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #9672ad, background color: #eee5f4, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(1) > .account-limit > span:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(1) > .account-limit > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(2) > .account-avatar"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #9672ad, background color: #eee5f4, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(2) > .account-limit > span:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(2) > .account-limit > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(3) > .account-avatar"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #9672ad, background color: #eee5f4, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(3) > .account-limit > span:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(3) > .account-limit > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1
+        }
+      ],
+      "passes": 26
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "viewport": "mobile-390x844",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".account-card.panel:nth-child(1) > .account-avatar"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #9672ad, background color: #eee5f4, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(1) > .account-limit > span:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(1) > .account-limit > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(2) > .account-avatar"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #9672ad, background color: #eee5f4, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(2) > .account-limit > span:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(2) > .account-limit > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(3) > .account-avatar"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #9672ad, background color: #eee5f4, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(3) > .account-limit > span:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(3) > .account-limit > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 6
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "viewport": "mobile-320x640",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".account-card.panel:nth-child(1) > .account-avatar"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #9672ad, background color: #eee5f4, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(1) > .account-limit > span:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(1) > .account-limit > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(2) > .account-avatar"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #9672ad, background color: #eee5f4, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(2) > .account-limit > span:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(2) > .account-limit > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(3) > .account-avatar"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #9672ad, background color: #eee5f4, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(3) > .account-limit > span:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card.panel:nth-child(3) > .account-limit > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #73855f, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 8
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "viewport": "desktop-1440x900",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "viewport": "mobile-390x844",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 7
+        }
+      ],
+      "passes": 26
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "viewport": "mobile-320x640",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 6
+        }
+      ],
+      "passes": 26
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "viewport": "desktop-1440x900",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                "tr:nth-child(1) > td:nth-child(1) > .fuel-grade"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(2) > td:nth-child(1) > .fuel-grade"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "passes": 28
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "viewport": "mobile-390x844",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                "tr:nth-child(1) > td:nth-child(1) > .fuel-grade"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(2) > td:nth-child(1) > .fuel-grade"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "help": "Scrollable region must have keyboard access",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/scrollable-region-focusable?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".table-scroll"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 10
+        }
+      ],
+      "passes": 27
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "viewport": "mobile-320x640",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                "tr:nth-child(1) > td:nth-child(1) > .fuel-grade"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "tr:nth-child(2) > td:nth-child(1) > .fuel-grade"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.92 (foreground color: #81976b, background color: #f2f7e9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "help": "Scrollable region must have keyboard access",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/scrollable-region-focusable?application=axeAPI",
+          "nodes": [
+            {
+              "target": [
+                ".table-scroll"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 9
+        }
+      ],
+      "passes": 27
+    }
+  ]
+}

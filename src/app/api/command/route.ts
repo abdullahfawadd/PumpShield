@@ -1,32 +1,6 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
 import { serverDb } from "@/lib/supabase/server";
-const input = z.object({
-  op: z.enum([
-    "join",
-    "station",
-    "tank",
-    "nozzle",
-    "price",
-    "invite",
-    "revoke",
-    "cancel_invite",
-    "evidence",
-    "delivery",
-    "submit_delivery",
-    "approve_delivery",
-    "decant",
-    "open_shift",
-    "close_shift",
-    "review_shift",
-    "account",
-    "vehicle",
-    "disable_vehicle",
-    "payment",
-    "parchi",
-  ]),
-  p: z.record(z.string(), z.unknown()),
-});
+import { commandInput } from "@/lib/command-contract";
 export async function POST(request: Request) {
   if (request.headers.get("origin") !== new URL(request.url).origin)
     return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
@@ -35,12 +9,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Request too large" }, { status: 413 });
   let parsed;
   try {
-    parsed = input.safeParse(JSON.parse(text));
+    parsed = commandInput.safeParse(JSON.parse(text));
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
-  if (!parsed.success)
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  if (!parsed.success) {
+    const fields = parsed.error.issues
+      .map((issue) => ({
+        field: issue.path.join("."),
+        message: issue.message,
+      }))
+      .slice(0, 12);
+    return NextResponse.json(
+      { error: "Check the required fields and numeric values.", fields },
+      { status: 400 },
+    );
+  }
   const db = await serverDb();
   const {
     data: { user },

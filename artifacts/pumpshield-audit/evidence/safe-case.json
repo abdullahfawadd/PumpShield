@@ -1,0 +1,357 @@
+{
+  "rows": [
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "before-create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:32:00.326Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1440x900/before-create-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1440x900/before-create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "New discrepancy case"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Discrepancy cases",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Include cancelled",
+        "open",
+        "investigating",
+        "Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.",
+        "resolved",
+        "Synthetic test of case creation, decision history, and keyboard-accessible controls.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "New discrepancy case",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Title",
+        "Details",
+        "Assigned toChoose a personAbdullah - DemoAdeel - Demo",
+        "PriorityNormalHighUrgent",
+        "Due at (local time)",
+        "Related closed shift (optional)No linked shiftSample shift 10 \u00b7 8 Nov, 06:52 amSample shift 9 \u00b7 7 Nov, 06:52 amSample shift 8 \u00b7 6 Nov, 06:52 amSample shift 7 \u00b7 5 Nov, 06:52 amSample shift 6 \u00b7 4 Nov, 06:52 amSample shift 5 \u00b7 3 Nov, 06:52 amSample shift 4 \u00b7 2 Nov, 06:52 amSample shift 3 \u00b7 1 Nov, 06:52 amSample shift 2 \u00b7 31 Oct, 06:52 amSample shift 1 \u00b7 30 Oct, 06:52 am",
+        "Related delivery (optional)No linked deliverySAMPLE-OMC-1042SAMPLE-OMC-1043SAMPLE-OMC-1044"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "title",
+          "label": "Title",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 3,
+          "maxLength": 140,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "description",
+          "label": "Details",
+          "required": false,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "assigned_to",
+          "label": "Assigned toChoose a personAbdullah - DemoAdeel - Demo",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "priority",
+          "label": "PriorityNormalHighUrgent",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "datetime-local",
+          "name": "due_at",
+          "label": "Due at (local time)",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "shift_id",
+          "label": "Related closed shift (optional)No linked shiftSample shift 10 \u00b7 8 Nov, 06:52 amSample shift 9 \u00b7 7 Nov, 06:52 amSample shift 8 \u00b7 6 Nov, 06:52 amSample shift 7 \u00b7 5 Nov, 06:52 amSample shift 6 \u00b7 4 Nov, 06:52 amSample shift 5 \u00b7 3 Nov, 06:52 amSample shift 4 \u00b7 2 Nov, 06:52 amSample shift 3 \u00b7 1 Nov, 06:52 amSample shift 2 \u00b7 31 Oct, 06:52 amSample shift 1 \u00b7 30 Oct, 06:52 am",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "delivery_id",
+          "label": "Related delivery (optional)No linked deliverySAMPLE-OMC-1042SAMPLE-OMC-1043SAMPLE-OMC-1044",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"New discrepancy case\":\n  - heading \"New discrepancy case\" [level=2]\n  - paragraph: Investigate shortages and cash differences. Keep the decision with the evidence.\n  - button \"Close dialog\":\n    - img\n  - text: Title\n  - textbox \"Title\":\n    - /placeholder: A clear, specific title\n    - text: AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09\n  - text: Details\n  - textbox \"Details\":\n    - /placeholder: Include what happened, the next action, and any relevant evidence references.\n    - text: Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.\n  - text: Assigned to\n  - combobox \"Assigned to\":\n    - option \"Choose a person\" [selected]\n    - option \"Abdullah - Demo\"\n    - option \"Adeel - Demo\"\n  - text: Priority\n  - combobox \"Priority\":\n    - option \"Normal\" [selected]\n    - option \"High\"\n    - option \"Urgent\"\n  - text: Due at (local time)\n  - textbox \"Due at (local time)\"\n  - text: Related closed shift (optional)\n  - combobox \"Related closed shift (optional)\":\n    - option \"No linked shift\" [selected]\n    - option \"Sample shift 10 \u00b7 8 Nov, 06:52 am\"\n    - option \"Sample shift 9 \u00b7 7 Nov, 06:52 am\"\n    - option \"Sample shift 8 \u00b7 6 Nov, 06:52 am\"\n    - option \"Sample shift 7 \u00b7 5 Nov, 06:52 am\"\n    - option \"Sample shift 6 \u00b7 4 Nov, 06:52 am\"\n    - option \"Sample shift 5 \u00b7 3 Nov, 06:52 am\"\n    - option \"Sample shift 4 \u00b7 2 Nov, 06:52 am\"\n    - option \"Sample shift 3 \u00b7 1 Nov, 06:52 am\"\n    - option \"Sample shift 2 \u00b7 31 Oct, 06:52 am\"\n    - option \"Sample shift 1 \u00b7 30 Oct, 06:52 am\"\n  - text: Related delivery (optional)\n  - combobox \"Related delivery (optional)\":\n    - option \"No linked delivery\" [selected]\n    - option \"SAMPLE-OMC-1042\"\n    - option \"SAMPLE-OMC-1043\"\n    - option \"SAMPLE-OMC-1044\"\n  - button \"Create record\":\n    - text: Create record\n    - img",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "before-create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:32:01.186Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-390x844/before-create-viewport.png",
+        "full": "screenshots/owner/cases/mobile-390x844/before-create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved",
+          "New discrepancy case"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "after-create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:32:02.684Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1440x900/after-create-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1440x900/after-create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Discrepancy cases",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Include cancelled",
+        "open",
+        "Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.",
+        "investigating",
+        "Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.",
+        "resolved",
+        "Synthetic test of case creation, decision history, and keyboard-accessible controls.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Station operations\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / OPERATIONS\n  - heading \"Keep the station moving.\" [level=1]\n  - paragraph: Clear actions. Named people. A history behind every decision.\n  - group \"Station workflows\":\n    - button \"Discrepancy cases 2\" [pressed]:\n      - img\n      - text: Discrepancy cases 2\n    - button \"Fuel indents 1\":\n      - img\n      - text: Fuel indents 1\n    - button \"Maintenance 1\":\n      - img\n      - text: Maintenance 1\n    - button \"Shift handovers 0\":\n      - img\n      - text: Shift handovers 0\n  - text: STATION WORKSPACE\n  - heading \"Discrepancy cases\" [level=2]\n  - paragraph: Investigate shortages and cash differences. Keep the decision with the evidence.\n  - button \"New case\":\n    - img\n    - text: New case\n  - img\n  - textbox \"Search station work\":\n    - /placeholder: Search this workflow\u2026\n  - checkbox \"Include cancelled\"\n  - text: Include cancelled\n  - button \"Refresh station work\":\n    - img\n  - heading \"open\" [level=3]\n  - text: \"1\"\n  - button \"#8427a6 normal AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09 Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance. U Unassigned\":\n    - text: \"#8427a6 normal\"\n    - heading \"AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09\" [level=4]\n    - paragraph: Synthetic audit record. No financial deduction, delivery, inventory or customer transaction. Retained for audit provenance.\n    - text: U Unassigned\n    - img\n  - heading \"investigating\" [level=3]\n  - text: \"1\"\n  - button \"#a48d03 high Sample \u00b7 Review the delivery variance Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier. A Abdullah - Demo 9 Nov, 09:41 pm\":\n    - text: \"#a48d03 high\"\n    - heading \"Sample \u00b7 Review the delivery variance\" [level=4]\n    - paragraph: Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.\n    - text: A Abdullah - Demo\n    - img\n    - img\n    - text: 9 Nov, 09:41 pm\n  - heading \"resolved\" [level=3]\n  - text: \"1\"\n  - button \"#63fbcb normal Sample \u00b7 UI verification case Synthetic test of case creation, decision history, and keyboard-accessible controls. A Abdullah - Demo\":\n    - text: \"#63fbcb normal\"\n    - heading \"Sample \u00b7 UI verification case\" [level=4]\n    - paragraph: Synthetic test of case creation, decision history, and keyboard-accessible controls.\n    - text: A Abdullah - Demo\n    - img\n  - paragraph: Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\":\n  - list:\n    - listitem: Saved to the station record\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "after-create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:32:03.456Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-390x844/after-create-viewport.png",
+        "full": "screenshots/owner/cases/mobile-390x844/after-create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "workflow": {
+    "title": "AUDIT ONLY \u00b7 Synthetic usability verification \u00b7 2026-11-09",
+    "startingState": "Owner Design Lab / discrepancy cases",
+    "action": "Create clearly labelled synthetic nonfinancial case",
+    "expected": "New open case plus immutable create event; no financial or stock posting",
+    "http": 200,
+    "response": {
+      "id": "8427a67e-f2a6-405c-b921-0ec478cfd1e2"
+    },
+    "dbVerification": "Separate read-only query required"
+  }
+}

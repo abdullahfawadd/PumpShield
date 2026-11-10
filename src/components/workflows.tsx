@@ -16,6 +16,7 @@ import {
 import { toast } from "sonner";
 import { command } from "@/lib/api";
 import { date, money, number } from "@/lib/utils";
+import { FUEL_GRADE_OPTIONS, fuelGradeLabel } from "@/lib/fuel-grades";
 import type { Dashboard, Delivery, Shift, Vehicle } from "@/lib/types";
 import { Dialog } from "./ui/dialog";
 import { Button } from "./ui/button";
@@ -26,27 +27,24 @@ import { vehicleCredential } from "@/lib/vehicle-credential";
 import { ContractorTracking } from "./tracking";
 export type Modal = { type: string; id?: string };
 const names: Record<string, string> = {
-  station: "A new station. A clearer picture.",
+  station: "Add station",
   tank: "Configure an underground tank",
   nozzle: "Connect a nozzle",
   price: "Record a verified fuel price",
-  invite: "Give your Munshi the right access",
+  invite: "Invite Munshi",
   revoke: "Revoke Munshi access",
-  delivery: "Register an incoming delivery",
+  delivery: "New delivery",
   delivery_detail: "Delivery verification",
-  open_shift: "Start with a locked baseline",
-  close_shift: "Close your shift with confidence",
+  open_shift: "Open shift",
+  close_shift: "Close shift",
   shift_detail: "Shift reconciliation",
-  account: "A new corporate relationship",
+  account: "Add corporate account",
   account_detail: "Vehicles & QR credentials",
   vehicle: "Authorize a vehicle",
   payment: "Record a credit payment",
-  parchi: "A paperless, accountable fill",
+  parchi: "New digital parchi",
 };
-const grades = [
-  { value: "MS", label: "MS · Petrol" },
-  { value: "HSD", label: "HSD · Diesel" },
-];
+const grades = FUEL_GRADE_OPTIONS;
 export function WorkflowDialog({
   modal,
   data,
@@ -88,8 +86,14 @@ export function WorkflowDialog({
         modal.type === "close_shift"
           ? "Submitted readings are permanent. Check the numbers and capture fresh evidence before submitting."
           : modal.type === "invite"
-            ? "Authorize an email address. Your Munshi signs up with that exact email and confirms it to receive access."
-            : "Real records. Clear accountability."
+            ? "Invite an email address to this station. The recipient confirms their email and accepts the invitation."
+            : modal.type === "delivery_detail"
+              ? "Complete the current verification step before moving the delivery forward."
+              : modal.type === "payment"
+                ? "Record only funds already received and independently verified."
+                : modal.type === "parchi"
+                  ? "Verify the vehicle pass, record the fill, then submit for server checks."
+                  : undefined
       }
     >
       {modal.type === "station" && (
@@ -97,6 +101,8 @@ export function WorkflowDialog({
           <Field
             label="Station name"
             name="name"
+            minLength={2}
+            maxLength={100}
             placeholder="e.g. Your station name"
           />
           <div className="form-grid">
@@ -112,7 +118,12 @@ export function WorkflowDialog({
                 "Other",
               ].map((s) => ({ value: s, label: s }))}
             />
-            <Field label="City" name="city" placeholder="e.g. Karachi" />
+            <Field
+              label="City"
+              name="city"
+              maxLength={80}
+              placeholder="e.g. Karachi"
+            />
           </div>
         </ActionForm>
       )}
@@ -131,6 +142,7 @@ export function WorkflowDialog({
             <Field
               label="Tank name"
               name="name"
+              maxLength={100}
               placeholder="e.g. Petrol tank 01"
             />
             <Select label="Fuel grade" name="grade" options={grades} />
@@ -180,13 +192,18 @@ export function WorkflowDialog({
       )}
       {modal.type === "nozzle" && (
         <ActionForm op="nozzle" base={base} onDone={onDone} submit="Add nozzle">
-          <Field label="Nozzle name" name="name" placeholder="e.g. Nozzle 01" />
+          <Field
+            label="Nozzle name"
+            name="name"
+            maxLength={100}
+            placeholder="e.g. Nozzle 01"
+          />
           <Select
             label="Source tank"
             name="tank_id"
             options={tanks.map((t) => ({
               value: t.id,
-              label: `${t.name} · ${t.grade}`,
+              label: `${t.name} · ${fuelGradeLabel(t.grade)}`,
             }))}
           />
           <Field
@@ -243,6 +260,7 @@ export function WorkflowDialog({
           <Field
             label="Source / notification reference"
             name="source"
+            maxLength={1000}
             placeholder="Verified notification reference"
           />
           <div className="notice">
@@ -260,8 +278,18 @@ export function WorkflowDialog({
           onDone={onDone}
           submit="Authorize this email"
         >
-          <Field label="Munshi’s full name" name="name" />
-          <Field label="Munshi’s email address" name="email" type="email" />
+          <Field
+            label="Munshi’s full name"
+            name="name"
+            minLength={2}
+            maxLength={100}
+          />
+          <Field
+            label="Munshi’s email address"
+            name="email"
+            type="email"
+            maxLength={254}
+          />
           <div className="notice">
             <LockKeyhole size={18} />
             <span>
@@ -310,7 +338,7 @@ export function WorkflowDialog({
               name="tank_id"
               options={tanks.map((t) => ({
                 value: t.id,
-                label: `${t.name} · ${t.grade}`,
+                label: `${t.name} · ${fuelGradeLabel(t.grade)}`,
               }))}
             />
             <Field
@@ -359,6 +387,7 @@ export function WorkflowDialog({
       )}
       {modal.type === "delivery_detail" && d && (
         <DeliveryDetail
+          key={d.id}
           delivery={d}
           data={data}
           stationId={stationId}
@@ -377,6 +406,7 @@ export function WorkflowDialog({
           <Field
             label="Shift name"
             name="name"
+            maxLength={100}
             placeholder="e.g. Morning shift"
           />
           <div className="notice">
@@ -394,6 +424,11 @@ export function WorkflowDialog({
       )}
       {modal.type === "close_shift" && shift && (
         <CloseShift
+          key={
+            data.shifts.find(
+              (s) => s.station_id === stationId && s.status === "open",
+            )?.id || stationId
+          }
           shift={shift}
           data={data}
           stationId={stationId}
@@ -410,7 +445,7 @@ export function WorkflowDialog({
           onDone={onDone}
           submit="Create corporate account"
         >
-          <Field label="Business / fleet name" name="name" />
+          <Field label="Business / fleet name" name="name" minLength={2} />
           <Field
             label="Approved credit limit (PKR)"
             name="credit_limit"
@@ -567,6 +602,7 @@ function DeliveryDetail({
   onDone: () => void;
 }) {
   const [evidence, setEvidence] = useState("");
+  const [trackingMounted, setTrackingMounted] = useState(false);
   const chamberCount = d.chamber_count || d.chambers?.length || 1;
   return (
     <div className="detail-stack">
@@ -580,7 +616,14 @@ function DeliveryDetail({
             {d.reference} · {d.depot}
           </p>
         </div>
-        <span className="subtle-pill capitalize">{d.status}</span>
+        <span className={`status delivery-status-${d.status}`}>
+          {{
+            dispatched: "In transit",
+            submitted: "Ready for review",
+            approved: "Approved to decant",
+            decanted: "Completed",
+          }[d.status] || d.status}
+        </span>
       </div>
       {d.measurement?.offline_request_id && (
         <div className="notice warning">
@@ -589,13 +632,33 @@ function DeliveryDetail({
           Review the saved photo time and location before approving.
         </div>
       )}
-      {owner && (
-        <ContractorTracking
-          deliveryId={d.id}
-          dispatched={d.status === "dispatched"}
-          station={data.stations.find((s) => s.id === stationId)}
-        />
-      )}{" "}
+      <ol
+        className="delivery-progress"
+        aria-label="Delivery verification progress"
+      >
+        {[
+          ["dispatched", "Dispatch"],
+          ["submitted", "Arrival audit"],
+          ["approved", "Owner approval"],
+          ["decanted", "Stock received"],
+        ].map(([status, label], index, all) => {
+          const completed = all.findIndex(([value]) => value === d.status);
+          const current = completed + 1;
+          const complete = index <= completed;
+          return (
+            <li
+              key={status}
+              aria-current={index === current ? "step" : undefined}
+              className={
+                complete ? "complete" : index === current ? "current" : ""
+              }
+            >
+              <span>{complete ? <Check size={13} /> : index + 1}</span>
+              {label}
+            </li>
+          );
+        })}
+      </ol>
       {d.status === "dispatched" && (
         <ActionForm
           op="submit_delivery"
@@ -742,6 +805,27 @@ function DeliveryDetail({
           <Check size={18} /> Decant recorded {date(d.decanted_at)}.
         </div>
       )}
+      {owner && (
+        <details
+          className="delivery-tracking-details"
+          onToggle={(event) => {
+            if (event.currentTarget.open) setTrackingMounted(true);
+          }}
+        >
+          <summary>Tracking & reported location</summary>
+          <p className="fine-print">
+            Reported phone positions only. Open tracking to check signal
+            freshness, share a driver link, or review the destination.
+          </p>
+          {trackingMounted && (
+            <ContractorTracking
+              deliveryId={d.id}
+              dispatched={d.status === "dispatched"}
+              station={data.stations.find((s) => s.id === stationId)}
+            />
+          )}
+        </details>
+      )}
     </div>
   );
 }
@@ -793,6 +877,16 @@ function CloseShift({
     >
       <div className="notice">
         <ClockLabel due={shift.due_at} />
+      </div>
+      <div className="evidence-completion" role="status">
+        <strong>
+          {Object.values(photos).filter(Boolean).length} /{" "}
+          {tanks.length + nozzles.length} reading photos captured
+        </strong>
+        <span>
+          Each nozzle and tank needs its own fresh evidence. POS evidence is
+          required when POS is above zero.
+        </span>
       </div>
       <h3 className="form-section-title">
         <Fuel size={17} />
@@ -1028,6 +1122,7 @@ function ShiftDetail({
                   name="note"
                   required
                   minLength={3}
+                  maxLength={4000}
                   rows={3}
                   placeholder="Document findings and follow-up for any variance."
                 />
@@ -1062,6 +1157,8 @@ function VehicleCard({
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [show, setShow] = useState(false);
+  const [confirmRevoke, setConfirmRevoke] = useState(false);
+  const [revoking, setRevoking] = useState(false);
   useEffect(() => {
     if (show && canvas.current)
       void QRCode.toCanvas(canvas.current, vehicleCredential(v.token), {
@@ -1071,11 +1168,15 @@ function VehicleCard({
       });
   }, [show, v.token]);
   async function revoke() {
+    if (revoking) return;
+    setRevoking(true);
     try {
       await command("disable_vehicle", { station_id: stationId, id: v.id });
       onDone();
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Unable to revoke");
+    } finally {
+      setRevoking(false);
     }
   }
   return (
@@ -1085,7 +1186,7 @@ function VehicleCard({
         <span>
           <strong>{v.registration}</strong>
           <small>
-            {v.grade} · Max {v.max_liters} L / fill ·{" "}
+            {fuelGradeLabel(v.grade)} · Max {v.max_liters} L / fill ·{" "}
             {v.active ? "Active" : "Disabled"}
           </small>
         </span>
@@ -1125,10 +1226,42 @@ function VehicleCard({
           </p>
         </div>
       )}
-      {v.active && (
-        <button className="text-link text-danger" onClick={revoke}>
+      {v.active && !confirmRevoke && (
+        <button
+          className="text-link text-danger"
+          onClick={() => setConfirmRevoke(true)}
+        >
           Disable vehicle authorization
         </button>
+      )}
+      {v.active && confirmRevoke && (
+        <div
+          className="vehicle-revoke-confirm"
+          role="group"
+          aria-labelledby={`revoke-${v.id}`}
+        >
+          <strong id={`revoke-${v.id}`}>Disable {v.registration}?</strong>
+          <p>
+            This vehicle’s pass will stop authorizing new fills. Existing
+            records stay unchanged.
+          </p>
+          <div>
+            <Button
+              variant="secondary"
+              disabled={revoking}
+              onClick={() => setConfirmRevoke(false)}
+            >
+              Keep authorized
+            </Button>
+            <Button
+              variant="destructive"
+              disabled={revoking}
+              onClick={() => void revoke()}
+            >
+              {revoking ? "Disabling…" : "Disable this vehicle"}
+            </Button>
+          </div>
+        </div>
       )}
     </div>
   );

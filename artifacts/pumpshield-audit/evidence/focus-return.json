@@ -1,0 +1,11 @@
+{
+  "opened": {
+    "tag": "BUTTON",
+    "name": null
+  },
+  "after": {
+    "tag": "BODY",
+    "name": null,
+    "isNewDelivery": false
+  }
+}

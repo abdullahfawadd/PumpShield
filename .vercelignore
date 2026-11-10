@@ -1,0 +1,6 @@
+artifacts/
+output/
+tests/
+docs/
+.playwright-cli/
+supabase/.temp/

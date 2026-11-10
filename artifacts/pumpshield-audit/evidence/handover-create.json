@@ -1,0 +1,334 @@
+{
+  "rows": [
+    {
+      "role": "munshi",
+      "module": "handovers",
+      "state": "before-create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T08:10:28.718Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/handovers/desktop-1440x900/before-create-viewport.png",
+        "full": "screenshots/munshi/handovers/desktop-1440x900/before-create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "New handover"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "MUNSHI / FIELD TERMINAL",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Shift handovers",
+        "Leave a clear briefing. The named recipient acknowledges it personally.",
+        "Include cancelled",
+        "pending",
+        "accepted",
+        "Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.",
+        "New handover",
+        "Leave a clear briefing. The named recipient acknowledges it personally.",
+        "Title",
+        "Briefing and outstanding actions",
+        "RecipientChoose a personAbdullah - Demo",
+        "PriorityNormalHighUrgent",
+        "Due at (local time)",
+        "Related closed shift (optional)No linked shift"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "title",
+          "label": "Title",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 3,
+          "maxLength": 140,
+          "disabled": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "name": "description",
+          "label": "Briefing and outstanding actions",
+          "required": true,
+          "minLength": -1,
+          "maxLength": 4000,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "assigned_to",
+          "label": "RecipientChoose a personAbdullah - Demo",
+          "required": true,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "priority",
+          "label": "PriorityNormalHighUrgent",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "datetime-local",
+          "name": "due_at",
+          "label": "Due at (local time)",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "shift_id",
+          "label": "Related closed shift (optional)No linked shift",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- region \"Notifications alt+T\"\n- dialog \"New handover\":\n  - heading \"New handover\" [level=2]\n  - paragraph: Leave a clear briefing. The named recipient acknowledges it personally.\n  - button \"Close dialog\":\n    - img\n  - text: Title\n  - textbox \"Title\":\n    - /placeholder: A clear, specific title\n    - text: AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09\n  - text: Briefing and outstanding actions\n  - textbox \"Briefing and outstanding actions\":\n    - /placeholder: Include what happened, the next action, and any relevant evidence references.\n    - text: Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow.\n  - text: Recipient\n  - combobox \"Recipient\":\n    - option \"Choose a person\"\n    - option \"Abdullah - Demo\" [selected]\n  - text: Priority\n  - combobox \"Priority\":\n    - option \"Normal\" [selected]\n    - option \"High\"\n    - option \"Urgent\"\n  - text: Due at (local time)\n  - textbox \"Due at (local time)\"\n  - text: Related closed shift (optional)\n  - combobox \"Related closed shift (optional)\":\n    - option \"No linked shift\" [selected]\n  - button \"Create record\":\n    - text: Create record\n    - img",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "handovers",
+      "state": "before-create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T08:10:29.540Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/handovers/mobile-390x844/before-create-viewport.png",
+        "full": "screenshots/munshi/handovers/mobile-390x844/before-create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1353,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted",
+          "New handover"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "handovers",
+      "state": "after-create",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T08:10:31.310Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/handovers/desktop-1440x900/after-create-viewport.png",
+        "full": "screenshots/munshi/handovers/desktop-1440x900/after-create-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "MUNSHI / FIELD TERMINAL",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Shift handovers",
+        "Leave a clear briefing. The named recipient acknowledges it personally.",
+        "Include cancelled",
+        "pending",
+        "Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow.",
+        "accepted",
+        "Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Munshi terminal\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation\":\n      - img\n      - text: Shift reconciliation\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"AD Adeel - Demo Munshi / Supervisor\":\n    - text: AD\n    - strong: Adeel - Demo\n    - text: Munshi / Supervisor\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Station operations\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 MUNSHI / FIELD TERMINAL\n  - heading \"Keep the station moving.\" [level=1]\n  - paragraph: Clear actions. Named people. A history behind every decision.\n  - group \"Station workflows\":\n    - button \"Fuel indents 1\":\n      - img\n      - text: Fuel indents 1\n    - button \"Maintenance 1\":\n      - img\n      - text: Maintenance 1\n    - button \"Shift handovers 1\" [pressed]:\n      - img\n      - text: Shift handovers 1\n  - text: STATION WORKSPACE\n  - heading \"Shift handovers\" [level=2]\n  - paragraph: Leave a clear briefing. The named recipient acknowledges it personally.\n  - button \"New handover\":\n    - img\n    - text: New handover\n  - img\n  - textbox \"Search station work\":\n    - /placeholder: Search this workflow\u2026\n  - checkbox \"Include cancelled\"\n  - text: Include cancelled\n  - button \"Refresh station work\":\n    - img\n  - heading \"pending\" [level=3]\n  - text: \"1\"\n  - button \"#1e2a2d normal AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09 Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow. A Abdullah - Demo\":\n    - text: \"#1e2a2d normal\"\n    - heading \"AUDIT ONLY \u00b7 Synthetic handover verification \u00b7 2026-11-09\" [level=4]\n    - paragraph: Synthetic audit briefing only. No physical shift, money, fuel or client duty is transferred. Recipient acknowledgment tests the named-recipient workflow.\n    - text: A Abdullah - Demo\n    - img\n  - heading \"accepted\" [level=3]\n  - text: \"1\"\n  - 'button \"#07a015 normal Sample \u00b7 Incoming shift briefing Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request. A Adeel - Demo\"':\n    - text: \"#07a015 normal\"\n    - heading \"Sample \u00b7 Incoming shift briefing\" [level=4]\n    - paragraph: \"Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.\"\n    - text: A Adeel - Demo\n    - img\n  - paragraph: Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\":\n  - list:\n    - listitem: Saved to the station record\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "munshi",
+      "module": "handovers",
+      "state": "after-create",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T08:10:32.052Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/munshi/handovers/mobile-390x844/after-create-viewport.png",
+        "full": "screenshots/munshi/handovers/mobile-390x844/after-create-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1353,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "role": "munshi",
+  "http": 200,
+  "result": {
+    "id": "1e2a2d6e-bb46-4cce-ba4b-4113423a1223"
+  }
+}

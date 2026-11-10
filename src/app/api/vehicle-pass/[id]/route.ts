@@ -4,6 +4,7 @@ import QRCode from "qrcode";
 import { z } from "zod";
 import { serverDb } from "@/lib/supabase/server";
 import { vehicleCredential } from "@/lib/vehicle-credential";
+import { fuelGradeLabel } from "@/lib/fuel-grades";
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ id: string }> },
@@ -88,7 +89,7 @@ export async function GET(
   });
   const image = await doc.embedPng(qr);
   page.drawImage(image, { x: 100, y: 193, width: 220, height: 220 });
-  text(`${v.grade}  |  Maximum ${v.max_liters} L per fill`, 34, 161, 12, true);
+  text(`${fuelGradeLabel(v.grade)}  |  Maximum ${v.max_liters} L per fill`, 34, 161, 12, true);
   text("Scan this pass inside PumpShield Digital parchi.", 34, 131, 10);
   text("Every fill still requires staff sign-in, camera evidence", 34, 112, 10);
   text("and a live check of vehicle and account authorisation.", 34, 97, 10);

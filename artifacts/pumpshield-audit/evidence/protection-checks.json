@@ -1,0 +1,57 @@
+{
+  "rows": [
+    {
+      "path": "/app",
+      "status": 307,
+      "location": "/login",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/api/dashboard",
+      "status": 401,
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/api/operations?station=00000000-0000-4000-8000-000000000001",
+      "status": 401,
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/api/field",
+      "status": 401,
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/api/command",
+      "method": "POST",
+      "origin": "untrusted.example",
+      "status": 403
+    },
+    {
+      "path": "/api/operations",
+      "method": "POST",
+      "origin": "untrusted.example",
+      "status": 403
+    },
+    {
+      "path": "/api/field",
+      "method": "POST",
+      "origin": "untrusted.example",
+      "status": 403
+    },
+    {
+      "path": "/api/tracking",
+      "method": "POST",
+      "origin": "untrusted.example",
+      "status": 403
+    }
+  ],
+  "headers": {
+    "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.supabase.co https://*.tile.openstreetmap.org https://tiles.openfreemap.org https://elevation-tiles-prod.s3.amazonaws.com https://api.maptiler.com; font-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://tiles.openfreemap.org https://elevation-tiles-prod.s3.amazonaws.com https://api.maptiler.com; worker-src 'self' blob:; media-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
+    "permissions-policy": "camera=(self), geolocation=(self), microphone=()",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "referrer-policy": "strict-origin-when-cross-origin"
+  }
+}

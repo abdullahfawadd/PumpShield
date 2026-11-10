@@ -1,0 +1,20 @@
+{
+  "id": "dpl_4ev7Yy9bEwLYhEE9p1tHSv6Bqdkp",
+  "name": "pumpshield",
+  "url": "pumpshield-20m5ylm3z-m-abdullah-fawads-projects.vercel.app",
+  "state": "READY",
+  "target": "production",
+  "source": "git",
+  "createdAt": 1794172015834,
+  "alias": [
+    "pumpshield-seven.vercel.app",
+    "pumpshield-m-abdullah-fawads-projects.vercel.app",
+    "pumpshield-git-main-m-abdullah-fawads-projects.vercel.app"
+  ],
+  "git": {
+    "branch": "main",
+    "sha": "fa0c03254930ad9f41859eb2e189dd889f51f3ce",
+    "repo": "PumpShield",
+    "org": "abdullahfawadd"
+  }
+}

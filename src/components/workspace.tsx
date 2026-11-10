@@ -1,6 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import {
   ArrowDownLeft,
   ArrowRight,
@@ -42,18 +48,21 @@ import { StationLocation } from "./station-location";
 import { StationOperations } from "./station-operations";
 import { DocumentCentre } from "./document-centre";
 import { DeliveryBoard } from "./delivery-board";
-import { OperationsHero } from "./operations-hero";
+import { OwnerOverview } from "./owner-overview";
+import { fuelGradeLabel } from "@/lib/fuel-grades";
+import { ShiftRegister } from "./shift-register";
+import {
+  readWorkspaceLocation,
+  subscribeWorkspaceLocation,
+  workspaceLocationSnapshot,
+  workspaceServerSnapshot,
+  updateWorkspaceLocation,
+} from "@/lib/workspace-navigation";
 import { Brand } from "./brand";
 import { Button } from "./ui/button";
 import { Dialog } from "./ui/dialog";
 import { ActionForm, Field } from "./forms";
 import { WorkflowDialog, type Modal } from "./workflows";
-import {
-  Button as GlassButton,
-  SegmentedControl,
-  Switch,
-  TabBar,
-} from "glisse";
 
 type Tab =
   | "overview"
@@ -74,25 +83,25 @@ const navigation = [
   { id: "stock" as Tab, label: "Stock & prices", icon: Droplets },
 ];
 const title: Record<Tab, string> = {
-  overview: "A clearer view of your station.",
-  deliveries: "Every delivery, verified.",
-  shifts: "Close the shift. Open the facts.",
-  credit: "Credit, without the paper trail.",
-  stock: "Know what’s in the ground.",
-  settings: "Make this workspace yours.",
-  operations: "Keep the station moving.",
-  documents: "A record you can return to.",
+  overview: "Station overview",
+  deliveries: "Deliveries",
+  shifts: "Shifts & reconciliation",
+  credit: "Corporate credit",
+  stock: "Recorded stock & prices",
+  settings: "Station settings",
+  operations: "Station work",
+  documents: "Documents",
 };
 const subtitles: Record<Tab, string> = {
-  overview: "The details that matter. All in one place.",
-  deliveries: "From dispatch to decant, with evidence at every step.",
+  overview: "Reviews, stock and current station activity.",
+  deliveries: "Arrival audits, approvals and received stock.",
   shifts: "Meter readings, physical stock, and cash. Reconciled together.",
   credit:
     "Vehicle-authorized fuel, controlled limits, and an accountable ledger.",
   stock: "Calibrated tank readings and a clear record of fuel prices.",
-  settings: "Station equipment, people, and access. Set up with care.",
-  operations: "Clear actions. Named people. A history behind every decision.",
-  documents: "Station documents, ready to review and share.",
+  settings: "Location, equipment and staff access.",
+  operations: "Cases, fuel requests, maintenance and handovers.",
+  documents: "Recent saved claims, credit fills and account statements.",
 };
 const normalize = (d: Dashboard): Dashboard => ({
   ...d,
@@ -188,22 +197,67 @@ export function Workspace({
 }) {
   const router = useRouter();
   const [data, setData] = useState(() => normalize(initial));
-  const [stationId, setStationId] = useState(initial.stations?.[0]?.id || "");
-  const [tab, setTab] = useState<Tab>("overview");
-  const [modal, setModal] = useState<Modal | null>(null);
+  const locationSearch = useSyncExternalStore(
+    subscribeWorkspaceLocation,
+    workspaceLocationSnapshot,
+    workspaceServerSnapshot,
+  );
+  const location = readWorkspaceLocation(locationSearch, data);
+  const stationId = location.station;
+  const tab = location.view;
+  const [draftModal, setDraftModal] = useState<Modal | null>(null);
+  const modal = draftModal || location.modal;
+  const setModal = (value: Modal | null) => {
+    const record =
+      value &&
+      (
+        {
+          delivery_detail: "delivery",
+          shift_detail: "shift",
+          account_detail: "account",
+        } as Record<string, string>
+      )[value.type];
+    setDraftModal(record ? null : value);
+    updateWorkspaceLocation(
+      { record: record || null, id: record ? value?.id || null : null },
+      !value,
+    );
+  };
+  const setTab = (view: Tab) => {
+    setDraftModal(null);
+    updateWorkspaceLocation({
+      view,
+      q: null,
+      record: null,
+      id: null,
+      work: null,
+    });
+  };
+  const setStationId = (id: string) => {
+    setDraftModal(null);
+    updateWorkspaceLocation({ station: id, record: null, id: null, q: null });
+  };
   const [mobile, setMobile] = useState(false);
   const [privateMode, setPrivateMode] = useState(false);
-  const [search, setSearch] = useState("");
-  const [days, setDays] = useState(7);
+  const search = location.query;
+  const setSearch = (q: string) =>
+    updateWorkspaceLocation({ q: q || null }, true);
   const [now, setNow] = useState(() => Date.now());
   const [syncError, setSyncError] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [help, setHelp] = useState(false);
   const [alerts, setAlerts] = useState(false);
+  const refreshController = useRef<AbortController | null>(null);
   const refresh = useCallback(async () => {
+    refreshController.current?.abort();
+    const controller = new AbortController();
+    refreshController.current = controller;
     setSyncing(true);
     try {
-      const r = await fetch("/api/dashboard", { cache: "no-store" });
+      const r = await fetch("/api/dashboard", {
+        cache: "no-store",
+        signal: controller.signal,
+      });
       if (r.status === 401) {
         router.replace("/login");
         router.refresh();
@@ -213,23 +267,21 @@ export function Workspace({
       const next = normalize(await r.json());
       setData(next);
       setNow(Date.now());
-      setStationId((current) =>
-        next.stations.some((s) => s.id === current)
-          ? current
-          : next.stations[0]?.id || "",
-      );
       setSyncError(false);
     } catch {
-      setSyncError(true);
+      if (!controller.signal.aborted) setSyncError(true);
     } finally {
-      setSyncing(false);
+      if (refreshController.current === controller) setSyncing(false);
     }
   }, [router]);
   useEffect(() => {
     const timer = setInterval(() => {
       if (document.visibilityState === "visible") void refresh();
     }, 15000);
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      refreshController.current?.abort();
+    };
   }, [refresh]);
   const owner = data.member?.role === "owner";
   const station = data.stations.find((s) => s.id === stationId);
@@ -243,9 +295,6 @@ export function Workspace({
   const pending =
     deliveries.filter((d) => d.status === "submitted").length +
     shifts.filter((s) => s.status === "review").length;
-  const recent = shifts.filter(
-    (s) => s.result && new Date(s.closed_at).getTime() > now - days * 86400000,
-  );
   const moneyLabel = (value: number) =>
     privateMode ? "Rs ••••••" : money(value);
   const open = (type: string, id?: string) => {
@@ -338,18 +387,27 @@ export function Workspace({
             <br />A fresh perspective.
           </h1>
           <p className="muted">
-            Create your owner workspace to get started. Invited Munshi accounts
-            are connected to their assigned station automatically.
+            Create an owner workspace, or review a specific invitation before
+            joining a station.
           </p>
           <ActionForm
             op="join"
+            base={{ intent: "create_workspace" }}
             onDone={() => void refresh()}
             submit="Create my workspace"
           >
-            <Field label="Your name" name="person" placeholder="Full name" />
+            <Field
+              label="Your name"
+              name="person"
+              minLength={2}
+              maxLength={100}
+              placeholder="Full name"
+            />
             <Field
               label="Business name"
               name="name"
+              minLength={2}
+              maxLength={100}
               placeholder="Your petroleum business"
             />
           </ActionForm>
@@ -414,21 +472,13 @@ export function Workspace({
             ))}
         </nav>
         <div className="sidebar-bottom">
-          <div className="sidebar-note">
-            <ShieldCheck size={20} />
-            <strong>Built on evidence.</strong>
-            <p>
-              A little more clarity.
-              <br />A lot more confidence.
-            </p>
-          </div>
           <button className="nav-item" onClick={() => setHelp(true)}>
             <CircleHelp size={18} /> Help & getting started
             <ArrowUpRight size={14} />
           </button>
           <a className="nav-item" href="/offline">
             <Download size={18} />
-            <span>Offline terminal</span>
+            <span>Device & sync</span>
           </a>
           {owner && (
             <button
@@ -487,38 +537,48 @@ export function Workspace({
             >
               <span className="status-dot" />
               {syncError
-                ? "Connection lost"
+                ? "Refresh failed"
                 : syncing
                   ? "Syncing…"
-                  : "Connected"}
+                  : "Up to date"}
               <RefreshCw size={12} className={syncing ? "spin" : ""} />
             </button>
             {owner && (
               <span className="privacy-control" title="Hide financial amounts">
                 {privateMode ? <EyeOff size={17} /> : <Eye size={17} />}
-                <Switch
+                <button
+                  type="button"
+                  className="privacy-toggle"
+                  role="switch"
                   aria-label="Hide financial amounts"
-                  checked={privateMode}
-                  onCheckedChange={setPrivateMode}
-                />
+                  aria-checked={privateMode}
+                  onClick={() => setPrivateMode(!privateMode)}
+                >
+                  <span />
+                </button>
               </span>
             )}
             {owner && (
-              <GlassButton
+              <Button
+                variant="ghost"
+                size="icon"
                 className="notification-button"
-                icon={<Bell size={19} />}
                 onClick={() => setAlerts(true)}
                 aria-label={`${pending} pending reviews`}
               >
+                <Bell size={19} />
                 {pending > 0 && <i />}
-              </GlassButton>
+              </Button>
             )}
             <span className="topbar-avatar">
               {data.member.name.slice(0, 1)}
             </span>
           </div>
         </header>
-        <main id="main" className="workspace-content">
+        <main
+          id="main"
+          className={`workspace-content ${owner && tab === "overview" ? "workspace-overview" : ""}`}
+        >
           {data.workspace.includes("Design Lab") && (
             <div className="demo-banner">
               DESIGN LAB / Synthetic records for evaluation. No real deliveries,
@@ -560,63 +620,76 @@ export function Workspace({
                   ? tab === "overview"
                     ? `YOUR OPERATIONS, AT A GLANCE`
                     : `PUMPSHIELD / ${tab.toUpperCase()}`
-                  : "MUNSHI / FIELD TERMINAL"}
+                  : "FIELD TERMINAL"}
               </span>
               <h1>
-                {owner || tab === "operations"
+                {owner
                   ? title[tab]
-                  : `Ready when you are, ${data.member.name.split(" ")[0]}.`}
+                  : tab === "overview"
+                    ? "Field terminal"
+                    : tab === "credit"
+                      ? "Digital parchi"
+                      : title[tab]}
               </h1>
-              <p>
-                {owner || tab === "operations"
-                  ? subtitles[tab]
-                  : "Capture the reading. Submit the evidence. We’ll take it from there."}
-              </p>
+              {(!owner || tab !== "overview") && (
+                <p>
+                  {owner
+                    ? subtitles[tab]
+                    : tab === "overview"
+                      ? "Choose a task for your current station."
+                      : tab === "credit"
+                        ? "Scan an owner-issued vehicle pass to record a fill."
+                        : subtitles[tab]}
+                </p>
+              )}
             </div>
             <div className="heading-actions">
               {owner && ["overview", "credit", "shifts"].includes(tab) && (
                 <Button variant="secondary" onClick={exportData}>
                   <Download size={15} />
-                  Export
+                  {tab === "credit"
+                    ? "Export recent fills"
+                    : "Export recent shifts"}
                 </Button>
               )}
-              {!["operations", "documents"].includes(tab) && (
-                <Button
-                  onClick={() =>
-                    open(
-                      tab === "deliveries"
-                        ? "delivery"
-                        : tab === "credit"
-                          ? owner
-                            ? "account"
-                            : "parchi"
-                          : tab === "stock"
-                            ? "price"
-                            : tab === "settings"
-                              ? "station"
-                              : currentShift
-                                ? "close_shift"
-                                : "open_shift",
-                      currentShift?.id,
-                    )
-                  }
-                >
-                  <Plus size={17} />
-                  {tab === "deliveries"
-                    ? "New delivery"
-                    : tab === "credit"
-                      ? owner
-                        ? "Add account"
-                        : "New parchi"
-                      : tab === "stock"
-                        ? "Update price"
-                        : tab === "settings"
-                          ? "Add station"
-                          : currentShift
-                            ? "Close shift"
-                            : "Open shift"}
-                </Button>
-              )}
+              {!["operations", "documents"].includes(tab) &&
+                (owner || tab !== "deliveries") && (
+                  <Button
+                    onClick={() =>
+                      open(
+                        tab === "deliveries"
+                          ? "delivery"
+                          : tab === "credit"
+                            ? owner
+                              ? "account"
+                              : "parchi"
+                            : tab === "stock"
+                              ? "price"
+                              : tab === "settings"
+                                ? "station"
+                                : currentShift
+                                  ? "close_shift"
+                                  : "open_shift",
+                        currentShift?.id,
+                      )
+                    }
+                  >
+                    <Plus size={17} />
+                    {tab === "deliveries"
+                      ? "New delivery"
+                      : tab === "credit"
+                        ? owner
+                          ? "Add account"
+                          : "New parchi"
+                        : tab === "stock"
+                          ? "Update price"
+                          : tab === "settings"
+                            ? "Add station"
+                            : currentShift
+                              ? "Close shift"
+                              : "Open shift"}
+                  </Button>
+                )}
             </div>
           </section>
           {syncError && (
@@ -625,266 +698,76 @@ export function Workspace({
               loaded records. Submissions require a connection.
             </div>
           )}
-          {!owner &&
-            ["overview", "deliveries", "shifts", "credit"].includes(tab) && (
-              <div className="kiosk-actions">
-                <button
-                  onClick={() =>
-                    open(
-                      currentShift ? "close_shift" : "open_shift",
-                      currentShift?.id,
-                    )
-                  }
-                >
-                  <ClipboardCheck size={26} />
-                  <strong>
-                    {currentShift ? "Close current shift" : "Open a shift"}
-                  </strong>
-                  <span>
-                    Capture meters, tank dips & cash
-                    <ArrowUpRight size={17} />
-                  </span>
-                </button>
-                <button
-                  onClick={() => {
-                    setTab("deliveries");
-                  }}
-                >
-                  <Truck size={26} />
-                  <strong>Delivery audit</strong>
-                  <span>
-                    Record temperature & chamber dips
-                    <ArrowUpRight size={17} />
-                  </span>
-                </button>
-                <button onClick={() => open("parchi")}>
-                  <WalletCards size={26} />
-                  <strong>Digital parchi</strong>
-                  <span>
-                    Record an authorized credit fill
-                    <ArrowUpRight size={17} />
-                  </span>
-                </button>
-              </div>
-            )}
+          {!owner && tab === "overview" && (
+            <div className="kiosk-actions">
+              <button
+                onClick={() =>
+                  open(
+                    currentShift ? "close_shift" : "open_shift",
+                    currentShift?.id,
+                  )
+                }
+              >
+                <ClipboardCheck size={26} />
+                <strong>
+                  {currentShift ? "Close current shift" : "Open a shift"}
+                </strong>
+                <span>
+                  Capture meters, tank dips & cash
+                  <ArrowUpRight size={17} />
+                </span>
+              </button>
+              <button
+                onClick={() => {
+                  setTab("deliveries");
+                }}
+              >
+                <Truck size={26} />
+                <strong>Delivery audit</strong>
+                <span>
+                  Record temperature & chamber dips
+                  <ArrowUpRight size={17} />
+                </span>
+              </button>
+              <button onClick={() => open("parchi")}>
+                <WalletCards size={26} />
+                <strong>Digital parchi</strong>
+                <span>
+                  Record an authorized credit fill
+                  <ArrowUpRight size={17} />
+                </span>
+              </button>
+            </div>
+          )}
           {tab === "operations" && (
             <StationOperations
               key={stationId}
               stationId={stationId}
               data={data}
+              workKind={
+                new URLSearchParams(locationSearch).get("work") || undefined
+              }
+              onWorkKindChange={(kind) =>
+                updateWorkspaceLocation({ work: kind }, true)
+              }
             />
           )}
           {owner && tab === "documents" && (
             <DocumentCentre data={data} stationId={stationId} />
           )}
           {owner && tab === "overview" && (
-            <>
-              <OperationsHero
-                deliveries={deliveries}
-                tanks={tanks}
-                pending={pending}
-                onDelivery={(id) => open("delivery_detail", id)}
-                onReview={() => setAlerts(true)}
-                demo={data.workspace.includes("Design Lab")}
-              />
-              <div className="section-bar">
-                <h2>
-                  Station snapshot <span>Last {days} days</span>
-                </h2>
-                <SegmentedControl
-                  aria-label="Reporting period"
-                  className="reporting-range"
-                  value={String(days)}
-                  onValueChange={(value) => setDays(Number(value))}
-                  items={[
-                    { value: "7", label: "7 days" },
-                    { value: "30", label: "30 days" },
-                  ]}
-                />
-              </div>
-              <div className="stats-grid">
-                <Stat
-                  label="Recorded revenue"
-                  value={
-                    privateMode
-                      ? "••••••"
-                      : number(
-                          recent.reduce(
-                            (s, r) => s + (r.result?.revenue || 0),
-                            0,
-                          ),
-                        )
-                  }
-                  unit="PKR"
-                  detail={`${recent.length} closed shifts in this period`}
-                  icon={WalletCards}
-                />
-                <Stat
-                  label="Fuel dispensed"
-                  value={number(
-                    recent.reduce((s, r) => s + (r.result?.liters || 0), 0),
-                    1,
-                  )}
-                  unit="L"
-                  detail="From submitted nozzle readings"
-                  icon={Fuel}
-                />
-                <Stat
-                  label="Recorded stock"
-                  value={number(
-                    tanks.reduce((s, t) => s + t.stock, 0),
-                    1,
-                  )}
-                  unit="L"
-                  detail={`${tanks.length} calibrated underground tanks`}
-                  icon={Droplets}
-                />
-                <Stat
-                  label="Needs your review"
-                  value={String(pending)}
-                  detail="Submitted shifts and delivery audits"
-                  icon={ClipboardCheck}
-                />
-              </div>
-              <div className="overview-grid">
-                <section className="panel">
-                  <div className="panel-heading">
-                    <div>
-                      <h2>Fuel movement</h2>
-                      <p>Dispensed litres, by closed shift</p>
-                    </div>
-                    <span className="legend-dot">Recorded volume</span>
-                  </div>
-                  {recent.length ? (
-                    <div className="chart">
-                      <div className="chart-bars">
-                        {recent
-                          .slice(0, 14)
-                          .reverse()
-                          .map((s) => (
-                            <div className="chart-bar-column" key={s.id}>
-                              <span>{number(s.result!.liters)}</span>
-                              <button
-                                style={{
-                                  height: `${Math.max(2, (s.result!.liters / Math.max(...recent.map((r) => r.result!.liters), 1)) * 160)}px`,
-                                }}
-                                onClick={() => open("shift_detail", s.id)}
-                                aria-label={`${s.name}, ${s.result!.liters} litres`}
-                              />
-                              <small>
-                                {new Date(s.closed_at).toLocaleDateString(
-                                  "en-PK",
-                                  {
-                                    timeZone: "Asia/Karachi",
-                                    day: "numeric",
-                                    month: "short",
-                                  },
-                                )}
-                              </small>
-                            </div>
-                          ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <Empty
-                      title="Your first shift tells the story."
-                      description="Close a shift to see real fuel movement here. Every bar will come from your station’s records."
-                      action="Start a shift"
-                      onAction={() => open("open_shift")}
-                    />
-                  )}
-                </section>
-                <section className="panel tank-panel">
-                  <div className="panel-heading">
-                    <div>
-                      <h2>In the ground</h2>
-                      <p>Last recorded tank stock</p>
-                    </div>
-                    <button
-                      className="text-link"
-                      onClick={() => setTab("stock")}
-                      aria-label="View stock"
-                    >
-                      <ArrowUpRight size={18} />
-                    </button>
-                  </div>
-                  {tanks.length ? (
-                    <div className="tank-mini-list">
-                      {tanks.slice(0, 3).map((t) => (
-                        <div key={t.id} className="tank-mini">
-                          <div className="mini-cylinder">
-                            <div
-                              style={{
-                                height: `${(t.stock / t.capacity) * 100}%`,
-                              }}
-                            />
-                          </div>
-                          <div>
-                            <strong>{t.name}</strong>
-                            <span>
-                              {t.grade === "MS" ? "Petrol" : "Diesel"} ·{" "}
-                              {number(t.stock)} L
-                            </span>
-                            <div className="progress-track">
-                              <i
-                                style={{
-                                  width: `${(t.stock / t.capacity) * 100}%`,
-                                }}
-                              />
-                            </div>
-                          </div>
-                          <b>
-                            {Math.round((t.stock / t.capacity) * 100)}
-                            <small>%</small>
-                          </b>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <Empty
-                      icon={Droplets}
-                      title="A place for every litre."
-                      description="Add your tanks and their certified calibration charts."
-                      action="Add a tank"
-                      onAction={() => open("tank")}
-                    />
-                  )}
-                </section>
-              </div>
-              <section className="panel">
-                <div className="panel-heading">
-                  <div>
-                    <h2>Recent activity</h2>
-                    <p>An accountable trail of workspace changes</p>
-                  </div>
-                  <span className="subtle-pill">
-                    <LockKeyhole size={12} /> Recorded securely
-                  </span>
-                </div>
-                {data.events.length ? (
-                  <div className="activity-list">
-                    {data.events.slice(0, 5).map((e) => (
-                      <div key={e.id}>
-                        <span className="activity-icon">
-                          <Check size={15} />
-                        </span>
-                        <div>
-                          <strong>{e.action.replaceAll("_", " ")}</strong>
-                          <span>{e.subject_id?.slice(0, 8)}</span>
-                        </div>
-                        <time>{date(e.created_at)}</time>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <Empty
-                    icon={Activity}
-                    title="Your activity starts here."
-                    description="Every saved operation leaves a dated record for the owner."
-                  />
-                )}
-              </section>
-            </>
+            <OwnerOverview
+              key={stationId}
+              data={data}
+              deliveries={deliveries}
+              shifts={shifts}
+              tanks={tanks}
+              station={station}
+              privateMode={privateMode}
+              loadedAt={now}
+              onOpen={open}
+              onStock={() => setTab("stock")}
+            />
           )}
           {(tab === "deliveries" || (!owner && tab === "overview")) && (
             <>
@@ -967,79 +850,15 @@ export function Workspace({
                   </div>
                 </div>
                 {shifts.length ? (
-                  <div className="table-scroll">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Shift</th>
-                          <th>Opened</th>
-                          <th>Status</th>
-                          {owner && (
-                            <>
-                              <th>Volume</th>
-                              <th>Cash variance</th>
-                            </>
-                          )}
-                          <th />
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {shifts.map((s) => (
-                          <tr key={s.id}>
-                            <td>
-                              <strong>{s.name}</strong>
-                              <small>{s.id.slice(0, 8)}</small>
-                            </td>
-                            <td>{date(s.opened_at)}</td>
-                            <td>
-                              <Status value={s.status} />
-                            </td>
-                            {owner && (
-                              <>
-                                <td>
-                                  {s.result
-                                    ? `${number(s.result.liters, 1)} L`
-                                    : "—"}
-                                </td>
-                                <td
-                                  className={
-                                    s.result &&
-                                    Math.abs(s.result.cash_variance) > 0.01
-                                      ? "text-danger"
-                                      : ""
-                                  }
-                                >
-                                  {s.result
-                                    ? moneyLabel(s.result.cash_variance)
-                                    : "—"}
-                                </td>
-                              </>
-                            )}
-                            <td>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() =>
-                                  open(
-                                    s.status === "open"
-                                      ? "close_shift"
-                                      : "shift_detail",
-                                    s.id,
-                                  )
-                                }
-                              >
-                                {s.status === "open" ? "Close shift" : "Review"}
-                                <ArrowUpRight size={14} />
-                              </Button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  <ShiftRegister
+                    shifts={shifts}
+                    owner={owner}
+                    privateMode={privateMode}
+                    onOpen={open}
+                  />
                 ) : (
                   <Empty
-                    title="Make the first close a confident one."
+                    title="No shifts recorded"
                     description="Open a shift to lock current stock, fuel prices, and nozzle readings. Closing readings will be compared against this baseline."
                     action="Open a shift"
                     onAction={() => open("open_shift")}
@@ -1081,10 +900,12 @@ export function Workspace({
                 <h2>
                   {owner ? "Corporate accounts" : "Authorized refuelling"}
                 </h2>
-                <Button variant="secondary" onClick={() => open("parchi")}>
-                  <Plus size={16} />
-                  New digital parchi
-                </Button>
+                {owner && (
+                  <Button variant="secondary" onClick={() => open("parchi")}>
+                    <Plus size={16} />
+                    New digital parchi
+                  </Button>
+                )}
               </div>
               {owner &&
                 (accounts.length ? (
@@ -1162,7 +983,12 @@ export function Workspace({
                     </div>
                   </div>
                   {parchis.length ? (
-                    <div className="table-scroll">
+                    <div
+                      className="table-scroll"
+                      role="region"
+                      aria-label={`${title[tab]} register`}
+                      tabIndex={0}
+                    >
                       <table>
                         <thead>
                           <tr>
@@ -1203,7 +1029,7 @@ export function Workspace({
                     </div>
                   ) : (
                     <Empty
-                      title="No paper. No guesswork."
+                      title="No recorded credit fills"
                       description="Recorded credit fills appear here once your first parchi is submitted."
                     />
                   )}
@@ -1229,27 +1055,18 @@ export function Workspace({
                       <div className="panel-heading">
                         <div>
                           <h2>{t.name}</h2>
-                          <p>
-                            {t.grade === "MS"
-                              ? "Motor Spirit · Petrol"
-                              : "High-Speed Diesel"}
-                          </p>
+                          <p>{fuelGradeLabel(t.grade)}</p>
                         </div>
                         <span className="subtle-pill">{t.grade}</span>
                       </div>
                       <div className="stock-visual">
-                        <div className="large-cylinder">
-                          <div
-                            className="tank-fluid"
-                            style={{
-                              height: `${Math.max(0, (t.stock / t.capacity) * 100)}%`,
-                            }}
-                          />
-                          <span>
-                            {Math.round((t.stock / t.capacity) * 100)}
-                            <small>%</small>
-                          </span>
-                        </div>
+                        <meter
+                          className="stock-level"
+                          min={0}
+                          max={t.capacity}
+                          value={Math.max(0, Math.min(t.stock, t.capacity))}
+                          aria-label={`${t.name} recorded stock`}
+                        />
                         <div className="stock-readout">
                           <span>Recorded stock</span>
                           <strong>
@@ -1273,7 +1090,7 @@ export function Workspace({
                 <section className="panel">
                   <Empty
                     icon={Droplets}
-                    title="Give your stock a source of truth."
+                    title="No tanks configured"
                     description="Use certified dip charts to turn millimetres into accurate recorded litres."
                     action="Configure first tank"
                     onAction={() => open("tank")}
@@ -1296,7 +1113,12 @@ export function Workspace({
                 </div>
                 {data.prices.filter((p) => p.station_id === stationId)
                   .length ? (
-                  <div className="table-scroll">
+                  <div
+                    className="table-scroll"
+                    role="region"
+                    aria-label={`${title[tab]} register`}
+                    tabIndex={0}
+                  >
                     <table>
                       <thead>
                         <tr>
@@ -1313,7 +1135,9 @@ export function Workspace({
                           .map((p) => (
                             <tr key={p.id}>
                               <td>
-                                <span className="fuel-grade">{p.grade}</span>
+                                <span className="fuel-grade">
+                                  {fuelGradeLabel(p.grade)}
+                                </span>
                               </td>
                               <td>{moneyLabel(p.price)}</td>
                               <td>{moneyLabel(p.margin)}</td>
@@ -1473,7 +1297,12 @@ export function Workspace({
                     Authorize Munshi
                   </Button>
                 </div>
-                <div className="table-scroll">
+                <div
+                  className="table-scroll"
+                  role="region"
+                  aria-label={`${title[tab]} register`}
+                  tabIndex={0}
+                >
                   <table>
                     <thead>
                       <tr>
@@ -1560,50 +1389,46 @@ export function Workspace({
           )}
           <footer className="workspace-footer">
             <span>
-              <ShieldCheck size={14} /> PumpShield PK · Every litre, accounted
-              for.
+              <ShieldCheck size={14} /> PumpShield · Every litre, accounted for.
             </span>
             <span>Times shown in Pakistan Standard Time</span>
           </footer>
         </main>
-        <nav className="glass-mobile-dock" aria-label="Station navigation">
-          <TabBar
-            aria-label="Station sections"
-            value={tab}
-            items={navigation
-              .filter((n) => !["documents", "stock"].includes(n.id))
-              .filter(
-                (n) =>
-                  owner ||
-                  ["deliveries", "shifts", "credit", "operations"].includes(
-                    n.id,
-                  ),
-              )
-              .map((n) => ({
-                value: n.id,
-                label:
-                  n.id === "shifts"
-                    ? "Shifts"
-                    : n.id === "credit"
-                      ? "Parchi"
-                      : n.id === "overview"
-                        ? "Home"
-                        : n.id === "stock"
-                          ? "Stock"
-                          : n.id === "operations"
-                            ? "Operations"
-                            : n.label,
-                icon: <n.icon size={22} />,
-              }))}
-            onValueChange={(value) => {
-              if (navigation.some((n) => n.id === value)) {
-                setTab(value as Tab);
-                setSearch("");
-                setMobile(false);
-                window.scrollTo({ top: 0, behavior: "instant" });
-              }
-            }}
-          />
+        <nav className="ledger-mobile-nav" aria-label="Station navigation">
+          {navigation
+            .filter((n) =>
+              [
+                "overview",
+                "deliveries",
+                "shifts",
+                "credit",
+                "operations",
+              ].includes(n.id),
+            )
+            .map((n) => (
+              <button
+                key={n.id}
+                aria-current={tab === n.id ? "page" : undefined}
+                onClick={() => {
+                  setTab(n.id);
+                  setMobile(false);
+                  window.scrollTo({ top: 0, behavior: "instant" });
+                }}
+              >
+                <n.icon size={20} />
+                <span>
+                  {n.id === "overview"
+                    ? "Home"
+                    : n.id === "shifts"
+                      ? "Shifts"
+                      : n.id === "credit"
+                        ? "Parchi"
+                        : n.id === "operations"
+                          ? "Work"
+                          : "Deliveries"}
+                </span>
+              </button>
+            ))}
         </nav>
       </div>
       {modal && (
@@ -1623,7 +1448,7 @@ export function Workspace({
       <Dialog
         open={help}
         onOpenChange={setHelp}
-        title="A good start makes every shift easier."
+        title="Station setup guide"
         description="Your PumpShield setup guide"
       >
         <ol className="help-list">

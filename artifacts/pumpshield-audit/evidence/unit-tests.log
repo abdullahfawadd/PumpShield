@@ -1,0 +1,13 @@
+
+> pumpshield@1.0.0 test
+> vitest run
+
+
+ RUN  v4.1.12 D:/PumpShield
+
+
+ Test Files  6 passed (6)
+      Tests  24 passed (24)
+   Start at  12:07:20
+   Duration  6.40s (transform 1.02s, setup 0ms, import 4.48s, tests 11.72s, environment 5ms)
+

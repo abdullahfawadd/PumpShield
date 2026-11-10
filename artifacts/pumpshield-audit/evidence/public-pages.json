@@ -1,0 +1,1402 @@
+{
+  "rows": [
+    {
+      "role": "public",
+      "module": "login",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:20:54.849Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/login/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/public/login/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1080,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Sign in to your workspace"
+        ],
+        "smallTargets": []
+      },
+      "copy": [
+        "Every detail.Every litre.Under control.",
+        "A clearer picture of your forecourt. One workspace for everything that matters.",
+        "Sign in to your workspace",
+        "Email address",
+        "Password"
+      ],
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "email",
+          "name": "email",
+          "label": "Email address",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 254,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "password",
+          "name": "password",
+          "label": "Password",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 1,
+          "maxLength": 128,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - heading \"Every detail. Every litre. Under control.\" [level=1]\n  - paragraph: A clearer picture of your forecourt. One workspace for everything that matters.\n  - heading \"Sign in to your workspace\" [level=2]\n  - text: Email address\n  - textbox \"Email address\"\n  - text: Password\n  - textbox \"Password\"\n  - button \"Show password\":\n    - img\n  - button \"Sign in\":\n    - text: Sign in\n    - img\n  - button \"Forgot password?\"\n  - text: New to PumpShield?\n  - button \"Create an account\":\n    - text: Create an account\n    - img\n  - complementary \"PumpShield product illustration\"\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "login",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:20:55.954Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/login/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/public/login/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Sign in to your workspace"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "login",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:20:56.852Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/login/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/public/login/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 768,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Sign in to your workspace"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "login",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:20:57.302Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/login/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/public/login/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 932,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Sign in to your workspace"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "login",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:20:57.693Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/login/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/public/login/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Sign in to your workspace"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "login",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:20:58.130Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/login/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/public/login/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 800,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Sign in to your workspace"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "login",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:20:58.468Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/login/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/public/login/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 640,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "login",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:20:59.252Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/login/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/public/login/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1024,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Sign in to your workspace"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "signup",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:21:01.152Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/signup/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/public/signup/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1080,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Create your account"
+        ],
+        "smallTargets": []
+      },
+      "copy": [
+        "Every detail.Every litre.Under control.",
+        "A clearer picture of your forecourt. One workspace for everything that matters.",
+        "Create your account",
+        "Email address",
+        "Password",
+        "Use 12 or more characters. Confirm your email to finish setup."
+      ],
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "email",
+          "name": "email",
+          "label": "Email address",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 254,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "password",
+          "name": "password",
+          "label": "Password",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 12,
+          "maxLength": 128,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - heading \"Every detail. Every litre. Under control.\" [level=1]\n  - paragraph: A clearer picture of your forecourt. One workspace for everything that matters.\n  - heading \"Create your account\" [level=2]\n  - text: Email address\n  - textbox \"Email address\"\n  - text: Password\n  - textbox \"Password\"\n  - button \"Show password\":\n    - img\n  - paragraph: Use 12 or more characters. Confirm your email to finish setup.\n  - button \"Create account\":\n    - text: Create account\n    - img\n  - button \"Back to sign in\":\n    - text: Back to sign in\n    - img\n  - complementary \"PumpShield product illustration\"\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "signup",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:21:02.355Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/signup/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/public/signup/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Create your account"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "signup",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:21:03.165Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/signup/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/public/signup/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 768,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Create your account"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "signup",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:21:03.583Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/signup/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/public/signup/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 932,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Create your account"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "signup",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:21:03.906Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/signup/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/public/signup/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Create your account"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "signup",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:21:04.181Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/signup/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/public/signup/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 800,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Create your account"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "signup",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:21:04.434Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/signup/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/public/signup/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 640,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "signup",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:21:05.102Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/signup/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/public/signup/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1024,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Create your account"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-recovery",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:21:06.938Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/password-recovery/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/public/password-recovery/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1080,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Reset your password"
+        ],
+        "smallTargets": []
+      },
+      "copy": [
+        "Every detail.Every litre.Under control.",
+        "A clearer picture of your forecourt. One workspace for everything that matters.",
+        "Reset your password",
+        "Email address"
+      ],
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "email",
+          "name": "email",
+          "label": "Email address",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": 254,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - heading \"Every detail. Every litre. Under control.\" [level=1]\n  - paragraph: A clearer picture of your forecourt. One workspace for everything that matters.\n  - heading \"Reset your password\" [level=2]\n  - text: Email address\n  - textbox \"Email address\"\n  - button \"Send reset link\":\n    - text: Send reset link\n    - img\n  - button \"Back to sign in\":\n    - text: Back to sign in\n    - img\n  - complementary \"PumpShield product illustration\"\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-recovery",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:21:08.104Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/password-recovery/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/public/password-recovery/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Reset your password"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-recovery",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:21:08.996Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/password-recovery/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/public/password-recovery/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 768,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Reset your password"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-recovery",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:21:09.576Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/password-recovery/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/public/password-recovery/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 932,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Reset your password"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-recovery",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:21:09.954Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/password-recovery/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/public/password-recovery/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Reset your password"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-recovery",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:21:10.338Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/password-recovery/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/public/password-recovery/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 800,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Reset your password"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-recovery",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:21:10.638Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/password-recovery/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/public/password-recovery/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 640,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-recovery",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:21:11.446Z",
+      "url": "https://pumpshield-seven.vercel.app/login",
+      "paths": {
+        "viewport": "screenshots/public/password-recovery/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/public/password-recovery/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1024,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every detail.Every litre.Under control.",
+          "Reset your password"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-update",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:21:14.220Z",
+      "url": "https://pumpshield-seven.vercel.app/auth/password",
+      "paths": {
+        "viewport": "screenshots/public/password-update/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/public/password-update/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1080,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A fresh start."
+        ],
+        "smallTargets": []
+      },
+      "copy": [
+        "A fresh start.",
+        "Choose a new password for your workspace.",
+        "New password"
+      ],
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "password",
+          "name": "password",
+          "label": "New password",
+          "required": true,
+          "min": "",
+          "max": "",
+          "minLength": 12,
+          "maxLength": 128,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - heading \"A fresh start.\" [level=1]\n  - paragraph: Choose a new password for your workspace.\n  - text: New password\n  - textbox \"New password\"\n  - alert\n  - button \"Update password\"\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-update",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:21:14.506Z",
+      "url": "https://pumpshield-seven.vercel.app/auth/password",
+      "paths": {
+        "viewport": "screenshots/public/password-update/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/public/password-update/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A fresh start."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-update",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:21:15.121Z",
+      "url": "https://pumpshield-seven.vercel.app/auth/password",
+      "paths": {
+        "viewport": "screenshots/public/password-update/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/public/password-update/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 768,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A fresh start."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-update",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:21:15.356Z",
+      "url": "https://pumpshield-seven.vercel.app/auth/password",
+      "paths": {
+        "viewport": "screenshots/public/password-update/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/public/password-update/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 932,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A fresh start."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-update",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:21:15.528Z",
+      "url": "https://pumpshield-seven.vercel.app/auth/password",
+      "paths": {
+        "viewport": "screenshots/public/password-update/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/public/password-update/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A fresh start."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-update",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:21:15.699Z",
+      "url": "https://pumpshield-seven.vercel.app/auth/password",
+      "paths": {
+        "viewport": "screenshots/public/password-update/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/public/password-update/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 800,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A fresh start."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-update",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:21:15.868Z",
+      "url": "https://pumpshield-seven.vercel.app/auth/password",
+      "paths": {
+        "viewport": "screenshots/public/password-update/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/public/password-update/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 640,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A fresh start."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "password-update",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:21:16.074Z",
+      "url": "https://pumpshield-seven.vercel.app/auth/password",
+      "paths": {
+        "viewport": "screenshots/public/password-update/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/public/password-update/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1024,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A fresh start."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "driver-invalid-link",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:21:19.234Z",
+      "url": "https://pumpshield-seven.vercel.app/gate/[redacted]",
+      "paths": {
+        "viewport": "screenshots/public/driver-invalid-link/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/public/driver-invalid-link/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1080,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your delivery link"
+        ],
+        "smallTargets": []
+      },
+      "copy": [
+        "PRIVATE DELIVERY LINK",
+        "Your delivery link",
+        "With your permission, this phone sends its location to the receiving station approximately every 30 seconds. Sharing stops when you stop it, close the page, or the arrival audit starts.",
+        "Keep this page open and the phone charged. Browser background tracking is not guaranteed."
+      ],
+      "controls": [],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - img \"PumpShield\"\n  - text: PRIVATE DELIVERY LINK\n  - heading \"Your delivery link\" [level=1]\n  - img\n  - paragraph: With your permission, this phone sends its location to the receiving station approximately every 30 seconds. Sharing stops when you stop it, close the page, or the arrival audit starts.\n  - paragraph: Keep this page open and the phone charged. Browser background tracking is not guaranteed.\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "driver-invalid-link",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:21:19.891Z",
+      "url": "https://pumpshield-seven.vercel.app/gate/[redacted]",
+      "paths": {
+        "viewport": "screenshots/public/driver-invalid-link/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/public/driver-invalid-link/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your delivery link"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "driver-invalid-link",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:21:20.454Z",
+      "url": "https://pumpshield-seven.vercel.app/gate/[redacted]",
+      "paths": {
+        "viewport": "screenshots/public/driver-invalid-link/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/public/driver-invalid-link/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 768,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Your delivery link"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "driver-invalid-link",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:21:20.744Z",
+      "url": "https://pumpshield-seven.vercel.app/gate/[redacted]",
+      "paths": {
+        "viewport": "screenshots/public/driver-invalid-link/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/public/driver-invalid-link/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 932,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your delivery link"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "driver-invalid-link",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:21:21.003Z",
+      "url": "https://pumpshield-seven.vercel.app/gate/[redacted]",
+      "paths": {
+        "viewport": "screenshots/public/driver-invalid-link/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/public/driver-invalid-link/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your delivery link"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "driver-invalid-link",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:21:21.246Z",
+      "url": "https://pumpshield-seven.vercel.app/gate/[redacted]",
+      "paths": {
+        "viewport": "screenshots/public/driver-invalid-link/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/public/driver-invalid-link/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 800,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your delivery link"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "driver-invalid-link",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:21:21.445Z",
+      "url": "https://pumpshield-seven.vercel.app/gate/[redacted]",
+      "paths": {
+        "viewport": "screenshots/public/driver-invalid-link/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/public/driver-invalid-link/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 640,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your delivery link"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "driver-invalid-link",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:21:21.878Z",
+      "url": "https://pumpshield-seven.vercel.app/gate/[redacted]",
+      "paths": {
+        "viewport": "screenshots/public/driver-invalid-link/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/public/driver-invalid-link/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1024,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Your delivery link"
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "not-found",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:21:23.074Z",
+      "url": "https://pumpshield-seven.vercel.app/audit-nonexistent-route",
+      "paths": {
+        "viewport": "screenshots/public/not-found/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/public/not-found/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1080,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "This page has moved."
+        ],
+        "smallTargets": []
+      },
+      "copy": [
+        "404 / PUMPSHIELD",
+        "This page has moved.",
+        "Return to your workspace to continue."
+      ],
+      "controls": [],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- main:\n  - text: 404 / PUMPSHIELD\n  - heading \"This page has moved.\" [level=1]\n  - paragraph: Return to your workspace to continue.\n  - link \"Open workspace\":\n    - /url: /app\n- region \"Notifications alt+T\"\n- alert",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "not-found",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:21:23.372Z",
+      "url": "https://pumpshield-seven.vercel.app/audit-nonexistent-route",
+      "paths": {
+        "viewport": "screenshots/public/not-found/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/public/not-found/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "This page has moved."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "not-found",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:21:23.616Z",
+      "url": "https://pumpshield-seven.vercel.app/audit-nonexistent-route",
+      "paths": {
+        "viewport": "screenshots/public/not-found/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/public/not-found/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 768,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "This page has moved."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "not-found",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:21:23.791Z",
+      "url": "https://pumpshield-seven.vercel.app/audit-nonexistent-route",
+      "paths": {
+        "viewport": "screenshots/public/not-found/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/public/not-found/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 932,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "This page has moved."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "not-found",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:21:23.972Z",
+      "url": "https://pumpshield-seven.vercel.app/audit-nonexistent-route",
+      "paths": {
+        "viewport": "screenshots/public/not-found/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/public/not-found/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "This page has moved."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "not-found",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:21:24.293Z",
+      "url": "https://pumpshield-seven.vercel.app/audit-nonexistent-route",
+      "paths": {
+        "viewport": "screenshots/public/not-found/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/public/not-found/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 800,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "This page has moved."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "not-found",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:21:24.547Z",
+      "url": "https://pumpshield-seven.vercel.app/audit-nonexistent-route",
+      "paths": {
+        "viewport": "screenshots/public/not-found/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/public/not-found/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 320,
+        "height": 640,
+        "documentWidth": 320,
+        "documentHeight": 640,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "This page has moved."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "public",
+      "module": "not-found",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:21:24.830Z",
+      "url": "https://pumpshield-seven.vercel.app/audit-nonexistent-route",
+      "paths": {
+        "viewport": "screenshots/public/not-found/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/public/not-found/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1024,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "This page has moved."
+        ],
+        "smallTargets": []
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "summary": {
+    "signupAndRecovery": "UI and validation only; no account or reset email submitted",
+    "driver": "Invalid/expired bearer state only; real driver link not issued"
+  }
+}

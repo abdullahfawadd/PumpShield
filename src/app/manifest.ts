@@ -5,11 +5,11 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "PumpShield",
     description:
       "Verified fuel-station operations and encrypted offline field drafts.",
-    start_url: "/offline",
+    start_url: "/app",
     scope: "/",
     display: "standalone",
-    background_color: "#f5f6f7",
-    theme_color: "#202a35",
+    background_color: "#f5f3ee",
+    theme_color: "#174c45",
     icons: [
       {
         src: "/brand/icon-192.png",

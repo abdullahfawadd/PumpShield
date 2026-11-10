@@ -1,0 +1,4066 @@
+{
+  "rows": [
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:05:21.960Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/overview/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 2381,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "1 decision.One clear picture.",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "YOUR OPERATIONS, AT A GLANCE",
+        "A clearer view of your station.",
+        "The details that matter. All in one place.",
+        "Keamari depot \u2192 Station",
+        "TKA-842 \u00b7 SAMPLE-OMC-1042",
+        "1 decision.One clear picture.",
+        "Review the details that need your judgement. Evidence first, decisions second.",
+        "63,000 litres",
+        "Measured. Reconciled. Accounted for.",
+        "Station snapshot Last 7 days",
+        "Fuel movement",
+        "Dispensed litres, by closed shift",
+        "In the ground",
+        "Last recorded tank stock",
+        "Recent activity",
+        "An accountable trail of workspace changes"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Overview\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 YOUR OPERATIONS, AT A GLANCE\n  - heading \"A clearer view of your station.\" [level=1]\n  - paragraph: The details that matter. All in one place.\n  - button \"Export\":\n    - img\n    - text: Export\n  - button \"Close shift\":\n    - img\n    - text: Close shift\n  - text: DELIVERY SPOTLIGHT\n  - button \"Open featured delivery\":\n    - img\n  - heading \"Keamari depot \u2192 Station\" [level=2]\n  - paragraph: TKA-842 \u00b7 SAMPLE-OMC-1042\n  - text: dispatched\n  - img \"Studio illustration of a petroleum tanker\"\n  - text: INVOICE VOLUME\n  - strong:\n    - text: 40,000\n    - emphasis: L\n  - text: CONTRACTOR DELIVERY Dispatched Arrival audit Owner approval Decanted\n  - img\n  - text: THE OWNER\u2019S BRIEF\n  - heading \"1 decision. One clear picture.\" [level=2]\n  - paragraph: Review the details that need your judgement. Evidence first, decisions second.\n  - strong: 70%\n  - text: Tank capacity in use\n  - button \"Open review queue\":\n    - text: Open review queue\n    - img\n  - img\n  - text: DELIVERY LOCATION SYNTHETIC ROUTE\n  - region \"Delivery map\":\n    - region \"Map\"\n    - img \"Last reported tanker position\"\n    - button \"Zoom in\"\n    - button \"Zoom out\"\n    - button \"Drag to rotate map, click to reset north\"\n    - text: 3 km\n    - group:\n      - link \"OpenFreeMap\":\n        - /url: https://openfreemap.org\n      - link \"\u00a9 OpenMapTiles\":\n        - /url: https://www.openmaptiles.org/\n      - text: Data from\n      - link \"OpenStreetMap\":\n        - /url: https://www.openstreetmap.org/copyright\n    - text: REPORTED DELIVERY TRAIL\n    - button \"2D\" [pressed]\n    - button \"Terrain\"\n    - button \"Follow last reported position\" [pressed]:\n      - img\n  - img\n  - text: Route plotted from saved location reports. Sample positions are synthetic. UNDERGROUND INVENTORY\n  - heading \"63,000 litres\" [level=2]\n  - paragraph: Measured. Reconciled. Accounted for.\n  - text: Premier petrol 35,000 L\n  - emphasis\n  - text: MS \u00b7 15,000 L ullage High-speed diesel 28,000 L\n  - emphasis\n  - text: HSD \u00b7 12,000 L ullage\n  - heading \"Station snapshot Last 7 days\" [level=2]\n  - radiogroup \"Reporting period\":\n    - radio \"7 days\" [checked]\n    - radio \"30 days\"\n  - text: Recorded revenue\n  - img\n  - text: 16,095,000 PKR 6 closed shifts in this period Fuel dispensed\n  - img\n  - text: 53,650 L From submitted nozzle readings Recorded stock\n  - img\n  - text: 63,000 L 2 calibrated underground tanks Needs your review\n  - img\n  - text: 1 Submitted shifts and delivery audits\n  - heading \"Fuel movement\" [level=2]\n  - paragraph: Dispensed litres, by closed shift\n  - text: Recorded volume 9,800\n  - button \"Sample shift 5, 9800 litres\"\n  - text: 3 Nov 10,200\n  - button \"Sample shift 6, 10200 litres\"\n  - text: 4 Nov 8,750\n  - button \"Sample shift 7, 8750 litres\"\n  - text: 5 Nov 9,100\n  - button \"Sample shift 8, 9100 litres\"\n  - text: 6 Nov 7,600\n  - button \"Sample shift 9, 7600 litres\"\n  - text: 7 Nov 8,200\n  - button \"Sample shift 10, 8200 litres\"\n  - text: 8 Nov\n  - heading \"In the ground\" [level=2]\n  - paragraph: Last recorded tank stock\n  - button \"View stock\":\n    - img\n  - strong: Premier petrol\n  - text: Petrol \u00b7 35,000 L 70%\n  - strong: High-speed diesel\n  - text: Diesel \u00b7 28,000 L 70%\n  - heading \"Recent activity\" [level=2]\n  - paragraph: An accountable trail of workspace changes\n  - img\n  - text: Recorded securely\n  - img\n  - strong: evidence\n  - text: 0fe63d48\n  - time: 8 Nov, 10:12 pm\n  - img\n  - strong: evidence\n  - text: d876570a\n  - time: 8 Nov, 10:12 pm\n  - img\n  - strong: work item transition\n  - text: 63fbcb7b\n  - time: 8 Nov, 10:01 pm\n  - img\n  - strong: work item transition\n  - text: 63fbcb7b\n  - time: 8 Nov, 10:01 pm\n  - img\n  - strong: work item create\n  - text: 63fbcb7b\n  - time: 8 Nov, 09:59 pm\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:05:23.425Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/overview/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 2335,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "1 decision.One clear picture.",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:05:24.647Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/overview/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 2333,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "1 decision.One clear picture.",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:05:26.739Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/overview/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 3247,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:05:28.111Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/overview/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 3298,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:05:29.678Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/overview/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 3349,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:05:31.163Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/overview/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 353,
+        "height": 706,
+        "documentWidth": 353,
+        "documentHeight": 3425,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "overview",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:05:32.946Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/overview/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/overview/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 3187,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A clearer view of your station.",
+          "Keamari depot \u2192 Station",
+          "63,000 litres",
+          "Station snapshot Last 7 days",
+          "Fuel movement",
+          "In the ground",
+          "Recent activity"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "Open featured delivery",
+            "width": 19,
+            "height": 19
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          },
+          {
+            "label": "View stock",
+            "width": 18,
+            "height": 18
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:05:34.560Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/deliveries/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1397,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / DELIVERIES",
+        "Every delivery, verified.",
+        "From dispatch to decant, with evidence at every step.",
+        "DELIVERY PIPELINE",
+        "Keep every arrival moving.",
+        "Drag to the next stage to open its required checklist. Changes save only after confirmation.",
+        "Dispatch registered",
+        "Pre-decant audit submitted",
+        "Owner approval recorded",
+        "Stock received and posted"
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search deliveries",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Filter board stage",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Deliveries\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / DELIVERIES\n  - heading \"Every delivery, verified.\" [level=1]\n  - paragraph: From dispatch to decant, with evidence at every step.\n  - button \"New delivery\":\n    - img\n    - text: New delivery\n  - text: All deliveries 3 0 awaiting approval\n  - img\n  - textbox \"Search deliveries\":\n    - /placeholder: Search vehicle or reference\u2026\n  - region \"Delivery movement board\":\n    - text: DELIVERY PIPELINE\n    - heading \"Keep every arrival moving.\" [level=2]\n    - paragraph: Drag to the next stage to open its required checklist. Changes save only after confirmation.\n    - combobox \"Filter board stage\":\n      - option \"All stages\" [selected]\n      - option \"In transit\"\n      - option \"Ready for review\"\n      - option \"Cleared to decant\"\n      - option \"Completed\"\n    - region \"In transit\":\n      - img\n      - text: In transit 1\n      - paragraph: Dispatch registered\n      - article:\n        - text: SAMPLE-OMC-1042\n        - img\n        - button \"TKA-842\":\n          - text: TKA-842\n          - img\n        - text: Keamari depot Receiving station\n        - strong: 40,000\n        - text: litres / invoice\n        - img\n        - text: 8 Nov, 07:52 pm\n        - button \"Start arrival audit\":\n          - text: Start arrival audit\n          - img\n    - region \"Ready for review\":\n      - img\n      - text: Ready for review 0\n      - paragraph: Pre-decant audit submitted\n      - img\n      - text: No deliveries in this stage\n    - region \"Cleared to decant\":\n      - img\n      - text: Cleared to decant 2\n      - paragraph: Owner approval recorded\n      - article:\n        - text: SAMPLE-OMC-1043\n        - img\n        - button \"TKA-843\":\n          - text: TKA-843\n          - img\n        - text: Keamari depot Receiving station\n        - strong: 40,000\n        - text: litres / invoice\n        - img\n        - text: 8 Nov, 03:52 pm\n        - button \"Confirm decant\":\n          - text: Confirm decant\n          - img\n        - link \"PDF\":\n          - /url: /api/documents/claim/d170147b-e228-40b1-8cae-823cf07d7cf1\n      - article:\n        - text: SAMPLE-OMC-1044\n        - img\n        - button \"TKA-844\":\n          - text: TKA-844\n          - img\n        - text: Keamari depot Receiving station\n        - strong: 40,000\n        - text: litres / invoice\n        - img\n        - text: 8 Nov, 11:52 am\n        - button \"Confirm decant\":\n          - text: Confirm decant\n          - img\n        - link \"PDF\":\n          - /url: /api/documents/claim/e7723a01-8b5e-4028-8a60-e2a476849f88\n    - region \"Completed\":\n      - img\n      - text: Completed 0\n      - paragraph: Stock received and posted\n      - img\n      - text: No deliveries in this stage\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:05:35.357Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/deliveries/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1396,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:05:36.093Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/deliveries/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1393,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:05:37.112Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 1668,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:05:38.137Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1668,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:05:39.064Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 1668,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:05:40.084Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/deliveries/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 355,
+        "height": 710,
+        "documentWidth": 355,
+        "documentHeight": 1689,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "deliveries",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:05:41.301Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/deliveries/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/deliveries/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1519,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Every delivery, verified.",
+          "Keep every arrival moving."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:05:42.999Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/shifts/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1662,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SHIFTS",
+        "Close the shift. Open the facts.",
+        "Meter readings, physical stock, and cash. Reconciled together.",
+        "Shift register",
+        "Select a shift to inspect its evidence and reconciliation."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Shift reconciliation\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / SHIFTS\n  - heading \"Close the shift. Open the facts.\" [level=1]\n  - paragraph: Meter readings, physical stock, and cash. Reconciled together.\n  - button \"Export\":\n    - img\n    - text: Export\n  - button \"Close shift\":\n    - img\n    - text: Close shift\n  - text: Current shift\n  - img\n  - text: Open Cutoff 9 Nov, 12:00 am Nozzles configured\n  - img\n  - text: 2 Mapped to their source tanks Awaiting review\n  - img\n  - text: 1 Owner verification required\n  - heading \"Shift register\" [level=2]\n  - paragraph: Select a shift to inspect its evidence and reconciliation.\n  - table:\n    - rowgroup:\n      - row \"Shift Opened Status Volume Cash variance\":\n        - columnheader \"Shift\"\n        - columnheader \"Opened\"\n        - columnheader \"Status\"\n        - columnheader \"Volume\"\n        - columnheader \"Cash variance\"\n        - columnheader\n    - rowgroup:\n      - row \"Abdullah Fawad 86214814 8 Nov, 08:26 pm open \u2014 \u2014 Close shift\":\n        - cell \"Abdullah Fawad 86214814\":\n          - strong: Abdullah Fawad\n          - text: \"86214814\"\n        - cell \"8 Nov, 08:26 pm\"\n        - cell \"open\"\n        - cell \"\u2014\"\n        - cell \"\u2014\"\n        - cell \"Close shift\":\n          - button \"Close shift\":\n            - text: Close shift\n            - img\n      - row \"Sample shift 10 1c227fd4 7 Nov, 07:52 pm Needs review 8,200 L Rs -2,400 Review\":\n        - cell \"Sample shift 10 1c227fd4\":\n          - strong: Sample shift 10\n          - text: 1c227fd4\n        - cell \"7 Nov, 07:52 pm\"\n        - cell \"Needs review\"\n        - cell \"8,200 L\"\n        - cell \"Rs -2,400\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n      - row \"Sample shift 9 94be057e 6 Nov, 07:52 pm verified 7,600 L Rs 0 Review\":\n        - cell \"Sample shift 9 94be057e\":\n          - strong: Sample shift 9\n          - text: 94be057e\n        - cell \"6 Nov, 07:52 pm\"\n        - cell \"verified\"\n        - cell \"7,600 L\"\n        - cell \"Rs 0\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n      - row \"Sample shift 8 393543ce 5 Nov, 07:52 pm verified 9,100 L Rs 0 Review\":\n        - cell \"Sample shift 8 393543ce\":\n          - strong: Sample shift 8\n          - text: 393543ce\n        - cell \"5 Nov, 07:52 pm\"\n        - cell \"verified\"\n        - cell \"9,100 L\"\n        - cell \"Rs 0\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n      - row \"Sample shift 7 58ec1ca8 4 Nov, 07:52 pm verified 8,750 L Rs 0 Review\":\n        - cell \"Sample shift 7 58ec1ca8\":\n          - strong: Sample shift 7\n          - text: 58ec1ca8\n        - cell \"4 Nov, 07:52 pm\"\n        - cell \"verified\"\n        - cell \"8,750 L\"\n        - cell \"Rs 0\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n      - row \"Sample shift 6 5ec96b2f 3 Nov, 07:52 pm verified 10,200 L Rs 0 Review\":\n        - cell \"Sample shift 6 5ec96b2f\":\n          - strong: Sample shift 6\n          - text: 5ec96b2f\n        - cell \"3 Nov, 07:52 pm\"\n        - cell \"verified\"\n        - cell \"10,200 L\"\n        - cell \"Rs 0\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n      - row \"Sample shift 5 3d464fb3 2 Nov, 07:52 pm verified 9,800 L Rs 0 Review\":\n        - cell \"Sample shift 5 3d464fb3\":\n          - strong: Sample shift 5\n          - text: 3d464fb3\n        - cell \"2 Nov, 07:52 pm\"\n        - cell \"verified\"\n        - cell \"9,800 L\"\n        - cell \"Rs 0\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n      - row \"Sample shift 4 125716fe 1 Nov, 07:52 pm verified 11,600 L Rs 0 Review\":\n        - cell \"Sample shift 4 125716fe\":\n          - strong: Sample shift 4\n          - text: 125716fe\n        - cell \"1 Nov, 07:52 pm\"\n        - cell \"verified\"\n        - cell \"11,600 L\"\n        - cell \"Rs 0\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n      - row \"Sample shift 3 46040f48 31 Oct, 07:52 pm verified 10,400 L Rs 0 Review\":\n        - cell \"Sample shift 3 46040f48\":\n          - strong: Sample shift 3\n          - text: 46040f48\n        - cell \"31 Oct, 07:52 pm\"\n        - cell \"verified\"\n        - cell \"10,400 L\"\n        - cell \"Rs 0\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n      - row \"Sample shift 2 9cc7e91a 30 Oct, 07:52 pm verified 8,900 L Rs 0 Review\":\n        - cell \"Sample shift 2 9cc7e91a\":\n          - strong: Sample shift 2\n          - text: 9cc7e91a\n        - cell \"30 Oct, 07:52 pm\"\n        - cell \"verified\"\n        - cell \"8,900 L\"\n        - cell \"Rs 0\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n      - row \"Sample shift 1 a350cf1e 29 Oct, 07:52 pm verified 9,700 L Rs 0 Review\":\n        - cell \"Sample shift 1 a350cf1e\":\n          - strong: Sample shift 1\n          - text: a350cf1e\n        - cell \"29 Oct, 07:52 pm\"\n        - cell \"verified\"\n        - cell \"9,700 L\"\n        - cell \"Rs 0\"\n        - cell \"Review\":\n          - button \"Review\":\n            - text: Review\n            - img\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:05:43.964Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/shifts/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1660,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:05:44.860Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/shifts/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1658,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:05:46.053Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/shifts/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 1849,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:05:47.113Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/shifts/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1892,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:05:48.112Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/shifts/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 370,
+        "height": 823,
+        "documentWidth": 370,
+        "documentHeight": 1910,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:05:49.283Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/shifts/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 370,
+        "height": 740,
+        "documentWidth": 370,
+        "documentHeight": 1910,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "shifts",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:05:50.467Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/shifts/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/shifts/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1713,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Close the shift. Open the facts.",
+          "Shift register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:05:51.887Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/credit/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1355,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / CREDIT",
+        "Credit, without the paper trail.",
+        "Vehicle-authorized fuel, controlled limits, and an accountable ledger.",
+        "Corporate accounts",
+        "SAMPLE - Atlas Logistics",
+        "SAMPLE - Metro Transport",
+        "SAMPLE - Coastline Textiles",
+        "Digital parchi ledger",
+        "Amounts are calculated using the open shift\u2019s locked price.",
+        "No paper. No guesswork.Recorded credit fills appear here once your first parchi is submitted.",
+        "No paper. No guesswork.",
+        "Recorded credit fills appear here once your first parchi is submitted."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Digital parchi\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / CREDIT\n  - heading \"Credit, without the paper trail.\" [level=1]\n  - paragraph: Vehicle-authorized fuel, controlled limits, and an accountable ledger.\n  - button \"Export\":\n    - img\n    - text: Export\n  - button \"Add account\":\n    - img\n    - text: Add account\n  - text: Outstanding credit\n  - img\n  - text: 1,430,000 PKR Across this station\u2019s corporate accounts Corporate accounts\n  - img\n  - text: 3 Individually controlled credit limits Recorded parchis\n  - img\n  - text: 0 Most recent 200 workspace records\n  - heading \"Corporate accounts\" [level=2]\n  - button \"New digital parchi\":\n    - img\n    - text: New digital parchi\n  - text: SA\n  - heading \"SAMPLE - Atlas Logistics\" [level=3]\n  - text: Outstanding balance\n  - strong: Rs 480,000\n  - text: 32% used Limit Rs 1,500,000\n  - button \"Manage vehicles\":\n    - text: Manage vehicles\n    - img\n  - button \"Payment\":\n    - img\n    - text: Payment\n  - text: SA\n  - heading \"SAMPLE - Metro Transport\" [level=3]\n  - text: Outstanding balance\n  - strong: Rs 690,000\n  - text: 86% used Limit Rs 800,000\n  - button \"Manage vehicles\":\n    - text: Manage vehicles\n    - img\n  - button \"Payment\":\n    - img\n    - text: Payment\n  - text: SA\n  - heading \"SAMPLE - Coastline Textiles\" [level=3]\n  - text: Outstanding balance\n  - strong: Rs 260,000\n  - text: 26% used Limit Rs 1,000,000\n  - button \"Manage vehicles\":\n    - text: Manage vehicles\n    - img\n  - button \"Payment\":\n    - img\n    - text: Payment\n  - heading \"Digital parchi ledger\" [level=2]\n  - paragraph: Amounts are calculated using the open shift\u2019s locked price.\n  - img\n  - heading \"No paper. No guesswork.\" [level=3]\n  - paragraph: Recorded credit fills appear here once your first parchi is submitted.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:05:52.687Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/credit/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1353,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:05:53.484Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/credit/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1351,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:05:54.557Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/credit/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 2465,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:05:55.641Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/credit/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2500,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:05:56.687Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/credit/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 2518,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:05:57.781Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/credit/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 340,
+        "height": 680,
+        "documentWidth": 340,
+        "documentHeight": 2541,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "credit",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:05:58.941Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/credit/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/credit/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1802,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Credit, without the paper trail.",
+          "Corporate accounts",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles",
+          "Digital parchi ledger",
+          "No paper. No guesswork."
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:06:00.387Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/documents/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1242,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "SAMPLE-OMC-1043",
+          "SAMPLE-OMC-1044",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / DOCUMENTS",
+        "A record you can return to.",
+        "Station documents, ready to review and share.",
+        "Documents, in one place.",
+        "Verified delivery claims, fuel parchis, and current account statements.",
+        "SAMPLE-OMC-1043",
+        "TKA-843 \u00b7 Keamari depot",
+        "SAMPLE-OMC-1044",
+        "TKA-844 \u00b7 Keamari depot",
+        "SAMPLE - Atlas Logistics",
+        "Current ledger statement",
+        "SAMPLE - Metro Transport",
+        "Current ledger statement",
+        "SAMPLE - Coastline Textiles",
+        "Current ledger statement",
+        "Based on the records loaded in this workspace (up to 200 recent deliveries and parchis). Statements are generated from the current account ledger when opened. PDFs require an authenticated session."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search documents",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Document type",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Documents\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / DOCUMENTS\n  - heading \"A record you can return to.\" [level=1]\n  - paragraph: Station documents, ready to review and share.\n  - text: STATION RECORDS\n  - heading \"Documents, in one place.\" [level=2]\n  - paragraph: Verified delivery claims, fuel parchis, and current account statements.\n  - text: 5 available documents\n  - img\n  - textbox \"Search documents\":\n    - /placeholder: Search reference, vehicle, or account\u2026\n  - combobox \"Document type\":\n    - option \"All documents\" [selected]\n    - option \"Delivery claims\"\n    - option \"Fuel parchis\"\n    - option \"Account statements\"\n  - link \"Delivery claim SAMPLE-OMC-1043 TKA-843 \u00b7 Keamari depot 8 Nov, 08:25 pm Open PDF\":\n    - /url: /api/documents/claim/d170147b-e228-40b1-8cae-823cf07d7cf1\n    - img\n    - text: Delivery claim\n    - heading \"SAMPLE-OMC-1043\" [level=3]\n    - paragraph: TKA-843 \u00b7 Keamari depot\n    - time: 8 Nov, 08:25 pm\n    - text: Open PDF\n    - img\n  - link \"Delivery claim SAMPLE-OMC-1044 TKA-844 \u00b7 Keamari depot 8 Nov, 12:32 pm Open PDF\":\n    - /url: /api/documents/claim/e7723a01-8b5e-4028-8a60-e2a476849f88\n    - img\n    - text: Delivery claim\n    - heading \"SAMPLE-OMC-1044\" [level=3]\n    - paragraph: TKA-844 \u00b7 Keamari depot\n    - time: 8 Nov, 12:32 pm\n    - text: Open PDF\n    - img\n  - link \"Account statement SAMPLE - Atlas Logistics Current ledger statement Current Open PDF\":\n    - /url: /api/documents/statement/8dfa6f17-12f0-4346-8ee7-3bd3670c8559\n    - img\n    - text: Account statement\n    - heading \"SAMPLE - Atlas Logistics\" [level=3]\n    - paragraph: Current ledger statement\n    - time: Current\n    - text: Open PDF\n    - img\n  - link \"Account statement SAMPLE - Metro Transport Current ledger statement Current Open PDF\":\n    - /url: /api/documents/statement/0531ca0a-8cf1-4079-a12e-3a53dc928899\n    - img\n    - text: Account statement\n    - heading \"SAMPLE - Metro Transport\" [level=3]\n    - paragraph: Current ledger statement\n    - time: Current\n    - text: Open PDF\n    - img\n  - link \"Account statement SAMPLE - Coastline Textiles Current ledger statement Current Open PDF\":\n    - /url: /api/documents/statement/060dc53c-b831-43a8-b69d-410a5e77a04b\n    - img\n    - text: Account statement\n    - heading \"SAMPLE - Coastline Textiles\" [level=3]\n    - paragraph: Current ledger statement\n    - time: Current\n    - text: Open PDF\n    - img\n  - paragraph: Based on the records loaded in this workspace (up to 200 recent deliveries and parchis). Statements are generated from the current account ledger when opened. PDFs require an authenticated session.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:06:01.325Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/documents/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1240,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "SAMPLE-OMC-1043",
+          "SAMPLE-OMC-1044",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:06:02.139Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/documents/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1238,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "SAMPLE-OMC-1043",
+          "SAMPLE-OMC-1044",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:06:03.379Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/documents/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 1313,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "SAMPLE-OMC-1043",
+          "SAMPLE-OMC-1044",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:06:04.475Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/documents/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1426,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "SAMPLE-OMC-1043",
+          "SAMPLE-OMC-1044",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:06:05.686Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/documents/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 361,
+        "height": 803,
+        "documentWidth": 361,
+        "documentHeight": 1605,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "SAMPLE-OMC-1043",
+          "SAMPLE-OMC-1044",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:06:06.702Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/documents/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 362,
+        "height": 723,
+        "documentWidth": 362,
+        "documentHeight": 1716,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "SAMPLE-OMC-1043",
+          "SAMPLE-OMC-1044",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "documents",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:06:07.811Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/documents/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/documents/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1246,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "A record you can return to.",
+          "Documents, in one place.",
+          "SAMPLE-OMC-1043",
+          "SAMPLE-OMC-1044",
+          "SAMPLE - Atlas Logistics",
+          "SAMPLE - Metro Transport",
+          "SAMPLE - Coastline Textiles"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:06:09.294Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/inventory/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/inventory/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1256,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Know what\u2019s in the ground.",
+          "Underground tanks 2 configured",
+          "Premier petrol",
+          "High-speed diesel",
+          "Fuel price register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / STOCK",
+        "Know what\u2019s in the ground.",
+        "Calibrated tank readings and a clear record of fuel prices.",
+        "Underground tanks 2 configured",
+        "Premier petrol",
+        "Motor Spirit \u00b7 Petrol",
+        "High-speed diesel",
+        "High-Speed Diesel",
+        "Fuel price register",
+        "Owner-entered prices with source and effective time. No unverified automatic rate feed.",
+        "A clean boundary for every price.Shifts have a cutoff at the next scheduled price change or midnight PKT. Late submissions are flagged for owner review; the app never invents a midnight meter reading.",
+        "Shifts have a cutoff at the next scheduled price change or midnight PKT. Late submissions are flagged for owner review; the app never invents a midnight meter reading."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Stock & prices\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / STOCK\n  - heading \"Know what\u2019s in the ground.\" [level=1]\n  - paragraph: Calibrated tank readings and a clear record of fuel prices.\n  - button \"Update price\":\n    - img\n    - text: Update price\n  - heading \"Underground tanks 2 configured\" [level=2]\n  - button \"Add tank\":\n    - img\n    - text: Add tank\n  - heading \"Premier petrol\" [level=2]\n  - paragraph: Motor Spirit \u00b7 Petrol\n  - text: MS 70 % Recorded stock\n  - strong: 35,000 L\n  - text: of 50,000 L capacity\n  - separator\n  - text: 15,000 L available Ullage capacity\n  - img\n  - text: Last updated 8 Nov, 07:52 pm\n  - heading \"High-speed diesel\" [level=2]\n  - paragraph: High-Speed Diesel\n  - text: HSD 70 % Recorded stock\n  - strong: 28,000 L\n  - text: of 40,000 L capacity\n  - separator\n  - text: 12,000 L available Ullage capacity\n  - img\n  - text: Last updated 8 Nov, 07:52 pm\n  - heading \"Fuel price register\" [level=2]\n  - paragraph: Owner-entered prices with source and effective time. No unverified automatic rate feed.\n  - button \"Record price\":\n    - img\n    - text: Record price\n  - table:\n    - rowgroup:\n      - row \"Fuel Retail / litre Dealer margin Effective (PKT) Source\":\n        - columnheader \"Fuel\"\n        - columnheader \"Retail / litre\"\n        - columnheader \"Dealer margin\"\n        - columnheader \"Effective (PKT)\"\n        - columnheader \"Source\"\n    - rowgroup:\n      - row \"MS Rs 300 Rs 10 9 Oct, 07:52 pm SYNTHETIC DESIGN-LAB RATE\":\n        - cell \"MS\"\n        - cell \"Rs 300\"\n        - cell \"Rs 10\"\n        - cell \"9 Oct, 07:52 pm\"\n        - cell \"SYNTHETIC DESIGN-LAB RATE\"\n      - row \"HSD Rs 310 Rs 10 9 Oct, 07:52 pm SYNTHETIC DESIGN-LAB RATE\":\n        - cell \"HSD\"\n        - cell \"Rs 310\"\n        - cell \"Rs 10\"\n        - cell \"9 Oct, 07:52 pm\"\n        - cell \"SYNTHETIC DESIGN-LAB RATE\"\n  - img\n  - strong: A clean boundary for every price.\n  - paragraph: Shifts have a cutoff at the next scheduled price change or midnight PKT. Late submissions are flagged for owner review; the app never invents a midnight meter reading.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:06:10.212Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/inventory/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/inventory/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1254,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Know what\u2019s in the ground.",
+          "Underground tanks 2 configured",
+          "Premier petrol",
+          "High-speed diesel",
+          "Fuel price register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:06:11.043Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/inventory/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/inventory/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1252,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Know what\u2019s in the ground.",
+          "Underground tanks 2 configured",
+          "Premier petrol",
+          "High-speed diesel",
+          "Fuel price register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:06:12.081Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/inventory/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/inventory/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 1874,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Know what\u2019s in the ground.",
+          "Underground tanks 2 configured",
+          "Premier petrol",
+          "High-speed diesel",
+          "Fuel price register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:06:13.066Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/inventory/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/inventory/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1893,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Know what\u2019s in the ground.",
+          "Underground tanks 2 configured",
+          "Premier petrol",
+          "High-speed diesel",
+          "Fuel price register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:06:14.018Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/inventory/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/inventory/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 1927,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Know what\u2019s in the ground.",
+          "Underground tanks 2 configured",
+          "Premier petrol",
+          "High-speed diesel",
+          "Fuel price register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:06:15.111Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/inventory/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/inventory/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 339,
+        "height": 678,
+        "documentWidth": 339,
+        "documentHeight": 2108,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Know what\u2019s in the ground.",
+          "Underground tanks 2 configured",
+          "Premier petrol",
+          "High-speed diesel",
+          "Fuel price register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "inventory",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:06:16.215Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/inventory/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/inventory/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1329,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Know what\u2019s in the ground.",
+          "Underground tanks 2 configured",
+          "Premier petrol",
+          "High-speed diesel",
+          "Fuel price register"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:06:17.917Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1147,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Discrepancy cases",
+        "Investigate shortages and cash differences. Keep the decision with the evidence.",
+        "Include cancelled",
+        "open",
+        "investigating",
+        "Synthetic training case. Recheck the dip evidence and approved shortage calculation before contacting the supplier.",
+        "resolved",
+        "Synthetic test of case creation, decision history, and keyboard-accessible controls.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Station operations\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / OPERATIONS\n  - heading \"Keep the station moving.\" [level=1]\n  - paragraph: Clear actions. Named people. A history behind every decision.\n  - group \"Station workflows\":\n    - button \"Discrepancy cases 0\" [pressed]:\n      - img\n      - text: Discrepancy cases 0\n    - button \"Fuel indents 0\":\n      - img\n      - text: Fuel indents 0\n    - button \"Maintenance 0\":\n      - img\n      - text: Maintenance 0\n    - button \"Shift handovers 0\":\n      - img\n      - text: Shift handovers 0\n  - text: STATION WORKSPACE\n  - heading \"Discrepancy cases\" [level=2]\n  - paragraph: Investigate shortages and cash differences. Keep the decision with the evidence.\n  - button \"New case\":\n    - img\n    - text: New case\n  - img\n  - textbox \"Search station work\":\n    - /placeholder: Search this workflow\u2026\n  - checkbox \"Include cancelled\"\n  - text: Include cancelled\n  - button \"Refresh station work\":\n    - img\n  - status: Loading saved station work\u2026\n  - paragraph: Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:06:18.769Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:06:19.568Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/cases/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1143,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:06:20.645Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/cases/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 1286,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:06:21.781Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/cases/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:06:22.836Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/cases/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 1402,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:06:23.852Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/cases/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 358,
+        "height": 716,
+        "documentWidth": 358,
+        "documentHeight": 1456,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "cases",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:06:25.179Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/cases/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/cases/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1199,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Discrepancy cases",
+          "open",
+          "investigating",
+          "resolved"
+        ],
+        "smallTargets": [
+          {
+            "label": "Syncing\u2026",
+            "width": 73,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:06:26.528Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/indents/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1147,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Fuel indents",
+        "Request supply, authorise the order, and connect it to a verified delivery.",
+        "Include cancelled",
+        "requested",
+        "Synthetic procurement request. Link a real Design Lab delivery when dispatch is confirmed.",
+        "approved",
+        "dispatched",
+        "received",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Station operations\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / OPERATIONS\n  - heading \"Keep the station moving.\" [level=1]\n  - paragraph: Clear actions. Named people. A history behind every decision.\n  - group \"Station workflows\":\n    - button \"Discrepancy cases 1\":\n      - img\n      - text: Discrepancy cases 1\n    - button \"Fuel indents 1\" [pressed]:\n      - img\n      - text: Fuel indents 1\n    - button \"Maintenance 1\":\n      - img\n      - text: Maintenance 1\n    - button \"Shift handovers 0\":\n      - img\n      - text: Shift handovers 0\n  - text: STATION WORKSPACE\n  - heading \"Fuel indents\" [level=2]\n  - paragraph: Request supply, authorise the order, and connect it to a verified delivery.\n  - button \"New indent\":\n    - img\n    - text: New indent\n  - img\n  - textbox \"Search station work\":\n    - /placeholder: Search this workflow\u2026\n  - checkbox \"Include cancelled\"\n  - text: Include cancelled\n  - button \"Refresh station work\":\n    - img\n  - heading \"requested\" [level=3]\n  - text: \"1\"\n  - button \"MS \u00b7 20,000 L normal Sample \u00b7 Next MS replenishment Synthetic procurement request. Link a real Design Lab delivery when dispatch is confirmed. A Adeel - Demo 10 Nov, 09:41 pm\":\n    - text: MS \u00b7 20,000 L normal\n    - heading \"Sample \u00b7 Next MS replenishment\" [level=4]\n    - paragraph: Synthetic procurement request. Link a real Design Lab delivery when dispatch is confirmed.\n    - text: A Adeel - Demo\n    - img\n    - img\n    - text: 10 Nov, 09:41 pm\n  - heading \"approved\" [level=3]\n  - text: \"0\"\n  - img\n  - text: No items at this stage\n  - heading \"dispatched\" [level=3]\n  - text: \"0\"\n  - img\n  - text: No items at this stage\n  - heading \"received\" [level=3]\n  - text: \"0\"\n  - img\n  - text: No items at this stage\n  - paragraph: Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:06:27.362Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/indents/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:06:28.118Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/indents/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1143,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:06:29.259Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/indents/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 1286,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:06:30.321Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/indents/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1353,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:06:31.435Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/indents/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 1372,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:06:32.371Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/indents/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 358,
+        "height": 716,
+        "documentWidth": 358,
+        "documentHeight": 1407,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "indents",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:06:33.617Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/indents/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/indents/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1199,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Fuel indents",
+          "requested",
+          "approved",
+          "dispatched",
+          "received"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:06:35.000Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/maintenance/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1147,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Maintenance",
+        "Plan equipment work and record what was done, by whom, and when.",
+        "Include cancelled",
+        "scheduled",
+        "Synthetic maintenance task. Inspect for leaks and record the work completed.",
+        "in progress",
+        "completed",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Station operations\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / OPERATIONS\n  - heading \"Keep the station moving.\" [level=1]\n  - paragraph: Clear actions. Named people. A history behind every decision.\n  - group \"Station workflows\":\n    - button \"Discrepancy cases 1\":\n      - img\n      - text: Discrepancy cases 1\n    - button \"Fuel indents 1\":\n      - img\n      - text: Fuel indents 1\n    - button \"Maintenance 1\" [pressed]:\n      - img\n      - text: Maintenance 1\n    - button \"Shift handovers 0\":\n      - img\n      - text: Shift handovers 0\n  - text: STATION WORKSPACE\n  - heading \"Maintenance\" [level=2]\n  - paragraph: Plan equipment work and record what was done, by whom, and when.\n  - button \"New maintenance\":\n    - img\n    - text: New maintenance\n  - img\n  - textbox \"Search station work\":\n    - /placeholder: Search this workflow\u2026\n  - checkbox \"Include cancelled\"\n  - text: Include cancelled\n  - button \"Refresh station work\":\n    - img\n  - heading \"scheduled\" [level=3]\n  - text: \"1\"\n  - button \"MS dispenser 01 normal Sample \u00b7 Inspect dispenser seals Synthetic maintenance task. Inspect for leaks and record the work completed. A Adeel - Demo 11 Nov, 09:41 pm\":\n    - text: MS dispenser 01 normal\n    - heading \"Sample \u00b7 Inspect dispenser seals\" [level=4]\n    - paragraph: Synthetic maintenance task. Inspect for leaks and record the work completed.\n    - text: A Adeel - Demo\n    - img\n    - img\n    - text: 11 Nov, 09:41 pm\n  - heading \"in progress\" [level=3]\n  - text: \"0\"\n  - img\n  - text: No items at this stage\n  - heading \"completed\" [level=3]\n  - text: \"0\"\n  - img\n  - text: No items at this stage\n  - paragraph: Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:06:35.765Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/maintenance/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:06:36.570Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/maintenance/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1143,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:06:37.667Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/maintenance/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 1286,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:06:38.632Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/maintenance/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1372,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:06:39.535Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/maintenance/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 1372,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:06:40.500Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/maintenance/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 358,
+        "height": 716,
+        "documentWidth": 358,
+        "documentHeight": 1426,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "maintenance",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:06:41.716Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/maintenance/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/maintenance/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1199,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Maintenance",
+          "scheduled",
+          "in progress",
+          "completed"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:06:42.938Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/handovers/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1147,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / OPERATIONS",
+        "Keep the station moving.",
+        "Clear actions. Named people. A history behind every decision.",
+        "Shift handovers",
+        "Leave a clear briefing. The named recipient acknowledges it personally.",
+        "Include cancelled",
+        "pending",
+        "accepted",
+        "Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.",
+        "Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "",
+          "label": "Search station work",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": "",
+          "label": "Include cancelled",
+          "required": false,
+          "min": "",
+          "max": "",
+          "minLength": -1,
+          "maxLength": -1,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Station operations\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / OPERATIONS\n  - heading \"Keep the station moving.\" [level=1]\n  - paragraph: Clear actions. Named people. A history behind every decision.\n  - group \"Station workflows\":\n    - button \"Discrepancy cases 1\":\n      - img\n      - text: Discrepancy cases 1\n    - button \"Fuel indents 1\":\n      - img\n      - text: Fuel indents 1\n    - button \"Maintenance 1\":\n      - img\n      - text: Maintenance 1\n    - button \"Shift handovers 0\" [pressed]:\n      - img\n      - text: Shift handovers 0\n  - text: STATION WORKSPACE\n  - heading \"Shift handovers\" [level=2]\n  - paragraph: Leave a clear briefing. The named recipient acknowledges it personally.\n  - button \"New handover\":\n    - img\n    - text: New handover\n  - img\n  - textbox \"Search station work\":\n    - /placeholder: Search this workflow\u2026\n  - checkbox \"Include cancelled\"\n  - text: Include cancelled\n  - button \"Refresh station work\":\n    - img\n  - heading \"pending\" [level=3]\n  - text: \"0\"\n  - img\n  - text: Nothing waiting here\n  - heading \"accepted\" [level=3]\n  - text: \"1\"\n  - 'button \"#07a015 normal Sample \u00b7 Incoming shift briefing Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request. A Adeel - Demo\"':\n    - text: \"#07a015 normal\"\n    - heading \"Sample \u00b7 Incoming shift briefing\" [level=4]\n    - paragraph: \"Synthetic briefing: confirm opening readings, inspect dispenser seals, and follow up the pending MS supply request.\"\n    - text: A Adeel - Demo\n    - img\n  - paragraph: Saved records \u00b7 refreshed every 20 seconds \u00b7 up to 500 most recently updated items per station. Open a card to view its history and advance its workflow.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:06:43.871Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/handovers/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1146,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:06:44.990Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/handovers/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1143,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:06:46.257Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 1286,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:06:47.364Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 1353,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:06:48.591Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 1372,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:06:49.654Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/handovers/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 358,
+        "height": 716,
+        "documentWidth": 358,
+        "documentHeight": 1456,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "handovers",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:06:50.828Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/handovers/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/handovers/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 1199,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Keep the station moving.",
+          "Shift handovers",
+          "pending",
+          "accepted"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "normal",
+      "viewport": "desktop-1920x1080",
+      "capturedAt": "2026-11-09T07:06:52.978Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/desktop-1920x1080/normal-viewport.png",
+        "full": "screenshots/owner/settings/desktop-1920x1080/normal-full.png"
+      },
+      "geometry": {
+        "width": 1920,
+        "height": 1080,
+        "documentWidth": 1920,
+        "documentHeight": 1608,
+        "visualWidth": 1920,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          }
+        ]
+      },
+      "copy": [
+        "A little more clarity.A lot more confidence.",
+        "PUMPSHIELD / SETTINGS",
+        "Make this workspace yours.",
+        "Station equipment, people, and access. Set up with care.",
+        "Station location",
+        "Place the receiving pin once. Driver tracking uses this destination.",
+        "Pan and zoom, then tap to place the pin.",
+        "Station setup",
+        "A solid foundation for accurate records.",
+        "Nozzle mapping",
+        "Readings flow into the correct tank.",
+        "People & access",
+        "Owner controls. Focused Munshi access.",
+        "Your workspace, clearly separated.Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.",
+        "Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity."
+      ],
+      "controls": [
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "name": "",
+          "label": "Active station",
+          "required": false,
+          "disabled": false
+        }
+      ],
+      "snapshot": "- link \"Skip to content\":\n  - /url: \"#main\"\n- complementary:\n  - img \"PumpShield\"\n  - text: P\n  - strong: PumpShield - Design Lab\n  - text: Owner workspace\n  - img\n  - text: WORKSPACE\n  - navigation:\n    - button \"Overview\":\n      - img\n      - text: Overview\n    - button \"Deliveries\":\n      - img\n      - text: Deliveries\n    - button \"Shift reconciliation 1\":\n      - img\n      - text: Shift reconciliation 1\n    - button \"Digital parchi\":\n      - img\n      - text: Digital parchi\n    - button \"Station operations\":\n      - img\n      - text: Station operations\n    - button \"Documents\":\n      - img\n      - text: Documents\n    - button \"Stock & prices\":\n      - img\n      - text: Stock & prices\n  - img\n  - strong: Built on evidence.\n  - paragraph: A little more clarity. A lot more confidence.\n  - button \"Help & getting started\":\n    - img\n    - text: Help & getting started\n    - img\n  - link \"Offline terminal\":\n    - /url: /offline\n    - img\n    - text: Offline terminal\n  - button \"Settings\":\n    - img\n    - text: Settings\n  - button \"AB Abdullah - Demo Station owner\":\n    - text: AB\n    - strong: Abdullah - Demo\n    - text: Station owner\n    - img\n- banner:\n  - text: Workspace /\n  - strong: Settings\n  - button \"Connected\":\n    - text: Connected\n    - img\n  - img\n  - switch \"Hide financial amounts\"\n  - button \"1 pending reviews\":\n    - img\n  - text: A\n- main:\n  - text: DESIGN LAB / Synthetic records for evaluation. No real deliveries, funds, or location signals.\n  - img\n  - combobox \"Active station\":\n    - option \"Clifton Petroleum - Sample\" [selected]\n  - img\n  - text: PSO Mon, 9 Nov 2026 PUMPSHIELD / SETTINGS\n  - heading \"Make this workspace yours.\" [level=1]\n  - paragraph: Station equipment, people, and access. Set up with care.\n  - button \"Add station\":\n    - img\n    - text: Add station\n  - heading \"Station location\" [level=2]\n  - paragraph: Place the receiving pin once. Driver tracking uses this destination.\n  - img\n  - text: Receiving petrol station\n  - button \"Use my location\":\n    - img\n    - text: Use my location\n  - paragraph: Pan and zoom, then tap to place the pin.\n  - button \"Save station location\" [disabled]\n  - heading \"Station setup\" [level=2]\n  - paragraph: A solid foundation for accurate records.\n  - img\n  - button \"Add your station Station name, OMC, and city\":\n    - img\n    - strong: Add your station\n    - text: Station name, OMC, and city\n    - img\n  - button \"Configure underground tanks Capacity, opening dip, and certified chart\":\n    - img\n    - strong: Configure underground tanks\n    - text: Capacity, opening dip, and certified chart\n    - img\n  - button \"Map your nozzles Source tank and opening totalizer\":\n    - img\n    - strong: Map your nozzles\n    - text: Source tank and opening totalizer\n    - img\n  - button \"Record current fuel prices Verified rates and thermal coefficients\":\n    - img\n    - strong: Record current fuel prices\n    - text: Verified rates and thermal coefficients\n    - img\n  - button \"Authorize your Munshi Email-based access to this station\":\n    - img\n    - strong: Authorize your Munshi\n    - text: Email-based access to this station\n    - img\n  - heading \"Nozzle mapping\" [level=2]\n  - paragraph: Readings flow into the correct tank.\n  - button \"Add\":\n    - img\n    - text: Add\n  - img\n  - strong: Nozzle 01 - Petrol\n  - text: Premier petrol 152,400 L\n  - img\n  - strong: Nozzle 02 - Diesel\n  - text: High-speed diesel 152,400 L\n  - heading \"People & access\" [level=2]\n  - paragraph: Owner controls. Focused Munshi access.\n  - button \"Authorize Munshi\":\n    - img\n    - text: Authorize Munshi\n  - table:\n    - rowgroup:\n      - row \"Person Role Station Status\":\n        - columnheader \"Person\"\n        - columnheader \"Role\"\n        - columnheader \"Station\"\n        - columnheader \"Status\"\n        - columnheader\n    - rowgroup:\n      - row \"Abdullah - Demo owner All stations active\":\n        - cell \"Abdullah - Demo\":\n          - strong: Abdullah - Demo\n        - cell \"owner\"\n        - cell \"All stations\"\n        - cell \"active\"\n        - cell\n      - row \"Adeel - Demo munshi Clifton Petroleum - Sample active Revoke access\":\n        - cell \"Adeel - Demo\":\n          - strong: Adeel - Demo\n        - cell \"munshi\"\n        - cell \"Clifton Petroleum - Sample\"\n        - cell \"active\"\n        - cell \"Revoke access\":\n          - button \"Revoke access\"\n  - img\n  - strong: Your workspace, clearly separated.\n  - paragraph: Database policies isolate your records. Munshi accounts receive operational fields only. Camera capture provides reviewable evidence, not an automatic guarantee of authenticity.\n  - img\n  - text: PumpShield PK \u00b7 Every litre, accounted for. Times shown in Pakistan Standard Time\n- region \"Notifications alt+T\"\n- alert: A clearer view of your station.",
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "normal",
+      "viewport": "desktop-1440x900",
+      "capturedAt": "2026-11-09T07:06:55.164Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/desktop-1440x900/normal-viewport.png",
+        "full": "screenshots/owner/settings/desktop-1440x900/normal-full.png"
+      },
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "documentWidth": 1440,
+        "documentHeight": 1966,
+        "visualWidth": 1440,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "normal",
+      "viewport": "desktop-1366x768",
+      "capturedAt": "2026-11-09T07:06:56.996Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/desktop-1366x768/normal-viewport.png",
+        "full": "screenshots/owner/settings/desktop-1366x768/normal-full.png"
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "documentWidth": 1366,
+        "documentHeight": 1964,
+        "visualWidth": 1366,
+        "touchPoints": 0,
+        "coarsePointer": false,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "normal",
+      "viewport": "mobile-430x932",
+      "capturedAt": "2026-11-09T07:06:58.565Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-430x932/normal-viewport.png",
+        "full": "screenshots/owner/settings/mobile-430x932/normal-full.png"
+      },
+      "geometry": {
+        "width": 430,
+        "height": 932,
+        "documentWidth": 430,
+        "documentHeight": 2457,
+        "visualWidth": 430,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "normal",
+      "viewport": "mobile-390x844",
+      "capturedAt": "2026-11-09T07:06:59.846Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-390x844/normal-viewport.png",
+        "full": "screenshots/owner/settings/mobile-390x844/normal-full.png"
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 2473,
+        "visualWidth": 390,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "normal",
+      "viewport": "mobile-360x800",
+      "capturedAt": "2026-11-09T07:07:01.233Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-360x800/normal-viewport.png",
+        "full": "screenshots/owner/settings/mobile-360x800/normal-full.png"
+      },
+      "geometry": {
+        "width": 360,
+        "height": 800,
+        "documentWidth": 360,
+        "documentHeight": 2546,
+        "visualWidth": 360,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "normal",
+      "viewport": "mobile-320x640",
+      "capturedAt": "2026-11-09T07:07:02.420Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/mobile-320x640/normal-viewport.png",
+        "full": "screenshots/owner/settings/mobile-320x640/normal-full.png"
+      },
+      "geometry": {
+        "width": 348,
+        "height": 696,
+        "documentWidth": 348,
+        "documentHeight": 2679,
+        "visualWidth": 320,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 50,
+            "height": 12
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    },
+    {
+      "role": "owner",
+      "module": "settings",
+      "state": "normal",
+      "viewport": "tablet-768x1024",
+      "capturedAt": "2026-11-09T07:07:04.049Z",
+      "url": "https://pumpshield-seven.vercel.app/app",
+      "paths": {
+        "viewport": "screenshots/owner/settings/tablet-768x1024/normal-viewport.png",
+        "full": "screenshots/owner/settings/tablet-768x1024/normal-full.png"
+      },
+      "geometry": {
+        "width": 768,
+        "height": 1024,
+        "documentWidth": 768,
+        "documentHeight": 2315,
+        "visualWidth": 768,
+        "touchPoints": 5,
+        "coarsePointer": true,
+        "headings": [
+          "Make this workspace yours.",
+          "Station location",
+          "Station setup",
+          "Nozzle mapping",
+          "People & access"
+        ],
+        "smallTargets": [
+          {
+            "label": "Connected",
+            "width": 80,
+            "height": 14
+          },
+          {
+            "label": "OpenFreeMap",
+            "width": 58,
+            "height": 10
+          },
+          {
+            "label": "\u00a9 OpenMapTiles",
+            "width": 67,
+            "height": 10
+          },
+          {
+            "label": "OpenStreetMap",
+            "width": 64,
+            "height": 10
+          }
+        ]
+      },
+      "credentialMasking": "Vehicle QR/code and raw driver link fields masked; no credentials submitted during capture."
+    }
+  ],
+  "summary": {
+    "role": "owner",
+    "workspace": "PumpShield - Design Lab",
+    "navigationScreens": 11,
+    "viewports": 8
+  }
+}

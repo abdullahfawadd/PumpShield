@@ -10,6 +10,27 @@ concurrency:
   group: quality-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  database:
+    name: Clean migrations & domain boundaries
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Start isolated PostgreSQL fixture
+        run: |
+          docker run --name pumpshield-redesign-validation --network none -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:17-alpine
+          for i in $(seq 1 30); do
+            docker exec pumpshield-redesign-validation pg_isready -U postgres && break
+            sleep 1
+          done
+          docker exec pumpshield-redesign-validation pg_isready -U postgres
+      - name: Apply all migrations and rolled-back SQL suites
+        run: python3 scripts/test-database.py
+      - name: Remove only the disposable fixture
+        if: always()
+        run: docker rm -f pumpshield-redesign-validation
   quality:
     name: Lint, types, tests & build
     runs-on: ubuntu-latest

@@ -1,0 +1,296 @@
+[
+  {
+    "name": "login-desktop",
+    "url": "https://pumpshield-seven.vercel.app/login",
+    "environment": "One lab sample, desktop Chrome; cache disabled; no network throttle; mobile uses 4x CPU slowdown. Not CrUX or field CWV.",
+    "navigation": {
+      "ttfb": 87.40000000596046,
+      "domContentLoaded": 898.0999999940395,
+      "load": 2840.0999999940395,
+      "transfer": 4177
+    },
+    "paints": [
+      {
+        "name": "first-paint",
+        "ms": 1032
+      },
+      {
+        "name": "first-contentful-paint",
+        "ms": 1032
+      }
+    ],
+    "resourceCount": 50,
+    "totalTransferBytes": 800670,
+    "jsTransferBytes": 250478,
+    "resources": [
+      {
+        "url": "https://pumpshield-seven.vercel.app/flowing/wall-desktop.webp",
+        "initiator": "css",
+        "transfer": 130878,
+        "duration": 1077.7000000178814
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/flowing/aurora-drift-fast.mp4",
+        "initiator": "video",
+        "transfer": 92947,
+        "duration": 1091.800000011921
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0-w5i3n5ek0v_.js",
+        "initiator": "script",
+        "transfer": 73548,
+        "duration": 1112.6000000238419
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/3ptf8se66vnh3.js",
+        "initiator": "script",
+        "transfer": 69941,
+        "duration": 1259.2999999821186
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/brand/mark.webp",
+        "initiator": "link",
+        "transfer": 45554,
+        "duration": 769.5
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0i6ukg2l-f5vd.js",
+        "initiator": "script",
+        "transfer": 45308,
+        "duration": 919.8999999761581
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/flowing/angry-slider.mp4",
+        "initiator": "video",
+        "transfer": 44467,
+        "duration": 875.5999999940395
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/media/605ce01b664af129-s.p.0zr6hhvz-h9nw.woff2",
+        "initiator": "link",
+        "transfer": 29588,
+        "duration": 1305.7000000178814
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/flowing/elastic-toggles.mp4",
+        "initiator": "video",
+        "transfer": 27846,
+        "duration": 1134.3999999761581
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0zztltrjsr9v2.css",
+        "initiator": "link",
+        "transfer": 27319,
+        "duration": 661
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/media/07a39a8a4660cc7c-s.p.1v5bejj26fx9h.woff2",
+        "initiator": "link",
+        "transfer": 23408,
+        "duration": 557.6000000238419
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/2dipxevii6ffi.js",
+        "initiator": "script",
+        "transfer": 16789,
+        "duration": 1201.300000011921
+      }
+    ]
+  },
+  {
+    "name": "app-desktop",
+    "url": "https://pumpshield-seven.vercel.app/app",
+    "environment": "One lab sample, desktop Chrome; cache disabled; no network throttle; mobile uses 4x CPU slowdown. Not CrUX or field CWV.",
+    "navigation": {
+      "ttfb": 62.30000001192093,
+      "domContentLoaded": 603,
+      "load": 1231.0999999940395,
+      "transfer": 12985
+    },
+    "paints": [
+      {
+        "name": "first-paint",
+        "ms": 892
+      },
+      {
+        "name": "first-contentful-paint",
+        "ms": 892
+      }
+    ],
+    "resourceCount": 30,
+    "totalTransferBytes": 1061754,
+    "jsTransferBytes": 652258,
+    "resources": [
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/3q5ghnuiyxxrc.js",
+        "initiator": "script",
+        "transfer": 303062,
+        "duration": 365.09999999403954
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/maplibre/maplibre-gl-worker.mjs",
+        "initiator": "other",
+        "transfer": 150371,
+        "duration": 165.90000000596046
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/image",
+        "initiator": "link",
+        "transfer": 113056,
+        "duration": 443.59999999403954
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0-w5i3n5ek0v_.js",
+        "initiator": "script",
+        "transfer": 73548,
+        "duration": 481.30000001192093
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/3ptf8se66vnh3.js",
+        "initiator": "script",
+        "transfer": 69941,
+        "duration": 633.5
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/06j7r9hu8_r31.js",
+        "initiator": "script",
+        "transfer": 66527,
+        "duration": 723.3000000119209
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/brand/mark.webp",
+        "initiator": "link",
+        "transfer": 45554,
+        "duration": 227.80000001192093
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0i6ukg2l-f5vd.js",
+        "initiator": "script",
+        "transfer": 45308,
+        "duration": 533.5
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/media/605ce01b664af129-s.p.0zr6hhvz-h9nw.woff2",
+        "initiator": "link",
+        "transfer": 29588,
+        "duration": 189.5
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0zztltrjsr9v2.css",
+        "initiator": "link",
+        "transfer": 27319,
+        "duration": 110.69999998807907
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/media/07a39a8a4660cc7c-s.p.1v5bejj26fx9h.woff2",
+        "initiator": "link",
+        "transfer": 23408,
+        "duration": 150.30000001192093
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0rfki1gbv4rfj.js",
+        "initiator": "script",
+        "transfer": 20472,
+        "duration": 740.5999999940395
+      }
+    ]
+  },
+  {
+    "name": "app-mobile-emulated",
+    "url": "https://pumpshield-seven.vercel.app/app",
+    "environment": "One lab sample, desktop Chrome; cache disabled; no network throttle; mobile uses 4x CPU slowdown. Not CrUX or field CWV.",
+    "navigation": {
+      "ttfb": 69.5,
+      "domContentLoaded": 3801.2000000178814,
+      "load": 3809.0999999940395,
+      "transfer": 12985
+    },
+    "paints": [
+      {
+        "name": "first-paint",
+        "ms": 1900
+      },
+      {
+        "name": "first-contentful-paint",
+        "ms": 1900
+      }
+    ],
+    "resourceCount": 21,
+    "totalTransferBytes": 593811,
+    "jsTransferBytes": 345649,
+    "resources": [
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/image",
+        "initiator": "link",
+        "transfer": 113056,
+        "duration": 275.40000000596046
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0-w5i3n5ek0v_.js",
+        "initiator": "script",
+        "transfer": 73548,
+        "duration": 446.5
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/3ptf8se66vnh3.js",
+        "initiator": "script",
+        "transfer": 69941,
+        "duration": 572.8000000119209
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/06j7r9hu8_r31.js",
+        "initiator": "script",
+        "transfer": 66527,
+        "duration": 611.9000000059605
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/brand/mark.webp",
+        "initiator": "link",
+        "transfer": 45554,
+        "duration": 338.40000000596046
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0i6ukg2l-f5vd.js",
+        "initiator": "script",
+        "transfer": 45308,
+        "duration": 443.59999999403954
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/media/605ce01b664af129-s.p.0zr6hhvz-h9nw.woff2",
+        "initiator": "link",
+        "transfer": 29588,
+        "duration": 86.40000000596046
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0zztltrjsr9v2.css",
+        "initiator": "link",
+        "transfer": 27319,
+        "duration": 122.80000001192093
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/media/07a39a8a4660cc7c-s.p.1v5bejj26fx9h.woff2",
+        "initiator": "link",
+        "transfer": 23408,
+        "duration": 165.40000000596046
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/0rfki1gbv4rfj.js",
+        "initiator": "script",
+        "transfer": 20472,
+        "duration": 535
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/2dipxevii6ffi.js",
+        "initiator": "script",
+        "transfer": 16789,
+        "duration": 473.5
+      },
+      {
+        "url": "https://pumpshield-seven.vercel.app/_next/static/immutable/chunks/3gt7-huetfvdx.js",
+        "initiator": "script",
+        "transfer": 16540,
+        "duration": 481.19999998807907
+      }
+    ]
+  }
+]

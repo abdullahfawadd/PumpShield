@@ -10,7 +10,7 @@ begin
  insert into auth.users(id,email,email_confirmed_at,aud,role) values(owner_a,owner_a||'@example.invalid',now(),'authenticated','authenticated'),(outsider,outsider||'@example.invalid',now(),'authenticated','authenticated'),(munshi,munshi||'@example.invalid',now(),'authenticated','authenticated');
  perform set_config('request.jwt.claim.sub',owner_a::text,true);
  execute 'set local role authenticated';
- wid=(public.command('join','{"name":"Offline QA","person":"QA owner"}')->>'id')::uuid;
+ wid=(public.command('join','{"intent":"create_workspace","name":"Offline QA","person":"QA owner"}')->>'id')::uuid;
  sid=(public.command('station','{"name":"Field QA station","omc":"QA","city":"Karachi"}')->>'id')::uuid;
  tank=(public.command('tank',jsonb_build_object('station_id',sid,'name','Petrol','grade','MS','capacity',50000,'dip',2000,'chart','[{"mm":0,"liters":0},{"mm":5000,"liters":50000}]'::jsonb))->>'id')::uuid;
  nozzle=(public.command('nozzle',jsonb_build_object('station_id',sid,'tank_id',tank,'name','N1','totalizer',1000))->>'id')::uuid;
@@ -23,10 +23,10 @@ begin
  perform public.field('station_position',jsonb_build_object('station_id',sid,'latitude',24.86,'longitude',67.03,'radius_m',500));
  assert (select latitude from public.stations where id=sid)=24.86,'Station pin was not saved';
  perform set_config('request.jwt.claim.sub',outsider::text,true);
- perform public.command('join','{"name":"Outsider QA"}');
+ perform public.command('join','{"intent":"create_workspace","name":"Outsider QA"}');
  failed=false;begin perform public.field('context',jsonb_build_object('station_id',sid));exception when others then failed=true;end;assert failed,'Cross-workspace field context allowed';
  perform set_config('request.jwt.claim.sub',munshi::text,true);
- perform public.command('join','{}');
+ perform public.command('accept_invite',jsonb_build_object('invitation_id',public.onboarding()->'invitations'->0->>'id'));
  context=public.field('context',jsonb_build_object('station_id',sid));
  assert context->'shift'->>'id'=shift::text,'Wrong saved shift';
  assert not(context ? 'prices') and not(context ? 'accounts') and not(context->'tanks'->0 ? 'stock') and not(context->'tanks'->0 ? 'chart'),'Offline context disclosed finances';

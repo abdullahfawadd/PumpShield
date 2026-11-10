@@ -1,3 +1,5 @@
+import type { FuelGrade } from "./fuel-grades";
+
 export type FieldContext = {
   user_id: string;
   workspace_id: string;
@@ -11,9 +13,9 @@ export type FieldContext = {
     name: string;
     tank_id: string;
     totalizer: number;
-    grade: string;
+    grade: FuelGrade;
   }[];
-  tanks: { id: string; name: string; grade: string }[];
+  tanks: { id: string; name: string; grade: FuelGrade }[];
   deliveries: {
     id: string;
     reference: string;

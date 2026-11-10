@@ -1,0 +1,30 @@
+{
+  "screenshotStatesAtViewports": 328,
+  "pngFiles": 663,
+  "modulesByRole": 27,
+  "publicNormalScreens": 6,
+  "ownerNormalScreens": 11,
+  "munshiNormalScreens": 7,
+  "targetViewports": [
+    "1920x1080",
+    "1440x900",
+    "1366x768",
+    "430x932",
+    "390x844",
+    "360x800",
+    "320x640",
+    "768x1024"
+  ],
+  "structuralImageFailures": [],
+  "expandedLayoutRows": 37,
+  "axeScreenViewportChecks": 30,
+  "axeChecksWithViolations": 17,
+  "axeUniqueRules": [
+    "color-contrast",
+    "scrollable-region-focusable"
+  ],
+  "uniqueSelectorFindings": {
+    "color-contrast": 36,
+    "scrollable-region-focusable": 1
+  }
+}

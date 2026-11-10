@@ -10,7 +10,7 @@ begin
  insert into auth.users(id,email,email_confirmed_at,aud,role) values(owner_a,owner_a||'@example.invalid',now(),'authenticated','authenticated'),(owner_b,owner_b||'@example.invalid',now(),'authenticated','authenticated'),(munshi,munshi||'@example.invalid',now(),'authenticated','authenticated');
  perform set_config('request.jwt.claim.sub',owner_a::text,true);
  execute 'set local role authenticated';
- wa=(public.command('join','{"name":"QA workspace A","person":"QA owner"}') ->>'id')::uuid;
+ wa=(public.command('join','{"intent":"create_workspace","name":"QA workspace A","person":"QA owner"}') ->>'id')::uuid;
  sid=(public.command('station','{"name":"QA station","omc":"QA","city":"Karachi"}')->>'id')::uuid;
  tank=(public.command('tank',jsonb_build_object('station_id',sid,'name','Petrol','grade','MS','capacity',50000,'dip',2000,'chart','[{"mm":0,"liters":0},{"mm":5000,"liters":50000}]'::jsonb))->>'id')::uuid;
  nozzle=(public.command('nozzle',jsonb_build_object('station_id',sid,'tank_id',tank,'name','N1','totalizer',1000))->>'id')::uuid;
@@ -39,11 +39,11 @@ begin
  failed=false;begin perform public.tracking('status',jsonb_build_object('token',repeat('a',64)));exception when others then failed=true;end;assert failed,'Invalid tracking token accepted';
  execute 'set local role authenticated';
  perform set_config('request.jwt.claim.sub',owner_b::text,true);
- wb=(public.command('join','{"name":"QA workspace B","person":"QA outsider"}')->>'id')::uuid;
+ wb=(public.command('join','{"intent":"create_workspace","name":"QA workspace B","person":"QA outsider"}')->>'id')::uuid;
  assert (select count(*) from public.tanks where id=tank)=0,'Cross-tenant RLS leak';
  failed=false;begin perform public.command('approve_delivery',jsonb_build_object('station_id',sid,'id',delivery));exception when others then failed=true;end;assert failed,'Cross-tenant write accepted';
  perform set_config('request.jwt.claim.sub',munshi::text,true);
- perform public.command('join','{}');
+ perform public.command('accept_invite',jsonb_build_object('invitation_id',public.onboarding()->'invitations'->0->>'id'));
  result=public.dashboard();
  assert result->'member'->>'role'='munshi','Invitation did not assign Munshi';
  assert not (result ? 'prices') and not (result ? 'accounts'),'Kiosk financial data leak';
@@ -94,7 +94,7 @@ begin
  perform public.command('revoke',jsonb_build_object('id',munshi));
  perform set_config('request.jwt.claim.sub',munshi::text,true);
  assert public.dashboard()->'member'='null'::jsonb,'Revocation did not take effect';
- failed=false;begin perform public.command('join','{"name":"Bypass workspace"}');exception when others then failed=true;end;assert failed,'Revoked user regained access';
+ failed=false;begin perform public.command('join','{"intent":"create_workspace","name":"Bypass workspace"}');exception when others then failed=true;end;assert failed,'Revoked user regained access';
  execute 'reset role';
 end $$;
 select 'PASS: tenant isolation, kiosk projection, role escalation, immutable audit, approval gate, duplicate decant, credit limit, stock/cash reconciliation, revocation' as result;

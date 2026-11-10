@@ -1,0 +1,372 @@
+[
+  {
+    "role": "owner",
+    "module": "credit",
+    "state": "new-account",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 340,
+    "documentWidth": 340,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "credit",
+    "state": "add-vehicle",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 340,
+    "documentWidth": 340,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "overview",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 353,
+    "documentWidth": 353,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "deliveries",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 355,
+    "documentWidth": 355,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "shifts",
+    "state": "normal",
+    "viewport": "mobile-360x800",
+    "expected": 360,
+    "layoutWidth": 370,
+    "documentWidth": 370,
+    "visualWidth": 360
+  },
+  {
+    "role": "owner",
+    "module": "shifts",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 370,
+    "documentWidth": 370,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "credit",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 340,
+    "documentWidth": 340,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "documents",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 362,
+    "documentWidth": 362,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "inventory",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 339,
+    "documentWidth": 339,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "cases",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 358,
+    "documentWidth": 358,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "indents",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 358,
+    "documentWidth": 358,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "maintenance",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 358,
+    "documentWidth": 358,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "handovers",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 358,
+    "documentWidth": 358,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "settings",
+    "state": "normal",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 348,
+    "documentWidth": 348,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "deliveries",
+    "state": "create",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 355,
+    "documentWidth": 355,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "deliveries",
+    "state": "arrival-audit",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 355,
+    "documentWidth": 355,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "deliveries",
+    "state": "approved-decant",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 355,
+    "documentWidth": 355,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "shifts",
+    "state": "close",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 370,
+    "documentWidth": 370,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "shifts",
+    "state": "review",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 370,
+    "documentWidth": 370,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "credit",
+    "state": "manage-vehicles",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 340,
+    "documentWidth": 340,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "credit",
+    "state": "payment",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 334,
+    "documentWidth": 334,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "settings",
+    "state": "new-station",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 348,
+    "documentWidth": 348,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "settings",
+    "state": "tank",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 348,
+    "documentWidth": 348,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "settings",
+    "state": "nozzle",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 348,
+    "documentWidth": 348,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "settings",
+    "state": "price",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 342,
+    "documentWidth": 342,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "settings",
+    "state": "invite",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 348,
+    "documentWidth": 348,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "settings",
+    "state": "revoke",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 348,
+    "documentWidth": 348,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "shell",
+    "state": "help",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 348,
+    "documentWidth": 348,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "shell",
+    "state": "review-queue",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 348,
+    "documentWidth": 348,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "cases",
+    "state": "create",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 358,
+    "documentWidth": 358,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "cases",
+    "state": "detail",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 358,
+    "documentWidth": 358,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "indents",
+    "state": "create",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 358,
+    "documentWidth": 358,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "indents",
+    "state": "detail",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 352,
+    "documentWidth": 352,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "maintenance",
+    "state": "create",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 352,
+    "documentWidth": 352,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "maintenance",
+    "state": "detail",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 358,
+    "documentWidth": 358,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "handovers",
+    "state": "create",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 358,
+    "documentWidth": 358,
+    "visualWidth": 320
+  },
+  {
+    "role": "owner",
+    "module": "handovers",
+    "state": "detail",
+    "viewport": "mobile-320x640",
+    "expected": 320,
+    "layoutWidth": 352,
+    "documentWidth": 352,
+    "visualWidth": 320
+  }
+]
