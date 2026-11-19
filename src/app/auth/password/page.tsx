@@ -5,8 +5,10 @@ import { browserDb } from "@/lib/supabase/client";
 import { Brand } from "@/components/brand";
 import { Button } from "@/components/ui/button";
 import { PASSWORD_MIN_LENGTH, newPasswordError } from "@/lib/password-policy";
+import { useHydrated } from "@/lib/use-hydrated";
 export default function Password() {
   const router = useRouter();
+  const ready = useHydrated();
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -40,7 +42,7 @@ export default function Password() {
       <Brand />
       <h1>A fresh start.</h1>
       <p>Choose a new password with at least 15 characters.</p>
-      <form className="form-stack" onSubmit={submit}>
+      <form method="post" className="form-stack" onSubmit={submit}>
         <label>
           New password
           <input
@@ -53,7 +55,7 @@ export default function Password() {
           />
         </label>
         <p role="alert">{message}</p>
-        <Button disabled={busy}>Update password</Button>
+        <Button disabled={busy || !ready}>Update password</Button>
       </form>
     </main>
   );

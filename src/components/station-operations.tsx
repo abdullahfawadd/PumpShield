@@ -15,8 +15,9 @@ import {
 import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Dialog } from "./ui/dialog";
-import type { Dashboard } from "@/lib/types";
+import type { Dashboard, Delivery } from "@/lib/types";
 import { date, number } from "@/lib/utils";
+import { deliveryStageLabel } from "@/lib/delivery-stages";
 import { FUEL_GRADE_OPTIONS, fuelGradeLabel, type FuelGrade } from "@/lib/fuel-grades";
 import { useMobileLayout } from "@/lib/use-mobile-layout";
 type Kind = "exception" | "indent" | "maintenance" | "handover";
@@ -50,10 +51,19 @@ type HistoryEvent = {
 type Snapshot = {
   items: Item[];
   people: { id: string; name: string; role: string }[];
+  delivery_links?: DeliveryLink[];
+};
+type DeliveryLink = {
+  id: string;
+  reference: string;
+  status: Delivery["status"];
+  grade: FuelGrade;
+  linked_work_id: string | null;
 };
 const kinds: {
   id: Kind;
   name: string;
+  mobileName: string;
   caption: string;
   icon: typeof Fuel;
   stages: string[];
@@ -61,31 +71,32 @@ const kinds: {
   {
     id: "exception",
     name: "Discrepancy cases",
-    caption:
-      "Investigate shortages and cash differences. Keep the decision with the evidence.",
+    mobileName: "Cases",
+    caption: "Record a shortage or discrepancy for follow-up.",
     icon: AlertCircle,
     stages: ["open", "investigating", "resolved"],
   },
   {
     id: "indent",
     name: "Fuel indents",
-    caption:
-      "Request supply, authorise the order, and connect it to a verified delivery.",
+    mobileName: "Indents",
+    caption: "Request fuel from a supplier.",
     icon: Fuel,
     stages: ["requested", "approved", "dispatched", "received"],
   },
   {
     id: "maintenance",
     name: "Maintenance",
-    caption: "Plan equipment work and record what was done, by whom, and when.",
+    mobileName: "Maintenance",
+    caption: "Schedule work on station equipment.",
     icon: Wrench,
     stages: ["scheduled", "in_progress", "completed"],
   },
   {
     id: "handover",
     name: "Shift handovers",
-    caption:
-      "Leave a clear briefing. The named recipient acknowledges it personally.",
+    mobileName: "Handovers",
+    caption: "Leave a briefing for a named team member.",
     icon: MessageSquare,
     stages: ["pending", "accepted"],
   },
@@ -109,16 +120,29 @@ const label = (v: string) =>
     comment: "Note added",
   })[v] || v.replaceAll("_", " ");
 const terminal = ["resolved", "received", "completed", "accepted", "cancelled"];
+const actionLabels: Record<string, string> = {
+  investigating: "Start investigating",
+  resolved: "Resolve case",
+  approved: "Approve fuel indent",
+  dispatched: "Record dispatch",
+  received: "Mark indent received",
+  in_progress: "Start maintenance",
+  completed: "Complete maintenance",
+  accepted: "Acknowledge handover",
+  cancelled: "Cancel with a reason",
+};
 export function StationOperations({
   stationId,
   data,
   workKind,
   onWorkKindChange,
+  onOpenDelivery,
 }: {
   stationId: string;
   data: Dashboard;
   workKind?: string;
   onWorkKindChange?: (kind: string) => void;
+  onOpenDelivery?: (id: string) => void;
 }) {
   const owner = data.member?.role === "owner";
   const [localKind, setKind] = useState<Kind>(owner ? "exception" : "handover");
@@ -130,6 +154,7 @@ export function StationOperations({
   const [snapshot, setSnapshot] = useState<Snapshot>({
     items: [],
     people: [],
+    delivery_links: [],
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -220,9 +245,50 @@ export function StationOperations({
         .includes(query.toLowerCase()),
   );
   const canCreate = owner || kind === "maintenance" || kind === "handover";
-  const linkedDeliveries = data.deliveries.filter(
-    (d) => d.station_id === stationId,
-  );
+  const deliveryLinks = snapshot.delivery_links ?? data.deliveries.flatMap((delivery) => {
+    if (delivery.station_id !== stationId) return [];
+    const tank = data.tanks.find((t) => t.id === delivery.tank_id);
+    if (!tank) return [];
+    return [{
+      id: delivery.id,
+      reference: delivery.reference,
+      status: delivery.status,
+      grade: tank.grade,
+      linked_work_id: snapshot.items.find((work) =>
+        work.kind === "indent" && work.status !== "cancelled" && work.delivery_id === delivery.id,
+      )?.id ?? null,
+    }];
+  });
+  const linkedDelivery = deliveryLinks.find((d) => d.id === item?.delivery_id);
+  const canAdvance = item && !terminal.includes(item.status);
+  const assignedToMe = item?.assigned_to === data.member?.user_id;
+  const nextStatus = canAdvance
+    ? config.stages[config.stages.indexOf(item.status) + 1]
+    : undefined;
+  const dispatchChoices =
+    item?.kind === "indent" && item.status === "approved"
+      ? deliveryLinks.filter((d) =>
+          d.grade === item.grade && (!d.linked_work_id || d.linked_work_id === item.id),
+        )
+      : [];
+  const waitingMessage = !item || !canAdvance ? "" :
+    nextStatus === "approved" && !owner
+      ? "Awaiting owner approval."
+      : (!owner || item.kind === "handover") && !assignedToMe
+        ? item.assigned_to
+          ? `Waiting for ${person(item.assigned_to)}.`
+          : "An owner needs to advance this record."
+        : item.kind === "indent" && nextStatus === "dispatched" && !dispatchChoices.length
+          ? `Create a ${fuelGradeLabel(item.grade)} delivery at this station to record dispatch.`
+          : item.kind === "indent" && nextStatus === "received" && linkedDelivery?.status !== "decanted"
+            ? linkedDelivery
+              ? "Finish receiving the linked delivery to complete this indent."
+              : "Ask the owner to check the linked delivery."
+            : "";
+  const actions = [
+    ...(nextStatus && !waitingMessage ? [nextStatus] : []),
+    ...(canAdvance && owner ? ["cancelled"] : []),
+  ];
   if (!stationId)
     return <div className="ops-empty">Add a station to organise its work.</div>;
   return (
@@ -242,8 +308,8 @@ export function StationOperations({
               }}
             >
               <k.icon size={16} />
-              {k.name}
-              <span>
+              <span className="ops-tab-name">{mobile ? k.mobileName : k.name}</span>
+              <span className="ops-tab-count">
                 {
                   snapshot.items.filter(
                     (i) => i.kind === k.id && !terminal.includes(i.status),
@@ -457,10 +523,9 @@ export function StationOperations({
           )}
         </div>
       )}
-      <p className="ops-footnote">
-        Up to 500 recent station records. Open a record for its history and next
-        action.
-      </p>
+      {snapshot.items.length === 500 && (
+        <p className="ops-footnote">Showing the 500 most recent station records.</p>
+      )}
       <Dialog
         open={create}
         onOpenChange={setCreate}
@@ -599,7 +664,7 @@ export function StationOperations({
               Related delivery (optional)
               <select name="delivery_id">
                 <option value="">No linked delivery</option>
-                {linkedDeliveries.map((d) => (
+                {deliveryLinks.map((d) => (
                   <option key={d.id} value={d.id}>
                     {d.reference}
                   </option>
@@ -628,7 +693,7 @@ export function StationOperations({
         {item && (
           <>
             <div className="ops-detail">
-              <p>{item.description || "No additional details recorded."}</p>
+              {item.description && <p>{item.description}</p>}
               <dl>
                 <div>
                   <dt>Created by</dt>
@@ -665,101 +730,40 @@ export function StationOperations({
                   <div>
                     <dt>Linked delivery</dt>
                     <dd>
-                      {linkedDeliveries.find((d) => d.id === item.delivery_id)
-                        ?.reference || item.delivery_id.slice(0, 8)}
+                      {linkedDelivery
+                        ? `${linkedDelivery.reference} · ${deliveryStageLabel(linkedDelivery.status)}`
+                        : item.delivery_id.slice(0, 8)}
                     </dd>
                   </div>
                 )}
               </dl>
             </div>
-            {!terminal.includes(item.status) && (
-              <form
-                key={`${item.id}-${item.status}`}
-                className="ops-transition"
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  const f = new FormData(e.currentTarget);
-                  await save("transition", {
-                    id: item.id,
-                    expected_status: item.status,
-                    status: f.get("status"),
-                    note: f.get("note"),
-                    delivery_id: f.get("delivery_id"),
-                  });
-                }}
-              >
-                <h3>Next action</h3>
-                <label>
-                  Action
-                  <select name="status" required defaultValue="">
-                    <option value="" disabled>
-                      Choose an action
-                    </option>
-                    {(owner || item.assigned_to === data.member?.user_id) &&
-                      config.stages
-                        .slice(
-                          config.stages.indexOf(item.status) + 1,
-                          config.stages.indexOf(item.status) + 2,
-                        )
-                        .filter(
-                          (s) =>
-                            !(
-                              kind === "handover" &&
-                              item.assigned_to !== data.member?.user_id
-                            ) &&
-                            !(kind === "indent" && s === "approved" && !owner),
-                        )
-                        .map((s) => (
-                          <option key={s} value={s}>
-                            {label(s)}
-                          </option>
-                        ))}
-                    {owner && (
-                      <option value="cancelled">Cancel with a reason</option>
-                    )}
-                  </select>
-                </label>
-                {kind === "indent" &&
-                  ["approved", "dispatched"].includes(item.status) && (
-                    <label>
-                      Linked delivery
-                      <select
-                        name="delivery_id"
-                        defaultValue={item.delivery_id || ""}
-                      >
-                        <option value="">Choose a delivery</option>
-                        {linkedDeliveries.map((d) => (
-                          <option key={d.id} value={d.id}>
-                            {d.reference} · {d.status}
-                          </option>
-                        ))}
-                      </select>
-                      <small>
-                        Receipt is available only after this delivery has a
-                        posted decant. Stock is posted once, through the
-                        delivery workflow.
-                      </small>
-                    </label>
+            {waitingMessage && (
+              <div className="ops-work-blocked" role="status">
+                <Clock3 size={18} aria-hidden="true" />
+                <div>
+                  <p>{waitingMessage}</p>
+                  {linkedDelivery && linkedDelivery.status !== "decanted" &&
+                    onOpenDelivery && data.deliveries.some((d) => d.id === linkedDelivery.id) && (
+                    <button type="button" className="text-link" onClick={() => {
+                      setSelected(null);
+                      onOpenDelivery(linkedDelivery.id);
+                    }}>
+                      Open linked delivery <ArrowRight size={14} />
+                    </button>
                   )}
-                <label>
-                  Decision / completion note
-                  <textarea
-                    name="note"
-                    rows={2}
-                    maxLength={4000}
-                    placeholder="Record the decision or completed work (required to resolve, complete, or cancel)."
-                  />
-                </label>
-                <Button
-                  disabled={
-                    busy ||
-                    (!owner && item.assigned_to !== data.member?.user_id)
-                  }
-                >
-                  {busy ? "Saving…" : "Confirm action"}
-                  <ArrowRight size={15} />
-                </Button>
-              </form>
+                </div>
+              </div>
+            )}
+            {!!actions.length && (
+              <WorkTransition
+                key={`${item.id}-${item.status}-${actions.join(",")}`}
+                item={item}
+                actions={actions}
+                dispatchChoices={dispatchChoices}
+                busy={busy}
+                onSave={(values) => save("transition", values)}
+              />
             )}
             <h3 className="ops-history-title">Record history</h3>
             <WorkHistory
@@ -800,6 +804,74 @@ export function StationOperations({
         )}
       </Dialog>
     </section>
+  );
+}
+
+function WorkTransition({
+  item,
+  actions,
+  dispatchChoices,
+  busy,
+  onSave,
+}: {
+  item: Item;
+  actions: string[];
+  dispatchChoices: DeliveryLink[];
+  busy: boolean;
+  onSave: (values: Record<string, unknown>) => Promise<boolean>;
+}) {
+  const [action, setAction] = useState(actions[0]);
+  const requiresNote = ["resolved", "completed", "cancelled"].includes(action);
+  return (
+    <form
+      className="ops-transition"
+      onSubmit={async (event) => {
+        event.preventDefault();
+        const values = new FormData(event.currentTarget);
+        await onSave({
+          id: item.id,
+          expected_status: item.status,
+          status: action,
+          note: values.get("note"),
+          delivery_id: action === "received" ? item.delivery_id : values.get("delivery_id"),
+        });
+      }}
+    >
+      {actions.length > 1 && (
+        <label>
+          Action
+          <select value={action} onChange={(event) => setAction(event.target.value)}>
+            {actions.map((status) => (
+              <option key={status} value={status}>{actionLabels[status]}</option>
+            ))}
+          </select>
+        </label>
+      )}
+      {item.kind === "indent" && action === "dispatched" && (
+        <label>
+          Delivery · {fuelGradeLabel(item.grade)}
+          <select name="delivery_id" required defaultValue={item.delivery_id || ""}>
+            <option value="" disabled>Select delivery</option>
+            {dispatchChoices.map((delivery) => (
+              <option key={delivery.id} value={delivery.id}>
+                {delivery.reference} · {deliveryStageLabel(delivery.status)}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+      {action === "received" && (
+        <p className="fine-print">Tank stock was updated by the linked delivery. This closes the indent.</p>
+      )}
+      <label>
+        {action === "cancelled" ? "Cancellation reason" : requiresNote ? "Completion note" : "Note (optional)"}
+        <textarea name="note" rows={2} required={requiresNote} minLength={requiresNote ? 5 : undefined} maxLength={4000} />
+      </label>
+      <Button type="submit" disabled={busy}>
+        {busy ? "Saving…" : action === "cancelled" ? "Cancel record" : actionLabels[action]}
+        <ArrowRight size={15} />
+      </Button>
+    </form>
   );
 }
 

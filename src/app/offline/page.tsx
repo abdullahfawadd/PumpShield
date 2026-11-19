@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { OfflineTerminal } from "@/components/offline-terminal";
-export const metadata: Metadata = { title: "Offline field terminal" };
+import { OfflineWorkspace } from "@/components/offline-workspace";
+export const metadata: Metadata = { title: "Station workspace" };
 export default function OfflinePage() {
-  return <OfflineTerminal />;
+  return <OfflineWorkspace />;
 }

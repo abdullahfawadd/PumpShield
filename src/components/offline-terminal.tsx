@@ -13,7 +13,11 @@ import {
 } from "./icons";
 import { date } from "@/lib/utils";
 import { useOfflineTerminal } from "./use-offline-terminal";
-export function OfflineTerminal() {
+export function OfflineTerminal({
+  recoveryOnly = false,
+}: {
+  recoveryOnly?: boolean;
+}) {
   const {
     meta,
     unlocked,
@@ -51,13 +55,15 @@ export function OfflineTerminal() {
       <div className="offline-content">
         <div className="offline-page-heading">
           <div>
-            <span className="eyebrow">PUMPSHIELD � DEVICE & SYNC</span>
+            <span className="eyebrow">Saved records</span>
             <h1>
-              {unlocked
-                ? "Station workspace"
-                : meta
-                  ? "Unlock field terminal"
-                  : "Prepare field terminal"}
+              {recoveryOnly
+                ? "Recover previous device drafts"
+                : unlocked
+                  ? "Station workspace"
+                  : meta
+                    ? "Unlock field terminal"
+                    : "Prepare field terminal"}
             </h1>
             {!unlocked && (
               <p>
@@ -72,7 +78,7 @@ export function OfflineTerminal() {
             {online ? "Connection available" : "Offline · drafts only"}
           </span>
         </div>
-        {!meta && (
+        {!meta && !recoveryOnly && (
           <div className="offline-install">
             <div>
               <Download size={22} />
@@ -110,6 +116,10 @@ export function OfflineTerminal() {
         )}
         {!ready ? (
           <p role="status">Checking this device…</p>
+        ) : recoveryOnly && !meta ? (
+          <p role="status">
+            There are no previous device drafts on this browser.
+          </p>
         ) : !unlocked ? (
           <section className="vault-card">
             <span className="vault-symbol">
@@ -237,11 +247,13 @@ export function OfflineTerminal() {
                 </div>
               </section>
               <div className="offline-work-grid">
-                <OfflineDraftForm
-                  key={context.prepared_at}
-                  context={context}
-                  onSave={save}
-                />
+                {!recoveryOnly && (
+                  <OfflineDraftForm
+                    key={context.prepared_at}
+                    context={context}
+                    onSave={save}
+                  />
+                )}
                 <section className="offline-queue">
                   <div className="offline-card-heading">
                     <div>

@@ -13,13 +13,21 @@ import { fuelGradeLabel } from "@/lib/fuel-grades";
 export function OfflineDraftForm({
   context,
   onSave,
+  task,
+  delivery,
+  onDirty,
 }: {
   context: FieldContext;
   onSave: (draft: FieldDraft) => Promise<void>;
+  task?: DraftKind;
+  delivery?: string;
+  onDirty?: (dirty: boolean) => void;
 }) {
-  const [kind, setKind] = useState<DraftKind>("parchi");
+  const [kind, setKind] = useState<DraftKind>(task || "parchi");
   const [token, setToken] = useState("");
-  const [deliveryId, setDeliveryId] = useState(context.deliveries[0]?.id || "");
+  const [deliveryId, setDeliveryId] = useState(
+    delivery || context.deliveries[0]?.id || "",
+  );
   const [photos, setPhotos] = useState<Record<string, StoredEvidence>>({});
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -32,12 +40,17 @@ export function OfflineDraftForm({
     return () => clearInterval(timer);
   }, []);
   const expired = now > Date.parse(context.expires_at);
-  const delivery = context.deliveries.find((d) => d.id === deliveryId);
+  const selectedDelivery = context.deliveries.find((d) => d.id === deliveryId);
+  const shiftReady =
+    !!context.shift &&
+    (kind !== "parchi" ||
+      Date.parse(context.shift.due_at) > now + (context.device_clock_offset_ms || 0));
   async function photo(name: string, capture: CapturedEvidence) {
     setEncodingPhotos((count) => count + 1);
     try {
       const image = await storeCapture(capture);
       setPhotos((old) => ({ ...old, [name]: image }));
+      onDirty?.(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not keep the photo");
     } finally {
@@ -73,35 +86,39 @@ export function OfflineDraftForm({
   }
   return (
     <section className="offline-form-card">
-      <div className="offline-card-heading">
-        <div>
-          <span className="eyebrow">CAPTURE WITHOUT A CONNECTION</span>
-          <h2>New field record</h2>
+      {!task && (
+        <div className="offline-card-heading">
+          <div>
+            <span className="eyebrow">CAPTURE WITHOUT A CONNECTION</span>
+            <h2>New field record</h2>
+          </div>
+          <span className="draft-only-tag">Draft only</span>
         </div>
-        <span className="draft-only-tag">Draft only</span>
-      </div>
-      <div
-        className="offline-kind-tabs"
-        role="group"
-        aria-label="Offline record type"
-      >
-        {(
-          [
-            ["parchi", "Fuel parchi"],
-            ["submit_delivery", "Arrival audit"],
-            ["close_shift", "Shift close"],
-          ] as const
-        ).map(([id, label]) => (
-          <button
-            type="button"
-            key={id}
-            aria-pressed={kind === id}
-            onClick={() => changeKind(id)}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      )}
+      {!task && (
+        <div
+          className="offline-kind-tabs"
+          role="group"
+          aria-label="Offline record type"
+        >
+          {(
+            [
+              ["parchi", "Fuel parchi"],
+              ["submit_delivery", "Arrival audit"],
+              ["close_shift", "Shift close"],
+            ] as const
+          ).map(([id, label]) => (
+            <button
+              type="button"
+              key={id}
+              aria-pressed={kind === id}
+              onClick={() => changeKind(id)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
       {expired ? (
         <p className="notice warning">
           This device’s station data is older than 24 hours. Connect and refresh
@@ -110,12 +127,21 @@ export function OfflineDraftForm({
       ) : (
         <form
           key={formKey}
+          onInput={() => onDirty?.(true)}
           onSubmit={async (e) => {
             e.preventDefault();
             setBusy(true);
             setError("");
             const form = e.currentTarget;
             try {
+              const submittedAt = new Date().getTime();
+              const captureTime = submittedAt + (context.device_clock_offset_ms || 0);
+              const capturedAt = new Date(captureTime).toISOString();
+              if (Date.parse(context.expires_at) <= submittedAt) {
+                throw new Error(
+                  "Saved station access has expired. Open the station online to continue.",
+                );
+              }
               const f = new FormData(form);
               const evidence: Record<string, StoredEvidence> = {};
               const photoReference = (key: string) => {
@@ -130,7 +156,11 @@ export function OfflineDraftForm({
               let payload: Record<string, unknown>;
               let title: string;
               if (kind === "parchi") {
-                if (!context.shift)
+                if (
+                  !shiftReady ||
+                  !context.shift ||
+                  Date.parse(context.shift.due_at) <= captureTime
+                )
                   throw new Error(
                     "Prepare an open shift online before recording credit fuel.",
                   );
@@ -142,19 +172,20 @@ export function OfflineDraftForm({
                 };
                 title = `Fuel parchi · ${payload.liters} L`;
               } else if (kind === "submit_delivery") {
-                if (!delivery)
+                if (!selectedDelivery)
                   throw new Error(
                     "Choose a dispatched delivery from the saved workspace.",
                   );
                 payload = {
-                  id: delivery.id,
+                  id: selectedDelivery.id,
                   arrival_temp: Number(f.get("arrival_temp")),
-                  dips: Array.from({ length: delivery.chamber_count }, (_, i) =>
-                    Number(f.get(`dip_${i}`)),
+                  dips: Array.from(
+                    { length: selectedDelivery.chamber_count },
+                    (_, i) => Number(f.get(`dip_${i}`)),
                   ),
                   evidence_id: photoReference("temperature_and_dips"),
                 };
-                title = `Arrival audit · ${delivery.reference}`;
+                title = `Arrival audit · ${selectedDelivery.reference}`;
               } else {
                 if (!context.shift)
                   throw new Error("Prepare an open shift online first.");
@@ -185,7 +216,7 @@ export function OfflineDraftForm({
                 station_id: context.station.id,
                 shift_id: context.shift?.id || null,
                 kind,
-                captured_at: new Date().toISOString(),
+                captured_at: capturedAt,
                 title,
                 payload,
                 evidence,
@@ -196,6 +227,7 @@ export function OfflineDraftForm({
               setPos(0);
               setFormKey((k) => k + 1);
               form.reset();
+              onDirty?.(false);
             } catch (e) {
               setError(
                 e instanceof Error ? e.message : "Unable to save the draft",
@@ -205,14 +237,25 @@ export function OfflineDraftForm({
             }
           }}
         >
-          {kind === "parchi" && (
+          {kind === "parchi" && !shiftReady && (
+            <p className="notice warning">
+              An active shift is required to record a fuel parchi. Connect to
+              refresh the station.
+            </p>
+          )}
+          {kind === "parchi" && shiftReady && (
             <>
               <div className="notice warning">
                 An offline draft does not approve credit or authorise a fill.
                 Follow the station’s manual approval procedure until the server
                 verifies it.
               </div>
-              <QrScan onRead={setToken} />
+              <QrScan
+                onRead={(value) => {
+                  setToken(value);
+                  onDirty?.(true);
+                }}
+              />
               <label>
                 Owner-issued vehicle pass code
                 <input
@@ -276,30 +319,33 @@ export function OfflineDraftForm({
                 <input
                   name="arrival_temp"
                   type="number"
-                  min="-10"
-                  max="70"
+                  min="-20"
+                  max="80"
                   step=".1"
                   required
                 />
               </label>
-              {delivery &&
-                Array.from({ length: delivery.chamber_count }, (_, i) => (
-                  <label key={i}>
-                    Chamber {i + 1} dip (mm)
-                    <input
-                      name={`dip_${i}`}
-                      type="number"
-                      min="0"
-                      max="20000"
-                      step=".1"
-                      required
-                    />
-                  </label>
-                ))}
+              {selectedDelivery &&
+                Array.from(
+                  { length: selectedDelivery.chamber_count },
+                  (_, i) => (
+                    <label key={i}>
+                      Chamber {i + 1} dip (mm)
+                      <input
+                        name={`dip_${i}`}
+                        type="number"
+                        min="0"
+                        max="20000"
+                        step=".1"
+                        required
+                      />
+                    </label>
+                  ),
+                )}
               {capture("temperature_and_dips", "Temperature and chamber dips")}
               <p className="fine-print">
-                The server uses the delivery’s locked calibration and thermal
-                coefficient. No approval or decant is performed offline.
+                Keep the tanker sealed until the owner approves the posted
+                audit.
               </p>
             </>
           )}
@@ -388,6 +434,10 @@ export function OfflineDraftForm({
                 </label>
               </div>
               {pos > 0 && capture("pos_receipt", "POS receipt")}
+              <label className="checkbox-label">
+                <input type="checkbox" required /> I confirm these are the
+                actual readings and funds handed over.
+              </label>
               <p className="fine-print">
                 The original shift must still be open when this is posted. Late
                 closures are flagged for the owner. Earlier pending credit fills
@@ -406,7 +456,8 @@ export function OfflineDraftForm({
             disabled={
               busy ||
               encodingPhotos > 0 ||
-              ((kind === "parchi" || kind === "close_shift") && !context.shift)
+              ((kind === "parchi" || kind === "close_shift") && !shiftReady) ||
+              (kind === "submit_delivery" && !selectedDelivery)
             }
           >
             <Plus size={17} />
@@ -414,7 +465,9 @@ export function OfflineDraftForm({
               ? "Encrypting…"
               : encodingPhotos > 0
                 ? "Preparing photo…"
-                : "Save encrypted draft"}
+                : task
+                  ? "Save record"
+                  : "Save encrypted draft"}
           </Button>
           <p className="fine-print">
             Photos and readings stay encrypted on this device until a verified

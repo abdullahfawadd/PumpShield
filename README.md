@@ -30,7 +30,7 @@ Create and confirm your account, then explicitly create your owner workspace. In
 - Context-aware Owner overview: real daily shift totals and drilldowns, payment mix, recorded tank levels, delivery-stage filters, and a permanent review queue. Versioned browser preferences hide/reorder optional panels without storing business values. Missing days are not fabricated as zero sales.
 - Validated URL view/station/record state, desktop board and phone list presentations, compact reconciliation register and progressive operational forms.
 - MapLibre 3D maps, optional licensed satellite imagery, real terrain, reported-position tanker animation, station pin selection and WhatsApp/SMS/native link sharing.
-- The installed shortcut opens `/app`, with a cached device workspace on offline navigation failure: encrypted parchi, arrival-audit and shift-close drafts, opt-in 24-hour trusted access, and ordered/idempotent reconnect verification while open and unlocked. Account passwords are not stored by this feature.
+- The installed shortcut opens `/app`. Open a station online once to prepare up to 24 hours of offline access. The normal parchi, arrival audit, and shift close forms save to the device when a connection drops. On an offline reload, PumpShield presents those tasks from the last authorized station data. The queue uploads automatically while the app is open on reconnect.
 
 ## Validation
 
@@ -75,4 +75,4 @@ See the [mobile, maps, vehicle pass and offline verification report](docs/mobile
 See the [redesign implementation and verification report](docs/redesign-implementation-2026-11-09.md) for the current local changes, evidence, staged migration, rollout order and unverified release checks. The earlier audit is preserved under `artifacts/pumpshield-audit`.
 
 
-High Octane (HOBC) is supported independently of Petrol (MS) and Diesel (HSD). Prices and thermal coefficients must be verified per station grade. Astryx0.7.11 provides the neutral theme and initial controls. Installed launch opens `/app`; a network failure serves the public offline shell without caching private pages. Remembered-device access is optional and revoked by Lock/logout. Browsers do not guarantee synchronization while the app is closed.
+High Octane (HOBC) is supported independently of Petrol (MS) and Diesel (HSD). Prices and thermal coefficients must be verified per station grade. Astryx0.7.11 provides the neutral theme and initial controls. Installed launch opens `/app`; a network failure serves a public shell that restores only the authorized station’s minimum field data. Use a device with a screen lock. Signing out blocks offline restoration and keeps unsent records for the same account’s next verified sign-in. Browsers do not guarantee synchronization while the app is closed.

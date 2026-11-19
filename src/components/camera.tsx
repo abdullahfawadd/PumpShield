@@ -6,11 +6,13 @@ import { browserDb } from "@/lib/supabase/client";
 import { command } from "@/lib/api";
 import { Button } from "./ui/button";
 import { Dialog } from "./ui/dialog";
+import { useWorkspaceOffline } from "./workspace-offline";
 export function CameraCapture({
   stationId,
   workspaceId,
   onCapture,
   onLocalCapture,
+  queueField,
   label = "Capture evidence",
   value,
 }: {
@@ -18,9 +20,11 @@ export function CameraCapture({
   workspaceId: string;
   onCapture?: (id: string) => void;
   onLocalCapture?: (capture: CapturedEvidence) => void;
+  queueField?: boolean;
   label?: string;
   value?: string;
 }) {
+  const offline = useWorkspaceOffline();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -79,7 +83,9 @@ export function CameraCapture({
             { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
           ),
       );
-      const capturedAt = new Date().toISOString();
+      const capturedAt = offline && (queueField || onLocalCapture)
+        ? offline.captureTimestamp()
+        : new Date().toISOString();
       const canvas = document.createElement("canvas");
       canvas.width = Math.min(video.current.videoWidth, 1600);
       canvas.height = Math.round(
@@ -115,8 +121,8 @@ export function CameraCapture({
       const sha256 = Array.from(new Uint8Array(digest))
         .map((x) => x.toString(16).padStart(2, "0"))
         .join("");
-      if (onLocalCapture) {
-        onLocalCapture({
+      if (onLocalCapture || (queueField && offline)) {
+        const photo = {
           captureId: crypto.randomUUID(),
           blob,
           capturedAt,
@@ -124,7 +130,9 @@ export function CameraCapture({
           longitude: position.coords.longitude,
           accuracy: position.coords.accuracy,
           sha256,
-        });
+        };
+        if (onLocalCapture) onLocalCapture(photo);
+        else if (offline) onCapture?.(await offline.stashCapture(photo, value));
         setOpen(false);
         return;
       }

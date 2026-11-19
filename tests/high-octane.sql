@@ -7,6 +7,7 @@ declare
   wid uuid; sid uuid; shift_id uuid; delivery_id uuid; qa_account uuid;
   hobc_vehicle uuid; petrol_vehicle uuid; hobc_token uuid; petrol_token uuid;
   indent_id uuid; wrong_indent uuid; petrol_delivery uuid;
+  overflow_delivery uuid; overflow_constraint text;
   grades text[]=array['MS','HSD','HOBC'];
   rates numeric[]=array[300,280,330];
   qa_tanks uuid[]='{}'; qa_nozzles uuid[]='{}'; evidence uuid[]='{}';
@@ -66,6 +67,9 @@ begin
     'loading_temp',30,'chambers','[[{"mm":0,"liters":0},{"mm":1000,"liters":10000}]]'::jsonb))->>'id')::uuid;
   assert (select price from public.deliveries where id=delivery_id)=330,'Delivery used another grade rate';
   assert (select beta from public.deliveries where id=delivery_id)=0.00117,'Delivery used another grade coefficient';
+  overflow_delivery=(public.command('delivery',jsonb_build_object('station_id',sid,'tank_id',qa_tanks[2],
+    'reference','HSD-CAPACITY-'||gen_random_uuid(),'vehicle','TANKER-QA','depot','Synthetic depot','invoice',17000,
+    'loading_temp',30,'chambers','[[{"mm":0,"liters":0},{"mm":2000,"liters":20000}]]'::jsonb))->>'id')::uuid;
   indent_id=(public.ops_command('create',jsonb_build_object('station_id',sid,'kind','indent',
     'title','Request High Octane','supplier','QA supplier','grade','HOBC','liters',5000,'assigned_to',staff_id))->>'id')::uuid;
   perform public.ops_command('transition',jsonb_build_object('id',indent_id,'expected_status','requested','status','approved'));
@@ -98,11 +102,42 @@ begin
   execute 'set local role authenticated';
   perform public.command('submit_delivery',jsonb_build_object('station_id',sid,'id',delivery_id,
     'arrival_temp',30,'dips','[500]'::jsonb,'evidence_id',evidence[1]));
+  perform public.command('submit_delivery',jsonb_build_object('station_id',sid,'id',overflow_delivery,
+    'arrival_temp',30,'dips','[1700]'::jsonb,'evidence_id',evidence[12]));
+  failed=false;
+  begin
+    perform public.ops_command('transition',jsonb_build_object('id',indent_id,'expected_status','dispatched','status','received'));
+  exception when raise_exception then failed=true; end;
+  assert failed,'Indent received before stock was posted';
   perform set_config('request.jwt.claim.sub',owner_id::text,true);
   perform public.command('approve_delivery',jsonb_build_object('station_id',sid,'id',delivery_id));
+  perform public.command('approve_delivery',jsonb_build_object('station_id',sid,'id',overflow_delivery));
+  perform set_config('request.jwt.claim.sub',staff_id::text,true);
+  begin
+    perform public.command('decant',jsonb_build_object('station_id',sid,'id',overflow_delivery));
+  exception when check_violation then
+    get stacked diagnostics overflow_constraint = CONSTRAINT_NAME;
+  end;
+  assert overflow_constraint='tanks_check','Overflow failed to use the tank stock guard';
+  perform set_config('request.jwt.claim.sub',owner_id::text,true);
+  assert (select stock from public.tanks where id=qa_tanks[2])=5000,'Overflow changed tank stock';
+  assert (select status from public.deliveries where id=overflow_delivery)='approved','Overflow changed delivery status';
   perform set_config('request.jwt.claim.sub',staff_id::text,true);
   perform public.command('decant',jsonb_build_object('station_id',sid,'id',delivery_id));
+  assert not exists(select 1 from jsonb_array_elements(public.dashboard()->'deliveries') d where d->>'id'=delivery_id::text),
+    'Received delivery unexpectedly remains in the active staff queue';
+  snapshot=public.ops_snapshot(sid);
+  assert exists(select 1 from jsonb_array_elements(snapshot->'delivery_links') d
+    where d->>'id'=delivery_id::text and d->>'status'='decanted' and d->>'grade'='HOBC'
+      and d->>'linked_work_id'=indent_id::text and not (d ?| array['price','stock','capacity','measured','chambers'])),
+    'Completed linked receipt missing from staff operations or exposed restricted fields';
   perform public.ops_command('transition',jsonb_build_object('id',indent_id,'expected_status','dispatched','status','received'));
+  assert (select status from public.station_work_items where id=indent_id)='received','Receipt did not close indent';
+  failed=false;
+  begin
+    perform public.command('decant',jsonb_build_object('station_id',sid,'id',delivery_id));
+  exception when raise_exception then failed=true; end;
+  assert failed,'Delivery posted twice';
   -- Both directions of misfuel prevention remain atomic. Rejected attempts do
   -- not consume evidence or alter balances/counters; the valid fill follows.
   failed=false;begin perform public.command('parchi',jsonb_build_object('station_id',sid,'token',hobc_token,

@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Loader2 } from "@/components/icons";
 import { toast } from "sonner";
 import { command } from "@/lib/api";
 import { Button } from "./ui/button";
+import { isFieldDraftKind, useWorkspaceOffline } from "./workspace-offline";
 export function Field({
   label,
   name,
@@ -93,10 +94,21 @@ export function ActionForm({
   onDone: () => void;
   submit?: string;
 }) {
+  const offline = useWorkspaceOffline();
+  const request = useRef<{
+    fingerprint: string;
+    id: string;
+    capturedAt: string;
+  }>(null);
+  const handling = useRef(false);
+  const canQueue = !!offline && isFieldDraftKind(op);
+  const disconnected = canQueue && !offline.online;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   async function handle(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (handling.current) return;
+    handling.current = true;
     setBusy(true);
     setError("");
     try {
@@ -104,17 +116,38 @@ export function ActionForm({
       const values = transform
         ? transform(form)
         : Object.fromEntries(form.entries());
-      await command(op, { ...base, ...values });
-      toast.success("Saved successfully");
+      const payload = { ...base, ...values };
+      if (offline && isFieldDraftKind(op)) {
+        const fingerprint = JSON.stringify(payload);
+        if (request.current?.fingerprint !== fingerprint) {
+          request.current = {
+            fingerprint,
+            id: crypto.randomUUID(),
+            capturedAt: offline.captureTimestamp(),
+          };
+        }
+        const result = await offline.submit(op, payload, request.current);
+        toast.success(
+          result === "queued"
+            ? "Saved on this device. It will upload when connected."
+            : "Saved successfully",
+        );
+        if (result === "posted") void offline.refreshContext();
+      } else {
+        await command(op, payload);
+        toast.success("Saved successfully");
+        void offline?.refreshContext();
+      }
       onDone();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Unable to save.");
     } finally {
+      handling.current = false;
       setBusy(false);
     }
   }
   return (
-    <form className="form-stack" onSubmit={handle}>
+    <form method="post" className="form-stack" onSubmit={handle}>
       {children}
       {error && (
         <p role="alert" className="form-error">
@@ -123,7 +156,7 @@ export function ActionForm({
       )}
       <Button disabled={busy} type="submit" className="full-width">
         {busy && <Loader2 size={16} className="spin" />}
-        {busy ? "Saving…" : submit}
+        {busy ? "Saving…" : disconnected ? "Save on this device" : submit}
       </Button>
     </form>
   );

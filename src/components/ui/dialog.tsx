@@ -8,12 +8,14 @@ export function Dialog({
   title,
   description,
   children,
+  variant = "modal",
 }: {
   open: boolean;
   onOpenChange: (v: boolean) => void;
   title: string;
   description?: string;
   children: ReactNode;
+  variant?: "modal" | "navigation";
 }) {
   const returnFocus = useRef<HTMLElement | null>(null);
   useLayoutEffect(() => {
@@ -25,7 +27,7 @@ export function Dialog({
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className="dialog-overlay" />
         <DialogPrimitive.Content
-          className="dialog-content"
+          className={`dialog-content ${variant === "navigation" ? "navigation-drawer" : ""}`}
           onCloseAutoFocus={(event) => {
             event.preventDefault();
             const target = returnFocus.current;
@@ -38,24 +40,26 @@ export function Dialog({
                 ?.focus();
           }}
         >
-          <DialogPrimitive.Title className="dialog-title">
-            {title}
-          </DialogPrimitive.Title>
-          {description ? (
-            <DialogPrimitive.Description className="muted">
-              {description}
-            </DialogPrimitive.Description>
-          ) : (
-            <DialogPrimitive.Description className="sr-only">
+          <div className="dialog-heading">
+            <DialogPrimitive.Title
+              className={variant === "navigation" ? "sr-only" : "dialog-title"}
+            >
               {title}
+            </DialogPrimitive.Title>
+            <DialogPrimitive.Description
+              className={description ? "muted" : "sr-only"}
+            >
+              {description ?? title}
             </DialogPrimitive.Description>
-          )}
-          <DialogPrimitive.Close
-            className="dialog-close"
-            aria-label="Close dialog"
-          >
-            <X size={20} />
-          </DialogPrimitive.Close>
+            <DialogPrimitive.Close
+              className="dialog-close"
+              aria-label={
+                variant === "navigation" ? "Close navigation" : "Close dialog"
+              }
+            >
+              <X size={20} />
+            </DialogPrimitive.Close>
+          </div>
           {children}
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>

@@ -1,4 +1,6 @@
-// Only encrypted context/drafts and non-secret KDF metadata are persisted.
+import type { FieldContext, FieldDraft } from "./offline-types";
+
+// Context and drafts are encrypted before storage.
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 export type VaultMeta = {
@@ -100,10 +102,198 @@ async function operation<T>(
     };
   });
 }
-function aad(meta: VaultMeta, id: string) {
+function aad(meta: Pick<VaultMeta, "user_id" | "workspace_id">, id: string) {
   return encoder.encode(
     `PumpShield|1|${meta.user_id}|${meta.workspace_id}|${id}`,
   );
+}
+
+type DeviceIdentity = Pick<VaultMeta, "user_id" | "workspace_id">;
+export type WorkspaceDevice = DeviceIdentity & { key: CryptoKey };
+type WorkspaceLease = DeviceIdentity & { stationId: string; expires: number };
+const WORKSPACE_LEASE = "workspace:active";
+const DAY = 86_400_000;
+
+function workspaceKey(identity: DeviceIdentity, name: string) {
+  return `workspace:${identity.user_id}:${identity.workspace_id}:${name}`;
+}
+
+async function workspaceDevice(identity: DeviceIdentity, signal?: AbortSignal) {
+  const id = workspaceKey(identity, "key");
+  const read = () =>
+    operation<CryptoKey | undefined>("readonly", (s) => s.get(id), signal);
+  let key = await read();
+  if (!key) {
+    const generated = await crypto.subtle.generateKey(
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["encrypt", "decrypt"],
+    );
+    try {
+      // Atomic add prevents two newly opened tabs from replacing each other's key.
+      await operation("readwrite", (s) => s.add(generated, id), signal);
+      key = generated;
+    } catch (error) {
+      checkSignal(signal);
+      key = await read();
+      if (!key) throw error;
+    }
+  }
+  return { ...identity, key };
+}
+
+export async function prepareWorkspaceDevice(
+  context: FieldContext,
+  signal?: AbortSignal,
+) {
+  const deviceNow = Date.now();
+  const preparedAt = Date.parse(context.prepared_at);
+  const serverExpires = Date.parse(context.expires_at);
+  const expires = Math.min(serverExpires, deviceNow + DAY);
+  if (
+    !Number.isFinite(preparedAt) ||
+    !Number.isFinite(expires) ||
+    expires <= deviceNow ||
+    serverExpires <= preparedAt ||
+    serverExpires - preparedAt > DAY
+  ) {
+    throw new Error("Station data has expired. Connect and reload PumpShield.");
+  }
+  const identity = {
+    user_id: context.user_id,
+    workspace_id: context.workspace_id,
+  };
+  const device = await workspaceDevice(identity, signal);
+  const savedContext = {
+    ...context,
+    expires_at: new Date(expires).toISOString(),
+    device_clock_offset_ms: preparedAt - deviceNow,
+  };
+  await putDeviceRecord(
+    device,
+    `station:${context.station.id}`,
+    savedContext,
+    signal,
+  );
+  await operation(
+    "readwrite",
+    (s) =>
+      s.put(
+        { ...identity, stationId: context.station.id, expires },
+        WORKSPACE_LEASE,
+      ),
+    signal,
+  );
+  return { ...device, context: savedContext };
+}
+
+export async function resumeWorkspaceDevice(
+  stationId?: string,
+  signal?: AbortSignal,
+) {
+  const lease = await operation<WorkspaceLease | undefined>(
+    "readonly",
+    (s) => s.get(WORKSPACE_LEASE),
+    signal,
+  );
+  const now = Date.now();
+  if (
+    !lease ||
+    !Number.isFinite(lease.expires) ||
+    lease.expires <= now ||
+    lease.expires > now + DAY + 60_000
+  )
+    return null;
+  const key = await operation<CryptoKey | undefined>(
+    "readonly",
+    (s) => s.get(workspaceKey(lease, "key")),
+    signal,
+  );
+  if (!key) return null;
+  const device = {
+    user_id: lease.user_id,
+    workspace_id: lease.workspace_id,
+    key,
+  };
+  const context = await getDeviceRecord<FieldContext>(
+    device,
+    `station:${stationId || lease.stationId}`,
+    signal,
+  );
+  if (context && Date.parse(context.expires_at) > now)
+    return { context, device };
+  return null;
+}
+
+export async function resetWorkspaceLease() {
+  await operation("readwrite", (s) => s.delete(WORKSPACE_LEASE));
+}
+
+async function putDeviceRecord(
+  device: WorkspaceDevice,
+  name: string,
+  value: unknown,
+  signal?: AbortSignal,
+) {
+  const id = workspaceKey(device, name);
+  checkSignal(signal);
+  const encrypted = await seal(value, device.key, aad(device, id));
+  checkSignal(signal);
+  await operation("readwrite", (s) => s.put(encrypted, id), signal);
+}
+
+async function getDeviceRecord<T>(
+  device: WorkspaceDevice,
+  name: string,
+  signal?: AbortSignal,
+) {
+  const id = workspaceKey(device, name);
+  const value = await operation<Sealed | undefined>(
+    "readonly",
+    (s) => s.get(id),
+    signal,
+  );
+  const plain = value && (await open<T>(value, device.key, aad(device, id)));
+  checkSignal(signal);
+  return plain;
+}
+
+export const writeWorkspaceDraft = (
+  device: WorkspaceDevice,
+  draft: FieldDraft,
+  signal?: AbortSignal,
+) => putDeviceRecord(device, `draft:${draft.id}`, draft, signal);
+export const deleteWorkspaceDraft = (
+  device: WorkspaceDevice,
+  id: string,
+  signal?: AbortSignal,
+) =>
+  operation(
+    "readwrite",
+    (s) => s.delete(workspaceKey(device, `draft:${id}`)),
+    signal,
+  );
+export async function readWorkspaceDrafts(
+  device: WorkspaceDevice,
+  signal?: AbortSignal,
+) {
+  const prefix = workspaceKey(device, "");
+  const keys = await operation<IDBValidKey[]>(
+    "readonly",
+    (s) => s.getAllKeys(),
+    signal,
+  );
+  const drafts = [];
+  for (const key of keys) {
+    if (!String(key).startsWith(`${prefix}draft:`)) continue;
+    const draft = await getDeviceRecord<FieldDraft>(
+      device,
+      String(key).slice(prefix.length),
+      signal,
+    );
+    if (draft) drafts.push(draft);
+  }
+  return drafts.sort((a, b) => a.captured_at.localeCompare(b.captured_at));
 }
 async function derive(
   passphrase: string,
@@ -325,7 +515,16 @@ export async function vaultDrafts<T>(
   return items;
 }
 export async function forgetVault(signal?: AbortSignal) {
-  await operation("readwrite", (s) => s.clear(), signal);
+  await operation(
+    "readwrite",
+    (store) => {
+      store.delete("meta");
+      store.delete("context");
+      store.delete("trusted-session");
+      return store.delete(IDBKeyRange.bound("draft:", "draft:\uffff"));
+    },
+    signal,
+  );
 }
 /** Explicit trusted-device convenience. Never persists the account password.
  * Same-origin script/device compromise can use this key until expiry/revocation. */

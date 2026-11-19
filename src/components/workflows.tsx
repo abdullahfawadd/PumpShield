@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { command } from "@/lib/api";
 import { date, money, number } from "@/lib/utils";
 import { FUEL_GRADE_OPTIONS, fuelGradeLabel } from "@/lib/fuel-grades";
+import { deliveryStageLabel } from "@/lib/delivery-stages";
 import type { Dashboard, Delivery, Shift, Vehicle } from "@/lib/types";
 import { Dialog } from "./ui/dialog";
 import { Button } from "./ui/button";
@@ -53,6 +54,7 @@ export function WorkflowDialog({
   onClose,
   onDone,
   onNavigate,
+  onReviewTank,
 }: {
   modal: Modal;
   data: Dashboard;
@@ -61,6 +63,7 @@ export function WorkflowDialog({
   onClose: () => void;
   onDone: () => void;
   onNavigate: (m: Modal) => void;
+  onReviewTank: (id: string) => void;
 }) {
   const tanks = data.tanks.filter((t) => t.station_id === stationId);
   const nozzles = data.nozzles.filter((n) => n.station_id === stationId);
@@ -87,9 +90,7 @@ export function WorkflowDialog({
           ? "Submitted readings are permanent. Check the numbers and capture fresh evidence before submitting."
           : modal.type === "invite"
             ? "Invite an email address to this station. The recipient confirms their email and accepts the invitation."
-            : modal.type === "delivery_detail"
-              ? "Complete the current verification step before moving the delivery forward."
-              : modal.type === "payment"
+            : modal.type === "payment"
                 ? "Record only funds already received and independently verified."
                 : modal.type === "parchi"
                   ? "Verify the vehicle pass, record the fill, then submit for server checks."
@@ -316,17 +317,30 @@ export function WorkflowDialog({
           </p>
         </ActionForm>
       )}
-      {modal.type === "delivery" && (
+      {modal.type === "delivery" && !tanks.length && (
+        <div className="notice warning">Configure a receiving tank at this station before creating a dispatch.</div>
+      )}
+      {modal.type === "delivery" && !!tanks.length && (
         <ActionForm
           op="delivery"
           base={base}
           onDone={onDone}
           submit="Create dispatch"
-          transform={(f) => ({
-            ...Object.fromEntries(f),
-            chambers: Array.from({ length: count }, (_, i) =>
-              parseChart(String(f.get(`chart_${i}`))),
-            ),
+          transform={(form) => ({
+            reference: form.get("reference"),
+            vehicle: form.get("vehicle"),
+            depot: form.get("depot"),
+            tank_id: form.get("tank_id"),
+            invoice: form.get("invoice"),
+            loading_temp: form.get("loading_temp"),
+            chambers: Array.from({ length: count }, (_, index) => {
+              try {
+                return parseChamberChart(String(form.get(`chart_${index}`)));
+              } catch (error) {
+                const reason = error instanceof Error ? error.message : "Check the chart.";
+                throw new Error(`Chamber ${index + 1}: ${reason}`);
+              }
+            }),
           })}
         >
           <div className="form-grid">
@@ -336,6 +350,7 @@ export function WorkflowDialog({
             <Select
               label="Receiving tank"
               name="tank_id"
+              defaultValue={tanks.length === 1 ? tanks[0].id : undefined}
               options={tanks.map((t) => ({
                 value: t.id,
                 label: `${t.name} · ${fuelGradeLabel(t.grade)}`,
@@ -355,30 +370,18 @@ export function WorkflowDialog({
               max={80}
             />
           </div>
-          <label>
-            Number of chambers
-            <select
-              value={count}
-              onChange={(e) => setCount(Number(e.target.value))}
-            >
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                <option key={n}>{n}</option>
-              ))}
-            </select>
-          </label>
-          {Array.from({ length: count }, (_, i) => (
-            <label key={i}>
-              Chamber {i + 1} certified chart (mm, litres)
-              <textarea
-                required
-                name={`chart_${i}`}
-                rows={4}
-                placeholder={
-                  "mm,liters\nPaste the certified chart for this chamber"
-                }
-              />
+          <fieldset className="delivery-chambers">
+            <legend>Chamber calibration</legend>
+            <label>
+              Number of chambers
+              <select value={count} onChange={(event) => setCount(Number(event.target.value))}>
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => <option key={value}>{value}</option>)}
+              </select>
             </label>
-          ))}
+            {Array.from({ length: count }, (_, index) => (
+              <ChamberCalibration key={index} index={index} />
+            ))}
+          </fieldset>
           <p className="fine-print">
             Each chamber uses its own certified chart. The current fuel price
             and coefficient are locked to this delivery.
@@ -394,6 +397,7 @@ export function WorkflowDialog({
           owner={owner}
           price={price}
           onDone={onDone}
+          onReviewTank={onReviewTank}
         />
       )}
       {modal.type === "open_shift" && (
@@ -435,8 +439,15 @@ export function WorkflowDialog({
           onDone={onDone}
         />
       )}
-      {modal.type === "shift_detail" && shift && owner && (
-        <ShiftDetail shift={shift} data={data} price={price} onDone={onDone} />
+      {modal.type === "shift_detail" && shift && (
+        owner ? <ShiftDetail shift={shift} data={data} price={price} onDone={onDone} /> : (
+          <div className="form-stack">
+            <h2>{shift.name}</h2>
+            <p>Opened {date(shift.opened_at)}</p>
+            {shift.closed_at && <p>Submitted {date(shift.closed_at)}</p>}
+            <p role="status">{shift.status === "verified" ? "Verified by owner" : shift.status === "review" ? "Awaiting owner review" : "Shift open"}</p>
+          </div>
+        )
       )}
       {modal.type === "account" && (
         <ActionForm
@@ -586,6 +597,85 @@ function EvidenceLink({
     </a>
   );
 }
+function parseChamberChart(value: string) {
+  const points = parseChart(value);
+  if (points.some((point, index) =>
+    point.mm < 0 || point.liters < 0 ||
+    (index > 0 && (point.mm <= points[index - 1].mm || point.liters <= points[index - 1].liters)),
+  )) {
+    throw new Error("Each depth and volume must be greater than the previous row.");
+  }
+  return points;
+}
+
+function ChamberCalibration({ index }: { index: number }) {
+  const [chart, setChart] = useState("");
+  const [source, setSource] = useState("");
+  const [error, setError] = useState("");
+  const points = (() => {
+    try {
+      return chart ? parseChamberChart(chart) : null;
+    } catch {
+      return null;
+    }
+  })();
+  const first = points?.[0];
+  const last = points?.at(-1);
+  return (
+    <div className="delivery-chamber">
+      <label>
+        Chamber {index + 1} CSV
+        <input
+          type="file"
+          accept=".csv,text/csv"
+          onChange={async (event) => {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            event.target.value = "";
+            if (file.size > 100000) {
+              setError("Use a CSV file under 100 KB.");
+              return;
+            }
+            try {
+              const text = await file.text();
+              parseChamberChart(text);
+              setChart(text);
+              setSource(file.name);
+              setError("");
+            } catch (error) {
+              setError(error instanceof Error ? error.message : "Could not read the chart.");
+            }
+          }}
+        />
+      </label>
+      {points && first && last && (
+        <p className="chamber-chart-preview" role="status">
+          <strong>{source || "Pasted rows"}</strong>
+          <span>{points.length} points · {number(first.mm)}–{number(last.mm)} mm · up to {number(last.liters)} L</span>
+        </p>
+      )}
+      <details>
+        <summary>{chart ? "View or edit chart rows" : "Paste chart rows instead"}</summary>
+        <label>
+          Chamber {index + 1} certified chart (mm, litres)
+          <textarea
+            name={`chart_${index}`}
+            rows={3}
+            value={chart}
+            onChange={(event) => {
+              setChart(event.target.value);
+              setSource("");
+              setError("");
+            }}
+            placeholder="Paste a certified chart with millimetres and litres"
+          />
+        </label>
+      </details>
+      {error && <p role="alert" className="form-error">{error}</p>}
+    </div>
+  );
+}
+
 function DeliveryDetail({
   delivery: d,
   data,
@@ -593,6 +683,7 @@ function DeliveryDetail({
   owner,
   price,
   onDone,
+  onReviewTank,
 }: {
   delivery: Delivery;
   data: Dashboard;
@@ -600,10 +691,19 @@ function DeliveryDetail({
   owner: boolean;
   price: (n: number) => string;
   onDone: () => void;
+  onReviewTank: (id: string) => void;
 }) {
   const [evidence, setEvidence] = useState("");
   const [trackingMounted, setTrackingMounted] = useState(false);
   const chamberCount = d.chamber_count || d.chambers?.length || 1;
+  const tank = data.tanks.find((t) => t.id === d.tank_id);
+  const measured = d.measured;
+  const capacityCheck = owner && tank && typeof measured === "number"
+    && (d.status === "submitted" || d.status === "approved")
+    ? { available: tank.capacity - tank.stock, measured, projected: tank.stock + measured }
+    : null;
+  const capacityBlocked = !!capacityCheck && !!tank
+    && capacityCheck.measured - capacityCheck.available > Number.EPSILON * tank.capacity;
   return (
     <div className="detail-stack">
       <div className="detail-summary">
@@ -615,19 +715,15 @@ function DeliveryDetail({
           <p>
             {d.reference} · {d.depot}
           </p>
+          {tank && <p>{tank.name} · {fuelGradeLabel(tank.grade)}</p>}
         </div>
         <span className={`status delivery-status-${d.status}`}>
-          {{
-            dispatched: "In transit",
-            submitted: "Ready for review",
-            approved: "Approved to decant",
-            decanted: "Completed",
-          }[d.status] || d.status}
+          {deliveryStageLabel(d.status)}
         </span>
       </div>
       {d.measurement?.offline_request_id && (
         <div className="notice warning">
-          Captured offline{" "}
+          Recorded on device{" "}
           {date(d.measurement.offline_captured_at || d.submitted_at)} PKT.
           Review the saved photo time and location before approving.
         </div>
@@ -664,7 +760,7 @@ function DeliveryDetail({
           op="submit_delivery"
           base={{ station_id: stationId, id: d.id }}
           onDone={onDone}
-          submit="Submit & lock pre-decant audit"
+          submit="Submit arrival audit"
           transform={(f) => {
             if (!evidence)
               throw new Error(
@@ -700,6 +796,7 @@ function DeliveryDetail({
           <CameraCapture
             stationId={stationId}
             workspaceId={data.member!.workspace_id}
+            queueField
             value={evidence}
             onCapture={setEvidence}
             label="Capture thermometer & dip evidence"
@@ -753,13 +850,32 @@ function DeliveryDetail({
           </p>
         </>
       )}
+      {capacityCheck && tank && (
+        <div className={`notice delivery-capacity${capacityBlocked ? " warning" : ""}`} role="status">
+          <strong>{capacityBlocked ? "Insufficient space in assigned tank" : "Receiving capacity"}</strong>
+          <dl>
+            <div><dt>Recorded stock</dt><dd>{number(tank.stock, 2)} L</dd></div>
+            <div><dt>Tank capacity</dt><dd>{number(tank.capacity, 2)} L</dd></div>
+            <div><dt>Available space</dt><dd>{number(capacityCheck.available, 2)} L</dd></div>
+            <div><dt>After receipt</dt><dd>{number(capacityCheck.projected, 2)} L</dd></div>
+          </dl>
+          {capacityBlocked && (
+            <>
+              <span>Verify the tank stock and arrival audit before receiving this delivery.</span>
+              <button type="button" className="text-link" onClick={() => onReviewTank(tank.id)}>
+                Review assigned tank <ExternalLink size={14} />
+              </button>
+            </>
+          )}
+        </div>
+      )}
       {d.status === "submitted" &&
         (owner ? (
           <ActionForm
             op="approve_delivery"
             base={{ station_id: stationId, id: d.id }}
             onDone={onDone}
-            submit="Approve audit & release decant"
+            submit="Approve arrival audit"
           >
             <label className="checkbox-label">
               <input type="checkbox" required /> I have reviewed the readings
@@ -772,6 +888,27 @@ function DeliveryDetail({
             approval before decant.
           </div>
         ))}
+      {d.status === "approved" && !capacityBlocked && (
+        <ActionForm
+          op="decant"
+          base={{ station_id: stationId, id: d.id }}
+          onDone={onDone}
+          submit="Confirm receipt & post stock"
+        >
+          <label className="checkbox-label">
+            <input type="checkbox" required /> The approved delivery has been
+            fully unloaded into the assigned tank.
+          </label>
+          <p className="fine-print">
+            The measured volume posts to the assigned tank once.
+          </p>
+        </ActionForm>
+      )}
+      {d.status === "decanted" && (
+        <div className="notice">
+          <Check size={18} /> Stock received {date(d.decanted_at)}.
+        </div>
+      )}
       {["approved", "decanted"].includes(d.status) && owner && (
         <a
           className="button button-secondary full-width"
@@ -782,28 +919,6 @@ function DeliveryDetail({
           <Download size={16} />
           Download shortage claim PDF
         </a>
-      )}
-      {d.status === "approved" && (
-        <ActionForm
-          op="decant"
-          base={{ station_id: stationId, id: d.id }}
-          onDone={onDone}
-          submit="Confirm completed decant"
-        >
-          <label className="checkbox-label">
-            <input type="checkbox" required /> The approved delivery has been
-            fully unloaded into the assigned tank.
-          </label>
-          <p className="fine-print">
-            This updates the tank’s recorded stock once. The tank must have
-            enough recorded capacity.
-          </p>
-        </ActionForm>
-      )}
-      {d.status === "decanted" && (
-        <div className="notice">
-          <Check size={18} /> Decant recorded {date(d.decanted_at)}.
-        </div>
       )}
       {owner && (
         <details
@@ -918,6 +1033,7 @@ function CloseShift({
             workspaceId={data.member!.workspace_id}
             value={photos[n.id]}
             onCapture={(id) => setPhotos((prev) => ({ ...prev, [n.id]: id }))}
+            queueField
             label="Capture nozzle totalizer"
           />
         </div>
@@ -939,6 +1055,7 @@ function CloseShift({
             workspaceId={data.member!.workspace_id}
             value={photos[t.id]}
             onCapture={(id) => setPhotos((prev) => ({ ...prev, [t.id]: id }))}
+            queueField
             label="Capture wet dipstick mark"
           />
         </div>
@@ -963,6 +1080,7 @@ function CloseShift({
         workspaceId={data.member!.workspace_id}
         value={posPhoto}
         onCapture={setPosPhoto}
+        queueField
         label="Capture POS settlement report"
       />
       <label className="checkbox-label">
@@ -996,7 +1114,7 @@ function ShiftDetail({
     <div className="detail-stack">
       {s.submission?.offline_request_id && (
         <div className="notice warning">
-          Readings captured offline{" "}
+          Readings recorded on device{" "}
           {date(s.submission.offline_captured_at || s.closed_at)} PKT. Review
           evidence and any late flag before verifying this shift.
         </div>
@@ -1020,7 +1138,7 @@ function ShiftDetail({
               reconciliation.
             </div>
           )}
-          <div className="table-scroll">
+          <div className="table-scroll shift-variance-desktop">
             <table>
               <thead>
                 <tr>
@@ -1053,6 +1171,22 @@ function ShiftDetail({
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="shift-variance-mobile" aria-label="Tank reconciliation">
+            {r.tanks.map((tank) => {
+              const tolerance = data.stations.find((station) => station.id === s.station_id)?.tolerance ?? 15;
+              const exceedsTolerance = Math.abs(tank.variance) > tolerance;
+              return (
+                <article key={tank.tank_id}>
+                  <header><strong>{tank.name}</strong><b className={exceedsTolerance ? "text-danger" : ""}>{number(tank.variance, 1)} L variance</b></header>
+                  <dl>
+                    <div><dt>Dispensed</dt><dd>{number(tank.sold, 1)} L</dd></div>
+                    <div><dt>Expected</dt><dd>{number(tank.expected, 1)} L</dd></div>
+                    <div><dt>Measured</dt><dd>{number(tank.actual, 1)} L</dd></div>
+                  </dl>
+                </article>
+              );
+            })}
           </div>
           <div className="receipt-lines">
             <p>
