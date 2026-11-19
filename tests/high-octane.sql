@@ -85,6 +85,8 @@ begin
   perform set_config('request.jwt.claim.sub',staff_id::text,true);
 
   snapshot=public.dashboard();
+  assert (snapshot->>'snapshot_at')::timestamptz is not distinct from statement_timestamp(),
+    'Dashboard snapshot did not use the database reporting clock';
   assert exists(select 1 from jsonb_array_elements(snapshot->'tanks') t where t->>'grade'='HOBC'),'Kiosk omitted High Octane';
   assert not(snapshot ? 'prices') and not(snapshot ? 'accounts'),'Kiosk exposed financial data';
   snapshot=public.field('context',jsonb_build_object('station_id',sid));

@@ -5,6 +5,7 @@ import {
   defaultOverviewLayout,
   getLatestTankReconciliation,
   moveOverviewWidget,
+  overviewSnapshotTime,
   parseOverviewLayout,
   setOverviewWidgetVisible,
 } from "../src/lib/overview-model";
@@ -59,6 +60,18 @@ const tank = (
 });
 
 describe("station overview observations", () => {
+  it("includes a newly closed shift using the database snapshot even when the browser is behind", () => {
+    const report = buildOverviewModel({
+      now: overviewSnapshotTime("2026-11-09T12:03:00Z", now),
+      days: 7,
+      deliveries: [],
+      shifts: [shift("posted", "2026-11-09T12:02:30Z")],
+    });
+    expect(report.periodShifts.map((item) => item.id)).toEqual(["posted"]);
+    expect(report.totals.liters).toBe(100);
+    expect(overviewSnapshotTime(undefined, now)).toBe(now);
+  });
+
   it("uses Karachi calendar boundaries, includes today, and excludes future observations", () => {
     const model = buildOverviewModel({
       now,

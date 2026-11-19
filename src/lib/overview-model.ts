@@ -3,6 +3,12 @@ import { FUEL_GRADES, type FuelGrade } from "./fuel-grades";
 import { DELIVERY_STAGES } from "./delivery-stages";
 
 export type OverviewPeriod = 7 | 30;
+
+export function overviewSnapshotTime(snapshotAt: string | undefined, fallback: number) {
+  const serverTime = Date.parse(snapshotAt ?? "");
+  return Number.isFinite(serverTime) ? serverTime : fallback;
+}
+
 export type OverviewDay = {
   /** Calendar date in the station's Pakistan time zone. */
   date: string;
