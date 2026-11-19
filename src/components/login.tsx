@@ -7,8 +7,10 @@ import { browserDb } from "@/lib/supabase/client";
 import { Brand } from "./brand";
 import { Button } from "./ui/button";
 import { PASSWORD_MIN_LENGTH, newPasswordError } from "@/lib/password-policy";
+import { useHydrated } from "@/lib/use-hydrated";
 export function Login() {
   const router = useRouter();
+  const ready = useHydrated();
   const root = useRef<HTMLElement>(null);
   useEffect(() => {
     const viewport = window.visualViewport;
@@ -100,7 +102,7 @@ export function Login() {
                   ? "Reset your password"
                   : "Sign in to your workspace"}
             </h2>
-            <form onSubmit={submit} className="login-form">
+            <form method="post" onSubmit={submit} className="login-form">
               <label>
                 <span className="sr-only">Email address</span>
                 <input
@@ -153,7 +155,7 @@ export function Login() {
                   {message}
                 </p>
               )}
-              <Button disabled={busy} className="login-submit">
+              <Button disabled={busy || !ready} className="login-submit">
                 {busy ? (
                   <Loader2 className="spin" size={18} />
                 ) : mode === "login" ? (

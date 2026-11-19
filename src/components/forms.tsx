@@ -147,7 +147,7 @@ export function ActionForm({
     }
   }
   return (
-    <form className="form-stack" onSubmit={handle}>
+    <form method="post" className="form-stack" onSubmit={handle}>
       {children}
       {error && (
         <p role="alert" className="form-error">

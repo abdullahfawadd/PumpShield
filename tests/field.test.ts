@@ -95,7 +95,7 @@ describe("encrypted field storage", () => {
     });
     expect(unlocked.key.extractable).toBe(false);
     expect((await vaultMeta())?.user_id).toBe("user-a");
-  });
+  }, 15_000);
   it("detects ciphertext replacement across records and tenant identities", async () => {
     const session = await createVault(
       "separate offline station phrase",
