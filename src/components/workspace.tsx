@@ -47,7 +47,7 @@ import { StationOperations } from "./station-operations";
 import { DocumentCentre } from "./document-centre";
 import { DeliveryBoard } from "./delivery-board";
 import { OwnerOverview } from "./owner-overview";
-import { getLatestTankReconciliation } from "@/lib/overview-model";
+import { getLatestTankReconciliation, overviewSnapshotTime } from "@/lib/overview-model";
 import { useClock } from "@/lib/use-clock";
 import { fuelGradeLabel } from "@/lib/fuel-grades";
 import { ShiftRegister } from "./shift-register";
@@ -264,6 +264,7 @@ export function Workspace({
   const [alerts, setAlerts] = useState(false);
   const refreshController = useRef<AbortController | null>(null);
   const refresh = useCallback(async () => {
+    if (!navigator.onLine) return;
     refreshController.current?.abort();
     const controller = new AbortController();
     refreshController.current = controller;
@@ -284,7 +285,7 @@ export function Workspace({
       setNow(Date.now());
       setSyncError(false);
     } catch {
-      if (!controller.signal.aborted) setSyncError(true);
+      if (!controller.signal.aborted && navigator.onLine) setSyncError(true);
     } finally {
       if (refreshController.current === controller) setSyncing(false);
     }
@@ -834,7 +835,7 @@ export function Workspace({
               tanks={tanks}
               station={station}
               privateMode={privateMode}
-              loadedAt={now}
+              loadedAt={overviewSnapshotTime(data.snapshot_at, now)}
               onOpen={open}
               onStock={(tankId) => {
                 setFocusedTank(tankId);

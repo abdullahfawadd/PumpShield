@@ -149,6 +149,7 @@ export type Parchi = {
   created_at: string;
 };
 export type Dashboard = {
+  snapshot_at?: string;
   member: Member | null;
   workspace: string;
   stations: Station[];
