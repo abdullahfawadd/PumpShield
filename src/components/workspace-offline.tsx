@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { toast } from "sonner";
+import { ChevronDown, RefreshCw } from "./icons";
 import { FieldError, field } from "@/lib/field-api";
 import {
   storeCapture,
@@ -486,9 +487,10 @@ function useFieldQueue(identity: DeviceIdentity, initial?: Session) {
     retry,
     discard,
     noteNetworkFailure: () => setOnline(false),
-    captureTimestamp: () => new Date(
-      Date.now() + (session.current?.context.device_clock_offset_ms || 0),
-    ).toISOString(),
+    captureTimestamp: () =>
+      new Date(
+        Date.now() + (session.current?.context.device_clock_offset_ms || 0),
+      ).toISOString(),
   };
 }
 
@@ -577,34 +579,74 @@ export function WorkspaceOfflineStation({
   return null;
 }
 
-export function WorkspaceSyncStatus() {
+export function WorkspaceSyncStatus({
+  onRefresh,
+  refreshing,
+  refreshFailed,
+}: {
+  onRefresh?: () => void;
+  refreshing?: boolean;
+  refreshFailed?: boolean;
+} = {}) {
   const queue = useWorkspaceOffline();
   if (!queue?.stationId) return null;
   const reviewing = queue.items.filter((item) => item.state === "review");
   const waiting = queue.items.length - reviewing.length;
+  const label = reviewing.length
+    ? `${reviewing.length} need review`
+    : queue.syncing || refreshing
+      ? "Syncing"
+      : waiting
+        ? `${waiting} saved on device`
+        : !queue.online
+          ? "Offline"
+          : queue.problem || refreshFailed
+            ? "Check sync"
+            : queue.prepared
+              ? "Ready offline"
+              : "Preparing device";
+  const tone =
+    reviewing.length || queue.problem || refreshFailed
+      ? "review"
+      : waiting ||
+          !queue.online ||
+          !queue.prepared ||
+          queue.syncing ||
+          refreshing
+        ? "waiting"
+        : "ready";
   return (
-    <details className="workspace-sync">
-      <summary>
-        <span
-          className={
-            reviewing.length ? "sync-indicator review" : "sync-indicator"
-          }
+    <details
+      className="workspace-sync"
+      data-tone={tone}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && event.currentTarget.open) {
+          event.currentTarget.open = false;
+          event.currentTarget.querySelector("summary")?.focus();
+        }
+      }}
+    >
+      <summary
+        title="Device and record sync"
+        aria-label={`${label}. Device and record sync`}
+      >
+        <span className={`sync-indicator ${tone}`} />
+        <span className="workspace-sync-label">{label}</span>
+        <span className="workspace-sync-short" aria-hidden="true">
+          Sync
+        </span>
+        <ChevronDown
+          className="workspace-sync-chevron"
+          size={12}
+          aria-hidden="true"
         />
-        {reviewing.length
-          ? `${reviewing.length} need review`
-          : queue.syncing
-            ? "Uploading saved records"
-            : waiting
-              ? `${waiting} saved on device`
-              : !queue.online
-                ? "Connection lost"
-                : queue.problem
-                  ? "Sync needs attention"
-                : queue.prepared
-                  ? "Ready offline"
-                  : "Preparing offline access"}
       </summary>
       <div className="workspace-sync-details">
+        {refreshFailed && (
+          <p role="status">
+            Couldn’t refresh checked-in records. Showing the last loaded data.
+          </p>
+        )}
         {queue.problem && <p role="status">{queue.problem}</p>}
         {waiting > 0 && (
           <p role="status">
@@ -618,11 +660,16 @@ export function WorkspaceSyncStatus() {
               : "Open the station online to prepare this device."}
           </p>
         )}
-        {queue.online && !queue.problem && waiting === 0 && reviewing.length === 0 && (
-          <p role="status">{queue.prepared
-            ? "This device can save fuel parchis, arrival audits and shift readings."
-            : "Keep the station open while PumpShield prepares this device."}</p>
-        )}
+        {queue.online &&
+          !queue.problem &&
+          waiting === 0 &&
+          reviewing.length === 0 && (
+            <p role="status">
+              {queue.prepared
+                ? "This device can save fuel parchis, arrival audits and shift readings."
+                : "Keep the station open while PumpShield prepares this device."}
+            </p>
+          )}
         {reviewing.map((item) => (
           <article key={item.id}>
             <strong>{item.title}</strong>
@@ -658,6 +705,17 @@ export function WorkspaceSyncStatus() {
         ))}
         {queue.legacy && (
           <a href="/offline/recovery">Recover previous device drafts</a>
+        )}
+        {onRefresh && (
+          <button
+            className="workspace-sync-refresh"
+            type="button"
+            disabled={refreshing}
+            onClick={onRefresh}
+          >
+            <RefreshCw size={15} />{" "}
+            {refreshing ? "Refreshing…" : "Refresh records"}
+          </button>
         )}
       </div>
     </details>

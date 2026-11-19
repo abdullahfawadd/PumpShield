@@ -14,7 +14,7 @@ import {
 } from "@/lib/overview-model";
 import {
   ArrowUpRight,
-  Check,
+  Activity,
   Clock3,
   Droplets,
   Settings2,
@@ -94,7 +94,7 @@ export function OwnerOverview({
   onOpen: (type: string, id?: string) => void;
   onStock: (tankId?: string) => void;
 }) {
-  const [days, setDays] = useState<7 | 30>(7);
+  const [days, setDays] = useState<7 | 30>(30);
   const [stage, setStage] = useState<Delivery["status"] | null>(null);
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [sessionLayout, setSessionLayout] = useState<{
@@ -114,6 +114,9 @@ export function OwnerOverview({
   const savedLayout = useMemo(() => parseOverviewLayout(stored), [stored]);
   const layout =
     sessionLayout?.key === storageKey ? sessionLayout.layout : savedLayout;
+  const visibleWidgets = layout.order.filter(
+    (id) => !layout.hidden.includes(id),
+  );
   function saveLayout(next: OverviewLayout) {
     try {
       localStorage.setItem(storageKey, JSON.stringify(next));
@@ -168,7 +171,7 @@ export function OwnerOverview({
     <div className="overview-studio">
       <div className="overview-toolbar">
         <div className="overview-live">
-          <i aria-hidden="true" />
+          <Clock3 size={15} aria-hidden="true" />
           Refreshed{" "}
           <span>
             {new Intl.DateTimeFormat("en-PK", {
@@ -201,7 +204,7 @@ export function OwnerOverview({
             </summary>
             <div className="overview-customizer">
               <strong>Your overview</strong>
-              <p>Choose and reorder panels. Reviews always stay visible.</p>
+              <p>Show, hide or reorder panels.</p>
               {layout.order.map((id, index) => (
                 <div className="overview-widget-option" key={id}>
                   <label>
@@ -248,99 +251,79 @@ export function OwnerOverview({
                 Reset layout
               </Button>
               <p className="overview-save-note" role="status">
-                {layoutNote ||
-                  "Layout preferences only; no station data is stored here."}
+                {layoutNote}
               </p>
             </div>
           </details>
         </div>
       </div>
-      <section
-        className="overview-current-shift"
-        data-overdue={overdue}
-        aria-labelledby="overview-current-shift-title"
-      >
-        <span className="overview-shift-icon" aria-hidden="true">
-          <Clock3 size={20} />
-        </span>
-        <div>
-          <h2 id="overview-current-shift-title">
-            {currentShift?.name ?? "No open shift"}
-          </h2>
-          {currentShift && (
-            <p>
-              {overdue
-                ? "Overdue · close required"
-                : Number.isFinite(dueAt)
-                  ? `Open · due ${date(currentShift.due_at)}`
-                  : "Open"}
-            </p>
-          )}
-        </div>
-        {station && (
-          <Button
-            size="sm"
-            onClick={() =>
-              onOpen(
-                currentShift ? "close_shift" : "open_shift",
-                currentShift?.id,
-              )
-            }
-          >
-            {currentShift ? "Close shift" : "Open shift"}
-            <ArrowUpRight size={15} />
-          </Button>
-        )}
-      </section>
-      <div
-        className="overview-kpis"
-        aria-label={`Station totals for the last ${days} days`}
-      >
-        <div className="overview-kpi overview-kpi-feature">
-          <span>
-            <Droplets size={18} />
-            Fuel dispensed
-          </span>
-          <strong>
-            {observed ? number(model.totals.liters, 1) : "—"}
-            <small>L</small>
-          </strong>
-          <footer>
-            <span>
-              {observed
-                ? `${model.periodShifts.length} closed shifts`
-                : "No closed shifts"}
+      <div className="overview-operations">
+        <section
+          className="overview-current-shift"
+          data-overdue={overdue}
+          aria-labelledby="overview-current-shift-title"
+        >
+          <div className="overview-shift-copy">
+            <span className="overview-shift-label">
+              <Clock3 size={15} aria-hidden="true" /> Current shift
             </span>
-            <span>Last {days} days</span>
-          </footer>
-        </div>
-        <div className="overview-kpi">
-          <span>
-            <WalletCards size={18} />
-            Recorded revenue
-          </span>
-          <strong>
-            {privateMode
-              ? "••••••"
-              : observed
-                ? number(model.totals.revenue)
-                : "—"}
-            <small>PKR</small>
-          </strong>
-          <footer>Last {days} days</footer>
-        </div>
-        <div className="overview-kpi overview-kpi-review">
-          <span>
-            <Clock3 size={18} />
-            Ready to receive
-          </span>
-          <strong>
-            {model.stages.find((item) => item.status === "approved")?.count ??
-              0}
-            <small>loads</small>
-          </strong>
-          <footer>Approved deliveries</footer>
-        </div>
+            <h2 id="overview-current-shift-title">
+              {currentShift?.name ?? "No open shift"}
+            </h2>
+            {currentShift && (
+              <p>
+                {overdue
+                  ? "Overdue · close required"
+                  : Number.isFinite(dueAt)
+                    ? `Open · due ${date(currentShift.due_at)}`
+                    : "Open"}
+              </p>
+            )}
+          </div>
+          {station && (
+            <Button
+              size="sm"
+              onClick={() =>
+                onOpen(
+                  currentShift ? "close_shift" : "open_shift",
+                  currentShift?.id,
+                )
+              }
+            >
+              {currentShift ? "Close shift" : "Open shift"}
+              <ArrowUpRight size={15} />
+            </Button>
+          )}
+        </section>
+        <dl
+          className="overview-kpis"
+          aria-label={`Station totals for the last ${days} days`}
+        >
+          <div className="overview-kpi">
+            <dt>
+              <Droplets size={18} aria-hidden="true" />
+              Fuel dispensed
+            </dt>
+            <dd>
+              {observed ? number(model.totals.liters, 1) : "—"}
+              <small>L</small>
+            </dd>
+          </div>
+          <div className="overview-kpi">
+            <dt>
+              <WalletCards size={18} aria-hidden="true" />
+              Shift revenue
+            </dt>
+            <dd>
+              {privateMode
+                ? "••••••"
+                : observed
+                  ? number(model.totals.revenue)
+                  : "—"}
+              <small>PKR</small>
+            </dd>
+          </div>
+        </dl>
       </div>
       {model.excludedInvalidRecords > 0 && (
         <p className="overview-warning" role="status">
@@ -348,24 +331,14 @@ export function OwnerOverview({
           Verify the source records before reporting.
         </p>
       )}
-      <section
-        className="overview-review"
-        data-pending={model.review.count > 0}
-        aria-labelledby="overview-reviews"
-      >
-        <div className="overview-section-title">
-          <h2 id="overview-reviews">Review queue</h2>
-          {model.review.count > 0 && (
+      {model.review.count > 0 && (
+        <section className="overview-review" aria-labelledby="overview-reviews">
+          <div className="overview-section-title">
+            <h2 id="overview-reviews">Review queue</h2>
             <span className="overview-count has-reviews">
               {model.review.count} pending
             </span>
-          )}
-        </div>
-        {!model.review.count ? (
-          <p className="overview-clear">
-            <Check size={18} /> No pending reviews.
-          </p>
-        ) : (
+          </div>
           <div className="overview-review-list">
             {reviewDeliveries.map((d) => (
               <button
@@ -409,124 +382,143 @@ export function OwnerOverview({
               </button>
             ))}
           </div>
-        )}
-        {model.review.count > 4 && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowAllReviews((value) => !value)}
-          >
-            {showAllReviews
-              ? "Show fewer reviews"
-              : `Show all ${model.review.count} reviews`}
-          </Button>
-        )}
-      </section>
+
+          {model.review.count > 4 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowAllReviews((value) => !value)}
+            >
+              {showAllReviews
+                ? "Show fewer reviews"
+                : `Show all ${model.review.count} reviews`}
+            </Button>
+          )}
+        </section>
+      )}
       <div className="overview-widget-grid">
-        {layout.order
-          .filter((id) => !layout.hidden.includes(id))
-          .map((id) => {
-            if (id === "performance")
-              return (
-                <ShiftPerformance
-                  key={id}
-                  model={model}
-                  days={days}
-                  privateMode={privateMode}
+        {!visibleWidgets.length && (
+          <div className="overview-card overview-layout-empty">
+            <p>No panels visible.</p>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => saveLayout(defaultOverviewLayout())}
+            >
+              Restore panels
+            </Button>
+          </div>
+        )}
+        {visibleWidgets.map((id) => {
+          if (id === "performance")
+            return (
+              <ShiftPerformance
+                key={id}
+                model={model}
+                days={days}
+                privateMode={privateMode}
+                onOpen={onOpen}
+              />
+            );
+          if (id === "stock")
+            return (
+              <OverviewStock
+                key={id}
+                tanks={tanks}
+                shifts={shifts}
+                nozzles={data.nozzles}
+                onOpenShift={(shiftId) => onOpen("shift_detail", shiftId)}
+                onStock={onStock}
+              />
+            );
+          if (id === "deliveries")
+            return (
+              <section
+                className="overview-card overview-pipeline"
+                key={id}
+                aria-labelledby="overview-deliveries-title"
+              >
+                <div className="overview-section-title">
+                  <div className="overview-panel-heading">
+                    <span className="overview-panel-icon">
+                      <Truck size={19} aria-hidden="true" />
+                    </span>
+                    <h2 id="overview-deliveries-title">Delivery pipeline</h2>
+                  </div>
+                  <span className="subtle-pill">{active.length} active</span>
+                </div>
+                <div
+                  className="overview-pipeline-stages"
+                  role="group"
+                  aria-label="Filter deliveries by stage"
+                >
+                  {model.stages.map((s) => (
+                    <button
+                      key={s.status}
+                      aria-pressed={stage === s.status}
+                      onClick={() =>
+                        setStage(stage === s.status ? null : s.status)
+                      }
+                    >
+                      <span className="overview-stage-line" />
+                      <small>{s.label}</small>
+                      <strong>{s.count}</strong>
+                    </button>
+                  ))}
+                </div>
+                <ReceivingFocus
+                  deliveries={listed}
+                  station={station}
                   onOpen={onOpen}
                 />
-              );
-            if (id === "stock")
-              return (
-                <OverviewStock
-                  key={id}
-                  tanks={tanks}
-                  shifts={shifts}
-                  nozzles={data.nozzles}
-                  onOpenShift={(shiftId) => onOpen("shift_detail", shiftId)}
-                  onStock={onStock}
-                />
-              );
-            if (id === "deliveries")
-              return (
-                <section
-                  className="overview-card overview-pipeline"
-                  key={id}
-                  aria-labelledby="overview-deliveries-title"
-                >
-                  <div className="overview-section-title">
-                    <div>
-                      <span className="overview-eyebrow">Receiving</span>
-                      <h2 id="overview-deliveries-title">Delivery pipeline</h2>
-                    </div>
-                    <span className="subtle-pill">{active.length} active</span>
-                  </div>
-                  <div
-                    className="overview-pipeline-stages"
-                    role="group"
-                    aria-label="Filter deliveries by stage"
-                  >
-                    {model.stages.map((s) => (
-                      <button
-                        key={s.status}
-                        aria-pressed={stage === s.status}
-                        onClick={() =>
-                          setStage(stage === s.status ? null : s.status)
-                        }
-                      >
-                        <span className="overview-stage-line" />
-                        <small>{s.label}</small>
-                        <strong>{s.count}</strong>
-                      </button>
-                    ))}
-                  </div>
-                  <ReceivingFocus
-                    deliveries={listed}
-                    station={station}
-                    onOpen={onOpen}
-                  />
-                </section>
-              );
-            return (
-              <details className="overview-card overview-activity" key={id}>
-                <summary>Workspace activity</summary>
-                <ol>
-                  {data.events.slice(0, 5).map((e) => {
-                    const record = source(e.subject_id);
-                    const view = record.view;
-                    return (
-                      <li key={e.id}>
-                        <span
-                          className="overview-event-dot"
-                          aria-hidden="true"
-                        />
-                        <div>
-                          <strong>
-                            {eventNames[e.action] || "Station record updated"}
-                          </strong>
-                          {record.title &&
-                            (view ? (
-                              <button
-                                className="overview-activity-record"
-                                onClick={() => onOpen(view, e.subject_id)}
-                              >
-                                {record.title} <ArrowUpRight size={13} />
-                              </button>
-                            ) : (
-                              <span>{record.title}</span>
-                            ))}
-                          <time>{date(e.created_at)}</time>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ol>
-                {!data.events.length && (
-                  <p className="overview-empty">No saved activity yet.</p>
-                )}
-              </details>
+              </section>
             );
-          })}
+          return (
+            <section
+              className="overview-card overview-activity"
+              key={id}
+              aria-labelledby="overview-activity-title"
+            >
+              <div className="overview-section-title">
+                <h2 id="overview-activity-title">Recent activity</h2>
+                <span className="overview-panel-icon">
+                  <Activity size={18} aria-hidden="true" />
+                </span>
+              </div>
+              <ol>
+                {data.events.slice(0, 5).map((e) => {
+                  const record = source(e.subject_id);
+                  const view = record.view;
+                  return (
+                    <li key={e.id}>
+                      <span className="overview-event-dot" aria-hidden="true" />
+                      <div>
+                        <strong>
+                          {eventNames[e.action] || "Station record updated"}
+                        </strong>
+                        {record.title &&
+                          (view ? (
+                            <button
+                              className="overview-activity-record"
+                              onClick={() => onOpen(view, e.subject_id)}
+                            >
+                              {record.title} <ArrowUpRight size={13} />
+                            </button>
+                          ) : (
+                            <span>{record.title}</span>
+                          ))}
+                        <time>{date(e.created_at)}</time>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ol>
+              {!data.events.length && (
+                <p className="overview-empty">No saved activity yet.</p>
+              )}
+            </section>
+          );
+        })}
       </div>
     </div>
   );

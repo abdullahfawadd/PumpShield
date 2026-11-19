@@ -5,7 +5,7 @@ import { fuelGradeName } from "@/lib/fuel-grades";
 import { getLatestTankReconciliation } from "@/lib/overview-model";
 import type { Nozzle, Shift, Tank } from "@/lib/types";
 import { date, number } from "@/lib/utils";
-import { ArrowUpRight } from "./icons";
+import { ArrowUpRight, Droplets } from "./icons";
 import { Button } from "./ui/button";
 
 const litres = (value: number) =>
@@ -35,6 +35,8 @@ export function OverviewStock({
   const variance = reading?.variance;
   const capacity = tanks.reduce((sum, item) => sum + item.capacity, 0);
   const stock = tanks.reduce((sum, item) => sum + item.stock, 0);
+  const occupied = capacity > 0 ? (stock / capacity) * 100 : 0;
+  const aggregateLevel = Math.max(0, Math.min(100, occupied));
 
   return (
     <section
@@ -42,7 +44,12 @@ export function OverviewStock({
       aria-labelledby="overview-stock-title"
     >
       <div className="overview-section-title">
-        <h2 id="overview-stock-title">Tank stock</h2>
+        <div className="overview-panel-heading">
+          <span className="overview-panel-icon">
+            <Droplets size={17} aria-hidden="true" />
+          </span>
+          <h2 id="overview-stock-title">Tank stock</h2>
+        </div>
         <Button variant="ghost" size="sm" onClick={() => onStock()}>
           View stock <ArrowUpRight size={15} />
         </Button>
@@ -50,10 +57,18 @@ export function OverviewStock({
       {tank ? (
         <>
           <div className="overview-stock-total">
-            <strong>
-              {number(stock, 1)} <small>L</small>
-            </strong>
-            <span>recorded · {number(capacity)} L capacity</span>
+            <div>
+              <strong>
+                {number(stock, 1)} <small>L</small>
+              </strong>
+              <span> of {number(capacity)} L capacity</span>
+            </div>
+            {capacity > 0 && <b>{Math.round(occupied)}% full</b>}
+            <div
+              className="overview-capacity-meter"
+              aria-hidden="true"
+              style={{ "--fill": `${aggregateLevel}%` } as CSSProperties}
+            />
           </div>
           <div
             className="overview-tank-picker"
@@ -107,18 +122,18 @@ export function OverviewStock({
             </div>
             {latest && reading ? (
               <>
-                <h4 className="overview-shift-source-label">
-                  Last recorded shift close
-                </h4>
                 <button
                   type="button"
                   className="overview-shift-source-link"
                   onClick={() => onOpenShift(latest.shift.id)}
                 >
                   <span>
+                    <small>Last shift close</small>
                     <strong>{latest.shift.name}</strong>
+                  </span>
+                  <span className="overview-shift-source-meta">
+                    <small>{date(latest.shift.closed_at)}</small>
                     <small>
-                      {date(latest.shift.closed_at)} ·{" "}
                       {latest.shift.status === "review"
                         ? "Awaiting review"
                         : "Verified"}
@@ -142,15 +157,26 @@ export function OverviewStock({
                     <dt>Closing dip</dt>
                     <dd>{litres(reading.actual)}</dd>
                   </div>
-                  <div>
+                  <div
+                    className="overview-stock-variance"
+                    data-difference={
+                      variance != null &&
+                      Number.isFinite(variance) &&
+                      variance !== 0
+                    }
+                  >
                     <dt>Variance</dt>
-                    <dd>{variance == null ? "—" : litres(variance)}</dd>
+                    <dd>
+                      {variance == null
+                        ? "—"
+                        : `${variance > 0 ? "+" : ""}${litres(variance)}`}
+                    </dd>
                   </div>
                 </dl>
               </>
             ) : (
               <p className="overview-footnote">
-                No closed shift reading for this tank in the loaded register.
+                No closing dip recorded for this tank.
               </p>
             )}
             {attachedNozzles.length > 0 && (

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Delivery, Station } from "@/lib/types";
-import { DELIVERY_STAGES, deliveryStageLabel } from "@/lib/delivery-stages";
+import { deliveryStageLabel } from "@/lib/delivery-stages";
 import { number } from "@/lib/utils";
 import { ArrowRight, ArrowUpRight, MapPin } from "./icons";
 import { Button } from "./ui/button";
@@ -26,46 +26,46 @@ export function ReceivingFocus({
   const delivery = deliveries[index];
   if (!delivery)
     return <p className="overview-empty">No deliveries to show.</p>;
-  const step = DELIVERY_STAGES.findIndex(
-    ({ status }) => status === delivery.status,
-  );
   const chambers = delivery.chamber_count || delivery.chambers?.length || 0;
   return (
     <div className="receiving-focus">
       <div className="receiving-identity">
         <div>
           <strong>{delivery.vehicle}</strong>
-          <span>
-            {delivery.reference} · {deliveryStageLabel(delivery.status)}
-          </span>
+          <span>{delivery.reference}</span>
         </div>
-        <div className="receiving-controls">
-          <button
-            aria-label="Previous delivery"
-            disabled={index === 0}
-            onClick={() => setSelectedId(deliveries[index - 1].id)}
-          >
-            ←
-          </button>
-          <span>
-            {index + 1} / {deliveries.length}
-          </span>
-          <button
-            aria-label="Next delivery"
-            disabled={index === deliveries.length - 1}
-            onClick={() => setSelectedId(deliveries[index + 1].id)}
-          >
-            →
-          </button>
-        </div>
+        {deliveries.length > 1 && (
+          <div className="receiving-controls">
+            <button
+              aria-label="Previous delivery"
+              disabled={index === 0}
+              onClick={() => setSelectedId(deliveries[index - 1].id)}
+            >
+              ←
+            </button>
+            <span>
+              {index + 1} / {deliveries.length}
+            </span>
+            <button
+              aria-label="Next delivery"
+              disabled={index === deliveries.length - 1}
+              onClick={() => setSelectedId(deliveries[index + 1].id)}
+            >
+              →
+            </button>
+          </div>
+        )}
       </div>
       <div className="receiving-vehicle">
+        <span className="receiving-stage" data-stage={delivery.status}>
+          {deliveryStageLabel(delivery.status)}
+        </span>
         <Image
           src="/illustrations/fuel-tanker-v1.webp"
           width={1100}
           height={550}
           alt=""
-          sizes="(max-width: 560px) 90vw, (max-width: 1100px) 75vw, 40vw"
+          sizes="(max-width: 560px) 82vw, (max-width: 1100px) 65vw, 37vw"
         />
         <div className="receiving-load">
           <small>Invoice volume</small>
@@ -86,21 +86,6 @@ export function ReceivingFocus({
           <strong>{station?.name || "Selected station"}</strong>
         </div>
       </div>
-      <ol
-        className="receiving-progress"
-        aria-label="Delivery verification stage"
-      >
-        {DELIVERY_STAGES.map(({ status, label }, i) => (
-          <li
-            key={status}
-            className={i <= step ? "reached" : ""}
-            aria-current={i === step ? "step" : undefined}
-          >
-            <span aria-hidden="true">{i < step ? "✓" : i + 1}</span>
-            <small>{label}</small>
-          </li>
-        ))}
-      </ol>
       <details className="overview-data receiving-fact-details">
         <summary>Load readings</summary>
         <div className="receiving-facts">

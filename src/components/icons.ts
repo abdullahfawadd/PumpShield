@@ -40,6 +40,7 @@ export { ArrowCounterClockwiseIcon as RotateCcw } from "@phosphor-icons/react/di
 export { MagnifyingGlassIcon as Search } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
 export { SlidersHorizontalIcon as Settings2 } from "@phosphor-icons/react/dist/csr/SlidersHorizontal";
 export { ShieldCheckIcon as ShieldCheck } from "@phosphor-icons/react/dist/csr/ShieldCheck";
+export { SidebarSimpleIcon as Sidebar } from "@phosphor-icons/react/dist/csr/SidebarSimple";
 export { SquareIcon as Square } from "@phosphor-icons/react/dist/csr/Square";
 export { TruckIcon as Truck } from "@phosphor-icons/react/dist/csr/Truck";
 export { WalletIcon as WalletCards } from "@phosphor-icons/react/dist/csr/Wallet";

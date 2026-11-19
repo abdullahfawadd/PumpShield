@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { number } from "@/lib/utils";
 import {
   FUEL_GRADES,
@@ -8,7 +8,7 @@ import {
   type FuelGrade,
 } from "@/lib/fuel-grades";
 import type { buildOverviewModel } from "@/lib/overview-model";
-import { ArrowUpRight } from "./icons";
+import { Activity, ArrowUpRight } from "./icons";
 import { OverviewPaymentMix } from "./overview-payment-mix";
 
 type Model = ReturnType<typeof buildOverviewModel>;
@@ -32,35 +32,23 @@ export function ShiftPerformance({
   const [metric, setMetric] = useState<"liters" | "revenue">("liters");
   const [grade, setGrade] = useState<FuelGrade | "all">("all");
   const [selected, setSelected] = useState("");
-  const chartScroll = useRef<HTMLDivElement>(null);
   const series = grade === "all" ? model.days : model.gradeDays[grade];
   const selectedDay = series.find((d) => d.date === selected) || series.at(-1);
   const max = Math.max(1, ...series.map((d) => d[metric]));
   const total = series.reduce((sum, d) => sum + d[metric], 0);
   const observedShifts = series.reduce((sum, d) => sum + d.shiftIds.length, 0);
   const hidden = privateMode && metric === "revenue";
-  useEffect(() => {
-    const chart = chartScroll.current;
-    if (!chart) return;
-    const showLatest = () => {
-      chart.scrollLeft = chart.scrollWidth;
-    };
-    showLatest();
-    const observer = new ResizeObserver(showLatest);
-    observer.observe(chart);
-    return () => observer.disconnect();
-  }, [days, grade, hidden, series.length]);
   return (
     <section
       className="overview-card overview-performance"
       aria-labelledby="performance-title"
     >
       <div className="overview-section-title">
-        <div>
-          <h2 id="performance-title">Shift sales</h2>
-          <span className="overview-eyebrow">
-            Last {days} days · Pakistan time
+        <div className="overview-panel-heading">
+          <span className="overview-panel-icon">
+            <Activity size={18} aria-hidden="true" />
           </span>
+          <h2 id="performance-title">Shift sales</h2>
         </div>
         <div
           className="overview-segments"
@@ -81,44 +69,42 @@ export function ShiftPerformance({
           </button>
         </div>
       </div>
-      <div className="overview-chart-filter">
-        <label htmlFor="overview-fuel-filter">Fuel grade</label>
-        <select
-          id="overview-fuel-filter"
-          value={grade}
-          onChange={(event) =>
-            setGrade(
-              isFuelGrade(event.target.value) ? event.target.value : "all",
-            )
-          }
-        >
-          <option value="all">All fuels</option>
-          {FUEL_GRADES.map((value) => (
-            <option key={value} value={value}>
-              {fuelGradeName(value)}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="overview-chart-head">
-        <div>
-          <strong>
-            {hidden
-              ? "••••••"
-              : series.length
-                ? number(total, metric === "liters" ? 1 : 0)
-                : "—"}
-            <small>{metric === "liters" ? "L" : "PKR"}</small>
-          </strong>
-          <span>
-            {series.length} recorded {series.length === 1 ? "day" : "days"} ·{" "}
-            {observedShifts} closed {observedShifts === 1 ? "shift" : "shifts"}
-          </span>
+      <div className="overview-sales-controls">
+        {!hidden && series.length > 0 && (
+          <div className="overview-chart-head">
+            <div>
+              <strong>
+                {number(total, metric === "liters" ? 1 : 0)}
+                <small>{metric === "liters" ? "L" : "PKR"}</small>
+              </strong>
+              <span>
+                {observedShifts} closed{" "}
+                {observedShifts === 1 ? "shift" : "shifts"}
+              </span>
+            </div>
+          </div>
+        )}
+        <div className="overview-chart-filter">
+          <label htmlFor="overview-fuel-filter" className="sr-only">
+            Fuel grade
+          </label>
+          <select
+            id="overview-fuel-filter"
+            value={grade}
+            onChange={(event) =>
+              setGrade(
+                isFuelGrade(event.target.value) ? event.target.value : "all",
+              )
+            }
+          >
+            <option value="all">All fuels</option>
+            {FUEL_GRADES.map((value) => (
+              <option key={value} value={value}>
+                {fuelGradeName(value)}
+              </option>
+            ))}
+          </select>
         </div>
-        <span className="overview-chart-legend">
-          <i />
-          {metric === "liters" ? "Dispensed volume" : "Recorded revenue"}
-        </span>
       </div>
       {series.length > 0 && !hidden ? (
         <div className="overview-chart-frame">
@@ -128,15 +114,17 @@ export function ShiftPerformance({
             <span>0</span>
           </div>
           <div
+            key={`${days}:${grade}`}
             className="overview-chart-scroll"
-            ref={chartScroll}
+            dir="rtl"
             role="region"
             aria-label={`${metric === "liters" ? "Litres" : "Revenue"} by recorded day`}
             tabIndex={0}
           >
             <div
               className="overview-bars"
-              style={{ minWidth: `${Math.max(180, series.length * 48)}px` }}
+              dir="ltr"
+              style={{ minWidth: `${Math.max(180, series.length * 50)}px` }}
             >
               <div className="overview-grid-lines" aria-hidden="true">
                 <span />
@@ -169,8 +157,8 @@ export function ShiftPerformance({
           {hidden
             ? "Financial values are hidden in privacy mode."
             : grade === "all"
-              ? "No closed shifts in this period."
-              : "No recorded sales for this fuel grade in this period."}
+              ? `No closed shifts in the last ${days} days.`
+              : "No sales recorded for this fuel grade in this period."}
         </div>
       )}
       {selectedDay && !hidden && (
