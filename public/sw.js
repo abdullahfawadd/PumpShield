@@ -1,6 +1,7 @@
 /* Public offline shell only. Never cache APIs, signed-in pages, evidence or bearer links. */
-const VERSION = "pumpshield-field-v4";
+const VERSION = "pumpshield-field-v5";
 const SHELL = "/offline";
+const RECOVERY = "/offline/recovery";
 const ASSETS = [
   SHELL,
   "/manifest.webmanifest",
@@ -14,7 +15,13 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
       .open(VERSION)
-      .then((cache) => cache.addAll(ASSETS))
+      .then(async (cache) => {
+        await cache.addAll(ASSETS.filter((path) => path !== SHELL));
+        await Promise.all([
+          prepareShell(cache, SHELL),
+          prepareShell(cache, RECOVERY),
+        ]);
+      })
       .then(() => self.skipWaiting()),
   );
 });
@@ -42,28 +49,35 @@ self.addEventListener("fetch", (event) => {
     url.pathname.startsWith("/api/") ||
     url.pathname.startsWith("/gate/") ||
     url.pathname.startsWith("/auth/") ||
-
     url.pathname.startsWith("/app/") ||
     url.pathname === "/login"
   )
     return;
-  if (request.mode === "navigate" && (url.pathname === SHELL || url.pathname === "/app")) {
+  if (
+    request.mode === "navigate" &&
+    [SHELL, RECOVERY, "/app"].includes(url.pathname)
+  ) {
     event.respondWith(
       fetch(request)
         .then((response) => {
           if (
-            url.pathname === SHELL && response.ok &&
+            [SHELL, RECOVERY].includes(url.pathname) &&
+            response.ok &&
             response.headers.get("content-type")?.includes("text/html")
           ) {
             const copy = response.clone();
             event.waitUntil(
-              caches.open(VERSION).then((cache) => cache.put(SHELL, copy)),
+              caches
+                .open(VERSION)
+                .then((cache) => cache.put(url.pathname, copy)),
             );
           }
           return response;
         })
         .catch(async () => {
-          const cached = await caches.match(SHELL);
+          const cached = await caches.match(
+            url.pathname === RECOVERY ? RECOVERY : SHELL,
+          );
           return (
             cached ||
             new Response(
@@ -93,10 +107,31 @@ self.addEventListener("fetch", (event) => {
     );
   }
 });
+async function prepareShell(cache, path) {
+  const response = await fetch(path, { credentials: "omit", cache: "reload" });
+  if (
+    !response.ok ||
+    !response.headers.get("content-type")?.includes("text/html")
+  )
+    throw new Error("Unable to prepare the station shell");
+  const html = await response.clone().text();
+  const resources = [
+    ...new Set(
+      [...html.matchAll(/(?:src|href)="([^"]+)"/g)]
+        .map((match) => new URL(match[1], self.location.origin))
+        .filter(publicAsset)
+        .map((url) => url.href),
+    ),
+  ];
+  await cache.addAll(resources);
+  await cache.put(path, response);
+}
 function publicAsset(url) {
   return (
     url.origin === self.location.origin &&
-    /^\/_next\/static\/[a-zA-Z0-9_./-]+\.(js|css|woff2)$/.test(url.pathname) &&
+    /^\/_next\/static\/[a-zA-Z0-9_./~%-]+\.(js|css|woff2)$/.test(
+      url.pathname,
+    ) &&
     !url.pathname.includes("..")
   );
 }

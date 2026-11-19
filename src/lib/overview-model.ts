@@ -1,4 +1,6 @@
 import type { Delivery, Shift } from "./types";
+import { FUEL_GRADES, type FuelGrade } from "./fuel-grades";
+import { DELIVERY_STAGES } from "./delivery-stages";
 
 export type OverviewPeriod = 7 | 30;
 export type OverviewDay = {
@@ -20,6 +22,55 @@ function dateKey(timestamp: number): string {
   const part = (type: Intl.DateTimeFormatPartTypes) =>
     parts.find((item) => item.type === type)?.value;
   return `${part("year")}-${part("month")}-${part("day")}`;
+}
+
+type TankReading = NonNullable<Shift["result"]>["tanks"][number];
+
+/** Latest posted physical reading for each tank, independently of the report period. */
+export function getLatestTankReconciliation(
+  shifts: Shift[],
+  tankId: string,
+): { shift: Shift; reading: TankReading } | undefined {
+  let latest: { shift: Shift; reading: TankReading } | undefined;
+  let latestTime = -Infinity;
+  for (const shift of shifts) {
+    if (shift.status === "open" || !Array.isArray(shift.result?.tanks))
+      continue;
+    const timestamp = Date.parse(shift.closed_at);
+    if (!Number.isFinite(timestamp) || timestamp <= latestTime) continue;
+    const reading = shift.result.tanks.find(
+      (item) => item?.tank_id === tankId && Number.isFinite(item.actual),
+    );
+    if (reading) {
+      latest = { shift, reading };
+      latestTime = timestamp;
+    }
+  }
+  return latest;
+}
+
+function getShiftSeriesForGrade(shifts: Shift[], grade: FuelGrade) {
+  const days = new Map<string, OverviewDay>();
+  for (const shift of shifts) {
+    if (!Array.isArray(shift.result?.tanks)) continue;
+    const readings = shift.result.tanks.filter((item) => item?.grade === grade);
+    if (
+      !readings.length ||
+      !readings.every(
+        (item) => Number.isFinite(item.sold) && Number.isFinite(item.price),
+      )
+    )
+      continue;
+    const date = dateKey(Date.parse(shift.closed_at));
+    const day = days.get(date) ?? { date, liters: 0, revenue: 0, shiftIds: [] };
+    for (const reading of readings) {
+      day.liters += reading.sold;
+      day.revenue += reading.sold * reading.price;
+    }
+    day.shiftIds.push(shift.id);
+    days.set(date, day);
+  }
+  return [...days.values()].sort((a, b) => a.date.localeCompare(b.date));
 }
 
 /** Read-only analytics over the records already loaded for the selected station.
@@ -91,14 +142,7 @@ export function buildOverviewModel({
     (item) => item.status === "submitted",
   );
   const reviewShifts = shifts.filter((item) => item.status === "review");
-  const stages = (
-    [
-      ["dispatched", "In transit"],
-      ["submitted", "Arrival review"],
-      ["approved", "Ready to receive"],
-      ["decanted", "Received"],
-    ] as const
-  ).map(([status, label]) => ({
+  const stages = DELIVERY_STAGES.map(({ status, label }) => ({
     status,
     label,
     count: deliveries.filter((item) => item.status === status).length,
@@ -107,6 +151,12 @@ export function buildOverviewModel({
     days: [...buckets.values()].sort((a, b) => a.date.localeCompare(b.date)),
     totals,
     periodShifts,
+    gradeDays: Object.fromEntries(
+      FUEL_GRADES.map((grade) => [
+        grade,
+        getShiftSeriesForGrade(periodShifts, grade),
+      ]),
+    ) as Record<FuelGrade, OverviewDay[]>,
     review: {
       deliveries: reviewDeliveries,
       shifts: reviewShifts,
@@ -120,9 +170,9 @@ export function buildOverviewModel({
 }
 
 export const OVERVIEW_WIDGETS = [
-  "deliveries",
-  "performance",
   "stock",
+  "performance",
+  "deliveries",
   "activity",
 ] as const;
 export type OverviewWidget = (typeof OVERVIEW_WIDGETS)[number];

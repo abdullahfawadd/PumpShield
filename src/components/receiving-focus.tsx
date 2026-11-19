@@ -2,13 +2,12 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Delivery, Station } from "@/lib/types";
+import { DELIVERY_STAGES, deliveryStageLabel } from "@/lib/delivery-stages";
 import { number } from "@/lib/utils";
 import { ArrowRight, ArrowUpRight, MapPin } from "./icons";
 import { Button } from "./ui/button";
 import { ContractorTracking } from "./tracking";
 
-const stages = ["dispatched", "submitted", "approved", "decanted"] as const;
-const labels = ["Dispatched", "Arrival audit", "Approved", "Received"];
 export function ReceivingFocus({
   deliveries,
   station,
@@ -26,17 +25,19 @@ export function ReceivingFocus({
   );
   const delivery = deliveries[index];
   if (!delivery)
-    return (
-      <p className="overview-empty">No loaded deliveries in this stage.</p>
-    );
-  const step = stages.indexOf(delivery.status);
+    return <p className="overview-empty">No deliveries to show.</p>;
+  const step = DELIVERY_STAGES.findIndex(
+    ({ status }) => status === delivery.status,
+  );
   const chambers = delivery.chamber_count || delivery.chambers?.length || 0;
   return (
     <div className="receiving-focus">
       <div className="receiving-identity">
         <div>
           <strong>{delivery.vehicle}</strong>
-          <span>{delivery.reference}</span>
+          <span>
+            {delivery.reference} · {deliveryStageLabel(delivery.status)}
+          </span>
         </div>
         <div className="receiving-controls">
           <button
@@ -73,7 +74,6 @@ export function ReceivingFocus({
             <span>L</span>
           </strong>
         </div>
-        <span className="receiving-art-label">Vehicle illustration</span>
       </div>
       <div className="receiving-route">
         <div>
@@ -90,44 +90,44 @@ export function ReceivingFocus({
         className="receiving-progress"
         aria-label="Delivery verification stage"
       >
-        {stages.map((s, i) => (
+        {DELIVERY_STAGES.map(({ status, label }, i) => (
           <li
-            key={s}
+            key={status}
             className={i <= step ? "reached" : ""}
             aria-current={i === step ? "step" : undefined}
           >
-            <span>{i < step ? "✓" : i + 1}</span>
-            <small>
-              {labels[i]}
-              {i === step && <em>Current</em>}
-            </small>
+            <span aria-hidden="true">{i < step ? "✓" : i + 1}</span>
+            <small>{label}</small>
           </li>
         ))}
       </ol>
-      <div className="receiving-facts">
-        <span>
-          <small>Compartments</small>
-          <strong>{chambers || "Not recorded"}</strong>
-        </span>
-        <span>
-          <small>Measured arrival</small>
-          <strong>
-            {delivery.measured == null
-              ? "Not submitted"
-              : `${number(delivery.measured, 1)} L`}
-          </strong>
-        </span>
-        <span>
-          <small>Loading temperature</small>
-          <strong>{number(delivery.loading_temp, 1)} °C</strong>
-        </span>
-      </div>
+      <details className="overview-data receiving-fact-details">
+        <summary>Load readings</summary>
+        <div className="receiving-facts">
+          <span>
+            <small>Compartments</small>
+            <strong>{chambers || "Not recorded"}</strong>
+          </span>
+          <span>
+            <small>Measured arrival</small>
+            <strong>
+              {delivery.measured == null
+                ? "Not submitted"
+                : `${number(delivery.measured, 1)} L`}
+            </strong>
+          </span>
+          <span>
+            <small>Loading temperature</small>
+            <strong>{number(delivery.loading_temp, 1)} °C</strong>
+          </span>
+        </div>
+      </details>
       <div className="receiving-actions">
         <Button
           variant="secondary"
           onClick={() => onOpen("delivery_detail", delivery.id)}
         >
-          View receiving record
+          View delivery
           <ArrowUpRight size={15} />
         </Button>
         <button

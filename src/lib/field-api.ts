@@ -23,8 +23,9 @@ export async function field<T = Record<string, unknown>>(
   try {
     result = await response.json();
   } catch {
-    throw new Error(
+    throw new FieldError(
       "The connection did not return a complete response. The draft was kept.",
+      response.status >= 500 ? response.status : 502,
     );
   }
   if (!response.ok)

@@ -35,16 +35,20 @@ export async function POST(request: Request) {
   if (!user)
     return NextResponse.json({ error: "Sign in required" }, { status: 401 });
   const { data, error } = await db.rpc("field", input.data);
-  if (error)
+  if (error) {
+    const validation = error.code === "P0001" || /^(22|23)/.test(error.code);
     return NextResponse.json(
       {
         error:
           error.code === "P0001"
             ? error.message
-            : "Check the required values and try again",
+            : validation
+              ? "Check the required values and try again"
+              : "Station records are temporarily unavailable",
       },
-      { status: 400 },
+      { status: validation ? 400 : 503 },
     );
+  }
   return NextResponse.json(data, {
     headers: { "Cache-Control": "private, no-store" },
   });

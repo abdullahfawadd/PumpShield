@@ -3,6 +3,7 @@ import type { Delivery, Shift } from "../src/lib/types";
 import {
   buildOverviewModel,
   defaultOverviewLayout,
+  getLatestTankReconciliation,
   moveOverviewWidget,
   parseOverviewLayout,
   setOverviewWidgetVisible,
@@ -39,6 +40,23 @@ const shift = (
 });
 const delivery = (status: Delivery["status"]): Delivery =>
   ({ id: status, status }) as Delivery;
+const tank = (
+  tank_id: string,
+  grade: "MS" | "HOBC",
+  sold: number,
+  actual: number,
+  price = 200,
+) => ({
+  tank_id,
+  name: tank_id,
+  grade,
+  sold,
+  actual,
+  price,
+  delivered: 0,
+  expected: 3000 - sold,
+  variance: actual - (3000 - sold),
+});
 
 describe("station overview observations", () => {
   it("uses Karachi calendar boundaries, includes today, and excludes future observations", () => {
@@ -132,6 +150,59 @@ describe("station overview observations", () => {
     expect(model.totals.revenue).toBe(25000);
     expect(model.periodShifts.map((item) => item.id)).toEqual(["valid"]);
   });
+
+  it("uses the posted tank reading even when the source shift is outside the report period", () => {
+    const source = shift("source", "2026-10-23T06:00:00Z", {
+      tanks: [tank("tank-a", "MS", 250, 2750)],
+    });
+    const records: Shift[] = [
+      shift("unrelated", "2026-11-09T09:00:00Z", {
+        tanks: [tank("tank-b", "HOBC", 90, 2910)],
+      }),
+      shift("malformed", "2026-11-09T10:00:00Z", {
+        tanks: [tank("tank-a", "MS", 50, NaN)],
+      }),
+      { ...shift("open", "2026-11-09T11:00:00Z"), status: "open" },
+      source,
+      shift("older", "2026-10-22T06:00:00Z", {
+        tanks: [tank("tank-a", "MS", 25, 2975)],
+      }),
+    ];
+    expect(
+      buildOverviewModel({ shifts: records, deliveries: [], days: 7, now })
+        .periodShifts,
+    ).not.toContain(source);
+    expect(getLatestTankReconciliation(records, "tank-a")).toEqual({
+      shift: source,
+      reading: source.result?.tanks[0],
+    });
+    expect(getLatestTankReconciliation(records, "unavailable")).toBeUndefined();
+  });
+
+  it("uses per-tank locked prices and preserves a recorded zero for the High Octane filter", () => {
+    const model = buildOverviewModel({
+      now,
+      days: 7,
+      deliveries: [],
+      shifts: [
+        shift("first", "2026-11-08T08:00:00Z", {
+          tanks: [
+            tank("tank-a", "HOBC", 33.5, 2900, 340),
+            tank("tank-b", "MS", 200, 2800),
+          ],
+        }),
+        shift("zero", "2026-11-09T08:00:00Z", {
+          tanks: [tank("tank-a", "HOBC", 0, 2900, 350)],
+        }),
+        shift("missing", "2026-11-09T09:00:00Z"),
+      ],
+    });
+    expect(model.gradeDays.HOBC).toEqual([
+      { date: "2026-11-08", liters: 33.5, revenue: 11390, shiftIds: ["first"] },
+      { date: "2026-11-09", liters: 0, revenue: 0, shiftIds: ["zero"] },
+    ]);
+    expect(model.gradeDays.HSD).toEqual([]);
+  });
 });
 
 describe("overview presentation preferences", () => {
@@ -144,7 +215,7 @@ describe("overview presentation preferences", () => {
     };
     expect(parseOverviewLayout(JSON.stringify(input))).toEqual({
       version: 1,
-      order: ["activity", "stock", "deliveries", "performance"],
+      order: ["activity", "stock", "performance", "deliveries"],
       hidden: ["stock"],
     });
   });
@@ -166,8 +237,8 @@ describe("overview presentation preferences", () => {
     const moved = moveOverviewWidget(initial, "performance", -1);
     expect(moved.order).toEqual([
       "performance",
-      "deliveries",
       "stock",
+      "deliveries",
       "activity",
     ]);
     expect(initial).toEqual(defaultOverviewLayout());

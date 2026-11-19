@@ -6,6 +6,7 @@ export type FieldContext = {
   person: string;
   prepared_at: string;
   expires_at: string;
+  device_clock_offset_ms?: number;
   station: { id: string; name: string };
   shift: { id: string; name: string; opened_at: string; due_at: string } | null;
   nozzles: {

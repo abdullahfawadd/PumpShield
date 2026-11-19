@@ -205,8 +205,8 @@ export async function createReport(data: ReportData) {
       }
       y -= count * 14 + 8;
       page.drawLine({
-        start: { x: 42, y: y + 6 },
-        end: { x: 553, y: y + 6 },
+        start: { x: 42, y: y + 15 },
+        end: { x: 553, y: y + 15 },
         thickness: 0.4,
         color: line,
       });

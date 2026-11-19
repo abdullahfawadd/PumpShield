@@ -39,7 +39,9 @@ export async function POST(request: Request) {
         : error.code === "23505"
           ? "This record already exists. Refresh before retrying."
           : error.code === "23514"
-            ? "A value is outside its allowed range. Check your measurements."
+            ? parsed.data.op === "decant" && error.message.includes('"tanks_check"')
+              ? "The assigned tank has insufficient recorded capacity. Ask the owner to verify its stock and the arrival audit before retrying."
+              : "A value is outside its allowed range. Check your measurements."
             : "Unable to save. Check all required values and try again.";
     return NextResponse.json({ error: safe }, { status: 400 });
   }

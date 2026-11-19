@@ -11,6 +11,7 @@ import { QrScan } from "./qr-scan";
 import { Button } from "./ui/button";
 import { CameraCapture } from "./camera";
 import { Check, Truck, QrCode, LockKeyhole } from "./icons";
+import { isNetworkFailure, useWorkspaceOffline } from "./workspace-offline";
 type VehicleMatch = {
   registration: string;
   account: string;
@@ -28,6 +29,8 @@ export function ParchiForm({
   nozzles: Dashboard["nozzles"];
   onDone: () => void;
 }) {
+  const offline = useWorkspaceOffline();
+  const disconnected = offline?.online === false;
   const now = useClock();
   const [evidence, setEvidence] = useState("");
   const [token, setToken] = useState("");
@@ -39,11 +42,12 @@ export function ParchiForm({
   async function verify(value = token) {
     setError("");
     setMatch(null);
-    setEvidence("");
     setBusy(true);
     try {
       const parsed = parseVehicleCredential(value);
+      if (parsed !== token) setEvidence("");
       setToken(parsed);
+      if (disconnected) return;
       const result = await field<VehicleMatch>("vehicle_lookup", {
         station_id: stationId,
         token: parsed,
@@ -51,7 +55,9 @@ export function ParchiForm({
       setMatch(result);
       setCheckedToken(parsed);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Unable to verify vehicle");
+      if (offline && isNetworkFailure(e)) offline.noteNetworkFailure();
+      else
+        setError(e instanceof Error ? e.message : "Unable to verify vehicle");
     } finally {
       setBusy(false);
     }
@@ -59,7 +65,7 @@ export function ParchiForm({
   const shift = data.shifts.find(
     (s) => s.station_id === stationId && s.status === "open",
   );
-  if (!shift || Date.parse(shift.due_at) <= now)
+  if (!shift || Date.parse(shift.due_at) <= now + (offline?.context?.device_clock_offset_ms || 0))
     return (
       <div role="status" className="notice warning">
         <div>
@@ -122,6 +128,7 @@ export function ParchiForm({
             aria-label="Vehicle pass code"
             value={token}
             onChange={(e) => {
+              if (e.target.value !== token) setEvidence("");
               setToken(e.target.value);
               setError("");
             }}
@@ -133,7 +140,7 @@ export function ParchiForm({
         <Button
           type="button"
           variant="secondary"
-          disabled={busy || !token}
+          disabled={busy || !token || disconnected}
           onClick={() => void verify()}
         >
           {busy ? "Checking…" : "Check vehicle"}
@@ -160,7 +167,7 @@ export function ParchiForm({
           </div>
         </div>
       )}
-      {valid && !eligibleNozzles.length && (
+      {(valid || disconnected) && !eligibleNozzles.length && (
         <p role="alert" className="form-error">
           No nozzle is configured for this vehicle’s fuel grade. Ask the owner
           to check its tank mapping.
@@ -168,22 +175,29 @@ export function ParchiForm({
       )}
       <ActionForm
         op="parchi"
-        base={{ station_id: stationId, request_id: requestId }}
+        base={{
+          station_id: stationId,
+          request_id: requestId,
+          shift_id: shift.id,
+        }}
         onDone={onDone}
         submit="Verify credit & record fuel fill"
         transform={(f) => {
-          if (!valid) throw new Error("Check the vehicle fuel pass first.");
+          if (!valid && !disconnected)
+            throw new Error("Check the vehicle fuel pass first.");
           if (!evidence)
             throw new Error("Capture the final nozzle reading first.");
           return {
             ...Object.fromEntries(f),
-            token: checkedToken,
+            token: valid ? checkedToken : parseVehicleCredential(token),
             evidence_id: evidence,
           };
         }}
       >
         <fieldset
-          disabled={!valid || busy || !eligibleNozzles.length}
+          disabled={
+            (!valid && !disconnected) || busy || !eligibleNozzles.length
+          }
           className="parchi-fields"
         >
           <Select
@@ -206,21 +220,19 @@ export function ParchiForm({
             workspaceId={data.member!.workspace_id}
             value={evidence}
             onCapture={setEvidence}
+            queueField
             label="Capture final nozzle reading"
           />
         </fieldset>
         <div className="parchi-assurance">
           <LockKeyhole size={17} />
           <p>
-            Credit availability, vehicle allowance, fuel grade and the open
-            shift are checked again when you submit. A scanned pass alone does
-            not approve a fill.
+            {disconnected
+              ? "A saved record does not approve credit. Follow your station’s manual approval procedure until PumpShield verifies it."
+              : "PumpShield verifies available credit, fuel grade and the open shift when you submit."}
           </p>
         </div>
       </ActionForm>
-      <a className="offline-flow-link" href="/offline">
-        No connection? Continue on this device to save a draft →
-      </a>
     </div>
   );
 }

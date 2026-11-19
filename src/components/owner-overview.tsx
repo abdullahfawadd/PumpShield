@@ -1,14 +1,8 @@
 "use client";
-import {
-  useCallback,
-  useMemo,
-  useState,
-  useSyncExternalStore,
-  type CSSProperties,
-} from "react";
+import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
 import type { Dashboard, Delivery, Shift, Tank, Station } from "@/lib/types";
 import { date, money, number } from "@/lib/utils";
-import { fuelGradeLabel } from "@/lib/fuel-grades";
+import { useClock } from "@/lib/use-clock";
 import {
   buildOverviewModel,
   defaultOverviewLayout,
@@ -30,11 +24,12 @@ import {
 import { Button } from "./ui/button";
 import { ReceivingFocus } from "./receiving-focus";
 import { ShiftPerformance } from "./overview-performance";
+import { OverviewStock } from "./overview-stock";
 import { Button as AstryxButton } from "@astryxdesign/core/Button";
 
 const widgetNames: Record<OverviewWidget, string> = {
-  performance: "Shift performance",
-  stock: "Tank levels",
+  performance: "Shift sales",
+  stock: "Tank stock",
   deliveries: "Delivery pipeline",
   activity: "Recent activity",
 };
@@ -60,9 +55,9 @@ const eventNames: Record<string, string> = {
   work_item_comment: "Work item note added",
   create_gatepass: "Driver sharing link issued",
   station_position: "Station location updated",
-  offline_parchi: "Offline fill posted",
-  offline_arrival: "Offline arrival audit posted",
-  offline_shift: "Offline shift posted",
+  offline_parchi: "Credit fill posted",
+  offline_arrival: "Arrival audit posted",
+  offline_shift: "Shift close posted",
   accept_invite: "Staff invitation accepted",
   decline_invite: "Staff invitation declined",
   create_workspace: "Workspace created",
@@ -97,10 +92,9 @@ export function OwnerOverview({
   privateMode: boolean;
   loadedAt: number;
   onOpen: (type: string, id?: string) => void;
-  onStock: () => void;
+  onStock: (tankId?: string) => void;
 }) {
   const [days, setDays] = useState<7 | 30>(7);
-  const [inspectedTank, setInspectedTank] = useState("");
   const [stage, setStage] = useState<Delivery["status"] | null>(null);
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [sessionLayout, setSessionLayout] = useState<{
@@ -135,6 +129,10 @@ export function OwnerOverview({
     () => buildOverviewModel({ shifts, deliveries, days, now: loadedAt }),
     [shifts, deliveries, days, loadedAt],
   );
+  const clock = useClock();
+  const currentShift = shifts.find((shift) => shift.status === "open");
+  const dueAt = currentShift ? Date.parse(currentShift.due_at) : NaN;
+  const overdue = dueAt <= clock;
   const active = deliveries.filter((d) => d.status !== "decanted");
   const reviewDeliveries = model.review.deliveries.slice(
     0,
@@ -145,21 +143,34 @@ export function OwnerOverview({
     showAllReviews ? undefined : Math.max(0, 4 - reviewDeliveries.length),
   );
   const listed = stage ? deliveries.filter((d) => d.status === stage) : active;
-  const reference = (id: string) =>
-    data.deliveries.find((r) => r.id === id)?.reference ||
-    data.shifts.find((r) => r.id === id)?.name ||
-    data.accounts.find((r) => r.id === id)?.name ||
-    "";
-  const totalCapacity = tanks.reduce((sum, t) => sum + t.capacity, 0);
-  const totalStock = tanks.reduce((sum, t) => sum + t.stock, 0);
+  const source = (id: string) => {
+    const delivery = data.deliveries.find((record) => record.id === id);
+    if (delivery)
+      return {
+        title: delivery.reference,
+        view:
+          delivery.station_id === station?.id ? "delivery_detail" : undefined,
+      };
+    const shift = data.shifts.find((record) => record.id === id);
+    if (shift)
+      return {
+        title: shift.name,
+        view:
+          shift.station_id === station?.id && shift.status !== "open"
+            ? "shift_detail"
+            : undefined,
+      };
+    const account = data.accounts.find((record) => record.id === id);
+    return { title: account?.name, view: undefined };
+  };
+  const observed = model.periodShifts.length > 0;
   return (
     <div className="overview-studio">
       <div className="overview-toolbar">
         <div className="overview-live">
           <i aria-hidden="true" />
-          Station snapshot{" "}
+          Refreshed{" "}
           <span>
-            ·{" "}
             {new Intl.DateTimeFormat("en-PK", {
               timeZone: "Asia/Karachi",
               hour: "2-digit",
@@ -244,18 +255,62 @@ export function OwnerOverview({
           </details>
         </div>
       </div>
-      <div className="overview-kpis">
+      <section
+        className="overview-current-shift"
+        data-overdue={overdue}
+        aria-labelledby="overview-current-shift-title"
+      >
+        <span className="overview-shift-icon" aria-hidden="true">
+          <Clock3 size={20} />
+        </span>
+        <div>
+          <h2 id="overview-current-shift-title">
+            {currentShift?.name ?? "No open shift"}
+          </h2>
+          {currentShift && (
+            <p>
+              {overdue
+                ? "Overdue · close required"
+                : Number.isFinite(dueAt)
+                  ? `Open · due ${date(currentShift.due_at)}`
+                  : "Open"}
+            </p>
+          )}
+        </div>
+        {station && (
+          <Button
+            size="sm"
+            onClick={() =>
+              onOpen(
+                currentShift ? "close_shift" : "open_shift",
+                currentShift?.id,
+              )
+            }
+          >
+            {currentShift ? "Close shift" : "Open shift"}
+            <ArrowUpRight size={15} />
+          </Button>
+        )}
+      </section>
+      <div
+        className="overview-kpis"
+        aria-label={`Station totals for the last ${days} days`}
+      >
         <div className="overview-kpi overview-kpi-feature">
           <span>
             <Droplets size={18} />
             Fuel dispensed
           </span>
           <strong>
-            {number(model.totals.liters, 1)}
+            {observed ? number(model.totals.liters, 1) : "—"}
             <small>L</small>
           </strong>
           <footer>
-            <span>{model.periodShifts.length} closed shifts</span>
+            <span>
+              {observed
+                ? `${model.periodShifts.length} closed shifts`
+                : "No closed shifts"}
+            </span>
             <span>Last {days} days</span>
           </footer>
         </div>
@@ -265,24 +320,26 @@ export function OwnerOverview({
             Recorded revenue
           </span>
           <strong>
-            {privateMode ? "••••••" : number(model.totals.revenue)}
+            {privateMode
+              ? "••••••"
+              : observed
+                ? number(model.totals.revenue)
+                : "—"}
             <small>PKR</small>
           </strong>
-          <footer>From submitted shift readings</footer>
+          <footer>Last {days} days</footer>
         </div>
         <div className="overview-kpi overview-kpi-review">
           <span>
             <Clock3 size={18} />
-            Awaiting review
+            Ready to receive
           </span>
           <strong>
-            {model.review.count}
-            <small>records</small>
+            {model.stages.find((item) => item.status === "approved")?.count ??
+              0}
+            <small>loads</small>
           </strong>
-          <footer>
-            {model.review.deliveries.length} arrival audits ·{" "}
-            {model.review.shifts.length} shifts
-          </footer>
+          <footer>Approved deliveries</footer>
         </div>
       </div>
       {model.excludedInvalidRecords > 0 && (
@@ -291,21 +348,22 @@ export function OwnerOverview({
           Verify the source records before reporting.
         </p>
       )}
-      <section className="overview-review" aria-labelledby="overview-reviews">
+      <section
+        className="overview-review"
+        data-pending={model.review.count > 0}
+        aria-labelledby="overview-reviews"
+      >
         <div className="overview-section-title">
           <h2 id="overview-reviews">Review queue</h2>
-          <span
-            className={`overview-count ${model.review.count ? "has-reviews" : ""}`}
-          >
-            {model.review.count
-              ? `${model.review.count} pending`
-              : "Up to date"}
-          </span>
+          {model.review.count > 0 && (
+            <span className="overview-count has-reviews">
+              {model.review.count} pending
+            </span>
+          )}
         </div>
         {!model.review.count ? (
           <p className="overview-clear">
-            <Check size={18} />
-            All arrival audits and submitted shifts have been reviewed.
+            <Check size={18} /> No pending reviews.
           </p>
         ) : (
           <div className="overview-review-list">
@@ -323,11 +381,9 @@ export function OwnerOverview({
                   <strong>
                     {d.vehicle} · {d.reference}
                   </strong>
-                  <span>
-                    {d.shortage == null
-                      ? "Measurements and evidence ready"
-                      : `${number(d.shortage, 1)} L unexplained shortage`}
-                  </span>
+                  {d.shortage != null && d.shortage > 0 && (
+                    <span>{number(d.shortage, 1)} L unexplained shortage</span>
+                  )}
                 </span>
                 <ArrowUpRight size={18} />
               </button>
@@ -345,9 +401,8 @@ export function OwnerOverview({
                   <small>Shift reconciliation</small>
                   <strong>{s.name}</strong>
                   <span>
-                    {s.result
-                      ? `${privateMode ? "••••••" : money(s.result.cash_variance)} cash variance`
-                      : "Readings and evidence ready"}
+                    {s.result &&
+                      `${privateMode ? "••••••" : money(s.result.cash_variance)} cash variance`}
                   </span>
                 </span>
                 <ArrowUpRight size={18} />
@@ -383,112 +438,14 @@ export function OwnerOverview({
               );
             if (id === "stock")
               return (
-                <section
-                  className="overview-card overview-stock"
+                <OverviewStock
                   key={id}
-                  aria-labelledby="overview-stock-title"
-                >
-                  <div className="overview-section-title">
-                    <div>
-                      <span className="overview-eyebrow">Inventory</span>
-                      <h2 id="overview-stock-title">Tank levels</h2>
-                    </div>
-                    <Button variant="ghost" size="sm" onClick={onStock}>
-                      View stock <ArrowUpRight size={15} />
-                    </Button>
-                  </div>
-                  <div className="overview-stock-total">
-                    <strong>
-                      {number(totalStock, 1)}
-                      <small>L</small>
-                    </strong>
-                    <span>of {number(totalCapacity)} L capacity</span>
-                  </div>
-                  <div className="overview-tanks">
-                    {tanks.map((t) => {
-                      const percent =
-                        t.capacity > 0
-                          ? Math.max(
-                              0,
-                              Math.min(100, (t.stock / t.capacity) * 100),
-                            )
-                          : 0;
-                      return (
-                        <div className="overview-tank" key={t.id}>
-                          <button
-                            className="overview-tank-vessel"
-                            style={{ "--fill": `${percent}%` } as CSSProperties}
-                            aria-label={`Inspect ${t.name}: ${Math.round(percent)} percent recorded stock`}
-                            aria-pressed={inspectedTank === t.id}
-                            onClick={() =>
-                              setInspectedTank(
-                                inspectedTank === t.id ? "" : t.id,
-                              )
-                            }
-                          >
-                            <div />
-                            <span>{Math.round(percent)}%</span>
-                          </button>
-                          <div>
-                            <span className="overview-grade">
-                              {fuelGradeLabel(t.grade)}
-                            </span>
-                            <strong>{t.name}</strong>
-                            <span className="overview-tank-value">
-                              {number(t.stock, 1)}{" "}
-                              <small>/ {number(t.capacity)} L</small>
-                            </span>
-                            <meter
-                              min={0}
-                              max={Math.max(t.capacity, 1)}
-                              value={Math.max(0, Math.min(t.stock, t.capacity))}
-                              aria-label={`${t.name} recorded stock`}
-                            />
-                            <time>Updated {date(t.updated_at)}</time>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  {inspectedTank &&
-                    tanks.some((t) => t.id === inspectedTank) && (
-                      <div
-                        className="overview-nozzle-detail"
-                        aria-live="polite"
-                      >
-                        <h3>
-                          {tanks.find((t) => t.id === inspectedTank)?.name} ·
-                          connected nozzles
-                        </h3>
-                        <div>
-                          {data.nozzles
-                            .filter((n) => n.tank_id === inspectedTank)
-                            .map((n) => (
-                              <span key={n.id}>
-                                <strong>{n.name}</strong>
-                                <small>Saved totalizer</small>
-                                <b>{number(n.totalizer, 1)} L</b>
-                              </span>
-                            ))}
-                        </div>
-                        {!data.nozzles.some(
-                          (n) => n.tank_id === inspectedTank,
-                        ) && <p>No nozzles configured for this tank.</p>}
-                        <p>
-                          Saved counters, without a live hardware connection.
-                        </p>
-                      </div>
-                    )}
-                  {!tanks.length && (
-                    <p className="muted">
-                      No tanks configured for this station.
-                    </p>
-                  )}
-                  <p className="overview-footnote">
-                    Recorded ledger stock. Confirm physical levels with a
-                    verified dip.
-                  </p>
-                </section>
+                  tanks={tanks}
+                  shifts={shifts}
+                  nozzles={data.nozzles}
+                  onOpenShift={(shiftId) => onOpen("shift_detail", shiftId)}
+                  onStock={onStock}
+                />
               );
             if (id === "deliveries")
               return (
@@ -509,7 +466,7 @@ export function OwnerOverview({
                     role="group"
                     aria-label="Filter deliveries by stage"
                   >
-                    {model.stages.map((s, i) => (
+                    {model.stages.map((s) => (
                       <button
                         key={s.status}
                         aria-pressed={stage === s.status}
@@ -518,9 +475,7 @@ export function OwnerOverview({
                         }
                       >
                         <span className="overview-stage-line" />
-                        <small>
-                          {String(i + 1).padStart(2, "0")} · {s.label}
-                        </small>
+                        <small>{s.label}</small>
                         <strong>{s.count}</strong>
                       </button>
                     ))}
@@ -530,51 +485,49 @@ export function OwnerOverview({
                     station={station}
                     onOpen={onOpen}
                   />
-                  <p className="overview-footnote">
-                    Stage counts cover the loaded delivery register.
-                  </p>
                 </section>
               );
             return (
-              <section
-                className="overview-card overview-activity"
-                key={id}
-                aria-labelledby="overview-activity-title"
-              >
-                <div className="overview-section-title">
-                  <div>
-                    <span className="overview-eyebrow">Audit log</span>
-                    <h2 id="overview-activity-title">Workspace activity</h2>
-                  </div>
-                  <Clock3 size={19} />
-                </div>
+              <details className="overview-card overview-activity" key={id}>
+                <summary>Workspace activity</summary>
                 <ol>
-                  {data.events.slice(0, 5).map((e) => (
-                    <li key={e.id}>
-                      <span className="overview-event-dot" aria-hidden="true" />
-                      <div>
-                        <strong>
-                          {eventNames[e.action] || "Station record updated"}
-                        </strong>
-                        {reference(e.subject_id) && (
-                          <span>{reference(e.subject_id)}</span>
-                        )}
-                        <time>{date(e.created_at)}</time>
-                      </div>
-                    </li>
-                  ))}
+                  {data.events.slice(0, 5).map((e) => {
+                    const record = source(e.subject_id);
+                    const view = record.view;
+                    return (
+                      <li key={e.id}>
+                        <span
+                          className="overview-event-dot"
+                          aria-hidden="true"
+                        />
+                        <div>
+                          <strong>
+                            {eventNames[e.action] || "Station record updated"}
+                          </strong>
+                          {record.title &&
+                            (view ? (
+                              <button
+                                className="overview-activity-record"
+                                onClick={() => onOpen(view, e.subject_id)}
+                              >
+                                {record.title} <ArrowUpRight size={13} />
+                              </button>
+                            ) : (
+                              <span>{record.title}</span>
+                            ))}
+                          <time>{date(e.created_at)}</time>
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ol>
                 {!data.events.length && (
                   <p className="overview-empty">No saved activity yet.</p>
                 )}
-              </section>
+              </details>
             );
           })}
       </div>
-      <p className="overview-footnote">
-        Recent loaded records · dates in Pakistan time · review records before
-        approval
-      </p>
     </div>
   );
 }

@@ -25,12 +25,10 @@ import {
   Menu,
   Plus,
   RefreshCw,
-  Search,
   Settings2,
   ShieldCheck,
   Truck,
   WalletCards,
-  X,
   Check,
   Activity,
   Clock3,
@@ -49,8 +47,17 @@ import { StationOperations } from "./station-operations";
 import { DocumentCentre } from "./document-centre";
 import { DeliveryBoard } from "./delivery-board";
 import { OwnerOverview } from "./owner-overview";
+import { getLatestTankReconciliation } from "@/lib/overview-model";
+import { useClock } from "@/lib/use-clock";
 import { fuelGradeLabel } from "@/lib/fuel-grades";
 import { ShiftRegister } from "./shift-register";
+import { FirstStationSetup } from "./workspace-onboarding";
+import {
+  lockWorkspaceDevice,
+  useWorkspaceOffline,
+  WorkspaceOfflineStation,
+  WorkspaceSyncStatus,
+} from "./workspace-offline";
 import {
   readWorkspaceLocation,
   subscribeWorkspaceLocation,
@@ -95,10 +102,9 @@ const title: Record<Tab, string> = {
 const subtitles: Record<Tab, string> = {
   overview: "Reviews, stock and current station activity.",
   deliveries: "Arrival audits, approvals and received stock.",
-  shifts: "Meter readings, physical stock, and cash. Reconciled together.",
-  credit:
-    "Vehicle-authorized fuel, controlled limits, and an accountable ledger.",
-  stock: "Calibrated tank readings and a clear record of fuel prices.",
+  shifts: "Meter readings, tank dips and cash reconciliation.",
+  credit: "Manage corporate credit and vehicle passes.",
+  stock: "Recorded tank levels and verified fuel prices.",
   settings: "Location, equipment and staff access.",
   operations: "Cases, fuel requests, maintenance and handovers.",
   documents: "Recent saved claims, credit fills and account statements.",
@@ -196,6 +202,8 @@ export function Workspace({
   email: string;
 }) {
   const router = useRouter();
+  const device = useWorkspaceOffline();
+  const connectionLost = device?.online === false;
   const [data, setData] = useState(() => normalize(initial));
   const locationSearch = useSyncExternalStore(
     subscribeWorkspaceLocation,
@@ -238,6 +246,13 @@ export function Workspace({
     updateWorkspaceLocation({ station: id, record: null, id: null, q: null });
   };
   const [mobile, setMobile] = useState(false);
+  const [focusedTank, setFocusedTank] = useState<string>();
+  useEffect(() => {
+    if (tab !== "stock" || !focusedTank) return;
+    const tank = document.getElementById(`tank-${focusedTank}`);
+    tank?.focus({ preventScroll: true });
+    tank?.scrollIntoView({ block: "nearest" });
+  }, [tab, focusedTank]);
   const [privateMode, setPrivateMode] = useState(false);
   const search = location.query;
   const setSearch = (q: string) =>
@@ -292,6 +307,8 @@ export function Workspace({
   const accounts = data.accounts.filter((a) => a.station_id === stationId);
   const parchis = data.parchis.filter((p) => p.station_id === stationId);
   const currentShift = shifts.find((s) => s.status === "open");
+  const clock = useClock();
+  const shiftOverdue = currentShift && Date.parse(currentShift.due_at) <= clock;
   const pending =
     deliveries.filter((d) => d.status === "submitted").length +
     shifts.filter((s) => s.status === "review").length;
@@ -372,6 +389,7 @@ export function Workspace({
         : null;
     channel?.postMessage("lock");
     channel?.close();
+    await lockWorkspaceDevice();
     await browserDb().auth.signOut();
     router.replace("/login");
     router.refresh();
@@ -421,95 +439,118 @@ export function Workspace({
         </div>
       </main>
     );
+  const workspaceNavigation = (
+    <>
+      <div className="sidebar-brand">
+        <Brand />
+      </div>
+      <div className="workspace-badge">
+        <span className="workspace-avatar">{data.workspace.slice(0, 1)}</span>
+        <div>
+          <strong>{data.workspace}</strong>
+          <small>{owner ? "Owner workspace" : "Munshi workspace"}</small>
+        </div>
+        <LockKeyhole size={14} />
+      </div>
+      <span className="nav-caption">WORKSPACE</span>
+      <nav aria-label="Workspace modules">
+        {navigation
+          .filter(
+            (n) =>
+              owner ||
+              ["overview", "deliveries", "shifts", "credit", "operations"].includes(n.id),
+          )
+          .map((n) => (
+            <button
+              key={n.id}
+              className={tab === n.id ? "nav-item active" : "nav-item"}
+              aria-current={tab === n.id ? "page" : undefined}
+              onClick={() => {
+                setTab(n.id);
+                setSearch("");
+                setMobile(false);
+              }}
+            >
+              <n.icon size={19} />
+              <span>{!owner && n.id === "overview" ? "Home" : n.label}</span>
+              {n.id === "shifts" && pending > 0 && (
+                <span className="nav-count">{pending}</span>
+              )}
+            </button>
+          ))}
+      </nav>
+      <div className="sidebar-bottom">
+        <button
+          className="nav-item"
+          onClick={() => {
+            setMobile(false);
+            setHelp(true);
+          }}
+        >
+          <CircleHelp size={18} /> Help & getting started
+          <ArrowUpRight size={14} />
+        </button>
+        {owner && (
+          <button
+            className={`nav-item ${tab === "settings" ? "active" : ""}`}
+            aria-current={tab === "settings" ? "page" : undefined}
+            onClick={() => {
+              setTab("settings");
+              setMobile(false);
+            }}
+          >
+            <Settings2 size={18} /> Settings
+          </button>
+        )}
+        <div className="profile">
+          <span className="profile-avatar">
+            {data.member.name.slice(0, 2).toUpperCase()}
+          </span>
+          <span>
+            <strong>{data.member.name}</strong>
+            <small>{owner ? "Station owner" : "Munshi / Supervisor"}</small>
+          </span>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => void logout()}
+            aria-label="Sign out"
+            title="Sign out"
+          >
+            <LogOut size={17} />
+          </Button>
+        </div>
+      </div>
+    </>
+  );
+  if (owner && !station)
+    return (
+      <FirstStationSetup
+        onSignOut={logout}
+        onDone={() => {
+          setTab("settings");
+          void refresh();
+        }}
+      />
+    );
   return (
     <div
       data-theme="light"
       className={`app-shell ${privateMode ? "privacy-on" : ""}`}
     >
-      <aside className={`sidebar ${mobile ? "sidebar-open" : ""}`}>
-        <div className="sidebar-brand">
-          <Brand />
-          <button
-            className="mobile-only icon-button"
-            onClick={() => setMobile(false)}
-            aria-label="Close navigation"
-          >
-            <X size={20} />
-          </button>
-        </div>
-        <div className="workspace-badge">
-          <span className="workspace-avatar">{data.workspace.slice(0, 1)}</span>
-          <div>
-            <strong>{data.workspace}</strong>
-            <small>{owner ? "Owner workspace" : "Munshi terminal"}</small>
-          </div>
-          <LockKeyhole size={14} />
-        </div>
-        <span className="nav-caption">WORKSPACE</span>
-        <nav>
-          {navigation
-            .filter(
-              (n) =>
-                owner ||
-                ["deliveries", "shifts", "credit", "operations"].includes(n.id),
-            )
-            .map((n) => (
-              <button
-                key={n.id}
-                className={tab === n.id ? "nav-item active" : "nav-item"}
-                onClick={() => {
-                  setTab(n.id);
-                  setSearch("");
-                  setMobile(false);
-                }}
-              >
-                <n.icon size={19} />
-                <span>{n.label}</span>
-                {n.id === "shifts" && pending > 0 && (
-                  <span className="nav-count">{pending}</span>
-                )}
-              </button>
-            ))}
-        </nav>
-        <div className="sidebar-bottom">
-          <button className="nav-item" onClick={() => setHelp(true)}>
-            <CircleHelp size={18} /> Help & getting started
-            <ArrowUpRight size={14} />
-          </button>
-          <a className="nav-item" href="/offline">
-            <Download size={18} />
-            <span>Device & sync</span>
-          </a>
-          {owner && (
-            <button
-              className={`nav-item ${tab === "settings" ? "active" : ""}`}
-              onClick={() => {
-                setTab("settings");
-                setMobile(false);
-              }}
-            >
-              <Settings2 size={18} /> Settings
-            </button>
-          )}
-          <button className="profile" onClick={logout} title="Sign out">
-            <span className="profile-avatar">
-              {data.member.name.slice(0, 2).toUpperCase()}
-            </span>
-            <span>
-              <strong>{data.member.name}</strong>
-              <small>{owner ? "Station owner" : "Munshi / Supervisor"}</small>
-            </span>
-            <LogOut size={16} />
-          </button>
-        </div>
-      </aside>
-      {mobile && (
-        <button
-          className="mobile-backdrop"
-          aria-label="Close navigation"
-          onClick={() => setMobile(false)}
-        />
-      )}
+      <WorkspaceOfflineStation
+        stationId={stationId}
+        onSynced={() => void refresh()}
+      />
+      <aside className="sidebar">{workspaceNavigation}</aside>
+      <Dialog
+        open={mobile}
+        onOpenChange={setMobile}
+        title="Workspace navigation"
+        variant="navigation"
+      >
+        {workspaceNavigation}
+      </Dialog>
       <div className="app-main">
         <header className="topbar">
           <div className="topbar-start">
@@ -517,6 +558,8 @@ export function Workspace({
               className="mobile-only icon-button"
               onClick={() => setMobile(true)}
               aria-label="Open navigation"
+              aria-expanded={mobile}
+              aria-haspopup="dialog"
             >
               <Menu size={22} />
             </button>
@@ -525,24 +568,26 @@ export function Workspace({
               <strong>
                 {owner || tab !== "overview"
                   ? navigation.find((n) => n.id === tab)?.label || "Settings"
-                  : "Field terminal"}
+                  : "Station tasks"}
               </strong>
             </span>
           </div>
           <div className="topbar-actions">
-            <button
-              className={`sync-indicator ${syncError ? "sync-failed" : ""}`}
-              onClick={() => void refresh()}
-              title="Refresh saved records"
-            >
-              <span className="status-dot" />
-              {syncError
-                ? "Refresh failed"
-                : syncing
-                  ? "Syncing…"
-                  : "Up to date"}
-              <RefreshCw size={12} className={syncing ? "spin" : ""} />
-            </button>
+            {!connectionLost && (
+              <button
+                className={`sync-indicator ${syncError ? "sync-failed" : ""}`}
+                onClick={() => void refresh()}
+                title="Refresh saved records"
+              >
+                <span className="status-dot" />
+                {syncError
+                  ? "Refresh failed"
+                  : syncing
+                    ? "Syncing…"
+                    : "Records synced"}
+                <RefreshCw size={12} className={syncing ? "spin" : ""} />
+              </button>
+            )}
             {owner && (
               <span className="privacy-control" title="Hide financial amounts">
                 {privateMode ? <EyeOff size={17} /> : <Eye size={17} />}
@@ -615,18 +660,11 @@ export function Workspace({
           </div>
           <section className="page-heading">
             <div>
-              <span className="eyebrow">
-                {owner
-                  ? tab === "overview"
-                    ? `YOUR OPERATIONS, AT A GLANCE`
-                    : `PUMPSHIELD / ${tab.toUpperCase()}`
-                  : "FIELD TERMINAL"}
-              </span>
               <h1>
                 {owner
                   ? title[tab]
                   : tab === "overview"
-                    ? "Field terminal"
+                    ? "Station tasks"
                     : tab === "credit"
                       ? "Digital parchi"
                       : title[tab]}
@@ -644,7 +682,7 @@ export function Workspace({
               )}
             </div>
             <div className="heading-actions">
-              {owner && ["overview", "credit", "shifts"].includes(tab) && (
+              {owner && ["credit", "shifts"].includes(tab) && (
                 <Button variant="secondary" onClick={exportData}>
                   <Download size={15} />
                   {tab === "credit"
@@ -652,9 +690,14 @@ export function Workspace({
                     : "Export recent shifts"}
                 </Button>
               )}
-              {!["operations", "documents"].includes(tab) &&
+              {!["operations", "documents", "overview"].includes(tab) &&
                 (owner || tab !== "deliveries") && (
                   <Button
+                    disabled={
+                      !owner &&
+                      tab === "credit" &&
+                      (!currentShift || shiftOverdue)
+                    }
                     onClick={() =>
                       open(
                         tab === "deliveries"
@@ -692,10 +735,36 @@ export function Workspace({
                 )}
             </div>
           </section>
-          {syncError && (
-            <div className="notice warning">
-              <Activity size={18} /> Connection interrupted. Displaying the last
-              loaded records. Submissions require a connection.
+          <WorkspaceSyncStatus />
+          {syncError && !connectionLost && (
+            <div className="notice warning" role="status">
+              <Activity size={18} /> Couldn’t refresh. Showing the last loaded
+              records.
+            </div>
+          )}
+          {!owner && tab === "credit" && (!currentShift || shiftOverdue) && (
+            <div className="field-readiness notice warning">
+              <div>
+                <strong>
+                  {shiftOverdue ? "Shift cutoff reached" : "No shift open"}
+                </strong>
+                <p>
+                  {shiftOverdue
+                    ? "Close the overdue shift before recording another fill."
+                    : "Open a shift to lock fuel prices before recording a fill."}
+                </p>
+              </div>
+              <Button
+                variant="secondary"
+                onClick={() =>
+                  open(
+                    shiftOverdue ? "close_shift" : "open_shift",
+                    currentShift?.id,
+                  )
+                }
+              >
+                {shiftOverdue ? "Close shift" : "Open shift"}
+              </Button>
             </div>
           )}
           {!owner && tab === "overview" && (
@@ -729,7 +798,7 @@ export function Workspace({
                   <ArrowUpRight size={17} />
                 </span>
               </button>
-              <button onClick={() => open("parchi")}>
+              <button onClick={() => setTab("credit")}>
                 <WalletCards size={26} />
                 <strong>Digital parchi</strong>
                 <span>
@@ -750,6 +819,7 @@ export function Workspace({
               onWorkKindChange={(kind) =>
                 updateWorkspaceLocation({ work: kind }, true)
               }
+              onOpenDelivery={(id) => open("delivery_detail", id)}
             />
           )}
           {owner && tab === "documents" && (
@@ -766,48 +836,31 @@ export function Workspace({
               privateMode={privateMode}
               loadedAt={now}
               onOpen={open}
-              onStock={() => setTab("stock")}
+              onStock={(tankId) => {
+                setFocusedTank(tankId);
+                setTab("stock");
+              }}
             />
           )}
           {(tab === "deliveries" || (!owner && tab === "overview")) && (
-            <>
-              <div className="list-toolbar">
-                <div className="tab-pills">
-                  <span className="selected">
-                    All deliveries <b>{deliveries.length}</b>
-                  </span>
-                  <span>
-                    {deliveries.filter((d) => d.status === "submitted").length}{" "}
-                    awaiting approval
-                  </span>
-                </div>
-                <div className="search-input">
-                  <Search size={16} />
-                  <input
-                    placeholder="Search vehicle or reference…"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    aria-label="Search deliveries"
-                  />
-                </div>
-              </div>
-              <DeliveryBoard
-                deliveries={deliveries.filter((d) =>
-                  `${d.vehicle} ${d.reference}`
-                    .toLowerCase()
-                    .includes(search.toLowerCase()),
-                )}
-                owner={owner}
-                onOpen={(id) => open("delivery_detail", id)}
-              />
-            </>
+            <DeliveryBoard
+              deliveries={deliveries.filter((d) =>
+                `${d.vehicle} ${d.reference}`
+                  .toLowerCase()
+                  .includes(search.toLowerCase()),
+              )}
+              owner={owner}
+              onOpen={(id) => open("delivery_detail", id)}
+              search={search}
+              onSearchChange={setSearch}
+            />
           )}
           {tab === "shifts" && (
             <>
               <div className="stats-grid three">
                 <Stat
                   label="Current shift"
-                  value={currentShift ? "Open" : "—"}
+                  value={shiftOverdue ? "Overdue" : currentShift ? "Open" : "—"}
                   detail={
                     currentShift
                       ? `Cutoff ${date(currentShift.due_at)}`
@@ -818,7 +871,7 @@ export function Workspace({
                 <Stat
                   label="Nozzles configured"
                   value={String(nozzles.length)}
-                  detail="Mapped to their source tanks"
+                  detail="Mapped to tanks"
                   icon={Fuel}
                 />
                 <Stat
@@ -828,12 +881,12 @@ export function Workspace({
                       ? String(
                           shifts.filter((s) => s.status === "review").length,
                         )
-                      : "Locked"
+                      : "—"
                   }
                   detail={
                     owner
                       ? "Owner verification required"
-                      : "Readings cannot change after submission"
+                      : "Submitted readings are locked"
                   }
                   icon={LockKeyhole}
                 />
@@ -1050,41 +1103,73 @@ export function Workspace({
               </div>
               {tanks.length ? (
                 <div className="stock-grid">
-                  {tanks.map((t) => (
-                    <section key={t.id} className="panel stock-card">
-                      <div className="panel-heading">
-                        <div>
-                          <h2>{t.name}</h2>
-                          <p>{fuelGradeLabel(t.grade)}</p>
+                  {tanks.map((t) => {
+                    const reconciliation = getLatestTankReconciliation(
+                      shifts,
+                      t.id,
+                    );
+                    return (
+                      <section
+                        key={t.id}
+                        id={`tank-${t.id}`}
+                        tabIndex={-1}
+                        className="panel stock-card"
+                      >
+                        <div className="panel-heading">
+                          <div>
+                            <h2>{t.name}</h2>
+                            <p>{fuelGradeLabel(t.grade)}</p>
+                          </div>
                         </div>
-                        <span className="subtle-pill">{t.grade}</span>
-                      </div>
-                      <div className="stock-visual">
-                        <meter
-                          className="stock-level"
-                          min={0}
-                          max={t.capacity}
-                          value={Math.max(0, Math.min(t.stock, t.capacity))}
-                          aria-label={`${t.name} recorded stock`}
-                        />
-                        <div className="stock-readout">
-                          <span>Recorded stock</span>
-                          <strong>
-                            {number(t.stock, 1)}
-                            <small> L</small>
-                          </strong>
-                          <span>of {number(t.capacity)} L capacity</span>
-                          <hr />
-                          <b>{number(t.capacity - t.stock, 1)} L available</b>
-                          <small>Ullage capacity</small>
+                        <div className="stock-visual">
+                          <meter
+                            className="stock-level"
+                            min={0}
+                            max={t.capacity}
+                            value={Math.max(0, Math.min(t.stock, t.capacity))}
+                            aria-label={`${t.name} recorded stock`}
+                          />
+                          <div className="stock-readout">
+                            <span>Recorded stock</span>
+                            <strong>
+                              {number(t.stock, 1)}
+                              <small> L</small>
+                            </strong>
+                            <span>of {number(t.capacity)} L capacity</span>
+                            <hr />
+                            <b>{number(t.capacity - t.stock, 1)} L available</b>
+                          </div>
                         </div>
-                      </div>
-                      <div className="stock-card-footer">
-                        <Clock3 size={13} />
-                        Last updated {date(t.updated_at)}
-                      </div>
-                    </section>
-                  ))}
+                        <div className="stock-card-footer">
+                          <Clock3 size={13} />
+                          Last updated {date(t.updated_at)}
+                        </div>
+                        {reconciliation && (
+                          <div className="stock-source">
+                            <div>
+                              <span>Last reconciled shift</span>
+                              <strong>{reconciliation.shift.name}</strong>
+                              <small>
+                                {number(reconciliation.reading.sold, 1)} L
+                                dispensed ·{" "}
+                                {number(reconciliation.reading.actual, 1)} L
+                                measured
+                              </small>
+                            </div>
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              onClick={() =>
+                                open("shift_detail", reconciliation.shift.id)
+                              }
+                            >
+                              View reconciliation <ArrowUpRight size={15} />
+                            </Button>
+                          </div>
+                        )}
+                      </section>
+                    );
+                  })}
                 </div>
               ) : (
                 <section className="panel">
@@ -1170,11 +1255,13 @@ export function Workspace({
             </>
           )}
           {owner && tab === "settings" && station && (
-            <StationLocation
-              key={station.id}
-              station={station}
-              onSaved={() => void refresh()}
-            />
+            <div id="station-location" tabIndex={-1}>
+              <StationLocation
+                key={station.id}
+                station={station}
+                onSaved={() => void refresh()}
+              />
+            </div>
           )}
           {owner && tab === "settings" && (
             <>
@@ -1183,32 +1270,42 @@ export function Workspace({
                   <div className="panel-heading">
                     <div>
                       <h2>Station setup</h2>
-                      <p>A solid foundation for accurate records.</p>
+                      <p>Configure your station before opening a shift.</p>
                     </div>
                     <Settings2 size={20} />
                   </div>
                   <div className="setup-list">
                     {[
                       {
-                        label: "Add your station",
+                        label: station
+                          ? "Station configured"
+                          : "Add your station",
                         desc: "Station name, OMC, and city",
                         done: !!station,
                         action: "station",
                       },
                       {
-                        label: "Configure underground tanks",
+                        label: tanks.length
+                          ? "Review underground tanks"
+                          : "Configure underground tanks",
                         desc: "Capacity, opening dip, and certified chart",
                         done: !!tanks.length,
                         action: "tank",
                       },
                       {
-                        label: "Map your nozzles",
+                        label: nozzles.length
+                          ? "Review nozzle mapping"
+                          : "Map your nozzles",
                         desc: "Source tank and opening totalizer",
                         done: !!nozzles.length,
                         action: "nozzle",
                       },
                       {
-                        label: "Record current fuel prices",
+                        label: data.prices.some(
+                          (p) => p.station_id === stationId,
+                        )
+                          ? "Review fuel prices"
+                          : "Record current fuel prices",
                         desc: "Verified rates and thermal coefficients",
                         done: data.prices.some(
                           (p) => p.station_id === stationId,
@@ -1227,7 +1324,22 @@ export function Workspace({
                     ].map((step, i) => (
                       <button
                         key={step.action}
-                        onClick={() => open(step.action)}
+                        onClick={() => {
+                          if (
+                            step.done &&
+                            ["tank", "price"].includes(step.action)
+                          )
+                            setTab("stock");
+                          else if (step.done && step.action !== "invite")
+                            document
+                              .getElementById(
+                                step.action === "station"
+                                  ? "station-location"
+                                  : "nozzle-mapping",
+                              )
+                              ?.focus();
+                          else open(step.action);
+                        }}
                       >
                         <span
                           className={`setup-number ${step.done ? "done" : ""}`}
@@ -1247,7 +1359,7 @@ export function Workspace({
                     ))}
                   </div>
                 </section>
-                <section className="panel">
+                <section className="panel" id="nozzle-mapping" tabIndex={-1}>
                   <div className="panel-heading">
                     <div>
                       <h2>Nozzle mapping</h2>
@@ -1256,12 +1368,19 @@ export function Workspace({
                     <Button
                       variant="secondary"
                       size="sm"
+                      disabled={!!currentShift}
                       onClick={() => open("nozzle")}
                     >
                       <Plus size={14} />
                       Add
                     </Button>
                   </div>
+                  {currentShift && (
+                    <p className="notice warning">
+                      Close the current shift before adding or changing
+                      equipment.
+                    </p>
+                  )}
                   {nozzles.length ? (
                     <div className="mapping-list">
                       {nozzles.map((n) => (
@@ -1437,45 +1556,69 @@ export function Workspace({
           data={data}
           stationId={stationId}
           privateMode={privateMode}
-          onClose={() => setModal(null)}
+          onClose={() =>
+            setModal(
+              modal.type === "vehicle" && modal.id
+                ? { type: "account_detail", id: modal.id }
+                : null,
+            )
+          }
           onDone={() => {
-            setModal(null);
+            setModal(
+              modal.type === "vehicle" && modal.id
+                ? { type: "account_detail", id: modal.id }
+                : null,
+            );
             void refresh();
           }}
           onNavigate={setModal}
+          onReviewTank={(id) => {
+            setModal(null);
+            setFocusedTank(id);
+            setTab("stock");
+          }}
         />
       )}
       <Dialog
         open={help}
         onOpenChange={setHelp}
-        title="Station setup guide"
-        description="Your PumpShield setup guide"
+        title={owner ? "Set up your station" : "Your shift checklist"}
       >
-        <ol className="help-list">
-          <li>Add a station in Settings.</li>
-          <li>
-            Add tanks with certified calibration charts, then map nozzles.
-          </li>
-          <li>Enter current prices from your verified source.</li>
-          <li>
-            Authorize a Munshi’s email. They create and confirm their account to
-            join.
-          </li>
-          <li>
-            Open a shift. Capture real evidence when closing or auditing a
-            delivery.
-          </li>
-          <li>
-            Review discrepancies before approving. A variance is a reason to
-            investigate.
-          </li>
-        </ol>
-        <div className="notice">
-          Owned-truck hardware integrations, automated WhatsApp, and automated
-          OCR are not active. Contractor phone tracking is available through an
-          expiring driver link. Evidence is captured directly and measurements
-          are entered by your team.
-        </div>
+        {owner ? (
+          <ol className="help-list">
+            <li>Add a station in Settings.</li>
+            <li>
+              Add tanks with certified calibration charts, then map nozzles.
+            </li>
+            <li>Enter current prices from your verified source.</li>
+            <li>
+              Authorize a Munshi’s email. They create and confirm their account
+              to join.
+            </li>
+            <li>
+              Open a shift. Capture real evidence when closing or auditing a
+              delivery.
+            </li>
+            <li>
+              Review discrepancies before approving. A variance is a reason to
+              investigate.
+            </li>
+          </ol>
+        ) : (
+          <ol className="help-list">
+            <li>Open a shift before recording credit fills.</li>
+            <li>
+              Scan the QR on an owner-issued vehicle pass in Digital parchi.
+            </li>
+            <li>Audit arriving deliveries and capture the required photos.</li>
+            <li>
+              Close your shift with final meter readings, tank dips and cash.
+            </li>
+            <li>
+              Check sync status after reconnecting if you saved work offline.
+            </li>
+          </ol>
+        )}
       </Dialog>
       <Dialog
         open={alerts}

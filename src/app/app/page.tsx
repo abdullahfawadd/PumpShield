@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { serverDb } from "@/lib/supabase/server";
 import { Workspace } from "@/components/workspace";
+import { WorkspaceOfflineProvider } from "@/components/workspace-offline";
 import {
   WorkspaceOnboarding,
   type OnboardingData,
@@ -27,5 +28,13 @@ export default async function App() {
       />
     );
   }
-  return <Workspace initial={data} email={user.email || ""} />;
+  return (
+    <WorkspaceOfflineProvider
+      key={`${user.id}:${data.member.workspace_id}`}
+      userId={user.id}
+      workspaceId={data.member.workspace_id}
+    >
+      <Workspace initial={data} email={user.email || ""} />
+    </WorkspaceOfflineProvider>
+  );
 }

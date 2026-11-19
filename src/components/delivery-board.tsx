@@ -8,45 +8,55 @@ import {
   Clock3,
   CheckCircle2,
   ClipboardCheck,
+  Search,
 } from "@/components/icons";
 import { toast } from "sonner";
 import type { Delivery } from "@/lib/types";
+import { deliveryStageLabel } from "@/lib/delivery-stages";
 import { date, number } from "@/lib/utils";
 import { useMobileLayout } from "@/lib/use-mobile-layout";
 const stages = [
   {
     id: "dispatched",
-    name: "In transit",
-    description: "Dispatch registered",
     icon: Truck,
   },
   {
     id: "submitted",
-    name: "Ready for review",
-    description: "Pre-decant audit submitted",
     icon: ClipboardCheck,
   },
   {
     id: "approved",
-    name: "Cleared to decant",
-    description: "Owner approval recorded",
     icon: LockKeyhole,
   },
   {
     id: "decanted",
-    name: "Completed",
-    description: "Stock received and posted",
     icon: CheckCircle2,
   },
 ] as const;
+function deliveryAction(status: Delivery["status"], owner: boolean) {
+  switch (status) {
+    case "dispatched":
+      return "Start arrival audit";
+    case "submitted":
+      return owner ? "Review audit" : "View submitted audit";
+    case "approved":
+      return "Confirm receipt";
+    case "decanted":
+      return "View receipt";
+  }
+}
 export function DeliveryBoard({
   deliveries,
   owner,
   onOpen,
+  search,
+  onSearchChange,
 }: {
   deliveries: Delivery[];
   owner: boolean;
   onOpen: (id: string) => void;
+  search: string;
+  onSearchChange: (query: string) => void;
 }) {
   const [drag, setDrag] = useState<string | null>(null);
   const [over, setOver] = useState<string | null>(null);
@@ -90,13 +100,22 @@ export function DeliveryBoard({
     >
       <div className="movement-summary">
         <div>
-          <h2>Delivery pipeline</h2>
+          <h2 className="movement-summary-title">{layout === "board" ? "Delivery board" : "Delivery list"}</h2>
           <p>
-            {visible.length} {visible.length === 1 ? "delivery" : "deliveries"}{" "}
-            · open a record for its next verified step
+            {visible.length} {visible.length === 1 ? "delivery" : "deliveries"}
           </p>
         </div>
         <div className="delivery-view-controls">
+          <label className="delivery-search">
+            <Search size={16} aria-hidden="true" />
+            <input
+              type="search"
+              placeholder="Vehicle or reference"
+              value={search}
+              onChange={(event) => onSearchChange(event.target.value)}
+              aria-label="Search deliveries"
+            />
+          </label>
           <select
             aria-label="Filter delivery stage"
             value={filter}
@@ -105,7 +124,7 @@ export function DeliveryBoard({
             <option value="all">All stages</option>
             {stages.map((s) => (
               <option value={s.id} key={s.id}>
-                {s.name}
+                {deliveryStageLabel(s.id)}
               </option>
             ))}
           </select>
@@ -131,7 +150,7 @@ export function DeliveryBoard({
           </div>
           {(filter !== "all" || view !== "auto") && (
             <button
-              className="text-link"
+              className="text-link delivery-reset-view"
               onClick={() => {
                 setFilter("all");
                 setView("auto");
@@ -157,7 +176,7 @@ export function DeliveryBoard({
                 <section
                   key={s.id}
                   className={`movement-column column-${s.id} ${over === s.id ? "drop-active" : ""}`}
-                  aria-label={s.name}
+                  aria-label={deliveryStageLabel(s.id)}
                   onDragOver={(e) => {
                     e.preventDefault();
                     if (drag) setOver(s.id);
@@ -172,11 +191,10 @@ export function DeliveryBoard({
                   <header>
                     <span>
                       <s.icon size={17} />
-                      {s.name}
+                      {deliveryStageLabel(s.id)}
                     </span>
                     <b>{cards.length}</b>
                   </header>
-                  <p className="column-caption">{s.description}</p>
                   <div className="movement-cards">
                     {cards.map((d) => (
                       <article
@@ -195,7 +213,7 @@ export function DeliveryBoard({
                       >
                         <div className="movement-card-top">
                           <span>{d.reference}</span>
-                          <GripVertical size={15} />
+                          {d.status !== "decanted" && <GripVertical size={15} aria-hidden="true" />}
                         </div>
                         <button
                           className="movement-card-title"
@@ -221,15 +239,7 @@ export function DeliveryBoard({
                         </div>
                         <div className="board-card-actions">
                           <button onClick={() => onOpen(d.id)}>
-                            {d.status === "dispatched"
-                              ? "Start arrival audit"
-                              : d.status === "submitted"
-                                ? owner
-                                  ? "Review audit"
-                                  : "Awaiting owner"
-                                : d.status === "approved"
-                                  ? "Confirm decant"
-                                  : "View record"}
+                            {deliveryAction(d.status, owner)}
                             <ArrowUpRight size={13} />
                           </button>
                           {owner &&
@@ -266,7 +276,7 @@ export function DeliveryBoard({
                 <div className="delivery-list-identity">
                   <span className={`status delivery-status-${d.status}`}>
                     <stage.icon size={14} />
-                    {stage.name}
+                    {deliveryStageLabel(stage.id)}
                   </span>
                   <h3>{d.vehicle}</h3>
                   <p>
@@ -284,15 +294,7 @@ export function DeliveryBoard({
                   className="button button-secondary"
                   onClick={() => onOpen(d.id)}
                 >
-                  {d.status === "dispatched"
-                    ? "Start arrival audit"
-                    : d.status === "submitted"
-                      ? owner
-                        ? "Review audit"
-                        : "View submitted audit"
-                      : d.status === "approved"
-                        ? "Confirm decant"
-                        : "View record"}
+                  {deliveryAction(d.status, owner)}
                   <ArrowUpRight size={15} />
                 </button>
               </article>
@@ -313,10 +315,9 @@ export function DeliveryBoard({
           )}
         </div>
       )}
-      <p className="movement-help">
-        Moving a card opens its checklist. Stock changes only after approved
-        decant confirmation.
-      </p>
+      {layout === "board" && !mobile && visible.some((delivery) => delivery.status !== "decanted") && (
+        <p className="movement-help">Drag to the next stage to open its checklist.</p>
+      )}
     </section>
   );
 }
