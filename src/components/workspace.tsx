@@ -12,7 +12,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   Bell,
-  ChevronDown,
   CircleHelp,
   ClipboardCheck,
   Download,
@@ -24,15 +23,14 @@ import {
   LogOut,
   Menu,
   Plus,
-  RefreshCw,
   Settings2,
   ShieldCheck,
+  Sidebar,
   Truck,
   WalletCards,
   Check,
   Activity,
   Clock3,
-  LockKeyhole,
   Building2,
   Columns3,
   Files,
@@ -47,7 +45,10 @@ import { StationOperations } from "./station-operations";
 import { DocumentCentre } from "./document-centre";
 import { DeliveryBoard } from "./delivery-board";
 import { OwnerOverview } from "./owner-overview";
-import { getLatestTankReconciliation, overviewSnapshotTime } from "@/lib/overview-model";
+import {
+  getLatestTankReconciliation,
+  overviewSnapshotTime,
+} from "@/lib/overview-model";
 import { useClock } from "@/lib/use-clock";
 import { fuelGradeLabel } from "@/lib/fuel-grades";
 import { ShiftRegister } from "./shift-register";
@@ -64,6 +65,10 @@ import {
   workspaceLocationSnapshot,
   workspaceServerSnapshot,
   updateWorkspaceLocation,
+  sidebarSnapshot,
+  sidebarServerSnapshot,
+  subscribeSidebar,
+  toggleSidebar,
 } from "@/lib/workspace-navigation";
 import { Brand } from "./brand";
 import { Button } from "./ui/button";
@@ -98,16 +103,6 @@ const title: Record<Tab, string> = {
   settings: "Station settings",
   operations: "Station work",
   documents: "Documents",
-};
-const subtitles: Record<Tab, string> = {
-  overview: "Reviews, stock and current station activity.",
-  deliveries: "Arrival audits, approvals and received stock.",
-  shifts: "Meter readings, tank dips and cash reconciliation.",
-  credit: "Manage corporate credit and vehicle passes.",
-  stock: "Recorded tank levels and verified fuel prices.",
-  settings: "Location, equipment and staff access.",
-  operations: "Cases, fuel requests, maintenance and handovers.",
-  documents: "Recent saved claims, credit fills and account statements.",
 };
 const normalize = (d: Dashboard): Dashboard => ({
   ...d,
@@ -246,6 +241,11 @@ export function Workspace({
     updateWorkspaceLocation({ station: id, record: null, id: null, q: null });
   };
   const [mobile, setMobile] = useState(false);
+  const collapsed = useSyncExternalStore(
+    subscribeSidebar,
+    sidebarSnapshot,
+    sidebarServerSnapshot,
+  );
   const [focusedTank, setFocusedTank] = useState<string>();
   useEffect(() => {
     if (tab !== "stock" || !focusedTank) return;
@@ -445,26 +445,26 @@ export function Workspace({
       <div className="sidebar-brand">
         <Brand />
       </div>
-      <div className="workspace-badge">
-        <span className="workspace-avatar">{data.workspace.slice(0, 1)}</span>
-        <div>
-          <strong>{data.workspace}</strong>
-          <small>{owner ? "Owner workspace" : "Munshi workspace"}</small>
-        </div>
-        <LockKeyhole size={14} />
-      </div>
-      <span className="nav-caption">WORKSPACE</span>
       <nav aria-label="Workspace modules">
         {navigation
           .filter(
             (n) =>
               owner ||
-              ["overview", "deliveries", "shifts", "credit", "operations"].includes(n.id),
+              [
+                "overview",
+                "deliveries",
+                "shifts",
+                "credit",
+                "operations",
+              ].includes(n.id),
           )
           .map((n) => (
             <button
               key={n.id}
+              type="button"
               className={tab === n.id ? "nav-item active" : "nav-item"}
+              title={!owner && n.id === "overview" ? "Home" : n.label}
+              aria-label={!owner && n.id === "overview" ? "Home" : n.label}
               aria-current={tab === n.id ? "page" : undefined}
               onClick={() => {
                 setTab(n.id);
@@ -473,43 +473,45 @@ export function Workspace({
               }}
             >
               <n.icon size={19} />
-              <span>{!owner && n.id === "overview" ? "Home" : n.label}</span>
-              {n.id === "shifts" && pending > 0 && (
-                <span className="nav-count">{pending}</span>
-              )}
+              <span className="nav-label">
+                {!owner && n.id === "overview" ? "Home" : n.label}
+              </span>
             </button>
           ))}
       </nav>
       <div className="sidebar-bottom">
         <button
           className="nav-item"
+          title="Help"
+          aria-label="Help"
           onClick={() => {
             setMobile(false);
             setHelp(true);
           }}
         >
-          <CircleHelp size={18} /> Help & getting started
-          <ArrowUpRight size={14} />
+          <CircleHelp size={18} /> <span className="nav-label">Help</span>
         </button>
         {owner && (
           <button
             className={`nav-item ${tab === "settings" ? "active" : ""}`}
+            title="Settings"
+            aria-label="Settings"
             aria-current={tab === "settings" ? "page" : undefined}
             onClick={() => {
               setTab("settings");
               setMobile(false);
             }}
           >
-            <Settings2 size={18} /> Settings
+            <Settings2 size={18} /> <span className="nav-label">Settings</span>
           </button>
         )}
         <div className="profile">
-          <span className="profile-avatar">
+          <span className="profile-avatar" aria-hidden="true">
             {data.member.name.slice(0, 2).toUpperCase()}
           </span>
-          <span>
-            <strong>{data.member.name}</strong>
-            <small>{owner ? "Station owner" : "Munshi / Supervisor"}</small>
+          <span className="profile-label">
+            <strong title={data.member.name}>{data.member.name}</strong>
+            <small>{owner ? "Owner" : "Munshi"}</small>
           </span>
           <Button
             variant="ghost"
@@ -537,13 +539,16 @@ export function Workspace({
   return (
     <div
       data-theme="light"
+      data-nav-collapsed={collapsed}
       className={`app-shell ${privateMode ? "privacy-on" : ""}`}
     >
       <WorkspaceOfflineStation
         stationId={stationId}
         onSynced={() => void refresh()}
       />
-      <aside className="sidebar">{workspaceNavigation}</aside>
+      <aside className="sidebar" id="desktop-navigation">
+        {workspaceNavigation}
+      </aside>
       <Dialog
         open={mobile}
         onOpenChange={setMobile}
@@ -564,47 +569,64 @@ export function Workspace({
             >
               <Menu size={22} />
             </button>
-            <span className="breadcrumb">
-              Workspace <span>/</span>{" "}
-              <strong>
-                {owner || tab !== "overview"
-                  ? navigation.find((n) => n.id === tab)?.label || "Settings"
-                  : "Station tasks"}
-              </strong>
-            </span>
+            <button
+              type="button"
+              className="desktop-sidebar-toggle icon-button"
+              onClick={toggleSidebar}
+              aria-controls="desktop-navigation"
+              aria-expanded={!collapsed}
+              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              <Sidebar size={20} />
+            </button>
+            <div className="station-select">
+              <Building2 size={17} aria-hidden="true" />
+              {data.stations.length > 1 ? (
+                <select
+                  aria-label="Active station"
+                  value={stationId}
+                  onChange={(e) => setStationId(e.target.value)}
+                >
+                  {data.stations.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <span className="station-name" title={station?.name}>
+                  {station?.name ?? "Station"}
+                </span>
+              )}
+            </div>
           </div>
           <div className="topbar-actions">
-            {!connectionLost && (
-              <button
-                className={`sync-indicator ${syncError ? "sync-failed" : ""}`}
-                onClick={() => void refresh()}
-                title="Refresh saved records"
+            <WorkspaceSyncStatus
+              onRefresh={!connectionLost ? () => void refresh() : undefined}
+              refreshing={syncing}
+              refreshFailed={syncError}
+            />
+            {owner && (
+              <Button
+                type="button"
+                size="icon"
+                variant="ghost"
+                className="workspace-privacy-button"
+                role="switch"
+                aria-label="Hide financial amounts"
+                aria-checked={privateMode}
+                title={
+                  privateMode
+                    ? "Show financial amounts"
+                    : "Hide financial amounts"
+                }
+                onClick={() => setPrivateMode(!privateMode)}
               >
-                <span className="status-dot" />
-                {syncError
-                  ? "Refresh failed"
-                  : syncing
-                    ? "Syncing…"
-                    : "Records synced"}
-                <RefreshCw size={12} className={syncing ? "spin" : ""} />
-              </button>
+                {privateMode ? <EyeOff size={19} /> : <Eye size={19} />}
+              </Button>
             )}
-            {owner && (
-              <span className="privacy-control" title="Hide financial amounts">
-                {privateMode ? <EyeOff size={17} /> : <Eye size={17} />}
-                <button
-                  type="button"
-                  className="privacy-toggle"
-                  role="switch"
-                  aria-label="Hide financial amounts"
-                  aria-checked={privateMode}
-                  onClick={() => setPrivateMode(!privateMode)}
-                >
-                  <span />
-                </button>
-              </span>
-            )}
-            {owner && (
+            {owner && pending > 0 && (
               <Button
                 variant="ghost"
                 size="icon"
@@ -613,12 +635,9 @@ export function Workspace({
                 aria-label={`${pending} pending reviews`}
               >
                 <Bell size={19} />
-                {pending > 0 && <i />}
+                <i />
               </Button>
             )}
-            <span className="topbar-avatar">
-              {data.member.name.slice(0, 1)}
-            </span>
           </div>
         </header>
         <main
@@ -627,38 +646,10 @@ export function Workspace({
         >
           {data.workspace.includes("Design Lab") && (
             <div className="demo-banner">
-              DESIGN LAB / Synthetic records for evaluation. No real deliveries,
-              funds, or location signals.
+              <strong>Design Lab</strong>
+              <span>Synthetic data only</span>
             </div>
           )}
-          <div className="station-row">
-            <div className="station-select">
-              <Building2 size={16} />
-              <select
-                aria-label="Active station"
-                value={stationId}
-                onChange={(e) => setStationId(e.target.value)}
-              >
-                {!stationId && <option value="">Your first station</option>}
-                {data.stations.map((s) => (
-                  <option key={s.id} value={s.id}>
-                    {s.name}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown size={14} />
-              {station && <span className="omc-label">{station.omc}</span>}
-            </div>
-            <span className="today-label">
-              {new Intl.DateTimeFormat("en-PK", {
-                timeZone: "Asia/Karachi",
-                weekday: "short",
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              }).format(new Date())}
-            </span>
-          </div>
           <section className="page-heading">
             <div>
               <h1>
@@ -670,16 +661,8 @@ export function Workspace({
                       ? "Digital parchi"
                       : title[tab]}
               </h1>
-              {(!owner || tab !== "overview") && (
-                <p>
-                  {owner
-                    ? subtitles[tab]
-                    : tab === "overview"
-                      ? "Choose a task for your current station."
-                      : tab === "credit"
-                        ? "Scan an owner-issued vehicle pass to record a fill."
-                        : subtitles[tab]}
-                </p>
+              {!owner && tab === "credit" && (
+                <p>Scan an owner-issued vehicle pass to record a fill.</p>
               )}
             </div>
             <div className="heading-actions">
@@ -736,7 +719,6 @@ export function Workspace({
                 )}
             </div>
           </section>
-          <WorkspaceSyncStatus />
           {syncError && !connectionLost && (
             <div className="notice warning" role="status">
               <Activity size={18} /> Couldn’t refresh. Showing the last loaded
@@ -769,7 +751,7 @@ export function Workspace({
             </div>
           )}
           {!owner && tab === "overview" && (
-            <div className="kiosk-actions">
+            <div className="kiosk-actions station-task-grid">
               <button
                 onClick={() =>
                   open(
@@ -778,34 +760,42 @@ export function Workspace({
                   )
                 }
               >
-                <ClipboardCheck size={26} />
-                <strong>
-                  {currentShift ? "Close current shift" : "Open a shift"}
-                </strong>
-                <span>
-                  Capture meters, tank dips & cash
-                  <ArrowUpRight size={17} />
+                <span className="station-task-icon">
+                  <ClipboardCheck size={23} />
                 </span>
+                <span className="station-task-copy">
+                  <strong>{currentShift ? "Close shift" : "Open shift"}</strong>
+                  <small>
+                    {currentShift
+                      ? `${shiftOverdue ? "Overdue · " : "Cutoff "}${date(currentShift.due_at)}`
+                      : "Start with locked prices and readings"}
+                  </small>
+                </span>
+                <ArrowUpRight size={18} />
               </button>
               <button
                 onClick={() => {
                   setTab("deliveries");
                 }}
               >
-                <Truck size={26} />
-                <strong>Delivery audit</strong>
-                <span>
-                  Record temperature & chamber dips
-                  <ArrowUpRight size={17} />
+                <span className="station-task-icon">
+                  <Truck size={23} />
                 </span>
+                <span className="station-task-copy">
+                  <strong>Deliveries</strong>
+                  <small>Audit arrivals and confirm receipts</small>
+                </span>
+                <ArrowUpRight size={18} />
               </button>
               <button onClick={() => setTab("credit")}>
-                <WalletCards size={26} />
-                <strong>Digital parchi</strong>
-                <span>
-                  Record an authorized credit fill
-                  <ArrowUpRight size={17} />
+                <span className="station-task-icon">
+                  <WalletCards size={23} />
                 </span>
+                <span className="station-task-copy">
+                  <strong>Digital parchi</strong>
+                  <small>Scan a vehicle pass and record fuel</small>
+                </span>
+                <ArrowUpRight size={18} />
               </button>
             </div>
           )}
@@ -843,7 +833,7 @@ export function Workspace({
               }}
             />
           )}
-          {(tab === "deliveries" || (!owner && tab === "overview")) && (
+          {tab === "deliveries" && (
             <DeliveryBoard
               deliveries={deliveries.filter((d) =>
                 `${d.vehicle} ${d.reference}`
@@ -858,49 +848,23 @@ export function Workspace({
           )}
           {tab === "shifts" && (
             <>
-              <div className="stats-grid three">
-                <Stat
-                  label="Current shift"
-                  value={shiftOverdue ? "Overdue" : currentShift ? "Open" : "—"}
-                  detail={
-                    currentShift
-                      ? `Cutoff ${date(currentShift.due_at)}`
-                      : "No shift currently open"
-                  }
-                  icon={Clock3}
-                />
-                <Stat
-                  label="Nozzles configured"
-                  value={String(nozzles.length)}
-                  detail="Mapped to tanks"
-                  icon={Fuel}
-                />
-                <Stat
-                  label={owner ? "Awaiting review" : "Submission policy"}
-                  value={
-                    owner
-                      ? String(
-                          shifts.filter((s) => s.status === "review").length,
-                        )
-                      : "—"
-                  }
-                  detail={
-                    owner
-                      ? "Owner verification required"
-                      : "Submitted readings are locked"
-                  }
-                  icon={LockKeyhole}
-                />
-              </div>
+              {currentShift && (
+                <div
+                  className={`shift-current-strip${shiftOverdue ? " overdue" : ""}`}
+                >
+                  <Clock3 size={19} />
+                  <strong>{currentShift.name}</strong>
+                  <span>
+                    {shiftOverdue
+                      ? "Cutoff passed"
+                      : `Cutoff ${date(currentShift.due_at)} PKT`}
+                  </span>
+                </div>
+              )}
               <section className="panel">
                 <div className="panel-heading">
                   <div>
                     <h2>Shift register</h2>
-                    <p>
-                      {owner
-                        ? "Select a shift to inspect its evidence and reconciliation."
-                        : "Capture fresh evidence before your shift cutoff."}
-                    </p>
                   </div>
                 </div>
                 {shifts.length ? (
@@ -1493,26 +1457,8 @@ export function Workspace({
                   </table>
                 </div>
               </section>
-              <div className="notice">
-                <LockKeyhole size={19} />
-                <div>
-                  <strong>Your workspace, clearly separated.</strong>
-                  <p>
-                    Database policies isolate your records. Munshi accounts
-                    receive operational fields only. Camera capture provides
-                    reviewable evidence, not an automatic guarantee of
-                    authenticity.
-                  </p>
-                </div>
-              </div>
             </>
           )}
-          <footer className="workspace-footer">
-            <span>
-              <ShieldCheck size={14} /> PumpShield · Every litre, accounted for.
-            </span>
-            <span>Times shown in Pakistan Standard Time</span>
-          </footer>
         </main>
         <nav className="ledger-mobile-nav" aria-label="Station navigation">
           {navigation

@@ -9,6 +9,8 @@ import {
   CheckCircle2,
   ClipboardCheck,
   Search,
+  Columns3,
+  Menu,
 } from "@/components/icons";
 import { toast } from "sonner";
 import type { Delivery } from "@/lib/types";
@@ -96,21 +98,15 @@ export function DeliveryBoard({
   return (
     <section
       className={`movement-workspace delivery-view-${layout}`}
-      aria-label="Delivery movement board"
+      aria-label="Deliveries"
     >
       <div className="movement-summary">
-        <div>
-          <h2 className="movement-summary-title">{layout === "board" ? "Delivery board" : "Delivery list"}</h2>
-          <p>
-            {visible.length} {visible.length === 1 ? "delivery" : "deliveries"}
-          </p>
-        </div>
         <div className="delivery-view-controls">
           <label className="delivery-search">
             <Search size={16} aria-hidden="true" />
             <input
               type="search"
-              placeholder="Vehicle or reference"
+              placeholder="Search vehicle or reference"
               value={search}
               onChange={(event) => onSearchChange(event.target.value)}
               aria-label="Search deliveries"
@@ -138,6 +134,7 @@ export function DeliveryBoard({
               aria-pressed={layout === "board"}
               onClick={() => setView("board")}
             >
+              <Columns3 size={15} aria-hidden="true" />
               Board
             </button>
             <button
@@ -145,20 +142,25 @@ export function DeliveryBoard({
               aria-pressed={layout === "list"}
               onClick={() => setView("list")}
             >
+              <Menu size={15} aria-hidden="true" />
               List
             </button>
           </div>
-          {(filter !== "all" || view !== "auto") && (
+          {(filter !== "all" || search) && (
             <button
+              type="button"
               className="text-link delivery-reset-view"
               onClick={() => {
                 setFilter("all");
-                setView("auto");
+                onSearchChange("");
               }}
             >
-              Reset view
+              Clear filters
             </button>
           )}
+          <span className="workflow-result-count" role="status">
+            {visible.length} {visible.length === 1 ? "delivery" : "deliveries"}
+          </span>
         </div>
       </div>
       {layout === "board" && (
@@ -213,32 +215,28 @@ export function DeliveryBoard({
                       >
                         <div className="movement-card-top">
                           <span>{d.reference}</span>
-                          {d.status !== "decanted" && <GripVertical size={15} aria-hidden="true" />}
+                          {d.status !== "decanted" && (
+                            <GripVertical size={15} aria-hidden="true" />
+                          )}
                         </div>
-                        <button
-                          className="movement-card-title"
-                          onClick={() => onOpen(d.id)}
-                        >
-                          {d.vehicle}
-                          <ArrowUpRight size={17} />
-                        </button>
-                        <div className="board-route">
-                          <span>{d.depot}</span>
-                          <i />
-                          <span>Receiving station</span>
-                        </div>
-                        {owner && (
-                          <div className="board-volume">
-                            <strong>{number(d.invoice)}</strong>
-                            <span>litres / invoice</span>
-                          </div>
-                        )}
-                        <div className="board-timestamp">
-                          <Clock3 size={12} />
-                          {date(d.created_at)}
+                        <h3 className="movement-card-title">{d.vehicle}</h3>
+                        <p className="board-route">{d.depot}</p>
+                        <div className="board-metadata">
+                          {owner && (
+                            <span className="board-invoice">
+                              <strong>{number(d.invoice)} L</strong> invoice
+                            </span>
+                          )}
+                          <time
+                            className="board-timestamp"
+                            dateTime={d.created_at}
+                          >
+                            <Clock3 size={13} aria-hidden="true" />
+                            {date(d.created_at)}
+                          </time>
                         </div>
                         <div className="board-card-actions">
-                          <button onClick={() => onOpen(d.id)}>
+                          <button type="button" onClick={() => onOpen(d.id)}>
                             {deliveryAction(d.status, owner)}
                             <ArrowUpRight size={13} />
                           </button>
@@ -248,6 +246,7 @@ export function DeliveryBoard({
                                 href={`/api/documents/claim/${d.id}`}
                                 target="_blank"
                                 rel="noreferrer"
+                                aria-label={`Open claim PDF ${d.reference} in a new tab`}
                               >
                                 PDF
                               </a>
@@ -258,7 +257,7 @@ export function DeliveryBoard({
                     {!cards.length && (
                       <div className="board-empty">
                         <s.icon size={25} strokeWidth={1} />
-                        <span>No deliveries in this stage</span>
+                        <span>{search ? "No matches" : "No deliveries"}</span>
                       </div>
                     )}
                   </div>
@@ -274,14 +273,17 @@ export function DeliveryBoard({
             return (
               <article key={d.id} className="delivery-list-card">
                 <div className="delivery-list-identity">
-                  <span className={`status delivery-status-${d.status}`}>
-                    <stage.icon size={14} />
-                    {deliveryStageLabel(stage.id)}
-                  </span>
                   <h3>{d.vehicle}</h3>
                   <p>
                     {d.reference} · {d.depot}
                   </p>
+                </div>
+                <div className="delivery-list-meta">
+                  <span className={`status delivery-status-${d.status}`}>
+                    <stage.icon size={14} />
+                    {deliveryStageLabel(stage.id)}
+                  </span>
+                  <time dateTime={d.created_at}>{date(d.created_at)}</time>
                 </div>
                 {owner && (
                   <div className="delivery-list-quantity">
@@ -289,9 +291,9 @@ export function DeliveryBoard({
                     <span>L invoice</span>
                   </div>
                 )}
-                <time dateTime={d.created_at}>{date(d.created_at)}</time>
                 <button
-                  className="button button-secondary"
+                  type="button"
+                  className={`button ${d.status === "decanted" ? "button-secondary" : "button-primary"}`}
                   onClick={() => onOpen(d.id)}
                 >
                   {deliveryAction(d.status, owner)}
@@ -304,20 +306,35 @@ export function DeliveryBoard({
             <div className="board-empty">
               <Truck size={24} />
               <span>
-                No deliveries{filter === "all" ? " yet" : " in this stage"}.
+                {search
+                  ? "No matching deliveries."
+                  : filter === "all"
+                    ? "No deliveries yet."
+                    : "No deliveries in this stage."}
               </span>
-              {filter !== "all" && (
-                <button className="text-link" onClick={() => setFilter("all")}>
-                  Clear stage filter
+              {(filter !== "all" || search) && (
+                <button
+                  type="button"
+                  className="text-link"
+                  onClick={() => {
+                    setFilter("all");
+                    onSearchChange("");
+                  }}
+                >
+                  Clear filters
                 </button>
               )}
             </div>
           )}
         </div>
       )}
-      {layout === "board" && !mobile && visible.some((delivery) => delivery.status !== "decanted") && (
-        <p className="movement-help">Drag to the next stage to open its checklist.</p>
-      )}
+      {layout === "board" &&
+        !mobile &&
+        visible.some((delivery) => delivery.status !== "decanted") && (
+          <p className="movement-help">
+            Drag to the next stage to open its checklist.
+          </p>
+        )}
     </section>
   );
 }

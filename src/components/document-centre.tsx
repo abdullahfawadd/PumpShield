@@ -50,7 +50,7 @@ export function DocumentCentre({
             kind: "statement",
             type: "Account statement",
             title: a.name,
-            subtitle: "Current ledger statement",
+            subtitle: "",
             at: "",
             href: `/api/documents/statement/${a.id}`,
           })),
@@ -60,28 +60,17 @@ export function DocumentCentre({
   const visible = rows.filter(
     (r) =>
       (kind === "all" || r.kind === kind) &&
-      `${r.title} ${r.subtitle}`.toLowerCase().includes(search.toLowerCase()),
+      `${r.title} ${r.subtitle} ${r.type}`
+        .toLowerCase()
+        .includes(search.trim().toLowerCase()),
   );
   return (
-    <section className="document-centre">
-      <div className="ops-heading">
-        <div>
-          <h2>Recent documents</h2>
-          <p>Approved claims, issued parchis and current account statements.</p>
-        </div>
-        <span className="document-count">
-          {visible.length}
-          <small>
-            {visible.length === rows.length
-              ? "loaded documents"
-              : `of ${rows.length} loaded`}
-          </small>
-        </span>
-      </div>
-      <div className="ops-toolbar">
-        <label>
-          <Search size={16} />
+    <section className="document-centre" aria-label="Document library">
+      <div className="document-toolbar">
+        <label className="delivery-search">
+          <Search size={16} aria-hidden="true" />
           <input
+            type="search"
             aria-label="Search documents"
             placeholder="Search reference, vehicle, or account…"
             value={search}
@@ -93,11 +82,14 @@ export function DocumentCentre({
           value={kind}
           onChange={(e) => setKind(e.target.value)}
         >
-          <option value="all">All documents</option>
+          <option value="all">All types</option>
           <option value="claim">Delivery claims</option>
           <option value="parchi">Fuel parchis</option>
           <option value="statement">Account statements</option>
         </select>
+        <span className="workflow-result-count" role="status">
+          {visible.length} {visible.length === 1 ? "document" : "documents"}
+        </span>
       </div>
       <div className="document-list">
         {visible.map((r) => (
@@ -108,17 +100,19 @@ export function DocumentCentre({
             rel="noreferrer"
           >
             <span className={`document-icon document-${r.kind}`}>
-              <FileText size={22} />
+              <FileText size={20} aria-hidden="true" />
             </span>
-            <div>
+            <div className="document-identity">
               <span>{r.type}</span>
               <h3>{r.title}</h3>
-              <p>{r.subtitle}</p>
+              {r.subtitle && <p>{r.subtitle}</p>}
+              {r.at && <time dateTime={r.at}>{date(r.at)}</time>}
             </div>
-            <time>{r.at ? date(r.at) : "Current"}</time>
             <span className="document-open">
-              Open PDF
-              <ArrowUpRight size={15} />
+              <span>
+                Open PDF<span className="sr-only"> in a new tab</span>
+              </span>
+              <ArrowUpRight size={16} aria-hidden="true" />
             </span>
           </a>
         ))}
@@ -142,17 +136,17 @@ export function DocumentCentre({
               </button>
             ) : (
               <p>
-                Documents appear after approved deliveries and recorded fills.
+                Approved delivery claims and recorded fills will appear here.
               </p>
             )}
           </div>
         )}
       </div>
-      <p className="ops-footnote">
-        Recent records only: up to 200 deliveries and 200 parchis loaded for the
-        workspace. Statements use the current account ledger when opened. PDFs
-        require sign-in.
-      </p>
+      {rows.length > 0 && (
+        <p className="ops-footnote">
+          Showing recent claims and parchis. Statements use the current ledger.
+        </p>
+      )}
     </section>
   );
 }

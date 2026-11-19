@@ -77,3 +77,35 @@ export function subscribeWorkspaceLocation(callback: () => void) {
 }
 export const workspaceLocationSnapshot = () => window.location.search;
 export const workspaceServerSnapshot = () => "";
+
+const sidebarPreference = "pumpshield:sidebar-collapsed";
+let temporaryCollapse = false;
+
+export function sidebarSnapshot() {
+  try {
+    return window.localStorage.getItem(sidebarPreference) === "true";
+  } catch {
+    return temporaryCollapse;
+  }
+}
+
+export const sidebarServerSnapshot = () => false;
+
+export function subscribeSidebar(callback: () => void) {
+  window.addEventListener(sidebarPreference, callback);
+  window.addEventListener("storage", callback);
+  return () => {
+    window.removeEventListener(sidebarPreference, callback);
+    window.removeEventListener("storage", callback);
+  };
+}
+
+export function toggleSidebar() {
+  temporaryCollapse = !sidebarSnapshot();
+  try {
+    window.localStorage.setItem(sidebarPreference, String(temporaryCollapse));
+  } catch {
+    // The preference still works until refresh if device storage is unavailable.
+  }
+  window.dispatchEvent(new Event(sidebarPreference));
+}

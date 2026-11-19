@@ -11,6 +11,7 @@ import "./workspace.css";
 import "./workflow-refinement.css";
 import "./overview.css";
 import "./product-refinement.css";
+import "./station-workspace.css";
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 export const metadata: Metadata = {
