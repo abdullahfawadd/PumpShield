@@ -37,7 +37,6 @@ import {
 } from "@/components/icons";
 import { toast } from "sonner";
 import { browserDb } from "@/lib/supabase/client";
-import { command } from "@/lib/api";
 import { date, money, number } from "@/lib/utils";
 import type { Dashboard } from "@/lib/types";
 import { StationLocation } from "./station-location";
@@ -323,15 +322,6 @@ export function Workspace({
     }
     setModal({ type, id });
   };
-  async function run(op: string, p: Record<string, unknown>) {
-    try {
-      await command(op, { station_id: stationId, ...p });
-      toast.success("Saved successfully");
-      await refresh();
-    } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Unable to save.");
-    }
-  }
   function exportData() {
     const rows: unknown[][] =
       tab === "credit"
@@ -661,9 +651,6 @@ export function Workspace({
                       ? "Digital parchi"
                       : title[tab]}
               </h1>
-              {!owner && tab === "credit" && (
-                <p>Scan an owner-issued vehicle pass to record a fill.</p>
-              )}
             </div>
             <div className="heading-actions">
               {owner && ["credit", "shifts"].includes(tab) && (
@@ -674,14 +661,11 @@ export function Workspace({
                     : "Export recent shifts"}
                 </Button>
               )}
-              {!["operations", "documents", "overview"].includes(tab) &&
-                (owner || tab !== "deliveries") && (
+              {!["operations", "documents", "overview", "stock"].includes(
+                tab,
+              ) &&
+                (owner || !["deliveries", "credit"].includes(tab)) && (
                   <Button
-                    disabled={
-                      !owner &&
-                      tab === "credit" &&
-                      (!currentShift || shiftOverdue)
-                    }
                     onClick={() =>
                       open(
                         tab === "deliveries"
@@ -690,13 +674,11 @@ export function Workspace({
                             ? owner
                               ? "account"
                               : "parchi"
-                            : tab === "stock"
-                              ? "price"
-                              : tab === "settings"
-                                ? "station"
-                                : currentShift
-                                  ? "close_shift"
-                                  : "open_shift",
+                            : tab === "settings"
+                              ? "station"
+                              : currentShift
+                                ? "close_shift"
+                                : "open_shift",
                         currentShift?.id,
                       )
                     }
@@ -708,13 +690,11 @@ export function Workspace({
                         ? owner
                           ? "Add account"
                           : "New parchi"
-                        : tab === "stock"
-                          ? "Update price"
-                          : tab === "settings"
-                            ? "Add station"
-                            : currentShift
-                              ? "Close shift"
-                              : "Open shift"}
+                        : tab === "settings"
+                          ? "Add station"
+                          : currentShift
+                            ? "Close shift"
+                            : "Open shift"}
                   </Button>
                 )}
             </div>
@@ -907,24 +887,45 @@ export function Workspace({
                     icon={Building2}
                   />
                   <Stat
-                    label="Recorded parchis"
+                    label="Recent fuel fills"
                     value={String(parchis.length)}
-                    detail="Most recent 200 workspace records"
+                    detail="In the loaded register"
                     icon={ClipboardCheck}
                   />
                 </div>
               )}
-              <div className="section-bar">
-                <h2>
-                  {owner ? "Corporate accounts" : "Authorized refuelling"}
-                </h2>
-                {owner && (
-                  <Button variant="secondary" onClick={() => open("parchi")}>
-                    <Plus size={16} />
-                    New digital parchi
+              {owner && (
+                <div className="section-bar credit-section-actions">
+                  <h2>Corporate accounts</h2>
+                  <div className="account-actions">
+                    {parchis.length > 0 && (
+                      <a
+                        className="button button-ghost"
+                        href="#fuel-fill-ledger"
+                      >
+                        View fill ledger
+                      </a>
+                    )}
+                    <Button variant="secondary" onClick={() => open("parchi")}>
+                      <Plus size={16} /> New digital parchi
+                    </Button>
+                  </div>
+                </div>
+              )}
+              {!owner && currentShift && !shiftOverdue && (
+                <section className="panel field-credit-start">
+                  <span className="field-credit-icon">
+                    <WalletCards size={27} />
+                  </span>
+                  <div>
+                    <h2>Record a fuel fill</h2>
+                    <p>Scan an owner-issued vehicle pass or enter its code.</p>
+                  </div>
+                  <Button onClick={() => open("parchi")}>
+                    New parchi <ArrowUpRight size={16} />
                   </Button>
-                )}
-              </div>
+                </section>
+              )}
               {owner &&
                 (accounts.length ? (
                   <div className="account-grid">
@@ -990,24 +991,20 @@ export function Workspace({
                   </section>
                 ))}
               {owner && (
-                <section className="panel">
+                <section className="panel" id="fuel-fill-ledger">
                   <div className="panel-heading">
                     <div>
                       <h2>Digital parchi ledger</h2>
-                      <p>
-                        Amounts are calculated using the open shift’s locked
-                        price.
-                      </p>
                     </div>
                   </div>
                   {parchis.length ? (
                     <div
-                      className="table-scroll"
+                      className="table-scroll responsive-ledger"
                       role="region"
                       aria-label={`${title[tab]} register`}
                       tabIndex={0}
                     >
-                      <table>
+                      <table role="table">
                         <thead>
                           <tr>
                             <th>Receipt</th>
@@ -1020,26 +1017,33 @@ export function Workspace({
                         <tbody>
                           {parchis.map((p) => (
                             <tr key={p.id}>
-                              <td>
+                              <td
+                                data-label="Receipt"
+                                className="ledger-action"
+                              >
                                 <a
                                   className="text-link"
                                   href={`/api/documents/parchi/${p.id}`}
                                   target="_blank"
                                   rel="noreferrer"
                                 >
-                                  {p.id.slice(0, 8)}
+                                  <span>Receipt {p.id.slice(0, 8)}</span>
                                   <ArrowUpRight size={13} />
                                 </a>
                               </td>
-                              <td>
+                              <td data-label="Account" className="ledger-title">
                                 {
                                   accounts.find((a) => a.id === p.account_id)
                                     ?.name
                                 }
                               </td>
-                              <td>{number(p.liters, 1)} L</td>
-                              <td>{moneyLabel(p.amount)}</td>
-                              <td>{date(p.created_at)}</td>
+                              <td data-label="Fuel">{number(p.liters, 1)} L</td>
+                              <td data-label="Amount">
+                                {moneyLabel(p.amount)}
+                              </td>
+                              <td data-label="Recorded">
+                                {date(p.created_at)}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -1164,12 +1168,12 @@ export function Workspace({
                 {data.prices.filter((p) => p.station_id === stationId)
                   .length ? (
                   <div
-                    className="table-scroll"
+                    className="table-scroll responsive-ledger"
                     role="region"
                     aria-label={`${title[tab]} register`}
                     tabIndex={0}
                   >
-                    <table>
+                    <table role="table">
                       <thead>
                         <tr>
                           <th>Fuel</th>
@@ -1184,15 +1188,21 @@ export function Workspace({
                           .filter((p) => p.station_id === stationId)
                           .map((p) => (
                             <tr key={p.id}>
-                              <td>
+                              <td data-label="Fuel" className="ledger-title">
                                 <span className="fuel-grade">
                                   {fuelGradeLabel(p.grade)}
                                 </span>
                               </td>
-                              <td>{moneyLabel(p.price)}</td>
-                              <td>{moneyLabel(p.margin)}</td>
-                              <td>{date(p.effective_at)}</td>
-                              <td>{p.source}</td>
+                              <td data-label="Retail / litre">
+                                {moneyLabel(p.price)}
+                              </td>
+                              <td data-label="Dealer margin">
+                                {moneyLabel(p.margin)}
+                              </td>
+                              <td data-label="Effective · PKT">
+                                {date(p.effective_at)}
+                              </td>
+                              <td data-label="Source">{p.source}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -1201,7 +1211,7 @@ export function Workspace({
                 ) : (
                   <Empty
                     icon={Fuel}
-                    title="Start with the right price."
+                    title="No fuel prices recorded"
                     description="Enter verified rates before opening a shift or recording a delivery."
                   />
                 )}
@@ -1209,11 +1219,10 @@ export function Workspace({
               <div className="notice">
                 <Clock3 size={18} />
                 <div>
-                  <strong>A clean boundary for every price.</strong>
+                  <strong>Shift cutoff</strong>
                   <p>
                     Shifts have a cutoff at the next scheduled price change or
-                    midnight PKT. Late submissions are flagged for owner review;
-                    the app never invents a midnight meter reading.
+                    midnight PKT. Late submissions require owner review.
                   </p>
                 </div>
               </div>
@@ -1374,7 +1383,6 @@ export function Workspace({
                 <div className="panel-heading">
                   <div>
                     <h2>People & access</h2>
-                    <p>Owner controls. Focused Munshi access.</p>
                   </div>
                   <Button variant="secondary" onClick={() => open("invite")}>
                     <Plus size={15} />
@@ -1382,12 +1390,12 @@ export function Workspace({
                   </Button>
                 </div>
                 <div
-                  className="table-scroll"
+                  className="table-scroll responsive-ledger"
                   role="region"
                   aria-label={`${title[tab]} register`}
                   tabIndex={0}
                 >
-                  <table>
+                  <table role="table">
                     <thead>
                       <tr>
                         <th>Person</th>
@@ -1400,18 +1408,20 @@ export function Workspace({
                     <tbody>
                       {data.members.map((m) => (
                         <tr key={m.user_id}>
-                          <td>
+                          <td data-label="Person" className="ledger-title">
                             <strong>{m.name}</strong>
                           </td>
-                          <td className="capitalize">{m.role}</td>
-                          <td>
+                          <td data-label="Role" className="capitalize">
+                            {m.role}
+                          </td>
+                          <td data-label="Station">
                             {data.stations.find((s) => s.id === m.station_id)
                               ?.name || "All stations"}
                           </td>
-                          <td>
+                          <td data-label="Status">
                             <Status value={m.active ? "active" : "disabled"} />
                           </td>
-                          <td>
+                          <td className="ledger-action">
                             {m.role === "munshi" && m.active && (
                               <Button
                                 variant="ghost"
@@ -1426,29 +1436,27 @@ export function Workspace({
                       ))}
                       {data.invitations.map((i) => (
                         <tr key={i.id}>
-                          <td>
+                          <td data-label="Person" className="ledger-title">
                             <strong>{i.name}</strong>
                             <small>{i.email}</small>
                           </td>
-                          <td>Munshi</td>
-                          <td>
+                          <td data-label="Role">Munshi</td>
+                          <td data-label="Station">
                             {
                               data.stations.find((s) => s.id === i.station_id)
                                 ?.name
                             }
                           </td>
-                          <td>
+                          <td data-label="Status">
                             <Status value="pending" />
                           </td>
-                          <td>
+                          <td className="ledger-action">
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() =>
-                                void run("cancel_invite", { id: i.id })
-                              }
+                              onClick={() => open("cancel_invite", i.id)}
                             >
-                              Cancel
+                              Cancel invitation
                             </Button>
                           </td>
                         </tr>

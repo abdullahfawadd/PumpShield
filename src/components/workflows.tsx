@@ -15,7 +15,13 @@ import {
 } from "@/components/icons";
 import { toast } from "sonner";
 import { command } from "@/lib/api";
-import { date, money, number } from "@/lib/utils";
+import {
+  date,
+  money,
+  number,
+  stationTimeInput,
+  stationTimeInstant,
+} from "@/lib/utils";
 import { FUEL_GRADE_OPTIONS, fuelGradeLabel } from "@/lib/fuel-grades";
 import { deliveryStageLabel } from "@/lib/delivery-stages";
 import type { Dashboard, Delivery, Shift, Vehicle } from "@/lib/types";
@@ -33,6 +39,7 @@ const names: Record<string, string> = {
   nozzle: "Connect a nozzle",
   price: "Record a verified fuel price",
   invite: "Invite Munshi",
+  cancel_invite: "Cancel invitation",
   revoke: "Revoke Munshi access",
   delivery: "New delivery",
   delivery_detail: "Delivery verification",
@@ -70,15 +77,11 @@ export function WorkflowDialog({
   const d = data.deliveries.find((d) => d.id === modal.id);
   const shift = data.shifts.find((s) => s.id === modal.id);
   const account = data.accounts.find((a) => a.id === modal.id);
+  const invitation = data.invitations.find((i) => i.id === modal.id);
   const [csv, setCsv] = useState("");
   const [count, setCount] = useState(1);
   const base = { station_id: stationId };
   const owner = data.member!.role === "owner";
-  const priceTime = () => {
-    const dt = new Date();
-    dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
-    return dt.toISOString().slice(0, 16);
-  };
   const price = (v: number) => (privateMode ? "Rs ••••••" : money(v));
   return (
     <Dialog
@@ -91,10 +94,10 @@ export function WorkflowDialog({
           : modal.type === "invite"
             ? "Invite an email address to this station. The recipient confirms their email and accepts the invitation."
             : modal.type === "payment"
-                ? "Record only funds already received and independently verified."
-                : modal.type === "parchi"
-                  ? "Verify the vehicle pass, record the fill, then submit for server checks."
-                  : undefined
+              ? "Record only funds already received and independently verified."
+              : modal.type === "parchi"
+                ? "Verify the vehicle pass, record the fill, then submit for server checks."
+                : undefined
       }
     >
       {modal.type === "station" && (
@@ -226,7 +229,7 @@ export function WorkflowDialog({
           submit="Record fuel price"
           transform={(f) => ({
             ...Object.fromEntries(f),
-            effective_at: new Date(String(f.get("effective_at"))).toISOString(),
+            effective_at: stationTimeInstant(String(f.get("effective_at"))),
           })}
         >
           <div className="form-grid">
@@ -253,10 +256,10 @@ export function WorkflowDialog({
             />
           </div>
           <Field
-            label="Effective time (your device’s local time)"
+            label="Effective time (PKT)"
             name="effective_at"
             type="datetime-local"
-            defaultValue={priceTime()}
+            defaultValue={stationTimeInput(data.snapshot_at)}
           />
           <Field
             label="Source / notification reference"
@@ -317,8 +320,25 @@ export function WorkflowDialog({
           </p>
         </ActionForm>
       )}
+      {modal.type === "cancel_invite" && owner && invitation && (
+        <ActionForm
+          op="cancel_invite"
+          base={{ id: invitation.id }}
+          onDone={onDone}
+          submit="Cancel invitation"
+        >
+          <p>
+            {invitation.name} will no longer be able to accept this invitation.
+          </p>
+          <label className="checkbox-label">
+            <input type="checkbox" required /> I want to cancel this invitation.
+          </label>
+        </ActionForm>
+      )}
       {modal.type === "delivery" && !tanks.length && (
-        <div className="notice warning">Configure a receiving tank at this station before creating a dispatch.</div>
+        <div className="notice warning">
+          Configure a receiving tank at this station before creating a dispatch.
+        </div>
       )}
       {modal.type === "delivery" && !!tanks.length && (
         <ActionForm
@@ -337,7 +357,8 @@ export function WorkflowDialog({
               try {
                 return parseChamberChart(String(form.get(`chart_${index}`)));
               } catch (error) {
-                const reason = error instanceof Error ? error.message : "Check the chart.";
+                const reason =
+                  error instanceof Error ? error.message : "Check the chart.";
                 throw new Error(`Chamber ${index + 1}: ${reason}`);
               }
             }),
@@ -374,8 +395,13 @@ export function WorkflowDialog({
             <legend>Chamber calibration</legend>
             <label>
               Number of chambers
-              <select value={count} onChange={(event) => setCount(Number(event.target.value))}>
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => <option key={value}>{value}</option>)}
+              <select
+                value={count}
+                onChange={(event) => setCount(Number(event.target.value))}
+              >
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
+                  <option key={value}>{value}</option>
+                ))}
               </select>
             </label>
             {Array.from({ length: count }, (_, index) => (
@@ -439,16 +465,29 @@ export function WorkflowDialog({
           onDone={onDone}
         />
       )}
-      {modal.type === "shift_detail" && shift && (
-        owner ? <ShiftDetail shift={shift} data={data} price={price} onDone={onDone} /> : (
+      {modal.type === "shift_detail" &&
+        shift &&
+        (owner ? (
+          <ShiftDetail
+            shift={shift}
+            data={data}
+            price={price}
+            onDone={onDone}
+          />
+        ) : (
           <div className="form-stack">
             <h2>{shift.name}</h2>
             <p>Opened {date(shift.opened_at)}</p>
             {shift.closed_at && <p>Submitted {date(shift.closed_at)}</p>}
-            <p role="status">{shift.status === "verified" ? "Verified by owner" : shift.status === "review" ? "Awaiting owner review" : "Shift open"}</p>
+            <p role="status">
+              {shift.status === "verified"
+                ? "Verified by owner"
+                : shift.status === "review"
+                  ? "Awaiting owner review"
+                  : "Shift open"}
+            </p>
           </div>
-        )
-      )}
+        ))}
       {modal.type === "account" && (
         <ActionForm
           op="account"
@@ -599,11 +638,19 @@ function EvidenceLink({
 }
 function parseChamberChart(value: string) {
   const points = parseChart(value);
-  if (points.some((point, index) =>
-    point.mm < 0 || point.liters < 0 ||
-    (index > 0 && (point.mm <= points[index - 1].mm || point.liters <= points[index - 1].liters)),
-  )) {
-    throw new Error("Each depth and volume must be greater than the previous row.");
+  if (
+    points.some(
+      (point, index) =>
+        point.mm < 0 ||
+        point.liters < 0 ||
+        (index > 0 &&
+          (point.mm <= points[index - 1].mm ||
+            point.liters <= points[index - 1].liters)),
+    )
+  ) {
+    throw new Error(
+      "Each depth and volume must be greater than the previous row.",
+    );
   }
   return points;
 }
@@ -643,7 +690,11 @@ function ChamberCalibration({ index }: { index: number }) {
               setSource(file.name);
               setError("");
             } catch (error) {
-              setError(error instanceof Error ? error.message : "Could not read the chart.");
+              setError(
+                error instanceof Error
+                  ? error.message
+                  : "Could not read the chart.",
+              );
             }
           }}
         />
@@ -651,11 +702,16 @@ function ChamberCalibration({ index }: { index: number }) {
       {points && first && last && (
         <p className="chamber-chart-preview" role="status">
           <strong>{source || "Pasted rows"}</strong>
-          <span>{points.length} points · {number(first.mm)}–{number(last.mm)} mm · up to {number(last.liters)} L</span>
+          <span>
+            {points.length} points · {number(first.mm)}–{number(last.mm)} mm ·
+            up to {number(last.liters)} L
+          </span>
         </p>
       )}
       <details>
-        <summary>{chart ? "View or edit chart rows" : "Paste chart rows instead"}</summary>
+        <summary>
+          {chart ? "View or edit chart rows" : "Paste chart rows instead"}
+        </summary>
         <label>
           Chamber {index + 1} certified chart (mm, litres)
           <textarea
@@ -671,7 +727,11 @@ function ChamberCalibration({ index }: { index: number }) {
           />
         </label>
       </details>
-      {error && <p role="alert" className="form-error">{error}</p>}
+      {error && (
+        <p role="alert" className="form-error">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
@@ -698,12 +758,22 @@ function DeliveryDetail({
   const chamberCount = d.chamber_count || d.chambers?.length || 1;
   const tank = data.tanks.find((t) => t.id === d.tank_id);
   const measured = d.measured;
-  const capacityCheck = owner && tank && typeof measured === "number"
-    && (d.status === "submitted" || d.status === "approved")
-    ? { available: tank.capacity - tank.stock, measured, projected: tank.stock + measured }
-    : null;
-  const capacityBlocked = !!capacityCheck && !!tank
-    && capacityCheck.measured - capacityCheck.available > Number.EPSILON * tank.capacity;
+  const capacityCheck =
+    owner &&
+    tank &&
+    typeof measured === "number" &&
+    (d.status === "submitted" || d.status === "approved")
+      ? {
+          available: tank.capacity - tank.stock,
+          measured,
+          projected: tank.stock + measured,
+        }
+      : null;
+  const capacityBlocked =
+    !!capacityCheck &&
+    !!tank &&
+    capacityCheck.measured - capacityCheck.available >
+      Number.EPSILON * tank.capacity;
   return (
     <div className="detail-stack">
       <div className="detail-summary">
@@ -715,7 +785,11 @@ function DeliveryDetail({
           <p>
             {d.reference} · {d.depot}
           </p>
-          {tank && <p>{tank.name} · {fuelGradeLabel(tank.grade)}</p>}
+          {tank && (
+            <p>
+              {tank.name} · {fuelGradeLabel(tank.grade)}
+            </p>
+          )}
         </div>
         <span className={`status delivery-status-${d.status}`}>
           {deliveryStageLabel(d.status)}
@@ -851,18 +925,44 @@ function DeliveryDetail({
         </>
       )}
       {capacityCheck && tank && (
-        <div className={`notice delivery-capacity${capacityBlocked ? " warning" : ""}`} role="status">
-          <strong>{capacityBlocked ? "Insufficient space in assigned tank" : "Receiving capacity"}</strong>
+        <div
+          className={`notice delivery-capacity${capacityBlocked ? " warning" : ""}`}
+          role="status"
+        >
+          <strong>
+            {capacityBlocked
+              ? "Insufficient space in assigned tank"
+              : "Receiving capacity"}
+          </strong>
           <dl>
-            <div><dt>Recorded stock</dt><dd>{number(tank.stock, 2)} L</dd></div>
-            <div><dt>Tank capacity</dt><dd>{number(tank.capacity, 2)} L</dd></div>
-            <div><dt>Available space</dt><dd>{number(capacityCheck.available, 2)} L</dd></div>
-            <div><dt>After receipt</dt><dd>{number(capacityCheck.projected, 2)} L</dd></div>
+            <div>
+              <dt>Recorded stock</dt>
+              <dd>{number(tank.stock, 2)} L</dd>
+            </div>
+            <div>
+              <dt>Tank capacity</dt>
+              <dd>{number(tank.capacity, 2)} L</dd>
+            </div>
+            <div>
+              <dt>Available space</dt>
+              <dd>{number(capacityCheck.available, 2)} L</dd>
+            </div>
+            <div>
+              <dt>After receipt</dt>
+              <dd>{number(capacityCheck.projected, 2)} L</dd>
+            </div>
           </dl>
           {capacityBlocked && (
             <>
-              <span>Verify the tank stock and arrival audit before receiving this delivery.</span>
-              <button type="button" className="text-link" onClick={() => onReviewTank(tank.id)}>
+              <span>
+                Verify the tank stock and arrival audit before receiving this
+                delivery.
+              </span>
+              <button
+                type="button"
+                className="text-link"
+                onClick={() => onReviewTank(tank.id)}
+              >
                 Review assigned tank <ExternalLink size={14} />
               </button>
             </>
@@ -1172,17 +1272,36 @@ function ShiftDetail({
               </tbody>
             </table>
           </div>
-          <div className="shift-variance-mobile" aria-label="Tank reconciliation">
+          <div
+            className="shift-variance-mobile"
+            aria-label="Tank reconciliation"
+          >
             {r.tanks.map((tank) => {
-              const tolerance = data.stations.find((station) => station.id === s.station_id)?.tolerance ?? 15;
+              const tolerance =
+                data.stations.find((station) => station.id === s.station_id)
+                  ?.tolerance ?? 15;
               const exceedsTolerance = Math.abs(tank.variance) > tolerance;
               return (
                 <article key={tank.tank_id}>
-                  <header><strong>{tank.name}</strong><b className={exceedsTolerance ? "text-danger" : ""}>{number(tank.variance, 1)} L variance</b></header>
+                  <header>
+                    <strong>{tank.name}</strong>
+                    <b className={exceedsTolerance ? "text-danger" : ""}>
+                      {number(tank.variance, 1)} L variance
+                    </b>
+                  </header>
                   <dl>
-                    <div><dt>Dispensed</dt><dd>{number(tank.sold, 1)} L</dd></div>
-                    <div><dt>Expected</dt><dd>{number(tank.expected, 1)} L</dd></div>
-                    <div><dt>Measured</dt><dd>{number(tank.actual, 1)} L</dd></div>
+                    <div>
+                      <dt>Dispensed</dt>
+                      <dd>{number(tank.sold, 1)} L</dd>
+                    </div>
+                    <div>
+                      <dt>Expected</dt>
+                      <dd>{number(tank.expected, 1)} L</dd>
+                    </div>
+                    <div>
+                      <dt>Measured</dt>
+                      <dd>{number(tank.actual, 1)} L</dd>
+                    </div>
                   </dl>
                 </article>
               );

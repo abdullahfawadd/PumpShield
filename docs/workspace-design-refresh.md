@@ -26,3 +26,20 @@ The station selector and device sync live in the top bar. Queued records, sync f
 | `#13221e` | `#d9eea6` | 13.12:1 |
 
 The app draws stock and performance graphics from recorded data and reuses the original tanker illustration in the delivery view. The product’s sign-in artwork and measured-stock, receiving and reconciliation rules are preserved.
+
+## Station workflow iteration
+
+The overview pairs review and receiving counts with the current shift. Receiving opens its filtered register. Tank tiles expose capacity and the related reconciliation, and sales retain daily figures and explicitly show gaps in loaded dates. The interface now uses individually imported Tabler icons, including a delivery truck, reconciliation clipboard, receipt, document certificate, and half-full fuel mark. [Tabler Icons](https://github.com/tabler/tabler-icons)
+
+The mobile price, access, and fuel-fill ledgers retain each field and action in a stacked row. The location form accepts typed coordinates if a map tap or geolocation is inconvenient. Fuel price and work due-time inputs use PKT. Cancelling an invitation has its own review step. Station Work exposes assigned, overdue and closed filters and starts with the available next action.
+
+| Additional reference | Application |
+| --- | --- |
+| [Veeder-Root THE PLUS VIEW](https://www.veeder.com/us/automatic-tank-gauging-products/tls-450plus-automatic-tank-gauge/remote-connectivity-options-tls4xx-series-atg) | Show recorded tank volumes and reconciliation freshness together. |
+| [RonDesignLab StreamLogic](https://dribbble.com/shots/27200805-StreamLogic-Industrial-Dashboard-Smart-Pump-Monitoring-UI) | Use a compact workload row above stock and reporting. |
+| [RonDesignLab Luma sales dashboard](https://dribbble.com/shots/27902475-Luma-Sales-Performance-Analytics-Mobile-App-UI) | Keep date and fuel filters beside the sales display. |
+| [Q Industrial on Awwwards](https://www.awwwards.com/sites/q-industrial/) | Use dark industrial surfaces around the operational visual and lighter surfaces around records. |
+| [GitHub Primer data visualization](https://primer-docs-preview.github.com/product/ui-patterns/data-visualization/) | Keep readings and dates explicit and preserve the daily data ledger. |
+| [Chrome responsive-table guidance](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/ui-atoms/responsive-table.md) | Preserve column associations and visible field labels as records reflow. |
+
+The updated ink `#112820` measures 15.58:1 on white. Secondary text `#435950` measures 6.75:1 on the warm station surface `#f1f3ed`. White text on action green `#154838` measures 10.42:1.
