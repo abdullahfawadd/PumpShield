@@ -35,6 +35,12 @@
   --rail-accent: #d9eea6;
   background: var(--background);
 }
+.app-shell .table-scroll { position: relative; }
+.app-shell .shift-register { container-type: inline-size; }
+@container (max-width: 790px) {
+  .app-shell .shift-register .ledger-shift-desktop { display: none; }
+  .app-shell .shift-register .ledger-shift-mobile { display: grid; }
+}
 .app-shell[data-nav-collapsed="true"] {
   --rail-width: 72px;
 }
