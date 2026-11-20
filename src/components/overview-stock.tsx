@@ -87,11 +87,6 @@ export function OverviewStock({
                   className={`overview-tank-card grade-${String(item.grade).toLowerCase()}`}
                   onClick={() => setSelected(item.id)}
                 >
-                  <span
-                    className="overview-tank-gauge"
-                    aria-hidden="true"
-                    style={{ "--fill": `${fill}%` } as CSSProperties}
-                  />
                   <span className="overview-tank-identity">
                     <strong>{item.name}</strong>
                     <small>{fuelGradeName(item.grade)}</small>
@@ -100,6 +95,11 @@ export function OverviewStock({
                     <strong>{litres(item.stock)}</strong>
                     <small>{Math.round(ratio * 100)}% full</small>
                   </span>
+                  <span
+                    className="overview-tank-gauge"
+                    aria-hidden="true"
+                    style={{ "--fill": `${fill}%` } as CSSProperties}
+                  />
                 </button>
               );
             })}

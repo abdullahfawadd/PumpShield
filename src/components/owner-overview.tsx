@@ -1,5 +1,11 @@
 "use client";
-import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
+import {
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import type { Dashboard, Delivery, Shift, Tank, Station } from "@/lib/types";
 import { date, money, number } from "@/lib/utils";
 import { useClock } from "@/lib/use-clock";
@@ -16,16 +22,14 @@ import {
   ArrowUpRight,
   Activity,
   Clock3,
-  Droplets,
+  ClipboardCheck,
   Settings2,
   Truck,
-  WalletCards,
 } from "./icons";
 import { Button } from "./ui/button";
 import { ReceivingFocus } from "./receiving-focus";
 import { ShiftPerformance } from "./overview-performance";
 import { OverviewStock } from "./overview-stock";
-import { Button as AstryxButton } from "@astryxdesign/core/Button";
 
 const widgetNames: Record<OverviewWidget, string> = {
   performance: "Shift sales",
@@ -97,6 +101,8 @@ export function OwnerOverview({
   const [days, setDays] = useState<7 | 30>(30);
   const [stage, setStage] = useState<Delivery["status"] | null>(null);
   const [showAllReviews, setShowAllReviews] = useState(false);
+  const reviewPanel = useRef<HTMLElement>(null);
+  const deliveryPanel = useRef<HTMLElement>(null);
   const [sessionLayout, setSessionLayout] = useState<{
     key: string;
     layout: OverviewLayout;
@@ -166,7 +172,20 @@ export function OwnerOverview({
     const account = data.accounts.find((record) => record.id === id);
     return { title: account?.name, view: undefined };
   };
-  const observed = model.periodShifts.length > 0;
+  const approved = active.filter((delivery) => delivery.status === "approved");
+  function showPanel(panel: HTMLElement | null) {
+    if (!panel) return;
+    panel.scrollIntoView({ block: "start" });
+    panel.focus({ preventScroll: true });
+  }
+  function showApproved() {
+    if (deliveryPanel.current) {
+      setStage("approved");
+      showPanel(deliveryPanel.current);
+    } else if (approved[0]) {
+      onOpen("delivery_detail", approved[0].id);
+    }
+  }
   return (
     <div className="overview-studio">
       <div className="overview-toolbar">
@@ -182,21 +201,6 @@ export function OwnerOverview({
           </span>
         </div>
         <div className="overview-tools">
-          <div
-            className="overview-segments"
-            role="group"
-            aria-label="Reporting period"
-          >
-            {([7, 30] as const).map((n) => (
-              <AstryxButton
-                label={`${n} days`}
-                variant={days === n ? "primary" : "secondary"}
-                key={n}
-                aria-pressed={days === n}
-                onClick={() => setDays(n)}
-              />
-            ))}
-          </div>
           <details className="overview-customize">
             <summary>
               <Settings2 size={17} />
@@ -295,35 +299,47 @@ export function OwnerOverview({
             </Button>
           )}
         </section>
-        <dl
-          className="overview-kpis"
-          aria-label={`Station totals for the last ${days} days`}
+        <section
+          className="overview-workload"
+          aria-label="Work awaiting action"
         >
-          <div className="overview-kpi">
-            <dt>
-              <Droplets size={18} aria-hidden="true" />
-              Fuel dispensed
-            </dt>
-            <dd>
-              {observed ? number(model.totals.liters, 1) : "—"}
-              <small>L</small>
-            </dd>
-          </div>
-          <div className="overview-kpi">
-            <dt>
-              <WalletCards size={18} aria-hidden="true" />
-              Shift revenue
-            </dt>
-            <dd>
-              {privateMode
-                ? "••••••"
-                : observed
-                  ? number(model.totals.revenue)
-                  : "—"}
-              <small>PKR</small>
-            </dd>
-          </div>
-        </dl>
+          <button
+            type="button"
+            className="overview-workload-item"
+            data-pending={model.review.count > 0}
+            disabled={model.review.count === 0}
+            onClick={() => showPanel(reviewPanel.current)}
+          >
+            <span className="overview-workload-icon">
+              <ClipboardCheck size={19} aria-hidden="true" />
+            </span>
+            <span>
+              <small>Awaiting review</small>
+              <strong>{model.review.count}</strong>
+            </span>
+            {model.review.count > 0 && (
+              <ArrowUpRight size={15} aria-hidden="true" />
+            )}
+          </button>
+          <button
+            type="button"
+            className="overview-workload-item"
+            data-pending={approved.length > 0}
+            disabled={approved.length === 0}
+            onClick={showApproved}
+          >
+            <span className="overview-workload-icon">
+              <Truck size={19} aria-hidden="true" />
+            </span>
+            <span>
+              <small>Ready to receive</small>
+              <strong>{approved.length}</strong>
+            </span>
+            {approved.length > 0 && (
+              <ArrowUpRight size={15} aria-hidden="true" />
+            )}
+          </button>
+        </section>
       </div>
       {model.excludedInvalidRecords > 0 && (
         <p className="overview-warning" role="status">
@@ -332,7 +348,12 @@ export function OwnerOverview({
         </p>
       )}
       {model.review.count > 0 && (
-        <section className="overview-review" aria-labelledby="overview-reviews">
+        <section
+          className="overview-review"
+          tabIndex={-1}
+          ref={reviewPanel}
+          aria-labelledby="overview-reviews"
+        >
           <div className="overview-section-title">
             <h2 id="overview-reviews">Review queue</h2>
             <span className="overview-count has-reviews">
@@ -416,6 +437,7 @@ export function OwnerOverview({
                 key={id}
                 model={model}
                 days={days}
+              onDaysChange={setDays}
                 privateMode={privateMode}
                 onOpen={onOpen}
               />
@@ -436,6 +458,8 @@ export function OwnerOverview({
               <section
                 className="overview-card overview-pipeline"
                 key={id}
+                tabIndex={-1}
+                ref={deliveryPanel}
                 aria-labelledby="overview-deliveries-title"
               >
                 <div className="overview-section-title">

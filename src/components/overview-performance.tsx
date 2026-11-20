@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { number } from "@/lib/utils";
 import {
   FUEL_GRADES,
@@ -7,7 +7,7 @@ import {
   isFuelGrade,
   type FuelGrade,
 } from "@/lib/fuel-grades";
-import type { buildOverviewModel } from "@/lib/overview-model";
+import type { buildOverviewModel, OverviewPeriod } from "@/lib/overview-model";
 import { Activity, ArrowUpRight } from "./icons";
 import { OverviewPaymentMix } from "./overview-payment-mix";
 
@@ -21,11 +21,13 @@ const dayLabel = (value: string) =>
 export function ShiftPerformance({
   model,
   days,
+  onDaysChange,
   privateMode,
   onOpen,
 }: {
   model: Model;
-  days: number;
+  days: OverviewPeriod;
+  onDaysChange: (period: OverviewPeriod) => void;
   privateMode: boolean;
   onOpen: (type: string, id?: string) => void;
 }) {
@@ -38,6 +40,17 @@ export function ShiftPerformance({
   const total = series.reduce((sum, d) => sum + d[metric], 0);
   const observedShifts = series.reduce((sum, d) => sum + d.shiftIds.length, 0);
   const hidden = privateMode && metric === "revenue";
+  const gaps = series.map((day, index) =>
+    index === 0
+      ? 0
+      : (Date.parse(day.date) - Date.parse(series[index - 1].date)) /
+          86_400_000 -
+        1,
+  );
+  const chartWidth = Math.max(
+    180,
+    series.length * 50 + gaps.filter((gap) => gap > 0).length * 40,
+  );
   return (
     <section
       className="overview-card overview-performance"
@@ -53,20 +66,17 @@ export function ShiftPerformance({
         <div
           className="overview-segments"
           role="group"
-          aria-label="Chart measure"
+          aria-label="Reporting period"
         >
-          <button
-            aria-pressed={metric === "liters"}
-            onClick={() => setMetric("liters")}
-          >
-            Litres
-          </button>
-          <button
-            aria-pressed={metric === "revenue"}
-            onClick={() => setMetric("revenue")}
-          >
-            Revenue
-          </button>
+          {([7, 30] as const).map((period) => (
+            <button
+              key={period}
+              aria-pressed={days === period}
+              onClick={() => onDaysChange(period)}
+            >
+              {period} days
+            </button>
+          ))}
         </div>
       </div>
       <div className="overview-sales-controls">
@@ -84,73 +94,110 @@ export function ShiftPerformance({
             </div>
           </div>
         )}
-        <div className="overview-chart-filter">
-          <label htmlFor="overview-fuel-filter" className="sr-only">
-            Fuel grade
-          </label>
-          <select
-            id="overview-fuel-filter"
-            value={grade}
-            onChange={(event) =>
-              setGrade(
-                isFuelGrade(event.target.value) ? event.target.value : "all",
-              )
-            }
+        <div className="overview-sales-filters">
+          <div
+            className="overview-segments"
+            role="group"
+            aria-label="Chart measure"
           >
-            <option value="all">All fuels</option>
-            {FUEL_GRADES.map((value) => (
-              <option key={value} value={value}>
-                {fuelGradeName(value)}
-              </option>
-            ))}
-          </select>
+            <button
+              aria-pressed={metric === "liters"}
+              onClick={() => setMetric("liters")}
+            >
+              Litres
+            </button>
+            <button
+              aria-pressed={metric === "revenue"}
+              onClick={() => setMetric("revenue")}
+            >
+              Revenue
+            </button>
+          </div>
+          <div className="overview-chart-filter">
+            <label htmlFor="overview-fuel-filter" className="sr-only">
+              Fuel grade
+            </label>
+            <select
+              id="overview-fuel-filter"
+              value={grade}
+              onChange={(event) =>
+                setGrade(
+                  isFuelGrade(event.target.value) ? event.target.value : "all",
+                )
+              }
+            >
+              <option value="all">All fuels</option>
+              {FUEL_GRADES.map((value) => (
+                <option key={value} value={value}>
+                  {fuelGradeName(value)}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
       {series.length > 0 && !hidden ? (
-        <div className="overview-chart-frame">
-          <div className="overview-chart-axis" aria-hidden="true">
-            <span>{number(max)}</span>
-            <span>{number(max / 2)}</span>
-            <span>0</span>
-          </div>
-          <div
-            key={`${days}:${grade}`}
-            className="overview-chart-scroll"
-            dir="rtl"
-            role="region"
-            aria-label={`${metric === "liters" ? "Litres" : "Revenue"} by recorded day`}
-            tabIndex={0}
-          >
+        <div className="overview-plot">
+          <div className="overview-chart-frame">
+            <div className="overview-chart-axis" aria-hidden="true">
+              <span>{number(max)}</span>
+              <span>{number(max / 2)}</span>
+              <span>0</span>
+            </div>
             <div
-              className="overview-bars"
-              dir="ltr"
-              style={{ minWidth: `${Math.max(180, series.length * 50)}px` }}
+              key={`${days}:${grade}`}
+              className="overview-chart-scroll"
+              dir="rtl"
+              role="region"
+              aria-label={`${metric === "liters" ? "Litres" : "Revenue"} by recorded day`}
+              tabIndex={0}
             >
-              <div className="overview-grid-lines" aria-hidden="true">
-                <span />
-                <span />
-                <span />
+              <div
+                className="overview-bars"
+                dir="ltr"
+                style={{ minWidth: `${chartWidth}px` }}
+              >
+                <div className="overview-grid-lines" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                {series.map((d, index) => (
+                  <Fragment key={d.date}>
+                    {gaps[index] > 0 && (
+                      <div className="overview-chart-gap">
+                        <span aria-hidden="true">{gaps[index]}d</span>
+                        <span className="sr-only">
+                          {gaps[index]} {gaps[index] === 1 ? "day" : "days"}{" "}
+                          without a record in this view
+                        </span>
+                      </div>
+                    )}
+                    <button
+                      className="overview-chart-day"
+                      aria-pressed={selectedDay?.date === d.date}
+                      aria-label={`${dayLabel(d.date)}: ${number(d[metric], 1)} ${metric === "liters" ? "litres" : "PKR"}, ${d.shiftIds.length} shifts. Show records.`}
+                      onClick={() => setSelected(d.date)}
+                    >
+                      <span className="overview-bar-track">
+                        <span
+                          style={{
+                            height: `${Math.max(d[metric] > 0 ? 2 : 0, (d[metric] / max) * 100)}%`,
+                          }}
+                        />
+                      </span>
+                      <small>{dayLabel(d.date)}</small>
+                    </button>
+                  </Fragment>
+                ))}
               </div>
-              {series.map((d) => (
-                <button
-                  key={d.date}
-                  className="overview-chart-day"
-                  aria-pressed={selectedDay?.date === d.date}
-                  aria-label={`${dayLabel(d.date)}: ${number(d[metric], 1)} ${metric === "liters" ? "litres" : "PKR"}, ${d.shiftIds.length} shifts. Show records.`}
-                  onClick={() => setSelected(d.date)}
-                >
-                  <span className="overview-bar-track">
-                    <span
-                      style={{
-                        height: `${Math.max(d[metric] > 0 ? 2 : 0, (d[metric] / max) * 100)}%`,
-                      }}
-                    />
-                  </span>
-                  <small>{dayLabel(d.date)}</small>
-                </button>
-              ))}
             </div>
           </div>
+          {gaps.some((gap) => gap > 0) && (
+            <p className="overview-plot-note">
+              Dashed gaps mark days without records for this filter.
+            </p>
+          )}
         </div>
       ) : (
         <div className="overview-chart-empty">

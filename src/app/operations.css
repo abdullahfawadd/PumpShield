@@ -887,28 +887,29 @@
 }
 .dialog-content:has(.ops-detail),
 .dialog-content:has(.ops-history) {
-  color: #293523;
-  background: #fcfef8;
+  color: var(--text);
+  background: var(--surface);
 }
 .dialog-content:has(.ops-detail) .dialog-title {
-  color: #2f4025;
+  color: var(--text);
 }
 .dialog-content:has(.ops-detail) label {
-  color: #4a5d3b;
+  color: var(--text-secondary);
 }
-.dialog-content:has(.ops-detail) .button-primary {
-  background: #344729;
-  color: #fff;
+.dialog-content:has(.ops-detail) .button-primary,
+.dialog-content .ops-create-form .button-primary {
+  background: var(--primary);
+  color: var(--on-primary);
 }
 .dialog-content:has(.ops-detail) input,
 .dialog-content:has(.ops-detail) textarea,
 .dialog-content:has(.ops-detail) select {
-  color: #2d3a25;
-  background: #fff;
-  border-color: #d9e2cd;
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--control-border);
 }
 .dialog-content:has(.ops-detail) textarea::placeholder {
-  color: #7a886d;
+  color: var(--text-secondary);
 }
 @media (max-height: 850px) and (min-width: 801px) {
   .app-shell .sidebar-note {
@@ -978,7 +979,7 @@
 }
 .dialog-content:has(.ops-detail) > .muted,
 .ops-detail dt {
-  color: #566b46;
+  color: var(--text-secondary);
 }
 :root {
   --bg: #f4f4f1;
@@ -1038,4 +1039,285 @@
 }
 .app-shell .nav-item {
   transition: none;
+}
+
+.app-shell .station-operations .ops-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+}
+.app-shell .station-operations .ops-tabs button {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 7px 10px;
+  gap: 7px;
+  border-radius: 7px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  text-align: left;
+}
+.app-shell .station-operations .ops-tabs button[aria-pressed="true"] {
+  color: var(--on-primary);
+  background: var(--primary);
+}
+.app-shell .station-operations .ops-tabs .ops-tab-count {
+  margin-left: auto;
+  color: var(--primary);
+  background: var(--secondary);
+  font-weight: 650;
+}
+.app-shell .station-operations .ops-heading {
+  margin: 18px 0 12px;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.app-shell .station-operations .ops-heading h2 {
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.2;
+}
+.app-shell .station-operations .ops-heading .button {
+  min-height: 44px;
+  width: auto;
+}
+.app-shell .station-operations .ops-toolbar {
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.app-shell .station-operations .ops-toolbar .ops-search {
+  flex: 1 1 226px;
+  max-width: none;
+  width: 100%;
+  padding-inline: 12px;
+  color: var(--text-secondary);
+  border-color: var(--control-border);
+}
+.app-shell .station-operations .ops-search:focus-within {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.app-shell .station-operations .ops-search input {
+  min-width: 0;
+  width: 100%;
+  padding-inline: 0;
+  font-size: 16px;
+  color: var(--text);
+  outline: 0;
+}
+.app-shell .station-operations .ops-search svg {
+  flex: none;
+}
+.app-shell .station-operations .ops-search input::placeholder {
+  color: var(--text-secondary);
+  opacity: 1;
+}
+.app-shell .station-operations .ops-toolbar > select {
+  min-width: 0;
+  min-height: 46px;
+  flex: 0 1 auto;
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--control-border);
+  font-size: 15px;
+}
+.app-shell .station-operations .view-toggle {
+  display: inline-flex;
+  width: fit-content;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+}
+.app-shell .station-operations .view-toggle button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  padding-inline: 8px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.app-shell .station-operations .view-toggle button[aria-pressed="true"] {
+  color: var(--on-primary);
+  background: var(--primary);
+}
+.app-shell .station-operations .ops-results {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.app-shell
+  .station-operations
+  :is(.ops-mine, .ops-clear, .ops-results .button) {
+  min-height: 44px;
+}
+.app-shell .station-operations .ops-mine {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding-inline: 10px;
+  border: 1px solid var(--control-border);
+  border-radius: 8px;
+  color: var(--primary);
+  background: var(--surface);
+  font-weight: 650;
+}
+.app-shell .station-operations .ops-mine[aria-pressed="true"] {
+  color: var(--on-primary);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.app-shell .station-operations .ops-lane {
+  min-height: auto;
+  padding: 10px;
+  border-radius: 12px;
+}
+.app-shell .station-operations .ops-lane h3 {
+  font-size: 14px;
+  font-weight: 650;
+}
+.app-shell .station-operations .ops-lane > header b {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.app-shell .station-operations .ops-lane-empty {
+  min-height: 0;
+  padding-block: 9px;
+}
+.app-shell .station-operations .ops-card h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+.app-shell .station-operations .ops-card footer {
+  justify-content: space-between;
+}
+.app-shell .station-operations .ops-list-row {
+  grid-template-columns: minmax(0, 1.35fr) minmax(110px, 0.75fr) minmax(
+      110px,
+      0.65fr
+    ) minmax(120px, 0.6fr) auto;
+  gap: 8px 14px;
+  padding: 12px 14px;
+}
+.app-shell .station-operations .ops-list-row h3 {
+  margin: 0;
+  font-weight: 650;
+}
+.app-shell .station-operations .ops-list-statuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.app-shell .station-operations .ops-list-arrow {
+  grid-column: -2;
+  color: var(--primary);
+}
+.app-shell .station-operations .ops-priority {
+  display: inline-flex;
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: var(--warning);
+  background: var(--warning-surface);
+  font-size: 12px;
+  font-weight: 650;
+  text-transform: capitalize;
+}
+.app-shell .station-operations .ops-priority.priority-urgent {
+  color: var(--error);
+  background: var(--error-surface);
+}
+.app-shell .station-operations .ops-list-due.overdue {
+  color: var(--error);
+  font-weight: 650;
+}
+.app-shell .station-operations .ops-record-empty {
+  min-height: 130px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 11px;
+  color: var(--text-secondary);
+}
+.dialog-content .ops-record-content .ops-transition {
+  margin: 0 0 16px;
+  padding: 12px;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.dialog-content .ops-record-content .ops-transition .button {
+  align-self: start;
+  min-height: 44px;
+}
+.dialog-content .ops-record-content :is(.ops-action-note, .ops-cancel) summary {
+  width: fit-content;
+  min-height: 44px;
+  padding-block: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.dialog-content .ops-record-content .ops-cancel {
+  margin-block-start: 12px;
+}
+.dialog-content .ops-record-content .ops-cancel summary {
+  color: var(--error);
+}
+.dialog-content .ops-form-message {
+  color: var(--warning);
+  font-size: 14px;
+}
+@media (max-width: 1050px) {
+  .app-shell .station-operations .ops-list-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .app-shell .station-operations .ops-list-arrow {
+    grid-row: 1;
+  }
+  .app-shell
+    .station-operations
+    :is(.ops-list-statuses, .ops-list-assignee, .ops-list-due) {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 767px) {
+  .app-shell .station-operations .ops-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .app-shell .station-operations .ops-tabs button {
+    font-size: 13px;
+  }
+  .app-shell .station-operations .ops-toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .app-shell .station-operations .ops-toolbar :is(.ops-search, .ops-results) {
+    grid-column: 1 / -1;
+  }
+  .app-shell .station-operations .ops-toolbar > select {
+    max-width: none;
+    width: 100%;
+    font-size: 16px;
+  }
+  .app-shell .station-operations .ops-results {
+    justify-content: start;
+  }
+  .app-shell .station-operations .ops-results > span {
+    margin-inline-start: auto;
+  }
+  .dialog-content .ops-record-content .ops-transition .button {
+    width: 100%;
+    justify-content: space-between;
+  }
 }

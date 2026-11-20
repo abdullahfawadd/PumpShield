@@ -5,7 +5,9 @@ import {
   ArrowRight,
   Check,
   Clock3,
+  Columns3,
   Fuel,
+  Menu,
   MessageSquare,
   Plus,
   RefreshCw,
@@ -16,11 +18,23 @@ import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Dialog } from "./ui/dialog";
 import type { Dashboard, Delivery } from "@/lib/types";
-import { date, number } from "@/lib/utils";
+import { date, number, stationTimeInstant } from "@/lib/utils";
 import { deliveryStageLabel } from "@/lib/delivery-stages";
-import { FUEL_GRADE_OPTIONS, fuelGradeLabel, type FuelGrade } from "@/lib/fuel-grades";
+import {
+  FUEL_GRADE_OPTIONS,
+  fuelGradeLabel,
+  type FuelGrade,
+} from "@/lib/fuel-grades";
 import { useMobileLayout } from "@/lib/use-mobile-layout";
+import { useClock } from "@/lib/use-clock";
 type Kind = "exception" | "indent" | "maintenance" | "handover";
+type WorkFilters = { kind: Kind; query: string; stage: string; mine: boolean };
+const makeFilters = (kind: Kind): WorkFilters => ({
+  kind,
+  query: "",
+  stage: "all",
+  mine: false,
+});
 type Item = {
   id: string;
   kind: Kind;
@@ -64,6 +78,7 @@ const kinds: {
   id: Kind;
   name: string;
   mobileName: string;
+  singular: string;
   caption: string;
   icon: typeof Fuel;
   stages: string[];
@@ -72,6 +87,7 @@ const kinds: {
     id: "exception",
     name: "Discrepancy cases",
     mobileName: "Cases",
+    singular: "case",
     caption: "Record a shortage or discrepancy for follow-up.",
     icon: AlertCircle,
     stages: ["open", "investigating", "resolved"],
@@ -80,6 +96,7 @@ const kinds: {
     id: "indent",
     name: "Fuel indents",
     mobileName: "Indents",
+    singular: "fuel indent",
     caption: "Request fuel from a supplier.",
     icon: Fuel,
     stages: ["requested", "approved", "dispatched", "received"],
@@ -88,6 +105,7 @@ const kinds: {
     id: "maintenance",
     name: "Maintenance",
     mobileName: "Maintenance",
+    singular: "maintenance task",
     caption: "Schedule work on station equipment.",
     icon: Wrench,
     stages: ["scheduled", "in_progress", "completed"],
@@ -96,6 +114,7 @@ const kinds: {
     id: "handover",
     name: "Shift handovers",
     mobileName: "Handovers",
+    singular: "handover",
     caption: "Leave a briefing for a named team member.",
     icon: MessageSquare,
     stages: ["pending", "accepted"],
@@ -129,8 +148,14 @@ const actionLabels: Record<string, string> = {
   in_progress: "Start maintenance",
   completed: "Complete maintenance",
   accepted: "Acknowledge handover",
-  cancelled: "Cancel with a reason",
+  cancelled: "Cancel record",
 };
+const priorityRank: Record<string, number> = { normal: 0, high: 1, urgent: 2 };
+function workContext(item: Item) {
+  return item.kind === "indent"
+    ? `${fuelGradeLabel(item.grade)} · ${number(item.liters || 0)} L`
+    : item.equipment;
+}
 export function StationOperations({
   stationId,
   data,
@@ -159,13 +184,21 @@ export function StationOperations({
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const saving = useRef(false);
+  const [saveError, setSaveError] = useState<{
+    action: string;
+    message: string;
+  } | null>(null);
   const [create, setCreate] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
-  const [query, setQuery] = useState("");
-  const [archive, setArchive] = useState(false);
-  const [stageFilter, setStageFilter] = useState("all");
+  const [filters, setFilters] = useState<WorkFilters>(() => makeFilters(kind));
+  const currentFilters = filters.kind === kind ? filters : makeFilters(kind);
+  const { query, stage: stageFilter, mine } = currentFilters;
+  const updateFilters = (patch: Partial<Omit<WorkFilters, "kind">>) =>
+    setFilters({ ...currentFilters, ...patch });
   const [view, setView] = useState<"auto" | "board" | "list">("auto");
   const mobile = useMobileLayout();
+  const now = useClock();
   const layout = view === "auto" ? (mobile ? "list" : "board") : view;
   const requestVersion = useRef(0);
   const load = useCallback(
@@ -211,7 +244,10 @@ export function StationOperations({
     };
   }, [load]);
   const save = async (op: string, p: Record<string, unknown>) => {
+    if (saving.current) return false;
+    saving.current = true;
     setBusy(true);
+    setSaveError(null);
     try {
       const r = await fetch("/api/operations", {
         method: "POST",
@@ -224,71 +260,122 @@ export function StationOperations({
       toast.success("Saved to the station record");
       return true;
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Unable to save");
+      setSaveError({
+        action: op === "transition" ? String(p.status) : op,
+        message: e instanceof Error ? e.message : "Unable to save",
+      });
       return false;
     } finally {
       setBusy(false);
+      saving.current = false;
     }
   };
   const config = kinds.find((k) => k.id === kind)!;
-  const item = snapshot.items.find((i) => i.id === selected);
+  const item = snapshot.items.find((i) => i.id === selected && i.kind === kind);
   const person = (id: string | null) =>
     snapshot.people.find((p) => p.id === id)?.name ||
     (id ? "Former team member" : "Unassigned");
-  const items = snapshot.items.filter(
-    (i) =>
-      i.kind === kind &&
-      (stageFilter === "all" || i.status === stageFilter) &&
-      (!archive ? i.status !== "cancelled" : true) &&
-      `${i.title} ${i.supplier || ""} ${i.equipment || ""} ${i.description}`
-        .toLowerCase()
-        .includes(query.toLowerCase()),
-  );
+  const hasFilters = !!query || stageFilter !== "all" || mine;
+  const search = query.trim().toLowerCase();
+  const items = snapshot.items
+    .filter(
+      (record) =>
+        record.kind === kind &&
+        (!mine || record.assigned_to === data.member?.user_id) &&
+        (stageFilter === "all"
+          ? record.status !== "cancelled"
+          : record.status === stageFilter) &&
+        `${record.title} ${record.supplier || ""} ${record.equipment || ""} ${record.description} ${person(record.assigned_to)}`
+          .toLowerCase()
+          .includes(search),
+    )
+    .sort((a, b) => {
+      const aClosed = terminal.includes(a.status);
+      const bClosed = terminal.includes(b.status);
+      if (aClosed !== bClosed) return Number(aClosed) - Number(bClosed);
+      return aClosed
+        ? 0
+        : (priorityRank[b.priority] ?? 0) - (priorityRank[a.priority] ?? 0);
+    });
+  const boardStages = stageFilter === "all" ? config.stages : [stageFilter];
   const canCreate = owner || kind === "maintenance" || kind === "handover";
-  const deliveryLinks = snapshot.delivery_links ?? data.deliveries.flatMap((delivery) => {
-    if (delivery.station_id !== stationId) return [];
-    const tank = data.tanks.find((t) => t.id === delivery.tank_id);
-    if (!tank) return [];
-    return [{
-      id: delivery.id,
-      reference: delivery.reference,
-      status: delivery.status,
-      grade: tank.grade,
-      linked_work_id: snapshot.items.find((work) =>
-        work.kind === "indent" && work.status !== "cancelled" && work.delivery_id === delivery.id,
-      )?.id ?? null,
-    }];
-  });
+  const recipients = snapshot.people.filter(
+    (p) => kind !== "handover" || p.id !== data.member?.user_id,
+  );
+  const missingRecipient = kind === "handover" && !recipients.length;
+  const selectRecord = (id: string) => {
+    setSaveError(null);
+    setSelected(id);
+  };
+  const due = (record: Item) =>
+    record.due_at && !terminal.includes(record.status) ? (
+      <time
+        dateTime={record.due_at}
+        className={`ops-list-due ${Date.parse(record.due_at) <= now ? "overdue" : ""}`}
+      >
+        {Date.parse(record.due_at) <= now ? "Overdue · " : "Due "}
+        {date(record.due_at)} PKT
+      </time>
+    ) : null;
+  const deliveryLinks =
+    snapshot.delivery_links ??
+    data.deliveries.flatMap((delivery) => {
+      if (delivery.station_id !== stationId) return [];
+      const tank = data.tanks.find((t) => t.id === delivery.tank_id);
+      if (!tank) return [];
+      return [
+        {
+          id: delivery.id,
+          reference: delivery.reference,
+          status: delivery.status,
+          grade: tank.grade,
+          linked_work_id:
+            snapshot.items.find(
+              (work) =>
+                work.kind === "indent" &&
+                work.status !== "cancelled" &&
+                work.delivery_id === delivery.id,
+            )?.id ?? null,
+        },
+      ];
+    });
   const linkedDelivery = deliveryLinks.find((d) => d.id === item?.delivery_id);
   const canAdvance = item && !terminal.includes(item.status);
   const assignedToMe = item?.assigned_to === data.member?.user_id;
-  const nextStatus = canAdvance
-    ? config.stages[config.stages.indexOf(item.status) + 1]
-    : undefined;
+  const currentStage = item ? config.stages.indexOf(item.status) : -1;
+  const nextStatus =
+    canAdvance && currentStage >= 0
+      ? config.stages[currentStage + 1]
+      : undefined;
   const dispatchChoices =
     item?.kind === "indent" && item.status === "approved"
-      ? deliveryLinks.filter((d) =>
-          d.grade === item.grade && (!d.linked_work_id || d.linked_work_id === item.id),
+      ? deliveryLinks.filter(
+          (d) =>
+            d.grade === item.grade &&
+            (!d.linked_work_id || d.linked_work_id === item.id),
         )
       : [];
-  const waitingMessage = !item || !canAdvance ? "" :
-    nextStatus === "approved" && !owner
-      ? "Awaiting owner approval."
-      : (!owner || item.kind === "handover") && !assignedToMe
-        ? item.assigned_to
-          ? `Waiting for ${person(item.assigned_to)}.`
-          : "An owner needs to advance this record."
-        : item.kind === "indent" && nextStatus === "dispatched" && !dispatchChoices.length
-          ? `Create a ${fuelGradeLabel(item.grade)} delivery at this station to record dispatch.`
-          : item.kind === "indent" && nextStatus === "received" && linkedDelivery?.status !== "decanted"
-            ? linkedDelivery
-              ? "Finish receiving the linked delivery to complete this indent."
-              : "Ask the owner to check the linked delivery."
-            : "";
-  const actions = [
-    ...(nextStatus && !waitingMessage ? [nextStatus] : []),
-    ...(canAdvance && owner ? ["cancelled"] : []),
-  ];
+  const waitingMessage =
+    !item || !canAdvance
+      ? ""
+      : nextStatus === "approved" && !owner
+        ? "Awaiting owner approval."
+        : (!owner || item.kind === "handover") && !assignedToMe
+          ? item.assigned_to
+            ? `Waiting for ${person(item.assigned_to)}.`
+            : "An owner needs to advance this record."
+          : item.kind === "indent" &&
+              nextStatus === "dispatched" &&
+              !dispatchChoices.length
+            ? `Create a ${fuelGradeLabel(item.grade)} delivery at this station to record dispatch.`
+            : item.kind === "indent" &&
+                nextStatus === "received" &&
+                linkedDelivery?.status !== "decanted"
+              ? linkedDelivery
+                ? "Finish receiving the linked delivery to complete this indent."
+                : "Ask the owner to check the linked delivery."
+              : "";
+  const availableAction = waitingMessage ? undefined : nextStatus;
   if (!stationId)
     return <div className="ops-empty">Add a station to organise its work.</div>;
   return (
@@ -296,66 +383,72 @@ export function StationOperations({
       <div className="ops-tabs" role="group" aria-label="Station workflows">
         {kinds
           .filter((k) => owner || k.id !== "exception")
-          .map((k) => (
-            <button
-              key={k.id}
-              aria-pressed={kind === k.id}
-              onClick={() => {
-                setKind(k.id);
-                onWorkKindChange?.(k.id);
-                setQuery("");
-                setStageFilter("all");
-              }}
-            >
-              <k.icon size={16} />
-              <span className="ops-tab-name">{mobile ? k.mobileName : k.name}</span>
-              <span className="ops-tab-count">
-                {
-                  snapshot.items.filter(
-                    (i) => i.kind === k.id && !terminal.includes(i.status),
-                  ).length
-                }
-              </span>
-            </button>
-          ))}
+          .map((k) => {
+            const active = snapshot.items.filter(
+              (i) => i.kind === k.id && !terminal.includes(i.status),
+            ).length;
+            return (
+              <button
+                key={k.id}
+                type="button"
+                aria-pressed={kind === k.id}
+                onClick={() => {
+                  setKind(k.id);
+                  onWorkKindChange?.(k.id);
+                  setFilters(makeFilters(k.id));
+                }}
+              >
+                <k.icon size={17} aria-hidden="true" />
+                <span className="ops-tab-name">
+                  {mobile ? k.mobileName : k.name}
+                </span>
+                {active > 0 && (
+                  <span className="ops-tab-count">
+                    {active}
+                    <span className="sr-only"> active</span>
+                  </span>
+                )}
+              </button>
+            );
+          })}
       </div>
       <div className="ops-heading">
-        <div>
-          <h2>{config.name}</h2>
-          <p>
-            {items.length} {items.length === 1 ? "record" : "records"}
-          </p>
-        </div>
+        <h2>{config.name}</h2>
         {canCreate && (
-          <Button onClick={() => setCreate(true)}>
+          <Button
+            disabled={loading || busy}
+            onClick={() => {
+              setSaveError(null);
+              setCreate(true);
+            }}
+          >
             <Plus size={16} />
-            New {kind === "exception" ? "case" : kind}
+            New {config.singular}
           </Button>
         )}
       </div>
       <div className="ops-toolbar">
-        <label>
-          <Search size={16} />
+        <label className="ops-search">
+          <Search size={16} aria-hidden="true" />
           <input
+            type="search"
             aria-label="Search station work"
-            placeholder="Search this workflow…"
+            placeholder="Search records or assignees"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => updateFilters({ query: e.target.value })}
           />
         </label>
         <select
           aria-label="Filter work status"
           value={stageFilter}
-          onChange={(e) => setStageFilter(e.target.value)}
+          onChange={(e) => updateFilters({ stage: e.target.value })}
         >
           <option value="all">All statuses</option>
-          {[...config.stages, ...(archive ? ["cancelled"] : [])].map(
-            (stage) => (
-              <option key={stage} value={stage}>
-                {label(stage)}
-              </option>
-            ),
-          )}
+          {[...config.stages, "cancelled"].map((stage) => (
+            <option key={stage} value={stage}>
+              {label(stage)}
+            </option>
+          ))}
         </select>
         <div
           className="view-toggle"
@@ -367,43 +460,76 @@ export function StationOperations({
             aria-pressed={layout === "board"}
             onClick={() => setView("board")}
           >
-            Board
+            <Columns3 size={15} aria-hidden="true" /> Board
           </button>
           <button
             type="button"
             aria-pressed={layout === "list"}
             onClick={() => setView("list")}
           >
-            List
+            <Menu size={15} aria-hidden="true" /> List
           </button>
         </div>
-        <label className="ops-check">
-          <input
-            type="checkbox"
-            checked={archive}
-            onChange={(e) => {
-              setArchive(e.target.checked);
-              if (!e.target.checked && stageFilter === "cancelled")
-                setStageFilter("all");
-            }}
-          />
-          Include cancelled
-        </label>
-        <Button
-          variant="ghost"
-          aria-label="Refresh station work"
-          onClick={() => void load()}
-        >
-          <RefreshCw size={16} />
-        </Button>
+        <div className="ops-results">
+          <button
+            type="button"
+            className="ops-mine"
+            aria-pressed={mine}
+            onClick={() => updateFilters({ mine: !mine })}
+          >
+            {mine && <Check size={15} aria-hidden="true" />} Assigned to me
+          </button>
+          {hasFilters && (
+            <button
+              type="button"
+              className="text-link ops-clear"
+              onClick={() => setFilters(makeFilters(kind))}
+            >
+              Clear filters
+            </button>
+          )}
+          {!loading && (
+            <span role="status">
+              {items.length} {items.length === 1 ? "record" : "records"}
+            </span>
+          )}
+          <Button
+            size="icon"
+            variant="ghost"
+            aria-label="Refresh station work"
+            title="Refresh station work"
+            onClick={() => void load()}
+          >
+            <RefreshCw size={16} aria-hidden="true" />
+          </Button>
+        </div>
       </div>
       {error && (
         <p role="alert" className="form-error">
-          {error} <button onClick={() => void load()}>Retry</button>
+          {snapshot.items.length > 0 ? "Saved records are still visible. " : ""}
+          {error}{" "}
+          <button
+            type="button"
+            className="text-link"
+            onClick={() => void load()}
+          >
+            Retry
+          </button>
         </p>
       )}
       {loading ? (
         <p role="status">Loading saved station work…</p>
+      ) : !items.length ? (
+        !error && (
+          <div className="ops-empty ops-record-empty">
+            <config.icon size={24} aria-hidden="true" />
+            <p>
+              {hasFilters
+                ? "No records match these filters."
+                : `No ${config.name.toLowerCase()} yet.`}
+            </p>
+          </div>
+        )
       ) : layout === "board" ? (
         <div
           className="ops-board"
@@ -411,141 +537,136 @@ export function StationOperations({
           aria-label={`${config.name} stages`}
           tabIndex={0}
         >
-          {[...config.stages, ...(archive ? ["cancelled"] : [])]
-            .filter((stage) => stageFilter === "all" || stage === stageFilter)
-            .map((stage) => (
-              <section className="ops-lane" key={stage}>
-                <header>
-                  <span className={`ops-stage-dot stage-${stage}`} />
-                  <h3>{label(stage)}</h3>
-                  <b>{items.filter((i) => i.status === stage).length}</b>
-                </header>
-                <div>
-                  {items
-                    .filter((i) => i.status === stage)
-                    .map((i) => (
-                      <button
-                        className={`ops-card priority-${i.priority}`}
-                        key={i.id}
-                        onClick={() => setSelected(i.id)}
-                      >
+          {boardStages.map((stage) => (
+            <section className="ops-lane" key={stage}>
+              <header>
+                <span
+                  className={`ops-stage-dot stage-${stage}`}
+                  aria-hidden="true"
+                />
+                <h3>{label(stage)}</h3>
+                <b>{items.filter((i) => i.status === stage).length}</b>
+              </header>
+              <div>
+                {items
+                  .filter((i) => i.status === stage)
+                  .map((i) => (
+                    <button
+                      className={`ops-card priority-${i.priority}`}
+                      key={i.id}
+                      type="button"
+                      onClick={() => selectRecord(i.id)}
+                    >
+                      <h4>{i.title}</h4>
+                      {(workContext(i) || i.priority !== "normal") && (
                         <div className="ops-card-top">
-                          <span>
-                            {i.kind === "indent"
-                              ? `${fuelGradeLabel(i.grade)} · ${number(i.liters || 0)} L`
-                              : i.equipment || `#${i.id.slice(0, 6)}`}
-                          </span>
-                          <span>{i.priority}</span>
+                          {workContext(i) && <span>{workContext(i)}</span>}
+                          {i.priority !== "normal" && (
+                            <span
+                              className={`ops-priority priority-${i.priority}`}
+                            >
+                              {i.priority}
+                            </span>
+                          )}
                         </div>
-                        <h4>{i.title}</h4>
-                        {i.description && <p>{i.description}</p>}
-                        <footer>
-                          <span className="ops-avatar">
-                            {person(i.assigned_to).slice(0, 1)}
-                          </span>
-                          <span>{person(i.assigned_to)}</span>
-                          <ArrowRight size={14} />
-                        </footer>
-                        {i.due_at && (
-                          <span
-                            className={`ops-due ${new Date(i.due_at) < new Date() && !terminal.includes(i.status) ? "overdue" : ""}`}
-                          >
-                            <Clock3 size={12} />
-                            {date(i.due_at)}
-                          </span>
-                        )}
-                      </button>
-                    ))}
-                  {!items.some((i) => i.status === stage) && (
-                    <div className="ops-lane-empty">
-                      <Check size={18} />
-                      <span>
-                        {stage === config.stages[0]
-                          ? "Nothing waiting here"
-                          : "No items at this stage"}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </section>
-            ))}
+                      )}
+                      {i.description && <p>{i.description}</p>}
+                      <footer>
+                        <span>
+                          {i.assigned_to === data.member?.user_id
+                            ? "Assigned to you"
+                            : person(i.assigned_to)}
+                        </span>
+                        <ArrowRight size={16} aria-hidden="true" />
+                      </footer>
+                      {due(i)}
+                    </button>
+                  ))}
+                {!items.some((i) => i.status === stage) && (
+                  <div className="ops-lane-empty">
+                    <span>No records</span>
+                  </div>
+                )}
+              </div>
+            </section>
+          ))}
         </div>
       ) : null}
-      {!loading && layout === "list" && (
+      {!loading && items.length > 0 && layout === "list" && (
         <div className="ops-list" aria-label={`${config.name} list`}>
           {items.map((record) => (
             <button
               key={record.id}
               className="ops-list-row"
-              onClick={() => setSelected(record.id)}
+              type="button"
+              onClick={() => selectRecord(record.id)}
             >
-              <div>
+              <div className="ops-list-identity">
+                <h3>{record.title}</h3>
+                {workContext(record) && <p>{workContext(record)}</p>}
+              </div>
+              <div className="ops-list-statuses">
                 <span className={`status work-status-${record.status}`}>
                   {label(record.status)}
                 </span>
-                <h3>{record.title}</h3>
-                <p>
-                  {record.kind === "indent"
-                    ? `${fuelGradeLabel(record.grade)} · ${number(record.liters || 0)} L`
-                    : record.equipment || config.name}
-                </p>
+                {record.priority !== "normal" && (
+                  <span className={`ops-priority priority-${record.priority}`}>
+                    {record.priority}
+                  </span>
+                )}
               </div>
               <span className="ops-list-assignee">
-                {person(record.assigned_to)}
+                {record.assigned_to === data.member?.user_id
+                  ? "Assigned to you"
+                  : person(record.assigned_to)}
               </span>
-              <span
-                className={`ops-list-due ${record.due_at && new Date(record.due_at) < new Date() && !terminal.includes(record.status) ? "overdue" : ""}`}
-              >
-                {record.due_at ? date(record.due_at) : "No due date"}
-              </span>
-              <ArrowRight size={18} />
+              {due(record)}
+              <ArrowRight
+                className="ops-list-arrow"
+                size={18}
+                aria-hidden="true"
+              />
             </button>
           ))}
-          {!items.length && (
-            <div className="ops-empty">
-              <p>
-                {query || stageFilter !== "all"
-                  ? "No matching records."
-                  : "No records yet."}
-              </p>
-              {(query || stageFilter !== "all") && (
-                <button
-                  className="text-link"
-                  onClick={() => {
-                    setQuery("");
-                    setStageFilter("all");
-                  }}
-                >
-                  Clear filters
-                </button>
-              )}
-            </div>
-          )}
         </div>
       )}
       {snapshot.items.length === 500 && (
-        <p className="ops-footnote">Showing the 500 most recent station records.</p>
+        <p className="ops-footnote">
+          Showing the 500 most recent station records.
+        </p>
       )}
       <Dialog
         open={create}
         onOpenChange={setCreate}
-        title={`New ${kind === "exception" ? "discrepancy case" : kind}`}
+        title={`New ${config.singular}`}
         description={config.caption}
       >
         <form
-          className="action-form"
+          className="action-form ops-create-form"
+          method="post"
           onSubmit={async (e) => {
             e.preventDefault();
             const f = new FormData(e.currentTarget);
             const p = Object.fromEntries(f.entries());
+            let dueAt: string | null;
+            try {
+              dueAt = p.due_at ? stationTimeInstant(String(p.due_at)) : null;
+            } catch (error) {
+              setSaveError({
+                action: "create",
+                message:
+                  error instanceof Error
+                    ? error.message
+                    : "Enter a valid date and time in PKT.",
+              });
+              return;
+            }
             if (
               await save("create", {
                 ...p,
                 station_id: stationId,
                 kind,
-                due_at: p.due_at
-                  ? new Date(String(p.due_at)).toISOString()
-                  : null,
+                due_at: dueAt,
               })
             )
               setCreate(false);
@@ -582,15 +703,11 @@ export function StationOperations({
               {kind === "handover" ? "Recipient" : "Assigned to"}
               <select name="assigned_to" required={kind === "handover"}>
                 <option value="">Choose a person</option>
-                {snapshot.people
-                  .filter(
-                    (p) => kind !== "handover" || p.id !== data.member?.user_id,
-                  )
-                  .map((p) => (
-                    <option value={p.id} key={p.id}>
-                      {p.name}
-                    </option>
-                  ))}
+                {recipients.map((p) => (
+                  <option value={p.id} key={p.id}>
+                    {p.name}
+                  </option>
+                ))}
               </select>
             </label>
             <label>
@@ -602,7 +719,7 @@ export function StationOperations({
               </select>
             </label>
             <label>
-              Due at (local time)
+              Due at (PKT)
               <input type="datetime-local" name="due_at" />
             </label>
           </div>
@@ -615,7 +732,11 @@ export function StationOperations({
               <label>
                 Fuel grade
                 <select name="grade">
-                  {FUEL_GRADE_OPTIONS.map(grade => <option key={grade.value} value={grade.value}>{grade.label}</option>)}
+                  {FUEL_GRADE_OPTIONS.map((grade) => (
+                    <option key={grade.value} value={grade.value}>
+                      {grade.label}
+                    </option>
+                  ))}
                 </select>
               </label>
               <label>
@@ -672,8 +793,18 @@ export function StationOperations({
               </select>
             </label>
           )}
-          <Button disabled={busy}>
-            {busy ? "Saving…" : "Create record"}
+          {missingRecipient && (
+            <p role="status" className="ops-form-message">
+              Add another active team member to send a handover.
+            </p>
+          )}
+          {saveError?.action === "create" && (
+            <p role="alert" className="form-error">
+              {saveError.message}
+            </p>
+          )}
+          <Button type="submit" disabled={busy || missingRecipient}>
+            {busy ? "Saving…" : `Create ${config.singular}`}
             <ArrowRight size={16} />
           </Button>
         </form>
@@ -691,7 +822,46 @@ export function StationOperations({
         }
       >
         {item && (
-          <>
+          <div className="ops-record-content">
+            {waitingMessage && (
+              <div className="ops-work-blocked" role="status">
+                <Clock3 size={18} aria-hidden="true" />
+                <div>
+                  <p>{waitingMessage}</p>
+                  {linkedDelivery &&
+                    linkedDelivery.status !== "decanted" &&
+                    onOpenDelivery &&
+                    data.deliveries.some((d) => d.id === linkedDelivery.id) && (
+                      <button
+                        type="button"
+                        className="text-link"
+                        onClick={() => {
+                          setSelected(null);
+                          onOpenDelivery(linkedDelivery.id);
+                        }}
+                      >
+                        Open linked delivery{" "}
+                        <ArrowRight size={14} aria-hidden="true" />
+                      </button>
+                    )}
+                </div>
+              </div>
+            )}
+            {availableAction && (
+              <WorkTransition
+                key={`${item.id}-${item.status}-${availableAction}`}
+                item={item}
+                action={availableAction}
+                dispatchChoices={dispatchChoices}
+                busy={busy}
+                error={
+                  saveError?.action === availableAction
+                    ? saveError.message
+                    : undefined
+                }
+                onSave={(values) => save("transition", values)}
+              />
+            )}
             <div className="ops-detail">
               {item.description && <p>{item.description}</p>}
               <dl>
@@ -707,7 +877,8 @@ export function StationOperations({
                   <div>
                     <dt>Requested</dt>
                     <dd>
-                      {number(item.liters)} L · {fuelGradeLabel(item.grade)} · {item.supplier}
+                      {number(item.liters)} L · {fuelGradeLabel(item.grade)} ·{" "}
+                      {item.supplier}
                     </dd>
                   </div>
                 )}
@@ -738,33 +909,6 @@ export function StationOperations({
                 )}
               </dl>
             </div>
-            {waitingMessage && (
-              <div className="ops-work-blocked" role="status">
-                <Clock3 size={18} aria-hidden="true" />
-                <div>
-                  <p>{waitingMessage}</p>
-                  {linkedDelivery && linkedDelivery.status !== "decanted" &&
-                    onOpenDelivery && data.deliveries.some((d) => d.id === linkedDelivery.id) && (
-                    <button type="button" className="text-link" onClick={() => {
-                      setSelected(null);
-                      onOpenDelivery(linkedDelivery.id);
-                    }}>
-                      Open linked delivery <ArrowRight size={14} />
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
-            {!!actions.length && (
-              <WorkTransition
-                key={`${item.id}-${item.status}-${actions.join(",")}`}
-                item={item}
-                actions={actions}
-                dispatchChoices={dispatchChoices}
-                busy={busy}
-                onSave={(values) => save("transition", values)}
-              />
-            )}
             <h3 className="ops-history-title">Record history</h3>
             <WorkHistory
               key={`${item.id}-${item.updated_at}`}
@@ -773,6 +917,7 @@ export function StationOperations({
             />
             <form
               className="ops-comment"
+              method="post"
               onSubmit={async (e) => {
                 e.preventDefault();
                 const form = e.currentTarget;
@@ -795,12 +940,37 @@ export function StationOperations({
                   rows={2}
                 />
               </label>
+              {saveError?.action === "comment" && (
+                <p role="alert" className="form-error">
+                  {saveError.message}
+                </p>
+              )}
               <Button disabled={busy} variant="secondary">
                 <MessageSquare size={14} />
                 Add note
               </Button>
             </form>
-          </>
+            {canAdvance && owner && (
+              <details
+                className="ops-cancel"
+                key={`${item.id}-${item.status}-cancel`}
+              >
+                <summary>Cancel record</summary>
+                <WorkTransition
+                  item={item}
+                  action="cancelled"
+                  dispatchChoices={[]}
+                  busy={busy}
+                  error={
+                    saveError?.action === "cancelled"
+                      ? saveError.message
+                      : undefined
+                  }
+                  onSave={(values) => save("transition", values)}
+                />
+              </details>
+            )}
+          </div>
         )}
       </Dialog>
     </section>
@@ -809,22 +979,24 @@ export function StationOperations({
 
 function WorkTransition({
   item,
-  actions,
+  action,
   dispatchChoices,
   busy,
+  error,
   onSave,
 }: {
   item: Item;
-  actions: string[];
+  action: string;
   dispatchChoices: DeliveryLink[];
   busy: boolean;
+  error?: string;
   onSave: (values: Record<string, unknown>) => Promise<boolean>;
 }) {
-  const [action, setAction] = useState(actions[0]);
   const requiresNote = ["resolved", "completed", "cancelled"].includes(action);
   return (
     <form
       className="ops-transition"
+      method="post"
       onSubmit={async (event) => {
         event.preventDefault();
         const values = new FormData(event.currentTarget);
@@ -833,25 +1005,24 @@ function WorkTransition({
           expected_status: item.status,
           status: action,
           note: values.get("note"),
-          delivery_id: action === "received" ? item.delivery_id : values.get("delivery_id"),
+          delivery_id:
+            action === "received"
+              ? item.delivery_id
+              : values.get("delivery_id"),
         });
       }}
     >
-      {actions.length > 1 && (
-        <label>
-          Action
-          <select value={action} onChange={(event) => setAction(event.target.value)}>
-            {actions.map((status) => (
-              <option key={status} value={status}>{actionLabels[status]}</option>
-            ))}
-          </select>
-        </label>
-      )}
       {item.kind === "indent" && action === "dispatched" && (
         <label>
           Delivery · {fuelGradeLabel(item.grade)}
-          <select name="delivery_id" required defaultValue={item.delivery_id || ""}>
-            <option value="" disabled>Select delivery</option>
+          <select
+            name="delivery_id"
+            required
+            defaultValue={item.delivery_id || ""}
+          >
+            <option value="" disabled>
+              Select delivery
+            </option>
             {dispatchChoices.map((delivery) => (
               <option key={delivery.id} value={delivery.id}>
                 {delivery.reference} · {deliveryStageLabel(delivery.status)}
@@ -861,14 +1032,43 @@ function WorkTransition({
         </label>
       )}
       {action === "received" && (
-        <p className="fine-print">Tank stock was updated by the linked delivery. This closes the indent.</p>
+        <p className="fine-print">
+          Tank stock was updated by the linked delivery. This closes the indent.
+        </p>
       )}
-      <label>
-        {action === "cancelled" ? "Cancellation reason" : requiresNote ? "Completion note" : "Note (optional)"}
-        <textarea name="note" rows={2} required={requiresNote} minLength={requiresNote ? 5 : undefined} maxLength={4000} />
-      </label>
-      <Button type="submit" disabled={busy}>
-        {busy ? "Saving…" : action === "cancelled" ? "Cancel record" : actionLabels[action]}
+      {requiresNote ? (
+        <label>
+          {action === "cancelled" ? "Cancellation reason" : "Completion note"}
+          <textarea
+            name="note"
+            rows={2}
+            required
+            minLength={5}
+            maxLength={4000}
+          />
+        </label>
+      ) : (
+        <details className="ops-action-note">
+          <summary>Add a note</summary>
+          <textarea
+            aria-label="Optional note"
+            name="note"
+            rows={2}
+            maxLength={4000}
+          />
+        </details>
+      )}
+      {error && (
+        <p role="alert" className="form-error">
+          {error}
+        </p>
+      )}
+      <Button
+        type="submit"
+        disabled={busy}
+        variant={action === "cancelled" ? "destructive" : "default"}
+      >
+        {busy ? "Saving…" : actionLabels[action]}
         <ArrowRight size={15} />
       </Button>
     </form>

@@ -1,5 +1,5 @@
 /* Public offline shell only. Never cache APIs, signed-in pages, evidence or bearer links. */
-const VERSION = "pumpshield-field-v6";
+const VERSION = "pumpshield-field-v7";
 const SHELL = "/offline";
 const RECOVERY = "/offline/recovery";
 const ASSETS = [
