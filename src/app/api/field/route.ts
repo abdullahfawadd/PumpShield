@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { serverDb } from "@/lib/supabase/server";
+import { readSameOriginJson } from "../read-json-request";
 const schema = z.object({
   op: z.enum([
     "context",
@@ -12,17 +13,9 @@ const schema = z.object({
   p: z.record(z.string(), z.unknown()),
 });
 export async function POST(request: Request) {
-  if (request.headers.get("origin") !== new URL(request.url).origin)
-    return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
-  const body = await request.text();
-  if (body.length > 180000)
-    return NextResponse.json({ error: "Request too large" }, { status: 413 });
-  let input;
-  try {
-    input = schema.safeParse(JSON.parse(body));
-  } catch {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
-  }
+  const parsed = await readSameOriginJson(request, 180_000);
+  if (!parsed.ok) return parsed.response;
+  const input = schema.safeParse(parsed.body);
   if (!input.success)
     return NextResponse.json(
       { error: "Invalid field request" },

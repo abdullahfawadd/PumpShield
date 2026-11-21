@@ -302,7 +302,6 @@
 .receipt-math,
 .vehicle-card small,
 .delivery-tracking-details .tracking-state,
-.delivery-tracking-details .tracking-glass-card small,
 .delivery-tracking-details .tracking-signal-details,
 .delivery-tracking-details .tracking-provenance,
 .delivery-tracking-details .eyebrow {
@@ -712,9 +711,7 @@
   color: var(--text-secondary, #58645f);
   font-size: 12px;
 }
-.delivery-tracking-details .tracking-signal-details small,
-.delivery-tracking-details .tracking-glass-card > span,
-.delivery-tracking-details .tracking-glass-card p {
+.delivery-tracking-details .tracking-signal-details dt {
   font-size: 12px;
 }
 .ops-history li strong {

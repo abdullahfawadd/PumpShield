@@ -184,63 +184,6 @@
 .app-shell .mapping-list small {
   color: #66735b;
 }
-.app-shell .dispatch-feature {
-  background: #fff;
-  border-color: #e0e3d9;
-}
-.app-shell .dispatch-heading h2 {
-  color: #293523;
-}
-.app-shell .dispatch-heading p,
-.app-shell .feature-topline,
-.app-shell .feature-kicker,
-.app-shell .map-caption {
-  color: #627254;
-}
-.app-shell .dispatch-pill {
-  color: #4d6339;
-  background: #eaf0df;
-  border-color: #d8e1c9;
-}
-.app-shell .floating-reading {
-  background: #fffffff2;
-  border-color: #e0e6d6;
-}
-.app-shell .floating-reading small {
-  color: #626f56;
-}
-.app-shell .floating-reading strong {
-  color: #354a28;
-}
-.app-shell .attention-feature {
-  background: #e6edda;
-  border-color: #d9e3ca;
-}
-.app-shell .attention-feature h2 {
-  color: #334627;
-}
-.app-shell .attention-feature p,
-.app-shell .attention-feature > button {
-  color: #526842;
-}
-.app-shell .inventory-feature {
-  background: #e7ece4;
-  border-color: #dbe2d6;
-}
-.app-shell .inventory-feature h2 {
-  color: #3c5034;
-}
-.app-shell .inventory-feature > p,
-.app-shell .tank-ribbons > div > span,
-.app-shell .tank-ribbons small {
-  color: #5d7052;
-}
-.app-shell .tank-ribbons em {
-  background: #9bab7b;
-}
-.app-shell .fleet-map-panel .feature-topline {
-  background: #fafcf6;
-}
 .app-shell .movement-summary h2 {
   color: #2d3926;
 }
@@ -854,37 +797,6 @@
 .app-shell .sidebar-bottom {
   flex-shrink: 0;
 }
-.app-shell .stock-orbit {
-  background: conic-gradient(#869b5e var(--stock-angle), #d6dfc9 0);
-}
-.app-shell .stock-orbit > div {
-  background: #e6edda;
-  box-shadow: inset 0 0 35px #f0f5e8;
-}
-.app-shell .stock-orbit strong {
-  color: #4f673c;
-}
-.app-shell .stock-orbit span {
-  color: #637b4e;
-}
-.app-shell .dispatch-stages > div {
-  color: #738565;
-  font-size: 10px;
-}
-.app-shell .dispatch-stages .passed {
-  color: #4d6938;
-}
-.app-shell .dispatch-stages .passed i {
-  background: #8a9d69;
-  border-color: #839a5d;
-}
-.app-shell .dispatch-stages > div:before {
-  background: #d5dfc9;
-}
-.app-shell .dispatch-stages i {
-  background: #eef3e6;
-  border-color: #c5d2b5;
-}
 .dialog-content:has(.ops-detail),
 .dialog-content:has(.ops-history) {
   color: var(--text);
@@ -951,13 +863,6 @@
 .ops-toolbar input::placeholder {
   color: #637153;
 }
-.app-shell .vehicle-caption,
-.app-shell .dispatch-stages > div,
-.app-shell .feature-kicker,
-.app-shell .stock-orbit span,
-.app-shell .inventory-feature > p,
-.app-shell .tank-ribbons > div > span,
-.app-shell .tank-ribbons small,
 .app-shell .section-bar h2 > span,
 .app-shell .stat-detail,
 .app-shell .legend-dot,
@@ -967,9 +872,6 @@
 .app-shell .activity-list time {
   color: #546647;
 }
-.app-shell .vehicle-caption,
-.app-shell .feature-kicker,
-.app-shell .stock-orbit span,
 .app-shell .legend-dot {
   font-size: 10px;
 }

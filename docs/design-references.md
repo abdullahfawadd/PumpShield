@@ -21,7 +21,7 @@
 
 ## Code and asset selection
 
-Reviewed [Glisse](https://github.com/0kzh/glisse), [dnd-kit](https://github.com/clauderic/dnd-kit), and [React Three Fiber](https://github.com/pmndrs/react-three-fiber). Glisse 0.5.0 was already installed and remains limited to appropriate controls/navigation. Existing Leaflet maps and Radix dialogs were retained. New workflow boards use explicit authenticated actions; a drag gesture cannot bypass a required decision or post stock. No additional 3D engine is necessary for a flat projected decorative wall.
+The mobile dock and reporting controls use native buttons styled with CSS. Leaflet renders the fallback map and Radix provides dialogs. Workflow boards use explicit authenticated actions for decisions and stock posting. Libraries reviewed during design research include [Glisse](https://github.com/0kzh/glisse), [dnd-kit](https://github.com/clauderic/dnd-kit), and [React Three Fiber](https://github.com/pmndrs/react-three-fiber).
 
 The official [weekly TypeScript trending feed](https://github.com/trending/typescript?since=weekly) was fetched during research. It included tldraw and multiple agent/developer tools. Popularity does not establish suitability for forecourt accounting; none was added solely because it was trending. tldraw's collaborative editor is not needed for the current operational forms. No unreviewed dashboard template or arbitrary install script was imported.
 

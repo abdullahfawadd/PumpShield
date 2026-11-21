@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { serverDb } from "@/lib/supabase/server";
+import { readSameOriginJson } from "../read-json-request";
 const input = z.object({
   op: z.enum(["create", "comment", "transition"]),
   p: z.record(z.string(), z.unknown()),
@@ -69,17 +70,9 @@ export async function GET(request: Request) {
   return NextResponse.json(data, { headers: { "Cache-Control": "no-store" } });
 }
 export async function POST(request: Request) {
-  if (request.headers.get("origin") !== new URL(request.url).origin)
-    return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
-  const body = await request.text();
-  if (body.length > 16000)
-    return NextResponse.json({ error: "Request too large" }, { status: 413 });
-  let parsed;
-  try {
-    parsed = input.safeParse(JSON.parse(body));
-  } catch {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
-  }
+  const json = await readSameOriginJson(request, 16_000);
+  if (!json.ok) return json.response;
+  const parsed = input.safeParse(json.body);
   if (!parsed.success)
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   const db = await serverDb();

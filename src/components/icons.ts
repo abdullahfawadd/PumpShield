@@ -4,6 +4,8 @@ export { default as AlertCircle } from "@tabler/icons-react/icons/IconAlertCircl
 export { default as ArrowDownLeft } from "@tabler/icons-react/icons/IconArrowDownLeft";
 export { default as ArrowRight } from "@tabler/icons-react/icons/IconArrowRight";
 export { default as ArrowUpRight } from "@tabler/icons-react/icons/IconArrowUpRight";
+export { default as ArrowsMaximize } from "@tabler/icons-react/icons/IconArrowsMaximize";
+export { default as ArrowsMinimize } from "@tabler/icons-react/icons/IconArrowsMinimize";
 export { default as Bell } from "@tabler/icons-react/icons/IconBellRinging";
 export { default as Building2 } from "@tabler/icons-react/icons/IconBuildingWarehouse";
 export { default as Camera } from "@tabler/icons-react/icons/IconCamera";

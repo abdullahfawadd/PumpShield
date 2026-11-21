@@ -541,6 +541,7 @@
   font-weight: 550;
 }
 .location-coordinate-summary {
+  margin-top: 6px;
   min-width: 0;
   display: flex;
   align-items: center;
