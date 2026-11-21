@@ -22,10 +22,10 @@ jobs:
         run: |
           docker run --name pumpshield-redesign-validation --network none -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:17-alpine
           for i in $(seq 1 30); do
-            docker exec pumpshield-redesign-validation pg_isready -U postgres && break
+            docker exec pumpshield-redesign-validation pg_isready -h 127.0.0.1 -U postgres && break
             sleep 1
           done
-          docker exec pumpshield-redesign-validation pg_isready -U postgres
+          docker exec pumpshield-redesign-validation pg_isready -h 127.0.0.1 -U postgres
       - name: Apply all migrations and rolled-back SQL suites
         run: python3 scripts/test-database.py
       - name: Remove only the disposable fixture
