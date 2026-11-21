@@ -16,7 +16,7 @@ for insert to authenticated with check (
   and exists (
     select 1 from public.stations s
     where s.workspace_id = (select (private.member()).workspace_id)
-      and s.id::text = split_part(name, '/', 3)
+      and s.id::text = split_part(storage.objects.name, '/', 3)
   )
 );
 
