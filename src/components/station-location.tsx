@@ -28,9 +28,7 @@ export function StationLocation({
       <div className="panel-heading">
         <div>
           <h2>Station location</h2>
-          <p>
-            Place the receiving pin once. Driver tracking uses this destination.
-          </p>
+          <p>Tap the map to set the destination for driver tracking.</p>
         </div>
       </div>
       <div className="station-location-body">

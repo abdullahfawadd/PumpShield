@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, type KeyboardEvent } from "react";
 import dynamic from "next/dynamic";
 import type { Geo } from "@/lib/geo";
-import { MapPin, Navigation } from "./icons";
+import { Navigation } from "./icons";
 import { Button } from "./ui/button";
 const FieldMap = dynamic(() => import("./field-map"), {
   ssr: false,
@@ -52,24 +52,35 @@ export function LocationPicker({
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
     );
   }
+  function applyCoordinates() {
+    if (!coordinates) return;
+    const latitude = Number(coordinates.latitude.trim());
+    const longitude = Number(coordinates.longitude.trim());
+    if (
+      !coordinates.latitude.trim() ||
+      !coordinates.longitude.trim() ||
+      !Number.isFinite(latitude) ||
+      !Number.isFinite(longitude) ||
+      Math.abs(latitude) > 90 ||
+      Math.abs(longitude) > 180
+    ) {
+      setError(
+        "Enter latitude between −90 and 90, and longitude between −180 and 180.",
+      );
+      return;
+    }
+    onChange({ latitude, longitude });
+    setError("");
+    setCoordinates(null);
+  }
+  function applyOnEnter(event: KeyboardEvent<HTMLInputElement>) {
+    // The picker may sit inside the driver-link form.
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    applyCoordinates();
+  }
   return (
     <div className="location-picker">
-      <div className="location-picker-heading">
-        <span>
-          <MapPin size={16} />
-          {label}
-        </span>
-        <Button
-          type="button"
-          size="sm"
-          variant="secondary"
-          onClick={locate}
-          disabled={busy}
-        >
-          <Navigation size={14} />
-          {busy ? "Locating…" : "Use my location"}
-        </Button>
-      </div>
       <FieldMap picker={{ value, onPick: onChange }} label={label} compact />
       <div className="location-coordinate-summary">
         {value ? (
@@ -79,25 +90,37 @@ export function LocationPicker({
         ) : (
           <p>Tap the map to place a pin.</p>
         )}
-        <Button
-          type="button"
-          variant="ghost"
-          size="sm"
-          aria-expanded={!!coordinates}
-          onClick={() => {
-            setError("");
-            setCoordinates(
-              coordinates
-                ? null
-                : {
-                    latitude: value?.latitude.toFixed(6) ?? "",
-                    longitude: value?.longitude.toFixed(6) ?? "",
-                  },
-            );
-          }}
-        >
-          {coordinates ? "Close coordinates" : "Enter coordinates"}
-        </Button>
+        <div className="location-picker-tools">
+          <Button
+            type="button"
+            size="sm"
+            variant="secondary"
+            onClick={locate}
+            disabled={busy}
+          >
+            <Navigation size={16} aria-hidden="true" />
+            {busy ? "Locating…" : "Use my location"}
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            aria-expanded={!!coordinates}
+            onClick={() => {
+              setError("");
+              setCoordinates(
+                coordinates
+                  ? null
+                  : {
+                      latitude: value?.latitude.toFixed(6) ?? "",
+                      longitude: value?.longitude.toFixed(6) ?? "",
+                    },
+              );
+            }}
+          >
+            {coordinates ? "Close coordinates" : "Enter coordinates"}
+          </Button>
+        </div>
       </div>
       {coordinates && (
         <div className="location-coordinate-editor">
@@ -106,6 +129,7 @@ export function LocationPicker({
             <input
               inputMode="decimal"
               value={coordinates.latitude}
+              onKeyDown={applyOnEnter}
               onChange={(e) =>
                 setCoordinates({ ...coordinates, latitude: e.target.value })
               }
@@ -116,35 +140,13 @@ export function LocationPicker({
             <input
               inputMode="decimal"
               value={coordinates.longitude}
+              onKeyDown={applyOnEnter}
               onChange={(e) =>
                 setCoordinates({ ...coordinates, longitude: e.target.value })
               }
             />
           </label>
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={() => {
-              const latitude = Number(coordinates.latitude.trim());
-              const longitude = Number(coordinates.longitude.trim());
-              if (
-                !coordinates.latitude.trim() ||
-                !coordinates.longitude.trim() ||
-                !Number.isFinite(latitude) ||
-                !Number.isFinite(longitude) ||
-                Math.abs(latitude) > 90 ||
-                Math.abs(longitude) > 180
-              ) {
-                setError(
-                  "Enter latitude between −90 and 90, and longitude between −180 and 180.",
-                );
-                return;
-              }
-              onChange({ latitude, longitude });
-              setError("");
-              setCoordinates(null);
-            }}
-          >
+          <Button type="button" variant="secondary" onClick={applyCoordinates}>
             Use these coordinates
           </Button>
         </div>

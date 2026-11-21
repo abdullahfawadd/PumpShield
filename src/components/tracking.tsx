@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import {
   Copy,
   MapPin,
-  Navigation,
   Radio,
   ShieldCheck,
   Square,
@@ -176,10 +175,7 @@ export function ContractorTracking({
   return (
     <section className="tracking-experience">
       <header className="tracking-title">
-        <div>
-          <span className="eyebrow">DELIVERY SIGNAL</span>
-          <h3>Follow the delivery.</h3>
-        </div>
+        <h3>Delivery tracking</h3>
         <span
           className={`tracking-state ${stale ? "stale" : latest ? "live" : "waiting"}`}
         >
@@ -194,53 +190,43 @@ export function ContractorTracking({
         </span>
       </header>
       {!setup && (
-        <div className="tracking-map-wrap">
-          <FieldMap
-            points={data?.reports || []}
-            station={stationPoint}
-            depot={depotPoint}
-          />
-          <div className="tracking-glass-card">
-            <span>
-              <Navigation size={15} />
-              {station?.name || "Receiving station"}
-            </span>
-            <strong>
-              {latest?.speed_ms != null
-                ? `${Math.max(0, Math.round(latest.speed_ms * 3.6))}`
-                : "—"}
-              <small>
-                {latest?.speed_ms != null ? "km/h reported" : "last known GPS"}
-              </small>
-            </strong>
-            <p>
-              {latest
-                ? `Accuracy ±${Math.round(latest.accuracy)} m`
-                : "Driver consent required"}
-            </p>
-          </div>
-        </div>
+        <FieldMap
+          points={data?.reports}
+          station={stationPoint}
+          depot={depotPoint}
+        />
       )}
       {error && (
         <p role="alert" className="form-error">
           {error}
         </p>
       )}
-      {latest && (
-        <div className="tracking-signal-details">
-          <span>
-            <small>LAST RECEIVED · PKT</small>
-            {date(latest.received_at)}
-          </span>
-          <span>
-            <small>RECENT REPORTS</small>
-            {data!.reports.length}
-          </span>
-          <span>
-            <small>COORDINATES</small>
-            {latest.latitude.toFixed(5)}, {latest.longitude.toFixed(5)}
-          </span>
-        </div>
+      {latest && !setup && (
+        <>
+          <dl className="tracking-signal-details">
+            <div>
+              <dt>Last report · PKT</dt>
+              <dd>{date(latest.received_at)}</dd>
+            </div>
+            <div>
+              <dt>Accuracy</dt>
+              <dd>±{Math.round(latest.accuracy)} m</dd>
+            </div>
+            {latest.speed_ms != null && (
+              <div>
+                <dt>Reported speed</dt>
+                <dd>{Math.max(0, Math.round(latest.speed_ms * 3.6))} km/h</dd>
+              </div>
+            )}
+          </dl>
+          <details className="tracking-signal-more">
+            <summary>Reported coordinates</summary>
+            <p>
+              {latest.latitude.toFixed(5)}, {latest.longitude.toFixed(5)} ·{" "}
+              {data?.reports.length} recent reports
+            </p>
+          </details>
+        </>
       )}
       {stale && (
         <div className="notice warning">
@@ -541,20 +527,6 @@ export function DriverGate({ token }: { token: string }) {
             {info.depot} → {info.station}
           </p>
         )}
-        {info && (
-          <FieldMap
-            points={reports}
-            compact
-            station={{
-              latitude: Number(info.station_lat),
-              longitude: Number(info.station_lon),
-            }}
-            depot={{
-              latitude: Number(info.depot_lat),
-              longitude: Number(info.depot_lon),
-            }}
-          />
-        )}
         <div className="driver-consent">
           <ShieldCheck size={22} />
           <p>
@@ -577,6 +549,20 @@ export function DriverGate({ token }: { token: string }) {
             {active ? <Square size={17} /> : <Radio size={17} />}
             {active ? "Stop sharing location" : "I agree · Share my location"}
           </Button>
+        )}
+        {info && (
+          <FieldMap
+            points={reports}
+            compact
+            station={{
+              latitude: Number(info.station_lat),
+              longitude: Number(info.station_lon),
+            }}
+            depot={{
+              latitude: Number(info.depot_lat),
+              longitude: Number(info.depot_lon),
+            }}
+          />
         )}
         {last && (
           <p className="fine-print" role="status">

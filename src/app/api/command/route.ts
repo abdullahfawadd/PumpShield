@@ -1,18 +1,11 @@
 import { NextResponse } from "next/server";
 import { serverDb } from "@/lib/supabase/server";
 import { commandInput } from "@/lib/command-contract";
+import { readSameOriginJson } from "../read-json-request";
 export async function POST(request: Request) {
-  if (request.headers.get("origin") !== new URL(request.url).origin)
-    return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
-  const text = await request.text();
-  if (text.length > 200000)
-    return NextResponse.json({ error: "Request too large" }, { status: 413 });
-  let parsed;
-  try {
-    parsed = commandInput.safeParse(JSON.parse(text));
-  } catch {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
-  }
+  const input = await readSameOriginJson(request, 200_000);
+  if (!input.ok) return input.response;
+  const parsed = commandInput.safeParse(input.body);
   if (!parsed.success) {
     const fields = parsed.error.issues
       .map((issue) => ({
@@ -39,7 +32,8 @@ export async function POST(request: Request) {
         : error.code === "23505"
           ? "This record already exists. Refresh before retrying."
           : error.code === "23514"
-            ? parsed.data.op === "decant" && error.message.includes('"tanks_check"')
+            ? parsed.data.op === "decant" &&
+              error.message.includes('"tanks_check"')
               ? "The assigned tank has insufficient recorded capacity. Ask the owner to verify its stock and the arrival audit before retrying."
               : "A value is outside its allowed range. Check your measurements."
             : "Unable to save. Check all required values and try again.";

@@ -8,11 +8,10 @@ import type {
   RasterDEMSourceSpecification,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { MapPoint } from "./route-map";
 import { bearing, interpolatePosition, type Geo } from "@/lib/geo";
-import { Navigation, MapPin, RefreshCw } from "./icons";
+import { ArrowsMaximize, ArrowsMinimize, Navigation, RefreshCw } from "./icons";
 const FlatMap = dynamic(() => import("./route-map"), { ssr: false });
-type Point = MapPoint & { heading?: number | null; speed_ms?: number | null };
+type Point = Geo & { received_at?: string; heading?: number | null };
 type Props = {
   points?: Point[];
   station?: Geo | null;
@@ -47,6 +46,7 @@ export default function FieldMap({
 }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const map = useRef<MapType | null>(null);
+  const library = useRef<typeof import("maplibre-gl") | null>(null);
   const marker = useRef<Marker | null>(null);
   const pins = useRef<Marker[]>([]);
   const animation = useRef(0);
@@ -55,6 +55,7 @@ export default function FieldMap({
   const [loaded, setLoaded] = useState(false);
   const [fallback, setFallback] = useState(false);
   const [follow, setFollow] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const [terrain, setTerrain] = useState<TerrainState>("street");
   const useTerrain = terrain === "loading" || terrain === "ready";
   useEffect(() => {
@@ -64,6 +65,7 @@ export default function FieldMap({
     if (fallback) return;
     let disposed = false;
     let current: MapType | undefined;
+    let resizeObserver: ResizeObserver | undefined;
     const timeout = setTimeout(() => {
       if (!disposed && !current?.isStyleLoaded()) setFallback(true);
     }, 20000);
@@ -72,6 +74,7 @@ export default function FieldMap({
         if (disposed || !host.current) return;
         try {
           M.setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
+          library.current = M;
           const initial = latest.current.picker?.value ||
             latest.current.points.at(-1) ||
             latest.current.station || { latitude: 24.86, longitude: 67.03 };
@@ -83,17 +86,27 @@ export default function FieldMap({
             pitch: 0,
             bearing: 0,
             attributionControl: { compact: true },
+            cooperativeGestures: true,
+            locale: {
+              "CooperativeGesturesHandler.MobileHelpText":
+                "Use two fingers to move the map, or expand it.",
+            },
             maxPitch: 65,
           });
           map.current = current;
+          // Section and dialog resizing can change the canvas without a window resize.
+          resizeObserver = new ResizeObserver(() => current?.resize());
+          resizeObserver.observe(host.current);
           current.addControl(
             new M.NavigationControl({ showCompass: true }),
             "top-right",
           );
-          current.addControl(
-            new M.ScaleControl({ unit: "metric" }),
-            "bottom-left",
-          );
+          if (!latest.current.picker) {
+            current.addControl(
+              new M.ScaleControl({ unit: "metric" }),
+              "bottom-left",
+            );
+          }
           current.on("dragstart", () => setFollow(false));
           current.on("click", (event) =>
             latest.current.picker?.onPick({
@@ -155,135 +168,145 @@ export default function FieldMap({
           setFallback(true);
         }
       })
-      .catch(() => setFallback(true));
+      .catch(() => {
+        if (!disposed) setFallback(true);
+      });
     return () => {
       disposed = true;
       clearTimeout(timeout);
+      resizeObserver?.disconnect();
       cancelAnimationFrame(animation.current);
       marker.current?.remove();
       pins.current.forEach((p) => p.remove());
       current?.remove();
       map.current = null;
+      library.current = null;
+      marker.current = null;
+      pins.current = [];
+      displayed.current = null;
     };
   }, [compact, fallback]);
   useEffect(() => {
+    const current = map.current;
+    if (!loaded || !current || fallback) return;
+    if (expanded) current.cooperativeGestures.disable();
+    else current.cooperativeGestures.enable();
+  }, [expanded, fallback, loaded]);
+  useEffect(() => {
     const m = map.current;
-    if (!loaded || !m || fallback) return;
+    const M = library.current;
+    if (!loaded || !m || !M || fallback) return;
     let cancelled = false;
-    void import("maplibre-gl").then((M) => {
-      if (cancelled) return;
-      pins.current.forEach((p) => p.remove());
-      pins.current = [];
-      for (const [point, kind] of [
-        [station, "station"],
-        [depot, "depot"],
-        [picker?.value, "selected"],
-      ] as const) {
-        if (!point) continue;
-        const el = document.createElement("span");
-        el.className = `field-map-pin pin-${kind}`;
-        el.textContent = kind === "depot" ? "D" : "P";
-        el.setAttribute(
-          "aria-label",
-          kind === "selected"
-            ? "Selected location"
-            : kind === "station"
-              ? "Station"
-              : "Loading depot",
-        );
-        const pin = new M.Marker({ element: el })
-          .setLngLat([point.longitude, point.latitude])
-          .setPopup(
-            new M.Popup({ offset: 20 }).setText(
-              kind === "depot"
-                ? "Loading depot"
-                : kind === "station"
-                  ? "Receiving petrol station"
-                  : "Selected location",
-            ),
-          )
-          .addTo(m);
-        pins.current.push(pin);
-      }
-      const valid = points.filter(
-        (p) => Number.isFinite(p.longitude) && Number.isFinite(p.latitude),
+    pins.current.forEach((p) => p.remove());
+    pins.current = [];
+    for (const [point, kind] of [
+      [station, "station"],
+      [depot, "depot"],
+      [picker?.value, "selected"],
+    ] as const) {
+      if (!point) continue;
+      const el = document.createElement("span");
+      el.className = `field-map-pin pin-${kind}`;
+      el.textContent = kind === "depot" ? "D" : "P";
+      el.setAttribute(
+        "aria-label",
+        kind === "selected"
+          ? "Selected location"
+          : kind === "station"
+            ? "Station"
+            : "Loading depot",
       );
-      (m.getSource("ps-trail") as GeoJSONSource)?.setData({
-        type: "FeatureCollection",
-        features:
-          valid.length > 1
-            ? [
-                {
-                  type: "Feature",
-                  properties: {},
-                  geometry: {
-                    type: "LineString",
-                    coordinates: valid.map((p) => [p.longitude, p.latitude]),
-                  },
+      const pin = new M.Marker({ element: el })
+        .setLngLat([point.longitude, point.latitude])
+        .setPopup(
+          new M.Popup({ offset: 20 }).setText(
+            kind === "depot"
+              ? "Loading depot"
+              : kind === "station"
+                ? "Receiving petrol station"
+                : "Selected location",
+          ),
+        )
+        .addTo(m);
+      pins.current.push(pin);
+    }
+    const valid = points.filter(
+      (p) => Number.isFinite(p.longitude) && Number.isFinite(p.latitude),
+    );
+    (m.getSource("ps-trail") as GeoJSONSource)?.setData({
+      type: "FeatureCollection",
+      features:
+        valid.length > 1
+          ? [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "LineString",
+                  coordinates: valid.map((p) => [p.longitude, p.latitude]),
                 },
-              ]
-            : [],
-      });
-      const last = valid.at(-1);
-      if (!last) {
-        if (picker?.value)
-          m.easeTo({
-            center: [picker.value.longitude, picker.value.latitude],
-            duration: matchMedia("(prefers-reduced-motion: reduce)").matches
-              ? 0
-              : 400,
-          });
-        marker.current?.remove();
-        marker.current = null;
-        displayed.current = null;
-        return;
-      }
-      const previous = valid.at(-2);
-      const rotation = last.heading ?? (previous ? bearing(previous, last) : 0);
-      if (!marker.current) {
-        const el = document.createElement("div");
-        el.className = "field-truck-marker";
-        const img = document.createElement("img");
-        img.src = "/brand/truck-marker.svg";
-        img.alt = "Last reported tanker position";
-        img.width = 34;
-        img.height = 58;
-        el.appendChild(img);
-        marker.current = new M.Marker({
-          element: el,
-          rotationAlignment: "map",
-          pitchAlignment: "map",
-        })
-          .setLngLat([last.longitude, last.latitude])
-          .addTo(m);
-      }
-      marker.current
-        .getElement()
-        .classList.toggle(
-          "signal-stale",
-          !!last.received_at &&
-            Date.now() - Date.parse(last.received_at) > 90000,
-        );
-      marker.current.setRotation(rotation);
-      cancelAnimationFrame(animation.current);
-      const from = displayed.current || last;
-      const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const started = performance.now();
-      const animate = (time: number) => {
-        if (cancelled) return;
-        const t = reduced ? 1 : Math.min(1, (time - started) / 1200);
-        const p = interpolatePosition(from, last, t);
-        marker.current?.setLngLat([p.longitude, p.latitude]);
-        displayed.current = p;
-        if (t < 1) animation.current = requestAnimationFrame(animate);
-      };
-      animation.current = requestAnimationFrame(animate);
-      if (follow)
-        m.easeTo({
-          center: [last.longitude, last.latitude],
-          duration: reduced ? 0 : 900,
-        });
+              },
+            ]
+          : [],
     });
+    const last = valid.at(-1);
+    if (!last) {
+      if (picker?.value)
+        m.easeTo({
+          center: [picker.value.longitude, picker.value.latitude],
+          duration: matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? 0
+            : 400,
+        });
+      marker.current?.remove();
+      marker.current = null;
+      displayed.current = null;
+      return;
+    }
+    const previous = valid.at(-2);
+    const rotation = last.heading ?? (previous ? bearing(previous, last) : 0);
+    if (!marker.current) {
+      const el = document.createElement("div");
+      el.className = "field-truck-marker";
+      const img = document.createElement("img");
+      img.src = "/brand/truck-marker.svg";
+      img.alt = "Last reported tanker position";
+      img.width = 34;
+      img.height = 58;
+      el.appendChild(img);
+      marker.current = new M.Marker({
+        element: el,
+        rotationAlignment: "map",
+        pitchAlignment: "map",
+      })
+        .setLngLat([last.longitude, last.latitude])
+        .addTo(m);
+    }
+    marker.current
+      .getElement()
+      .classList.toggle(
+        "signal-stale",
+        !!last.received_at && Date.now() - Date.parse(last.received_at) > 90000,
+      );
+    marker.current.setRotation(rotation);
+    cancelAnimationFrame(animation.current);
+    const from = displayed.current || last;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const started = performance.now();
+    const animate = (time: number) => {
+      if (cancelled) return;
+      const t = reduced ? 1 : Math.min(1, (time - started) / 1200);
+      const p = interpolatePosition(from, last, t);
+      marker.current?.setLngLat([p.longitude, p.latitude]);
+      displayed.current = p;
+      if (t < 1) animation.current = requestAnimationFrame(animate);
+    };
+    animation.current = requestAnimationFrame(animate);
+    if (follow)
+      m.easeTo({
+        center: [last.longitude, last.latitude],
+        duration: reduced ? 0 : 900,
+      });
     return () => {
       cancelled = true;
       cancelAnimationFrame(animation.current);
@@ -364,6 +387,7 @@ export default function FieldMap({
   return (
     <section
       className={`field-map ${compact ? "compact" : ""} ${picker ? "is-picker" : ""}`}
+      data-expanded={expanded}
       aria-label={label}
     >
       <div ref={host} className="field-map-surface" />
@@ -376,46 +400,12 @@ export default function FieldMap({
             selected={picker?.value}
             label={label}
             onPick={picker?.onPick}
+            expanded={expanded}
           />
           <p>Showing the standard street map.</p>
         </div>
       ) : (
         <>
-          {!picker && (
-            <div className="field-map-label">
-              <MapPin size={14} /> Reported delivery trail
-            </div>
-          )}
-          <div className="field-map-actions" role="group" aria-label="Map view">
-            <button
-              type="button"
-              onClick={() => setTerrain("street")}
-              aria-pressed={!useTerrain}
-              disabled={!loaded}
-            >
-              Street
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                if (!useTerrain) setTerrain("loading");
-              }}
-              aria-pressed={useTerrain}
-              disabled={!loaded}
-            >
-              Terrain
-            </button>
-            {!picker && (
-              <button
-                type="button"
-                aria-label="Follow last reported position"
-                aria-pressed={follow}
-                onClick={() => setFollow(true)}
-              >
-                <Navigation size={17} />
-              </button>
-            )}
-          </div>
           {(terrain === "loading" || terrain === "unavailable") && (
             <p className="map-terrain-status" role="status">
               {terrain === "loading"
@@ -429,14 +419,42 @@ export default function FieldMap({
               Loading map…
             </span>
           )}
-          {picker && (
-            <span className="map-pick-hint">
-              <MapPin size={15} />
-              Tap the exact location on the map
-            </span>
-          )}
         </>
       )}
+      <div className="field-map-actions" role="group" aria-label="Map view">
+        {!fallback && (
+          <button
+            type="button"
+            onClick={() => setTerrain(useTerrain ? "street" : "loading")}
+            aria-pressed={useTerrain}
+            disabled={!loaded}
+          >
+            Terrain
+          </button>
+        )}
+        <button
+          type="button"
+          aria-label={expanded ? "Reduce map" : "Expand map"}
+          title={expanded ? "Reduce map" : "Expand map"}
+          onClick={() => setExpanded((value) => !value)}
+        >
+          {expanded ? (
+            <ArrowsMinimize size={18} aria-hidden="true" />
+          ) : (
+            <ArrowsMaximize size={18} aria-hidden="true" />
+          )}
+        </button>
+        {!fallback && !picker && points.length > 0 && (
+          <button
+            type="button"
+            aria-label="Follow last reported position"
+            aria-pressed={follow}
+            onClick={() => setFollow(true)}
+          >
+            <Navigation size={17} aria-hidden="true" />
+          </button>
+        )}
+      </div>
     </section>
   );
 }
