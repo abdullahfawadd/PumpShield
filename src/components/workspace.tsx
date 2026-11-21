@@ -1113,6 +1113,16 @@ export function Workspace({
                           <Clock3 size={13} />
                           Last updated {date(t.updated_at)}
                         </div>
+                        {t.calibration_document && (
+                          <a
+                            className="button button-secondary button-sm"
+                            href={`/api/calibration-files/${t.id}`}
+                            title={t.calibration_document.name}
+                            download
+                          >
+                            <Download size={16} aria-hidden="true" /> Calibration file
+                          </a>
+                        )}
                         {reconciliation && (
                           <div className="stock-source">
                             <div>

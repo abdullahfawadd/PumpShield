@@ -14,7 +14,7 @@ if not re.fullmatch(r'[a-zA-Z0-9_-]+',container):raise SystemExit('Invalid conta
 database='pumpshield_test_'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d_%H%M%S_%f')
 created=subprocess.run(['docker','exec',container,'createdb','-U','postgres',database],capture_output=True,text=True)
 if created.returncode:raise SystemExit(created.stderr)
-files=[root/'tests/support/local-supabase.sql',*sorted((root/'supabase/migrations').glob('*.sql')),*[root/'tests'/f for f in ['database.sql','operations.sql','field.sql','security-boundaries.sql','high-octane.sql']]]
+files=[root/'tests/support/local-supabase.sql',*sorted((root/'supabase/migrations').glob('*.sql')),*[root/'tests'/f for f in ['database.sql','operations.sql','field.sql','security-boundaries.sql','high-octane.sql','tank-setup.sql']]]
 results=[]
 for file in files:
  transaction=['--single-transaction'] if file.parent.name=='migrations' else []

@@ -12,7 +12,8 @@ begin
  execute 'set local role authenticated';
  wa=(public.command('join','{"intent":"create_workspace","name":"QA workspace A","person":"QA owner"}') ->>'id')::uuid;
  sid=(public.command('station','{"name":"QA station","omc":"QA","city":"Karachi"}')->>'id')::uuid;
- tank=(public.command('tank',jsonb_build_object('station_id',sid,'name','Petrol','grade','MS','capacity',50000,'dip',2000,'chart','[{"mm":0,"liters":0},{"mm":5000,"liters":50000}]'::jsonb))->>'id')::uuid;
+ tank=(public.command('tank',jsonb_build_object('station_id',sid,'name','Petrol','grade','MS','capacity',50000,'chart','[{"mm":0,"liters":0},{"mm":5000,"liters":50000}]'::jsonb))->>'id')::uuid;
+ assert (select stock from public.tanks where id=tank)=0,'Tank setup posted inventory';
  nozzle=(public.command('nozzle',jsonb_build_object('station_id',sid,'tank_id',tank,'name','N1','totalizer',1000))->>'id')::uuid;
  perform public.command('price',jsonb_build_object('station_id',sid,'grade','MS','price',300,'beta',0.00115,'margin',10,'effective_at',now(),'source','QA fixture'));
  perform public.command('invite',jsonb_build_object('station_id',sid,'email',munshi||'@example.invalid','name','QA Munshi'));
@@ -74,6 +75,7 @@ begin
  perform public.command('decant',jsonb_build_object('station_id',sid,'id',delivery));
  perform set_config('request.jwt.claim.sub',owner_a::text,true);
  select stock into amount from public.tanks where id=tank;
+ assert amount=9900,'Approved delivery did not post the first recorded stock';
  perform set_config('request.jwt.claim.sub',munshi::text,true);
  perform public.ops_command('transition',jsonb_build_object('id',indent,'expected_status','dispatched','status','received'));
  perform set_config('request.jwt.claim.sub',owner_a::text,true);
@@ -83,7 +85,7 @@ begin
  failed=false;begin perform public.command('decant',jsonb_build_object('station_id',sid,'id',delivery));exception when others then failed=true;end;assert failed,'Duplicate decant accepted';
  perform public.command('parchi',jsonb_build_object('station_id',sid,'token',credential,'nozzle_id',nozzle,'liters',100,'evidence_id',e2,'request_id',gen_random_uuid()));
  failed=false;begin perform public.command('parchi',jsonb_build_object('station_id',sid,'token',credential,'nozzle_id',nozzle,'liters',100,'evidence_id',e3,'request_id',gen_random_uuid()));exception when others then failed=true;end;assert failed,'Credit limit exceeded';
- perform public.command('close_shift',jsonb_build_object('station_id',sid,'id',shift,'nozzles',jsonb_build_array(jsonb_build_object('id',nozzle,'closing',1200,'testing',0,'evidence_id',e4)),'tanks',jsonb_build_array(jsonb_build_object('id',tank,'dip',2970,'evidence_id',e5)),'cash',30000,'pos',0));
+ perform public.command('close_shift',jsonb_build_object('station_id',sid,'id',shift,'nozzles',jsonb_build_array(jsonb_build_object('id',nozzle,'closing',1200,'testing',0,'evidence_id',e4)),'tanks',jsonb_build_array(jsonb_build_object('id',tank,'dip',970,'evidence_id',e5)),'cash',30000,'pos',0));
  perform set_config('request.jwt.claim.sub',owner_a::text,true);
  select ss.result into result from public.shifts ss where ss.id=shift;
  assert (result->>'revenue')::numeric=60000,'Nozzle revenue incorrect';
