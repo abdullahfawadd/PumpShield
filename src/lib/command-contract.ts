@@ -38,6 +38,15 @@ const chart = z
   .array(z.object({ mm: nonnegative, liters: nonnegative }))
   .min(2)
   .max(10000);
+export const calibrationDocument = z.object({
+  path: z
+    .string()
+    .max(160)
+    .regex(
+      /^(?:[0-9a-f-]{36}\/){3}[0-9a-f-]{36}\.(?:pdf|csv|tsv|txt|jpg|png)$/,
+    ),
+  name: text(180),
+});
 // FormData callers include harmless chart_N helper fields. Known operation
 // fields are validated; additional fields never acquire mutation authority.
 const payload = <T extends z.ZodRawShape>(shape: T) =>
@@ -61,8 +70,8 @@ export const commandInput = z.discriminatedUnion("op", [
     name: text(100),
     grade,
     capacity: positive,
-    dip: nonnegative,
     chart,
+    calibration_document: calibrationDocument.nullish(),
   }),
   operation("nozzle", {
     ...station,

@@ -25,7 +25,7 @@ begin
   for i in 1..3 loop
     qa_tanks=array_append(qa_tanks,(public.command('tank',jsonb_build_object(
       'station_id',sid,'name',grades[i]||' tank','grade',grades[i],
-      'capacity',20000,'dip',500,
+      'capacity',20000,
       'chart','[{"mm":0,"liters":0},{"mm":2000,"liters":20000}]'::jsonb))->>'id')::uuid);
     qa_nozzles=array_append(qa_nozzles,(public.command('nozzle',jsonb_build_object(
       'station_id',sid,'tank_id',qa_tanks[i],'name',grades[i]||' nozzle','totalizer',1000))->>'id')::uuid);
@@ -43,7 +43,7 @@ begin
     'price',330,'beta',0.00117,'margin',12,'effective_at',now(),'source','Synthetic High Octane rate fixture'));
   failed=false;
   begin perform public.command('tank',jsonb_build_object('station_id',sid,'name','Unknown fuel',
-    'grade','UNKNOWN','capacity',20000,'dip',500,'chart','[{"mm":0,"liters":0},{"mm":2000,"liters":20000}]'::jsonb));
+    'grade','UNKNOWN','capacity',20000,'chart','[{"mm":0,"liters":0},{"mm":2000,"liters":20000}]'::jsonb));
   exception when check_violation then failed=true;end;
   assert failed,'Unknown fuel grade accepted';
   assert (select count(*) from public.tanks where station_id=sid)=3,'Unknown grade rejection wrote a tank';
@@ -68,8 +68,8 @@ begin
   assert (select price from public.deliveries where id=delivery_id)=330,'Delivery used another grade rate';
   assert (select beta from public.deliveries where id=delivery_id)=0.00117,'Delivery used another grade coefficient';
   overflow_delivery=(public.command('delivery',jsonb_build_object('station_id',sid,'tank_id',qa_tanks[2],
-    'reference','HSD-CAPACITY-'||gen_random_uuid(),'vehicle','TANKER-QA','depot','Synthetic depot','invoice',17000,
-    'loading_temp',30,'chambers','[[{"mm":0,"liters":0},{"mm":2000,"liters":20000}]]'::jsonb))->>'id')::uuid;
+    'reference','HSD-CAPACITY-'||gen_random_uuid(),'vehicle','TANKER-QA','depot','Synthetic depot','invoice',21000,
+    'loading_temp',30,'chambers','[[{"mm":0,"liters":0},{"mm":2200,"liters":22000}]]'::jsonb))->>'id')::uuid;
   indent_id=(public.ops_command('create',jsonb_build_object('station_id',sid,'kind','indent',
     'title','Request High Octane','supplier','QA supplier','grade','HOBC','liters',5000,'assigned_to',staff_id))->>'id')::uuid;
   perform public.ops_command('transition',jsonb_build_object('id',indent_id,'expected_status','requested','status','approved'));
@@ -105,7 +105,7 @@ begin
   perform public.command('submit_delivery',jsonb_build_object('station_id',sid,'id',delivery_id,
     'arrival_temp',30,'dips','[500]'::jsonb,'evidence_id',evidence[1]));
   perform public.command('submit_delivery',jsonb_build_object('station_id',sid,'id',overflow_delivery,
-    'arrival_temp',30,'dips','[1700]'::jsonb,'evidence_id',evidence[12]));
+    'arrival_temp',30,'dips','[2100]'::jsonb,'evidence_id',evidence[12]));
   failed=false;
   begin
     perform public.ops_command('transition',jsonb_build_object('id',indent_id,'expected_status','dispatched','status','received'));
@@ -122,7 +122,7 @@ begin
   end;
   assert overflow_constraint='tanks_check','Overflow failed to use the tank stock guard';
   perform set_config('request.jwt.claim.sub',owner_id::text,true);
-  assert (select stock from public.tanks where id=qa_tanks[2])=5000,'Overflow changed tank stock';
+  assert (select stock from public.tanks where id=qa_tanks[2])=0,'Overflow changed tank stock';
   assert (select status from public.deliveries where id=overflow_delivery)='approved','Overflow changed delivery status';
   perform set_config('request.jwt.claim.sub',staff_id::text,true);
   perform public.command('decant',jsonb_build_object('station_id',sid,'id',delivery_id));
@@ -161,9 +161,9 @@ begin
       jsonb_build_object('id',qa_nozzles[2],'closing',1000,'testing',0,'evidence_id',evidence[6]),
       jsonb_build_object('id',qa_nozzles[3],'closing',1200,'testing',0,'evidence_id',evidence[7])),
     'tanks',jsonb_build_array(
-      jsonb_build_object('id',qa_tanks[1],'dip',500,'evidence_id',evidence[8]),
-      jsonb_build_object('id',qa_tanks[2],'dip',500,'evidence_id',evidence[9]),
-      jsonb_build_object('id',qa_tanks[3],'dip',980,'evidence_id',evidence[10])),
+      jsonb_build_object('id',qa_tanks[1],'dip',0,'evidence_id',evidence[8]),
+      jsonb_build_object('id',qa_tanks[2],'dip',0,'evidence_id',evidence[9]),
+      jsonb_build_object('id',qa_tanks[3],'dip',480,'evidence_id',evidence[10])),
     'cash',29700,'pos',0));
   perform set_config('request.jwt.claim.sub',owner_id::text,true);
   select s.result into result from public.shifts s where id=shift_id;
@@ -173,8 +173,8 @@ begin
   assert (result->>'cash_variance')::numeric=0,'High Octane cash reconciliation incorrect';
   assert jsonb_array_length(result->'tanks')=3,'Reconciliation omitted a grade';
   assert not exists(select 1 from jsonb_array_elements(result->'tanks') t where (t->>'variance')::numeric<>0),'Three grade stock reconciliation incorrect';
-  assert (select stock from public.tanks where id=qa_tanks[3])=9800,'High Octane stock incorrect';
-  assert (select stock from public.tanks where id=qa_tanks[1])=5000 and (select stock from public.tanks where id=qa_tanks[2])=5000,'High Octane flow changed Petrol/Diesel stock';
+  assert (select stock from public.tanks where id=qa_tanks[3])=4800,'High Octane stock incorrect';
+  assert (select stock from public.tanks where id=qa_tanks[1])=0 and (select stock from public.tanks where id=qa_tanks[2])=0,'High Octane flow changed Petrol/Diesel stock';
   assert (select totalizer from public.nozzles where id=qa_nozzles[3])=1200,'High Octane counter incorrect';
   assert (select count(*) from public.parchis where account_id=qa_account)=2,'Rejected or replayed fills wrote extra parchis';
   assert (select balance from public.accounts where id=qa_account)=36300,'High Octane credit balance incorrect';

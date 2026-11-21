@@ -11,7 +11,11 @@ begin
  perform set_config('request.jwt.claim.sub',owner_a::text,true);execute 'set local role authenticated';
  wa=(public.command('join','{"intent":"create_workspace","name":"Security QA A","person":"Owner A"}')->>'id')::uuid;
  sid=(public.command('station','{"name":"QA A","omc":"QA","city":"Karachi"}')->>'id')::uuid;
- tank=(public.command('tank',jsonb_build_object('station_id',sid,'name','Petrol','grade','MS','capacity',50000,'dip',1000,'chart','[{"mm":0,"liters":0},{"mm":5000,"liters":50000}]'::jsonb))->>'id')::uuid;
+ tank=(public.command('tank',jsonb_build_object('station_id',sid,'name','Petrol','grade','MS','capacity',50000,'chart','[{"mm":0,"liters":0},{"mm":5000,"liters":50000}]'::jsonb))->>'id')::uuid;
+ -- Fixture for failed-close atomicity on a tank with existing recorded inventory.
+ execute 'reset role';
+ update public.tanks set stock=10000 where id=tank;
+ execute 'set local role authenticated';
  nozzle=(public.command('nozzle',jsonb_build_object('station_id',sid,'tank_id',tank,'name','N1','totalizer',1000))->>'id')::uuid;
  perform public.command('price',jsonb_build_object('station_id',sid,'grade','MS','price',300,'beta',0.00115,'margin',10,'effective_at',now(),'source','Synthetic QA'));
  ia=(public.command('invite',jsonb_build_object('station_id',sid,'email',worker||'@example.invalid','name','Worker'))->>'id')::uuid;

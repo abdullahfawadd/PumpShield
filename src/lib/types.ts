@@ -26,6 +26,7 @@ export type Tank = {
   capacity: number;
   stock: number;
   chart: { mm: number; liters: number }[];
+  calibration_document?: { path: string; name: string } | null;
   updated_at: string;
 };
 export type Nozzle = {

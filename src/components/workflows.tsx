@@ -23,16 +23,22 @@ import {
   stationTimeInstant,
 } from "@/lib/utils";
 import { FUEL_GRADE_OPTIONS, fuelGradeLabel } from "@/lib/fuel-grades";
+import { parseChart } from "@/lib/calibration-chart";
+import {
+  CALIBRATION_CHART_TEXT_ACCEPT,
+  readCalibrationChartFile,
+} from "@/lib/calibration-chart-file";
 import { deliveryStageLabel } from "@/lib/delivery-stages";
 import type { Dashboard, Delivery, Shift, Vehicle } from "@/lib/types";
 import { Dialog } from "./ui/dialog";
 import { Button } from "./ui/button";
-import { ActionForm, Field, Select, parseChart } from "./forms";
+import { ActionForm, Field, Select } from "./forms";
 import { CameraCapture } from "./camera";
 import { ParchiForm } from "./parchi-form";
 import { vehicleCredential } from "@/lib/vehicle-credential";
 import { ContractorTracking } from "./tracking";
 import { RecordPreviewLink } from "./record-preview";
+import { TankSetupForm } from "./tank-setup-form";
 export type Modal = { type: string; id?: string };
 const names: Record<string, string> = {
   station: "Add station",
@@ -79,7 +85,6 @@ export function WorkflowDialog({
   const shift = data.shifts.find((s) => s.id === modal.id);
   const account = data.accounts.find((a) => a.id === modal.id);
   const invitation = data.invitations.find((i) => i.id === modal.id);
-  const [csv, setCsv] = useState("");
   const [count, setCount] = useState(1);
   const base = { station_id: stationId };
   const owner = data.member!.role === "owner";
@@ -133,67 +138,7 @@ export function WorkflowDialog({
         </ActionForm>
       )}
       {modal.type === "tank" && (
-        <ActionForm
-          op="tank"
-          base={base}
-          onDone={onDone}
-          submit="Save calibrated tank"
-          transform={(f) => ({
-            ...Object.fromEntries(f),
-            chart: parseChart(csv),
-          })}
-        >
-          <div className="form-grid">
-            <Field
-              label="Tank name"
-              name="name"
-              maxLength={100}
-              placeholder="e.g. Petrol tank 01"
-            />
-            <Select label="Fuel grade" name="grade" options={grades} />
-            <Field
-              label="Capacity (litres)"
-              name="capacity"
-              type="number"
-              min={1}
-            />
-            <Field label="Current dip (mm)" name="dip" type="number" min={0} />
-          </div>
-          <label>
-            Certified calibration chart (CSV)
-            <input
-              type="file"
-              accept=".csv,text/csv"
-              onChange={async (e) => {
-                const file = e.target.files?.[0];
-                if (file) {
-                  if (file.size > 100000) {
-                    toast.error("Chart must be under 100 KB");
-                    return;
-                  }
-                  setCsv(await file.text());
-                }
-              }}
-            />
-          </label>
-          <label>
-            Millimetres, litres
-            <textarea
-              value={csv}
-              onChange={(e) => setCsv(e.target.value)}
-              rows={7}
-              placeholder={
-                "mm,liters\nPaste values from your certified tank chart"
-              }
-              required
-            />
-          </label>
-          <div className="notice">
-            Use the tank’s certified chart. Values between chart points use
-            linear interpolation. Out-of-range dips are rejected; no generic
-            cylinder estimate is substituted.
-          </div>
-        </ActionForm>
+        <TankSetupForm stationId={stationId} onDone={onDone} />
       )}
       {modal.type === "nozzle" && (
         <ActionForm op="nozzle" base={base} onDone={onDone} submit="Add nozzle">
@@ -356,7 +301,7 @@ export function WorkflowDialog({
             loading_temp: form.get("loading_temp"),
             chambers: Array.from({ length: count }, (_, index) => {
               try {
-                return parseChamberChart(String(form.get(`chart_${index}`)));
+                return parseChart(String(form.get(`chart_${index}`)));
               } catch (error) {
                 const reason =
                   error instanceof Error ? error.message : "Check the chart.";
@@ -636,32 +581,13 @@ function EvidenceLink({
     </RecordPreviewLink>
   );
 }
-function parseChamberChart(value: string) {
-  const points = parseChart(value);
-  if (
-    points.some(
-      (point, index) =>
-        point.mm < 0 ||
-        point.liters < 0 ||
-        (index > 0 &&
-          (point.mm <= points[index - 1].mm ||
-            point.liters <= points[index - 1].liters)),
-    )
-  ) {
-    throw new Error(
-      "Each depth and volume must be greater than the previous row.",
-    );
-  }
-  return points;
-}
-
 function ChamberCalibration({ index }: { index: number }) {
   const [chart, setChart] = useState("");
   const [source, setSource] = useState("");
   const [error, setError] = useState("");
   const points = (() => {
     try {
-      return chart ? parseChamberChart(chart) : null;
+      return chart ? parseChart(chart) : null;
     } catch {
       return null;
     }
@@ -671,22 +597,21 @@ function ChamberCalibration({ index }: { index: number }) {
   return (
     <div className="delivery-chamber">
       <label>
-        Chamber {index + 1} CSV
+        Chamber {index + 1} chart (CSV, TSV or TXT)
         <input
           type="file"
-          accept=".csv,text/csv"
+          accept={CALIBRATION_CHART_TEXT_ACCEPT}
           onChange={async (event) => {
             const file = event.target.files?.[0];
             if (!file) return;
             event.target.value = "";
-            if (file.size > 100000) {
-              setError("Use a CSV file under 100 KB.");
-              return;
-            }
             try {
-              const text = await file.text();
-              parseChamberChart(text);
-              setChart(text);
+              const { chartText } = await readCalibrationChartFile(file);
+              if (chartText === undefined)
+                throw new Error(
+                  "For a PDF or photo, paste the certified rows below.",
+                );
+              setChart(chartText);
               setSource(file.name);
               setError("");
             } catch (error) {

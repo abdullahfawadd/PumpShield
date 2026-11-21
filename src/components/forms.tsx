@@ -83,6 +83,8 @@ export function ActionForm({
   op,
   base = {},
   transform,
+  submitOnline,
+  disabled = false,
   children,
   onDone,
   submit = "Save changes",
@@ -90,6 +92,8 @@ export function ActionForm({
   op: string;
   base?: Record<string, unknown>;
   transform?: (form: FormData) => Record<string, unknown>;
+  submitOnline?: (payload: Record<string, unknown>) => Promise<unknown>;
+  disabled?: boolean;
   children: React.ReactNode;
   onDone: () => void;
   submit?: string;
@@ -107,7 +111,7 @@ export function ActionForm({
   const [error, setError] = useState("");
   async function handle(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (handling.current) return;
+    if (handling.current || disabled) return;
     handling.current = true;
     setBusy(true);
     setError("");
@@ -134,7 +138,8 @@ export function ActionForm({
         );
         if (result === "posted") void offline.refreshContext();
       } else {
-        await command(op, payload);
+        if (submitOnline) await submitOnline(payload);
+        else await command(op, payload);
         toast.success("Saved successfully");
         void offline?.refreshContext();
       }
@@ -147,37 +152,24 @@ export function ActionForm({
     }
   }
   return (
-    <form method="post" className="form-stack" onSubmit={handle}>
+    <form
+      method="post"
+      className="form-stack"
+      onSubmit={handle}
+      onChange={() => {
+        if (error) setError("");
+      }}
+    >
       {children}
       {error && (
         <p role="alert" className="form-error">
           {error}
         </p>
       )}
-      <Button disabled={busy} type="submit" className="full-width">
+      <Button disabled={busy || disabled} type="submit" className="full-width">
         {busy && <Loader2 size={16} className="spin" />}
         {busy ? "Saving…" : disconnected ? "Save on this device" : submit}
       </Button>
     </form>
   );
-}
-export function parseChart(value: string) {
-  const rows = value
-    .trim()
-    .split(/\r?\n/)
-    .filter(Boolean)
-    .filter((r, i) => !(i === 0 && /mm/i.test(r)));
-  const points = rows
-    .map((row) => {
-      const [mm, liters] = row.split(/[,;\t]/).map(Number);
-      if (!Number.isFinite(mm) || !Number.isFinite(liters))
-        throw new Error("Use two columns: millimeters,liters.");
-      return { mm, liters };
-    })
-    .sort((a, b) => a.mm - b.mm);
-  if (points.length < 2)
-    throw new Error(
-      "Add at least two calibration points from the certified chart.",
-    );
-  return points;
 }

@@ -12,7 +12,7 @@ begin
  execute 'set local role authenticated';
  wid=(public.command('join','{"intent":"create_workspace","name":"Offline QA","person":"QA owner"}')->>'id')::uuid;
  sid=(public.command('station','{"name":"Field QA station","omc":"QA","city":"Karachi"}')->>'id')::uuid;
- tank=(public.command('tank',jsonb_build_object('station_id',sid,'name','Petrol','grade','MS','capacity',50000,'dip',2000,'chart','[{"mm":0,"liters":0},{"mm":5000,"liters":50000}]'::jsonb))->>'id')::uuid;
+ tank=(public.command('tank',jsonb_build_object('station_id',sid,'name','Petrol','grade','MS','capacity',50000,'chart','[{"mm":0,"liters":0},{"mm":5000,"liters":50000}]'::jsonb))->>'id')::uuid;
  nozzle=(public.command('nozzle',jsonb_build_object('station_id',sid,'tank_id',tank,'name','N1','totalizer',1000))->>'id')::uuid;
  perform public.command('price',jsonb_build_object('station_id',sid,'grade','MS','price',300,'beta',0.00115,'margin',10,'effective_at',now(),'source','QA fixture'));
  account=(public.command('account',jsonb_build_object('station_id',sid,'name','QA fleet','credit_limit',50000))->>'id')::uuid;
