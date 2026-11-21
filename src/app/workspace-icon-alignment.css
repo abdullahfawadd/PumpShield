@@ -1,0 +1,85 @@
+/* Fixed icon slots keep navigation aligned when labels wrap or the rail collapses. */
+:is(.app-shell .sidebar, .navigation-drawer.dialog-content) .nav-item {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: center;
+}
+.app-shell[data-nav-collapsed="true"] .sidebar .nav-item {
+  grid-template-columns: 20px;
+  justify-content: center;
+}
+:is(.app-shell .sidebar, .navigation-drawer.dialog-content) .nav-item > svg,
+:is(.app-shell .sidebar, .navigation-drawer.dialog-content)
+  .profile
+  .button
+  > svg,
+.navigation-drawer .dialog-close > svg {
+  display: block;
+  inline-size: 20px;
+  block-size: 20px;
+}
+:is(.app-shell .sidebar, .navigation-drawer.dialog-content) .profile .button {
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+.app-shell
+  .topbar
+  :is(
+    .desktop-sidebar-toggle,
+    .mobile-only.icon-button,
+    .workspace-privacy-button,
+    .notification-button
+  ) {
+  align-items: center;
+  justify-content: center;
+}
+.app-shell
+  .topbar
+  :is(
+    .desktop-sidebar-toggle,
+    .mobile-only.icon-button,
+    .workspace-privacy-button,
+    .notification-button
+  )
+  > svg {
+  display: block;
+  flex: none;
+  inline-size: 20px;
+  block-size: 20px;
+}
+.app-shell :is(.heading-actions, .section-bar, .ops-heading) > .button,
+.app-shell .view-toggle > button {
+  align-items: center;
+}
+.app-shell :is(.heading-actions, .section-bar, .ops-heading) > .button > svg {
+  display: block;
+  flex: none;
+  inline-size: 18px;
+  block-size: 18px;
+}
+.app-shell .view-toggle > button > svg {
+  display: block;
+  flex: none;
+  inline-size: 16px;
+  block-size: 16px;
+}
+
+@media (max-width: 800px) {
+  .app-shell .ledger-mobile-nav > button {
+    display: grid;
+    grid-template-rows: 20px 14px;
+    place-items: center;
+    align-content: center;
+  }
+  .app-shell .ledger-mobile-nav > button > svg {
+    display: block;
+    inline-size: 20px;
+    block-size: 20px;
+  }
+  .app-shell .ledger-mobile-nav > button > span {
+    line-height: 14px;
+    white-space: nowrap;
+  }
+}

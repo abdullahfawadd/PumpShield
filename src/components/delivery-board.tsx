@@ -17,6 +17,7 @@ import type { Delivery } from "@/lib/types";
 import { deliveryStageLabel } from "@/lib/delivery-stages";
 import { date, number } from "@/lib/utils";
 import { useMobileLayout } from "@/lib/use-mobile-layout";
+import { RecordPreviewLink } from "./record-preview";
 const stages = [
   {
     id: "dispatched",
@@ -242,14 +243,13 @@ export function DeliveryBoard({
                           </button>
                           {owner &&
                             ["approved", "decanted"].includes(d.status) && (
-                              <a
+                              <RecordPreviewLink
                                 href={`/api/documents/claim/${d.id}`}
-                                target="_blank"
-                                rel="noreferrer"
-                                aria-label={`Open claim PDF ${d.reference} in a new tab`}
+                                title="Delivery shortage claim"
+                                label={`Preview claim PDF ${d.reference}`}
                               >
                                 PDF
-                              </a>
+                              </RecordPreviewLink>
                             )}
                         </div>
                       </article>

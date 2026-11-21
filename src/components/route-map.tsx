@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
+import type { Geo } from "@/lib/geo";
 export type MapPoint = {
   latitude: number;
   longitude: number;
@@ -9,14 +10,24 @@ export type MapPoint = {
 };
 export default function RouteMap({
   points,
+  station,
+  depot,
+  selected,
   label = "Reported contractor locations",
   onPick,
 }: {
   points: MapPoint[];
+  station?: Geo | null;
+  depot?: Geo | null;
+  selected?: Geo | null;
   label?: string;
-  onPick?: (point: { latitude: number; longitude: number }) => void;
+  onPick?: (point: Geo) => void;
 }) {
   const element = useRef<HTMLDivElement>(null);
+  const pick = useRef(onPick);
+  useEffect(() => {
+    pick.current = onPick;
+  }, [onPick]);
   useEffect(() => {
     let disposed = false;
     let map: import("leaflet").Map | undefined;
@@ -26,35 +37,61 @@ export default function RouteMap({
         [24.88, 67.03],
         11,
       );
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
           '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 18,
       }).addTo(map);
-      if (onPick)
-        map.on("click", (event) =>
-          onPick({ latitude: event.latlng.lat, longitude: event.latlng.lng }),
-        );
-      if (points.length) {
-        const coords = points.map(
-          (p) => [p.latitude, p.longitude] as [number, number],
-        );
+      map.on("click", (event) =>
+        pick.current?.({
+          latitude: event.latlng.lat,
+          longitude: event.latlng.lng,
+        }),
+      );
+      const coords = points
+        .filter(
+          (point) =>
+            Number.isFinite(point.latitude) && Number.isFinite(point.longitude),
+        )
+        .map((point) => [point.latitude, point.longitude] as [number, number]);
+      const bounds = L.latLngBounds(coords);
+      const last = coords.at(-1);
+      if (last) {
+        L.polyline(coords, { color: "#fff", weight: 8 }).addTo(map);
         L.polyline(coords, {
-          color: "#7154d8",
+          color: "#07524f",
           weight: 4,
-          opacity: 0.85,
         }).addTo(map);
-        const last = coords.at(-1)!;
         L.circleMarker(last, {
           radius: 9,
           color: "#fff",
           weight: 3,
-          fillColor: "#7154d8",
+          fillColor: "#07524f",
           fillOpacity: 1,
         })
           .addTo(map)
           .bindTooltip("Last reported position");
-        map.fitBounds(L.latLngBounds(coords), {
+      }
+      for (const [point, name, color] of [
+        [station, "Receiving petrol station", "#172f26"],
+        [depot, "Loading depot", "#815118"],
+        [selected, "Selected location", "#07524f"],
+      ] as const) {
+        if (!point) continue;
+        const position = L.latLng(point.latitude, point.longitude);
+        bounds.extend(position);
+        L.circleMarker(position, {
+          radius: 8,
+          color: "#fff",
+          weight: 2,
+          fillColor: color,
+          fillOpacity: 1,
+        })
+          .addTo(map)
+          .bindTooltip(name);
+      }
+      if (bounds.isValid()) {
+        map.fitBounds(bounds, {
           padding: [35, 35],
           maxZoom: 14,
         });
@@ -64,7 +101,7 @@ export default function RouteMap({
       disposed = true;
       map?.remove();
     };
-  }, [points, onPick]);
+  }, [points, station, depot, selected]);
   return (
     <div className="route-map" ref={element} role="region" aria-label={label} />
   );

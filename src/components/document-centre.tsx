@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
-import { ArrowUpRight, FileText, Search } from "@/components/icons";
+import { ArrowRight, FileText, Search } from "@/components/icons";
+import { RecordPreviewLink } from "./record-preview";
 import type { Dashboard } from "@/lib/types";
 import { date } from "@/lib/utils";
 export function DocumentCentre({
@@ -93,11 +94,10 @@ export function DocumentCentre({
       </div>
       <div className="document-list">
         {visible.map((r) => (
-          <a
+          <RecordPreviewLink
             key={`${r.kind}-${r.id}`}
             href={r.href}
-            target="_blank"
-            rel="noreferrer"
+            title={r.type}
           >
             <span className={`document-icon document-${r.kind}`}>
               <FileText size={20} aria-hidden="true" />
@@ -109,12 +109,10 @@ export function DocumentCentre({
               {r.at && <time dateTime={r.at}>{date(r.at)}</time>}
             </div>
             <span className="document-open">
-              <span>
-                Open PDF<span className="sr-only"> in a new tab</span>
-              </span>
-              <ArrowUpRight size={16} aria-hidden="true" />
+              <span>Preview</span>
+              <ArrowRight size={16} aria-hidden="true" />
             </span>
-          </a>
+          </RecordPreviewLink>
         ))}
         {!visible.length && (
           <div className="ops-empty">

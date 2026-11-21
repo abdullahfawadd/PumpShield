@@ -1,0 +1,182 @@
+.record-preview-overlay {
+  z-index: 70;
+}
+
+.dialog-content.record-preview-dialog {
+  z-index: 71;
+  padding: 0;
+  background: #f2f5ed;
+  overscroll-behavior: contain;
+}
+
+.dialog-content.record-preview-dialog .dialog-heading {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+  min-height: 68px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 12px 20px 12px 26px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.record-preview-dialog .dialog-title {
+  margin: 0;
+  padding-inline-end: 0;
+}
+
+.record-preview-dialog .dialog-close {
+  position: static;
+  display: grid;
+  place-items: center;
+}
+
+.record-preview-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 16px 26px 12px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.record-preview-actions > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.record-preview-actions a {
+  flex: none;
+  min-height: 44px;
+}
+
+.record-preview-report {
+  margin: 0 26px 24px;
+  padding: clamp(16px, 4vw, 30px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  overflow-wrap: anywhere;
+}
+
+.record-preview-report header {
+  margin-block: 12px 18px;
+}
+
+.record-preview-report h3 {
+  margin: 0 0 4px;
+  font-size: clamp(18px, 3.5vw, 24px);
+}
+
+.record-preview-report p,
+.record-preview-notes {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.record-preview-trace {
+  margin-block-start: 12px;
+  color: var(--text-secondary);
+}
+
+.record-preview-trace summary {
+  font-size: 13px;
+  min-height: 44px;
+  align-content: center;
+  cursor: pointer;
+}
+
+.record-preview-sample {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: var(--warning-surface);
+  color: var(--warning);
+  font-size: 12px;
+}
+
+.record-preview-rows {
+  margin: 0;
+  font-size: 13px;
+}
+
+.record-preview-rows > div {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+}
+
+.record-preview-rows dt {
+  color: var(--text-secondary);
+}
+.record-preview-rows dd {
+  margin: 0;
+  text-align: end;
+  font-weight: 600;
+}
+.record-preview-rows .record-preview-total {
+  margin-top: 8px;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--secondary);
+}
+
+.record-preview-notes {
+  padding-inline-start: 18px;
+  margin-block-start: 18px;
+  list-style: disc;
+}
+
+.record-preview-photo {
+  display: grid;
+  place-items: center;
+  margin: 14px;
+  min-height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #172b23;
+}
+
+.record-preview-photo img {
+  display: block;
+  max-width: 100%;
+  max-height: min(72dvh, 820px);
+  object-fit: contain;
+}
+
+.record-preview-message {
+  margin: 0;
+  padding: 32px 22px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.record-preview-message .button {
+  margin-block-start: 12px;
+}
+
+@media (max-width: 560px) {
+  .dialog-content.record-preview-dialog .dialog-heading {
+    padding-inline: 16px;
+    padding-block-start: max(12px, env(safe-area-inset-top));
+  }
+  .record-preview-actions,
+  .record-preview-report {
+    margin-inline: 12px;
+  }
+  .record-preview-dialog {
+    padding-block-end: env(safe-area-inset-bottom);
+  }
+}

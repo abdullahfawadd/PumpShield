@@ -32,6 +32,7 @@ import { CameraCapture } from "./camera";
 import { ParchiForm } from "./parchi-form";
 import { vehicleCredential } from "@/lib/vehicle-credential";
 import { ContractorTracking } from "./tracking";
+import { RecordPreviewLink } from "./record-preview";
 export type Modal = { type: string; id?: string };
 const names: Record<string, string> = {
   station: "Add station",
@@ -526,15 +527,14 @@ export function WorkflowDialog({
               Add vehicle
             </Button>
           </div>
-          <a
+          <RecordPreviewLink
             className="button button-secondary full-width"
             href={`/api/documents/statement/${account.id}`}
-            target="_blank"
-            rel="noreferrer"
+            title="Account statement"
           >
-            <Download size={16} />
-            Download account statement PDF
-          </a>
+            <ExternalLink size={16} />
+            Preview account statement
+          </RecordPreviewLink>
           <div className="vehicle-list">
             {data.vehicles
               .filter((v) => v.account_id === account.id)
@@ -625,15 +625,15 @@ function EvidenceLink({
   label?: string;
 }) {
   return (
-    <a
+    <RecordPreviewLink
       href={`/api/evidence/${id}`}
-      target="_blank"
-      rel="noreferrer"
+      title={label === "View evidence" ? "Delivery evidence" : label}
+      photo
       className="evidence-link"
     >
       <ExternalLink size={13} />
       {label}
-    </a>
+    </RecordPreviewLink>
   );
 }
 function parseChamberChart(value: string) {
@@ -1010,15 +1010,14 @@ function DeliveryDetail({
         </div>
       )}
       {["approved", "decanted"].includes(d.status) && owner && (
-        <a
+        <RecordPreviewLink
           className="button button-secondary full-width"
           href={`/api/documents/claim/${d.id}`}
-          target="_blank"
-          rel="noreferrer"
+          title="Delivery shortage claim"
         >
-          <Download size={16} />
-          Download shortage claim PDF
-        </a>
+          <ExternalLink size={16} />
+          Preview shortage claim
+        </RecordPreviewLink>
       )}
       {owner && (
         <details
@@ -1467,11 +1466,10 @@ function VehicleCard({
           </Button>
           <a
             className="button button-secondary"
-            href={`/api/vehicle-pass/${v.id}`}
-            target="_blank"
-            rel="noreferrer"
+            href={`/api/vehicle-pass/${v.id}?format=download`}
+            download
           >
-            Print vehicle fuel pass <ExternalLink size={15} />
+            Download printable fuel pass <Download size={15} />
           </a>
           <p className="fine-print">
             Share only with the authorized vehicle operator. Disable the vehicle

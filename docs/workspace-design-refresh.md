@@ -43,3 +43,23 @@ The mobile price, access, and fuel-fill ledgers retain each field and action in 
 | [Chrome responsive-table guidance](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/ui-atoms/responsive-table.md) | Preserve column associations and visible field labels as records reflow. |
 
 The updated ink `#112820` measures 15.58:1 on white. Secondary text `#435950` measures 6.75:1 on the warm station surface `#f1f3ed`. White text on action green `#154838` measures 10.42:1.
+
+## Tank and sales visualization
+
+The current workspace uses a warm off-white canvas, evergreen navigation and green actions. Apricot marks the selected destination and chart reading. Petrol, Diesel and High Octane use teal, copper and violet respectively. The tank cards share a proportional scale and display recorded volume, capacity and fill percentage. Selecting a tank shows available capacity and opens the relevant stock or shift record. Stations display their configured tanks, including multiple tanks of the same grade.
+
+The fuel mix uses recorded litres in the selected date range. Selecting a grade filters the shift chart. The mix distinguishes missing observations from a recorded zero and flags a mismatch with the total. The receiving strip reflects counts in the accompanying stage buttons.
+
+| Reference | Application |
+| --- | --- |
+| [SpeedTank](https://www.speedsol.com/estacion-speed-tank) and [Industrial Storage Tank Monitoring](https://dribbble.com/shots/27076653-Industrial-Storage-Tank-Monitoring-Dashboard) | Make the liquid surface visible, align vessels for comparison and keep exact readings beside the graphic. |
+| [TankClarity](https://www.behance.net/gallery/67611097/TankClarity-Web-Mobile) | The public project description treats tank level as a task for both web and mobile. Keep tank selection and its source record available on both. |
+| [Pinterest illustration guidance](https://guide.pinterest.com/design/how-to-use-fire-extinguisher-drawing/) | Use each gauge for a single measurement and show its label. |
+
+Evergreen text `#182a22` measures 15.07:1 on white. Secondary text `#4d6055` measures 6.07:1 on `#f2f4ee`. White text on green `#176344` measures 7.23:1. Evergreen rail text `#172f26` measures 10.09:1 on the apricot selection `#f3d4ae`.
+
+## Maps and document return
+
+Street maps start flat and use OpenFreeMap Liberty. Terrain requests real elevation on demand and tilts the view to show relief. If elevation fails, the map returns to Street and shows an explanation. The selected station and delivery trail retain their own pins and the street fallback. [MapLibre terrain example](https://maplibre.org/maplibre-gl-js/docs/examples/3d-terrain/)
+
+The document library, delivery checks, shift evidence and account ledgers open records in the workspace. Back and Close dismiss the preview. PDF downloads use the existing report generator and the same authorized record. Evidence previews are fetched on demand with private, no-store responses.
