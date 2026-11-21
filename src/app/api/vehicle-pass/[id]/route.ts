@@ -6,7 +6,7 @@ import { serverDb } from "@/lib/supabase/server";
 import { vehicleCredential } from "@/lib/vehicle-credential";
 import { fuelGradeLabel } from "@/lib/fuel-grades";
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
@@ -100,7 +100,7 @@ export async function GET(
     headers: {
       "Content-Type": "application/pdf",
       "Cache-Control": "private, no-store",
-      "Content-Disposition": `inline; filename="pumpshield-vehicle-pass-${id.slice(0, 8)}.pdf"`,
+      "Content-Disposition": `${new URL(request.url).searchParams.get("format") === "download" ? "attachment" : "inline"}; filename="pumpshield-vehicle-pass-${id.slice(0, 8)}.pdf"`,
     },
   });
 }

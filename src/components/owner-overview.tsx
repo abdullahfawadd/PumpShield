@@ -437,7 +437,7 @@ export function OwnerOverview({
                 key={id}
                 model={model}
                 days={days}
-              onDaysChange={setDays}
+                onDaysChange={setDays}
                 privateMode={privateMode}
                 onOpen={onOpen}
               />
@@ -471,6 +471,22 @@ export function OwnerOverview({
                   </div>
                   <span className="subtle-pill">{active.length} active</span>
                 </div>
+                {deliveries.length > 0 && (
+                  <div
+                    className="overview-stage-distribution"
+                    aria-hidden="true"
+                  >
+                    {model.stages
+                      .filter((item) => item.count > 0)
+                      .map((item) => (
+                        <span
+                          key={item.status}
+                          data-stage={item.status}
+                          style={{ flexGrow: item.count }}
+                        />
+                      ))}
+                  </div>
+                )}
                 <div
                   className="overview-pipeline-stages"
                   role="group"
@@ -479,6 +495,8 @@ export function OwnerOverview({
                   {model.stages.map((s) => (
                     <button
                       key={s.status}
+                      type="button"
+                      data-stage={s.status}
                       aria-pressed={stage === s.status}
                       onClick={() =>
                         setStage(stage === s.status ? null : s.status)

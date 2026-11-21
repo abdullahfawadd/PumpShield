@@ -1,4 +1,5 @@
 "use client";
+import { RecordPreviewLink } from "./record-preview";
 import { useRouter } from "next/navigation";
 import {
   useCallback,
@@ -1021,15 +1022,14 @@ export function Workspace({
                                 data-label="Receipt"
                                 className="ledger-action"
                               >
-                                <a
+                                <RecordPreviewLink
                                   className="text-link"
                                   href={`/api/documents/parchi/${p.id}`}
-                                  target="_blank"
-                                  rel="noreferrer"
+                                  title="Digital parchi receipt"
                                 >
                                   <span>Receipt {p.id.slice(0, 8)}</span>
                                   <ArrowUpRight size={13} />
-                                </a>
+                                </RecordPreviewLink>
                               </td>
                               <td data-label="Account" className="ledger-title">
                                 {

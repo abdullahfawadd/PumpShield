@@ -1,0 +1,200 @@
+.overview-stock .tank-vessel-picker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.overview-stock .tank-vessel-picker[data-count="1"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.overview-stock .tank-vessel-picker[data-count="2"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.overview-stock .tank-vessel-option {
+  --tank-color: #07796e;
+  --tank-tint: color-mix(in srgb, var(--tank-color) 10%, white);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 1fr auto auto;
+  align-content: stretch;
+  gap: 8px;
+  min-width: 0;
+  padding: 11px 9px 9px;
+  border: 1px solid #cedacc;
+  border-radius: 12px;
+  color: #182a22;
+  background: #fff;
+  text-align: start;
+}
+
+.overview-stock .tank-vessel-option.grade-hsd {
+  --tank-color: #96551f;
+}
+
+.overview-stock .tank-vessel-option.grade-hobc {
+  --tank-color: #5b51a5;
+}
+
+.overview-stock .tank-vessel-option[aria-pressed="true"] {
+  border-color: var(--tank-color);
+  background: var(--tank-tint);
+}
+
+@media (hover: hover) {
+  .overview-stock .tank-vessel-option:hover {
+    border-color: var(--tank-color);
+  }
+}
+
+.overview-stock .tank-vessel-option:focus-visible {
+  outline: 2px solid #93512c;
+  outline-offset: 2px;
+}
+
+.overview-stock .tank-vessel-option .overview-tank-identity,
+.overview-stock .tank-vessel-option .overview-tank-reading {
+  display: grid;
+  gap: 2px;
+  align-content: start;
+  min-width: 0;
+  text-align: start;
+}
+
+.tank-vessel-option .overview-tank-identity > strong {
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.tank-vessel-option .overview-tank-identity > small,
+.tank-vessel-option .overview-tank-reading > small {
+  color: #4d6055;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.tank-vessel-graphic {
+  position: relative;
+  display: block;
+  width: min(100%, 116px);
+  height: clamp(104px, 8.6vw, 128px);
+  margin-inline: auto;
+}
+
+.tank-vessel-shell {
+  position: absolute;
+  inset: 4px 17px 2px 4px;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #a1b5a6;
+  border-radius: 50% 50% 45% 45% / 10px 10px 12px 12px;
+  background: linear-gradient(
+    90deg,
+    #e0eae2,
+    #f9fcf7 39%,
+    #e5ede5 78%,
+    #cfdfd0
+  );
+  box-shadow: 0 4px 7px #182a2212;
+}
+
+.tank-vessel-shell::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  height: 11px;
+  content: "";
+  border: 1px solid #a1b5a6;
+  border-radius: 50%;
+  background: #f2f4ee;
+}
+
+.tank-vessel-shell[data-full="true"]::before {
+  background: color-mix(in srgb, var(--tank-color) 74%, white);
+}
+
+.tank-vessel-liquid {
+  position: absolute;
+  inset: auto 0 0;
+  display: block;
+  height: var(--tank-fill);
+  overflow: hidden;
+  background: var(--tank-color);
+  background-image: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--tank-color) 90%, #172f26),
+    color-mix(in srgb, var(--tank-color) 74%, white) 36%,
+    var(--tank-color) 72%,
+    color-mix(in srgb, var(--tank-color) 74%, #172f26)
+  );
+}
+
+.tank-vessel-liquid::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 10px;
+  content: "";
+  border-bottom: 1px solid #182a223b;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--tank-color) 72%, white);
+}
+
+.tank-vessel-scale {
+  position: absolute;
+  inset: 5px 3px 4px auto;
+  width: 7px;
+  border-block: 1px solid #708a79;
+  background:
+    linear-gradient(#708a79, #708a79) center / 100% 1px no-repeat,
+    linear-gradient(#708a79, #708a79) 100% 25% / 55% 1px no-repeat,
+    linear-gradient(#708a79, #708a79) 100% 75% / 55% 1px no-repeat;
+}
+
+.tank-vessel-option .overview-tank-reading > strong {
+  font-size: clamp(13px, 1.5vw, 16px);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.tank-vessel-percentage {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  margin-block-start: 3px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  background: var(--tank-tint);
+  color: var(--tank-color);
+  font-size: 11px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.overview-tank-source-header > div > span {
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .overview-stock .tank-vessel-picker {
+    gap: 5px;
+  }
+
+  .overview-stock .tank-vessel-option {
+    gap: 6px;
+    padding: 8px 6px;
+  }
+
+  .tank-vessel-option .overview-tank-identity > strong {
+    font-size: 12px;
+  }
+
+  .tank-vessel-graphic {
+    width: min(100%, 88px);
+    height: 98px;
+  }
+}

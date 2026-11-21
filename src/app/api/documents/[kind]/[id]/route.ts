@@ -3,7 +3,7 @@ import { serverDb } from "@/lib/supabase/server";
 import { z } from "zod";
 import { date, number } from "@/lib/utils";
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ kind: string; id: string }> },
 ) {
   const { kind, id } = await params;
@@ -188,11 +188,17 @@ export async function GET(
       "The balance is the account balance at generation time. Synthetic opening balances in Design Lab are not represented as payment transactions.",
     );
   }
+  const format = new URL(request.url).searchParams.get("format");
+  if (format === "preview") {
+    return Response.json(report, {
+      headers: { "Cache-Control": "private, no-store" },
+    });
+  }
   const bytes = await createReport(report);
   return new Response(new Uint8Array(bytes), {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": `inline; filename="pumpshield-${kind}-${id.slice(0, 8)}.pdf"`,
+      "Content-Disposition": `${format === "download" ? "attachment" : "inline"}; filename="pumpshield-${kind}-${id.slice(0, 8)}.pdf"`,
       "Cache-Control": "private, no-store",
       "X-Content-Type-Options": "nosniff",
     },

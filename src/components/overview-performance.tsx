@@ -38,6 +38,12 @@ export function ShiftPerformance({
   const selectedDay = series.find((d) => d.date === selected) || series.at(-1);
   const max = Math.max(1, ...series.map((d) => d[metric]));
   const total = series.reduce((sum, d) => sum + d[metric], 0);
+  const fuelMix = FUEL_GRADES.map((value) => ({
+    grade: value,
+    observed: model.gradeDays[value].length > 0,
+    liters: model.gradeDays[value].reduce((sum, day) => sum + day.liters, 0),
+  }));
+  const mixTotal = fuelMix.reduce((sum, item) => sum + item.liters, 0);
   const observedShifts = series.reduce((sum, d) => sum + d.shiftIds.length, 0);
   const hidden = privateMode && metric === "revenue";
   const gaps = series.map((day, index) =>
@@ -224,6 +230,58 @@ export function ShiftPerformance({
             ))}
           </div>
         </div>
+      )}
+      {fuelMix.some((item) => item.observed) && (
+        <section
+          className="overview-fuel-mix"
+          aria-labelledby="overview-fuel-mix-title"
+        >
+          <div className="overview-fuel-mix-heading">
+            <h3 id="overview-fuel-mix-title">Fuel sales mix</h3>
+            <span>Recorded litres</span>
+          </div>
+          {mixTotal > 0 && (
+            <div className="overview-fuel-mix-bar" aria-hidden="true">
+              {fuelMix
+                .filter((item) => item.liters > 0)
+                .map((item) => (
+                  <span
+                    key={item.grade}
+                    data-grade={item.grade}
+                    style={{ flexGrow: item.liters }}
+                  />
+                ))}
+            </div>
+          )}
+          <div
+            className="overview-fuel-mix-keys"
+            role="group"
+            aria-label="Choose a fuel for the sales chart"
+          >
+            {fuelMix.map((item) => (
+              <button
+                key={item.grade}
+                type="button"
+                data-grade={item.grade}
+                aria-pressed={grade === item.grade}
+                onClick={() =>
+                  setGrade(grade === item.grade ? "all" : item.grade)
+                }
+              >
+                <span className="overview-fuel-mix-name">
+                  <i aria-hidden="true" />
+                  {fuelGradeName(item.grade)}
+                </span>
+                <strong>
+                  {item.observed ? `${number(item.liters, 1)} L` : "No records"}
+                </strong>
+              </button>
+            ))}
+          </div>
+          {Math.abs(model.totals.liters - mixTotal) > 0.05 && (
+            <p>Grade breakdown differs from total recorded litres.</p>
+          )}
+        </section>
       )}
       {grade === "all" && model.periodShifts.length > 0 && !privateMode && (
         <details className="overview-data">

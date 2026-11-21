@@ -15,7 +15,7 @@ export function Dialog({
   title: string;
   description?: string;
   children: ReactNode;
-  variant?: "modal" | "navigation";
+  variant?: "modal" | "navigation" | "record-preview";
 }) {
   const returnFocus = useRef<HTMLElement | null>(null);
   useLayoutEffect(() => {
@@ -25,13 +25,16 @@ export function Dialog({
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="dialog-overlay" />
+        <DialogPrimitive.Overlay
+          className={`dialog-overlay ${variant === "record-preview" ? "record-preview-overlay" : ""}`}
+        />
         <DialogPrimitive.Content
-          className={`dialog-content ${variant === "navigation" ? "navigation-drawer" : ""}`}
+          className={`dialog-content ${variant === "navigation" ? "navigation-drawer" : variant === "record-preview" ? "record-preview-dialog" : ""}`}
           onCloseAutoFocus={(event) => {
             event.preventDefault();
             const target = returnFocus.current;
-            if (target?.isConnected && target !== document.body) target.focus();
+            if (target?.isConnected && target !== document.body)
+              target.focus({ preventScroll: variant === "record-preview" });
             else
               document
                 .querySelector<HTMLElement>(
@@ -54,7 +57,11 @@ export function Dialog({
             <DialogPrimitive.Close
               className="dialog-close"
               aria-label={
-                variant === "navigation" ? "Close navigation" : "Close dialog"
+                variant === "navigation"
+                  ? "Close navigation"
+                  : variant === "record-preview"
+                    ? "Close preview"
+                    : "Close dialog"
               }
             >
               <X size={20} />

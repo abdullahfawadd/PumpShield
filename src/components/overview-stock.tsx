@@ -10,6 +10,13 @@ import { Button } from "./ui/button";
 
 const litres = (value: number) =>
   Number.isFinite(value) ? `${number(value, 1)} L` : "—";
+const fillPercentage = (stock: number, capacity: number) =>
+  Number.isFinite(stock) &&
+  stock >= 0 &&
+  Number.isFinite(capacity) &&
+  capacity > 0
+    ? (stock / capacity) * 100
+    : null;
 
 export function OverviewStock({
   tanks,
@@ -33,10 +40,13 @@ export function OverviewStock({
     : [];
   const reading = latest?.reading;
   const variance = reading?.variance;
+  const availableSpace =
+    tank && fillPercentage(tank.stock, tank.capacity) != null
+      ? Math.max(0, tank.capacity - tank.stock)
+      : null;
   const capacity = tanks.reduce((sum, item) => sum + item.capacity, 0);
   const stock = tanks.reduce((sum, item) => sum + item.stock, 0);
-  const occupied = capacity > 0 ? (stock / capacity) * 100 : 0;
-  const aggregateLevel = Math.max(0, Math.min(100, occupied));
+  const occupied = fillPercentage(stock, capacity);
 
   return (
     <section
@@ -59,47 +69,75 @@ export function OverviewStock({
           <div className="overview-stock-total">
             <div>
               <strong>
-                {number(stock, 1)} <small>L</small>
+                {Number.isFinite(stock) ? number(stock, 1) : "—"}{" "}
+                <small>L</small>
               </strong>
-              <span> of {number(capacity)} L capacity</span>
+              <span>of {litres(capacity)} capacity</span>
             </div>
-            {capacity > 0 && <b>{Math.round(occupied)}% full</b>}
-            <div
-              className="overview-capacity-meter"
-              aria-hidden="true"
-              style={{ "--fill": `${aggregateLevel}%` } as CSSProperties}
-            />
+            {occupied != null && (
+              <>
+                <b>{number(occupied, 1)}% full</b>
+                <div
+                  className="overview-capacity-meter"
+                  aria-hidden="true"
+                  style={
+                    { "--fill": `${Math.min(100, occupied)}%` } as CSSProperties
+                  }
+                />
+              </>
+            )}
           </div>
           <div
-            className="overview-tank-picker"
+            className="overview-tank-picker tank-vessel-picker"
+            data-count={Math.min(3, tanks.length)}
             role="group"
             aria-label="Inspect a tank"
           >
             {tanks.map((item) => {
-              const ratio = item.capacity > 0 ? item.stock / item.capacity : 0;
-              const fill = Math.max(0, Math.min(100, ratio * 100));
+              const grade = fuelGradeName(item.grade);
+              const fill = fillPercentage(item.stock, item.capacity);
               return (
                 <button
                   key={item.id}
                   type="button"
                   aria-pressed={tank.id === item.id}
                   aria-controls={detailId}
-                  className={`overview-tank-card grade-${String(item.grade).toLowerCase()}`}
+                  className={`overview-tank-card tank-vessel-option grade-${String(item.grade).toLowerCase()}`}
                   onClick={() => setSelected(item.id)}
                 >
                   <span className="overview-tank-identity">
-                    <strong>{item.name}</strong>
-                    <small>{fuelGradeName(item.grade)}</small>
+                    <strong>{grade}</strong>
+                    {item.name.toLowerCase() !== grade.toLowerCase() && (
+                      <small>{item.name}</small>
+                    )}
+                  </span>
+                  <span className="tank-vessel-graphic" aria-hidden="true">
+                    <span
+                      className="tank-vessel-shell"
+                      data-full={fill != null && fill >= 100}
+                    >
+                      {fill != null && (
+                        <span
+                          className="tank-vessel-liquid"
+                          style={
+                            {
+                              "--tank-fill": `${Math.min(100, fill)}%`,
+                            } as CSSProperties
+                          }
+                        />
+                      )}
+                    </span>
+                    <span className="tank-vessel-scale" />
                   </span>
                   <span className="overview-tank-reading">
                     <strong>{litres(item.stock)}</strong>
-                    <small>{Math.round(ratio * 100)}% full</small>
+                    <small>of {litres(item.capacity)}</small>
+                    <span className="tank-vessel-percentage">
+                      {fill == null
+                        ? "Level unavailable"
+                        : `${number(fill, 1)}% full`}
+                    </span>
                   </span>
-                  <span
-                    className="overview-tank-gauge"
-                    aria-hidden="true"
-                    style={{ "--fill": `${fill}%` } as CSSProperties}
-                  />
                 </button>
               );
             })}
@@ -110,6 +148,9 @@ export function OverviewStock({
                 <h3>{tank.name}</h3>
                 {Number.isFinite(Date.parse(tank.updated_at)) && (
                   <span>Stock updated {date(tank.updated_at)}</span>
+                )}
+                {availableSpace != null && (
+                  <span>{litres(availableSpace)} available capacity</span>
                 )}
               </div>
               <Button

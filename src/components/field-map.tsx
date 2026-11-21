@@ -1,7 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import type { Map as MapType, Marker, GeoJSONSource } from "maplibre-gl";
+import type {
+  Map as MapType,
+  Marker,
+  GeoJSONSource,
+  RasterDEMSourceSpecification,
+} from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { MapPoint } from "./route-map";
 import { bearing, interpolatePosition, type Geo } from "@/lib/geo";
@@ -17,6 +22,21 @@ type Props = {
   compact?: boolean;
 };
 const EMPTY: Point[] = [];
+const ELEVATION_SOURCE = "ps-elevation";
+const HILLSHADE_SOURCE = "ps-hillshade-elevation";
+const HILLSHADE_LAYER = "ps-hillshade";
+const elevationSource: RasterDEMSourceSpecification = {
+  type: "raster-dem",
+  tiles: [
+    "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png",
+  ],
+  tileSize: 256,
+  maxzoom: 15,
+  encoding: "terrarium",
+  attribution:
+    'Terrain © <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen / data contributors</a>',
+};
+type TerrainState = "street" | "loading" | "ready" | "unavailable";
 export default function FieldMap({
   points = EMPTY,
   station,
@@ -34,13 +54,14 @@ export default function FieldMap({
   const latest = useRef({ points, station, depot, picker });
   const [loaded, setLoaded] = useState(false);
   const [fallback, setFallback] = useState(false);
-  const [tilted, setTilted] = useState(!picker);
   const [follow, setFollow] = useState(true);
-  const [terrain, setTerrain] = useState(false);
+  const [terrain, setTerrain] = useState<TerrainState>("street");
+  const useTerrain = terrain === "loading" || terrain === "ready";
   useEffect(() => {
     latest.current = { points, station, depot, picker };
   }, [points, station, depot, picker]);
   useEffect(() => {
+    if (fallback) return;
     let disposed = false;
     let current: MapType | undefined;
     const timeout = setTimeout(() => {
@@ -56,13 +77,11 @@ export default function FieldMap({
             latest.current.station || { latitude: 24.86, longitude: 67.03 };
           current = new M.Map({
             container: host.current,
-            style: process.env.NEXT_PUBLIC_MAPTILER_KEY
-              ? `https://api.maptiler.com/maps/hybrid/style.json?key=${process.env.NEXT_PUBLIC_MAPTILER_KEY}`
-              : "https://tiles.openfreemap.org/styles/dark",
+            style: "https://tiles.openfreemap.org/styles/liberty",
             center: [initial.longitude, initial.latitude],
             zoom: 12,
-            pitch: latest.current.picker ? 0 : 48,
-            bearing: latest.current.picker ? 0 : -16,
+            pitch: 0,
+            bearing: 0,
             attributionControl: { compact: true },
             maxPitch: 65,
           });
@@ -84,19 +103,20 @@ export default function FieldMap({
           );
           current.on("load", () => {
             if (disposed || !current) return;
+            clearTimeout(timeout);
             current.addSource("ps-trail", {
               type: "geojson",
               data: { type: "FeatureCollection", features: [] },
             });
             current.addLayer({
-              id: "ps-trail-glow",
+              id: "ps-trail-casing",
               type: "line",
               source: "ps-trail",
+              layout: { "line-cap": "round", "line-join": "round" },
               paint: {
-                "line-color": "#77b7ff",
-                "line-width": 10,
-                "line-opacity": 0.15,
-                "line-blur": 3,
+                "line-color": "#ffffff",
+                "line-width": 8,
+                "line-opacity": 0.95,
               },
             });
             current.addLayer({
@@ -105,21 +125,9 @@ export default function FieldMap({
               source: "ps-trail",
               layout: { "line-cap": "round", "line-join": "round" },
               paint: {
-                "line-color": "#e9f5ff",
-                "line-width": 3,
-                "line-opacity": 0.95,
+                "line-color": "#07524f",
+                "line-width": 4,
               },
-            });
-            current.addSource("ps-elevation", {
-              type: "raster-dem",
-              tiles: [
-                "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png",
-              ],
-              tileSize: 256,
-              maxzoom: 15,
-              encoding: "terrarium",
-              attribution:
-                'Terrain © <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen / data contributors</a>',
             });
             const coordinates = [
               ...latest.current.points,
@@ -157,7 +165,7 @@ export default function FieldMap({
       current?.remove();
       map.current = null;
     };
-  }, [compact]);
+  }, [compact, fallback]);
   useEffect(() => {
     const m = map.current;
     if (!loaded || !m || fallback) return;
@@ -282,21 +290,77 @@ export default function FieldMap({
     };
   }, [loaded, points, station, depot, picker, follow, fallback]);
   useEffect(() => {
-    if (!loaded || !map.current) return;
-    map.current.easeTo({
-      pitch: tilted ? 48 : 0,
-      bearing: tilted ? -16 : 0,
-      duration: matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? 0
-        : 600,
+    const current = map.current;
+    if (!loaded || !current || fallback) return;
+    if (!useTerrain) {
+      if (current.getLayer(HILLSHADE_LAYER)) {
+        current.setLayoutProperty(HILLSHADE_LAYER, "visibility", "none");
+      }
+      if (current.getTerrain()) {
+        current.setTerrain(null);
+        current.easeTo({ pitch: 0, bearing: 0, duration: 0 });
+      }
+      return;
+    }
+
+    // Content events include the fetched tile. isSourceLoaded also goes true
+    // after a failed request, and sea-level samples can legitimately be zero.
+    const listener = current.on("sourcedata", (event) => {
+      if (event.sourceId === ELEVATION_SOURCE && event.tile?.dem) {
+        window.clearTimeout(timeout);
+        setTerrain((state) => (state === "loading" ? "ready" : state));
+      }
     });
-  }, [tilted, loaded]);
-  useEffect(() => {
-    if (loaded && map.current)
-      map.current.setTerrain(
-        terrain ? { source: "ps-elevation", exaggeration: 1 } : null,
+    const timeout = window.setTimeout(() => {
+      setTerrain((state) => (state === "loading" ? "unavailable" : state));
+    }, 8000);
+
+    try {
+      if (!current.getSource(ELEVATION_SOURCE)) {
+        current.addSource(ELEVATION_SOURCE, elevationSource);
+        // Separate render sources let hillshade and the terrain mesh use
+        // different tile coverage while sharing cached elevation images.
+        current.addSource(HILLSHADE_SOURCE, elevationSource);
+        const firstRoad = current
+          .getStyle()
+          .layers.find((layer) => layer.type === "line");
+        current.addLayer(
+          {
+            id: HILLSHADE_LAYER,
+            type: "hillshade",
+            source: HILLSHADE_SOURCE,
+            paint: {
+              "hillshade-exaggeration": 0.42,
+              "hillshade-shadow-color": "#485d59",
+              "hillshade-highlight-color": "#f9f5e8",
+              "hillshade-accent-color": "#7a8f83",
+            },
+          },
+          firstRoad?.id,
+        );
+      }
+      current.setLayoutProperty(HILLSHADE_LAYER, "visibility", "visible");
+      current.setTerrain({ source: ELEVATION_SOURCE, exaggeration: 1.35 });
+      current.easeTo({
+        pitch: 55,
+        bearing: -12,
+        duration: matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? 0
+          : 550,
+      });
+    } catch {
+      window.clearTimeout(timeout);
+      window.setTimeout(
+        () =>
+          setTerrain((state) => (state === "loading" ? "unavailable" : state)),
+        0,
       );
-  }, [terrain, loaded]);
+    }
+    return () => {
+      listener.unsubscribe();
+      window.clearTimeout(timeout);
+    };
+  }, [fallback, loaded, useTerrain]);
   return (
     <section
       className={`field-map ${compact ? "compact" : ""} ${picker ? "is-picker" : ""}`}
@@ -306,31 +370,37 @@ export default function FieldMap({
       {fallback ? (
         <div className="field-flat-fallback">
           <FlatMap
-            points={picker?.value ? [picker.value] : points}
+            points={points}
+            station={station}
+            depot={depot}
+            selected={picker?.value}
             label={label}
             onPick={picker?.onPick}
           />
-          <p>3D unavailable on this device. Showing the standard map.</p>
+          <p>Showing the standard street map.</p>
         </div>
       ) : (
         <>
-          <div className="field-map-label">
-            <span className="map-signal-dot" />
-            {picker ? "SELECT A LOCATION" : "REPORTED DELIVERY TRAIL"}
-          </div>
-          <div className="field-map-actions">
+          {!picker && (
+            <div className="field-map-label">
+              <MapPin size={14} /> Reported delivery trail
+            </div>
+          )}
+          <div className="field-map-actions" role="group" aria-label="Map view">
             <button
               type="button"
-              onClick={() => setTilted(!tilted)}
-              aria-pressed={tilted}
+              onClick={() => setTerrain("street")}
+              aria-pressed={!useTerrain}
               disabled={!loaded}
             >
-              {tilted ? "2D" : "3D"}
+              Street
             </button>
             <button
               type="button"
-              onClick={() => setTerrain(!terrain)}
-              aria-pressed={terrain}
+              onClick={() => {
+                if (!useTerrain) setTerrain("loading");
+              }}
+              aria-pressed={useTerrain}
               disabled={!loaded}
             >
               Terrain
@@ -346,6 +416,13 @@ export default function FieldMap({
               </button>
             )}
           </div>
+          {(terrain === "loading" || terrain === "unavailable") && (
+            <p className="map-terrain-status" role="status">
+              {terrain === "loading"
+                ? "Loading elevation…"
+                : "Elevation unavailable. Street view restored."}
+            </p>
+          )}
           {!loaded && (
             <span className="map-loading-label" role="status">
               <RefreshCw className="spin" size={16} />

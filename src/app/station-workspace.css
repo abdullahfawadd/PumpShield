@@ -1,17 +1,17 @@
 /* Workspace and portal tokens. The sign-in screen has its own surface. */
 :is(.app-shell, .dialog-content, .offline-station-view) {
-  --background: #f1f3ed;
+  --background: #f2f4ee;
   --surface: #fff;
   --surface-raised: #fff;
-  --text: #112820;
-  --text-secondary: #435950;
-  --primary: #154838;
+  --text: #182a22;
+  --text-secondary: #4d6055;
+  --primary: #176344;
   --on-primary: #fff;
-  --secondary: #e6eee4;
-  --on-secondary: #193e33;
-  --border: #cbd7d1;
-  --control-border: #6f8079;
-  --focus: #1956aa;
+  --secondary: #e6ede3;
+  --on-secondary: #2a4b39;
+  --border: #cdd8ca;
+  --control-border: #718478;
+  --focus: #9b481d;
   --success: #14553c;
   --success-surface: #dcf0e3;
   --warning: #694208;
@@ -30,9 +30,9 @@
 
 .app-shell {
   --rail-width: 218px;
-  --rail-surface: #14251f;
-  --rail-muted: #b2c8bd;
-  --rail-accent: #d9eea6;
+  --rail-surface: #172f26;
+  --rail-muted: #c1d4c5;
+  --rail-accent: #f3d4ae;
   background: var(--background);
 }
 .app-shell .table-scroll { position: relative; }
@@ -46,9 +46,9 @@
 }
 
 :is(.app-shell .sidebar, .navigation-drawer.dialog-content) {
-  background: #14251f;
-  color: #f1f7f3;
-  border-color: #293d35;
+  background: #172f26;
+  color: #f5f8f3;
+  border-color: #365649;
 }
 .app-shell .sidebar {
   width: var(--rail-width);
@@ -59,14 +59,14 @@
   padding: 7px 10px 23px;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .brand {
-  color: #f1f7f3;
+  color: #f5f8f3;
   gap: 9px;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .brand-mark {
-  color: #d9eea6;
+  color: #f3d4ae;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .nav-item {
-  color: #d6e5df;
+  color: #e0eae0;
   gap: 11px;
   min-height: 44px;
   margin-bottom: 3px;
@@ -81,11 +81,11 @@
 }
 :is(.app-shell .sidebar, .navigation-drawer) .nav-item:hover {
   color: #fff;
-  background: #284438;
+  background: #294839;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .nav-item.active {
-  background: #d9eea6;
-  color: #13221e;
+  background: #f3d4ae;
+  color: #182a22;
   font-weight: 650;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .profile {
@@ -93,40 +93,40 @@
   display: flex;
   gap: 8px;
   padding: 9px 0 0;
-  border-color: #3d564a;
-  color: #f1f7f3;
+  border-color: #4b6657;
+  color: #f5f8f3;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .profile-avatar {
   flex: 0 0 30px;
-  background: #29453a;
-  color: #eef8ef;
-  border-color: #4c6a5e;
+  background: #2e4c3e;
+  color: #eff6eb;
+  border-color: #6e8676;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .profile-label {
   min-width: 0;
   flex: 1 1 auto;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .profile-label strong {
-  color: #f1f7f3;
+  color: #f5f8f3;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .profile-label small {
-  color: #b2c8bd;
+  color: #c1d4c5;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .profile .button {
-  color: #d6e5df;
+  color: #e0eae0;
   margin-inline-start: auto;
 }
 :is(.app-shell .sidebar, .navigation-drawer) .profile .button:hover {
   color: #fff;
-  background: #284438;
+  background: #294839;
 }
 :is(.app-shell .sidebar, .navigation-drawer) :focus-visible {
-  outline: 2px solid #f3e78f;
+  outline: 2px solid #f7c683;
   outline-offset: 2px;
 }
 .navigation-drawer .dialog-close {
-  color: #f1f7f3;
-  background: #29453a;
+  color: #f5f8f3;
+  background: #2e4c3e;
 }
 
 .app-shell .app-main {
@@ -358,7 +358,7 @@
 }
 .app-shell .station-task-grid > button:not(:first-child):hover {
   border-color: var(--control-border);
-  background: #f6faf7;
+  background: #f8faf5;
 }
 .app-shell .station-task-grid > button > .station-task-icon {
   display: grid;
@@ -370,7 +370,7 @@
   border-radius: 10px;
 }
 .app-shell .station-task-grid > button:first-child > .station-task-icon {
-  background: #d9eea6;
+  background: #f3d4ae;
 }
 .app-shell .station-task-grid > button > .station-task-copy {
   display: grid;
@@ -387,7 +387,7 @@
   color: var(--text-secondary);
 }
 .app-shell .station-task-grid > button:first-child small {
-  color: #eff6ef;
+  color: #edf4ea;
 }
 .shift-current-strip {
   display: flex;
@@ -468,8 +468,8 @@
     color: var(--text-secondary);
   }
   .app-shell .ledger-mobile-nav > button[aria-current="page"] {
-    color: #10362c;
-    background: #deeddf;
+    color: #264b3b;
+    background: #dce9dd;
     font-weight: 650;
   }
 }
@@ -521,8 +521,8 @@
   place-items: center;
   height: 50px;
   border-radius: 12px;
-  background: #d9ef9f;
-  color: #112820;
+  background: #d5ebe7;
+  color: #182a22;
 }
 .app-shell .field-credit-start h2 {
   color: var(--text);
@@ -537,7 +537,7 @@
 .field-map-placeholder {
   display: grid;
   place-items: center;
-  color: #435950;
+  color: #4d6055;
   font-weight: 550;
 }
 .location-coordinate-summary {
@@ -549,7 +549,7 @@
   gap: 3px 6px;
 }
 .location-coordinate-summary output {
-  color: #435950;
+  color: #4d6055;
   font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
 }
