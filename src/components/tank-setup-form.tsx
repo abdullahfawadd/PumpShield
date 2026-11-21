@@ -68,8 +68,10 @@ export function TankSetupForm({
         />
       </div>
       <div className="notice">
-        Starting stock is <strong>0 L</strong>. Deliveries and shift
-        reconciliation record subsequent stock.
+        <p>
+          Starting stock is <strong>0 L</strong>. Deliveries and shift
+          reconciliation record subsequent stock.
+        </p>
       </div>
       <CalibrationChartInput
         chartText={chartText}

@@ -152,7 +152,14 @@ export function ActionForm({
     }
   }
   return (
-    <form method="post" className="form-stack" onSubmit={handle}>
+    <form
+      method="post"
+      className="form-stack"
+      onSubmit={handle}
+      onChange={() => {
+        if (error) setError("");
+      }}
+    >
       {children}
       {error && (
         <p role="alert" className="form-error">
